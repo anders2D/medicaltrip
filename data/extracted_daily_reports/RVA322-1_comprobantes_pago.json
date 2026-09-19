@@ -1,0 +1,26 @@
+[
+  {
+    "comprobante_no": "726",
+    "fecha": "2026-07-25",
+    "hora": "20:07",
+    "valor_cop": 500000,
+    "costo_transferencia_cop": 0,
+    "cuenta_origen": "Ahorros Bancolombia *7984",
+    "beneficiario": "ACP Andres Cantero",
+    "cuenta_destino": "Ahorros Bancolombia 379-194776-96",
+    "referencia": "RVA322 ACP transporte",
+    "concepto_contable": "LIQUIDACION_TRANSPORTE_RVA322"
+  },
+  {
+    "comprobante_no": "859",
+    "fecha": "2026-07-25",
+    "hora": "20:08",
+    "valor_cop": 84750,
+    "costo_transferencia_cop": 0,
+    "cuenta_origen": "Ahorros Bancolombia *7984",
+    "beneficiario": "ACP Andres Cantero",
+    "cuenta_destino": "Ahorros Bancolombia 379-194776-96",
+    "referencia": "RVA322 ACP Andres",
+    "concepto_contable": "LIQUIDACION_HONORARIOS_SALDO_RVA322"
+  }
+]

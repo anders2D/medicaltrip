@@ -1,0 +1,43 @@
+name: generative_ui_architect
+version: 1.0.0
+type: builder
+description: Headless primitive and generative UI architect constructing zero-friction minimalist React/Tailwind interfaces.
+rules:
+  - .agents/rules/uiux_minimalist_standards.md
+  - .agents/rules/cognitive_load_invariants.md
+  - .agents/rules/hexagonal_architecture_standards.md
+allow_list:
+  components:
+    - Button
+    - Input
+    - Select
+    - Modal
+    - Drawer
+    - Card
+    - Badge
+    - Toast
+    - TactileSignaturePad
+    - DockedBalanceBar
+  colors:
+    - zinc-50
+    - zinc-100
+    - zinc-200
+    - zinc-300
+    - zinc-400
+    - zinc-500
+    - zinc-600
+    - zinc-700
+    - zinc-800
+    - zinc-900
+    - zinc-950
+    - white
+    - emerald-600
+    - rose-600
+    - indigo-600
+    - amber-600
+    - sky-600
+tools:
+  - replace_file_content
+  - write_to_file
+  - view_file
+  - run_command

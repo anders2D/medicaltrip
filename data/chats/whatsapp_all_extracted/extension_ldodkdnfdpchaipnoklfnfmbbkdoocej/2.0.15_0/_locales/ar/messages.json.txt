@@ -1,0 +1,14 @@
+================================================================================
+ARCHIVO: messages.json
+ORIGEN:  c:\Users\mayra\projects\Medicina\whatsapp_business_backup\extension_ldodkdnfdpchaipnoklfnfmbbkdoocej\2.0.15_0\_locales\ar\messages.json
+TAMAÑO:  374 bytes
+================================================================================
+
+{
+   "desc": {
+      "message": "تصدير دردشة WhatsApp مع الوسائط إلى HTML، حفظ رقم المجموعة وتنزيل جهة الاتصال إلى Excel. محلي، آمن، خاص. لا يتم جمع بيانات."
+   },
+   "name": {
+      "message": "Download WhatsApp Chat - تصدير أرقام واتساب لـ Excel/CSV/VCard"
+   }
+}

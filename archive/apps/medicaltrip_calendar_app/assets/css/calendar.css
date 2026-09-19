@@ -1,0 +1,384 @@
+/* ==========================================================================
+   Calendar Grid & View Layouts (Month, Week, Day, Agenda)
+   ========================================================================== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Top App Bar */
+.app-header {
+  height: 60px;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  flex-shrink: 0;
+  z-index: 10;
+}
+
+.brand-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-logo {
+  width: 32px;
+  height: 32px;
+  background: var(--primary);
+  color: white;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.brand-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-title-date {
+  font-size: 1.1rem;
+  font-weight: 700;
+  min-width: 200px;
+  text-align: center;
+}
+
+.view-switcher {
+  display: flex;
+  background: var(--bg-surface-subtle);
+  padding: 3px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+}
+
+.view-btn {
+  padding: 5px 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.view-btn:hover {
+  color: var(--text-primary);
+}
+
+.view-btn.active {
+  background: var(--bg-surface);
+  color: var(--primary);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Patient Switcher Bar */
+.patient-bar {
+  height: 48px;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 12px;
+  overflow-x: auto;
+  flex-shrink: 0;
+}
+
+.patient-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.patient-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: var(--bg-surface-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  color: var(--text-secondary);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.patient-pill:hover {
+  background: var(--bg-surface-hover);
+  color: var(--text-primary);
+}
+
+.patient-pill.active {
+  background: var(--primary-light);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* Main Calendar Container */
+.calendar-viewport {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+}
+
+.calendar-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  background: var(--bg-surface);
+}
+
+/* Month Grid View */
+.month-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-auto-rows: minmax(110px, 1fr);
+  flex: 1;
+  border-left: 1px solid var(--border-subtle);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.month-header-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-surface-subtle);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.month-day-name {
+  padding: 8px;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.month-cell {
+  border-right: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: var(--bg-surface);
+  transition: background 0.1s ease;
+  min-height: 110px;
+}
+
+.month-cell:hover {
+  background: var(--bg-surface-subtle);
+}
+
+.month-cell.other-month {
+  background: var(--bg-app);
+  opacity: 0.6;
+}
+
+.month-cell.today {
+  background: rgba(2, 132, 199, 0.04);
+}
+
+.month-date-number {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+}
+
+.month-cell.today .month-date-number {
+  background: var(--primary);
+  color: white;
+}
+
+/* Event Chip in Month View */
+.event-chip {
+  padding: 3px 6px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  border-left: 3px solid transparent;
+}
+
+.event-chip:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.event-chip.sky { background: var(--event-sky-bg); color: var(--event-sky-text); border-color: var(--event-sky-badge); }
+.event-chip.indigo { background: var(--event-indigo-bg); color: var(--event-indigo-text); border-color: var(--event-indigo-badge); }
+.event-chip.teal { background: var(--event-teal-bg); color: var(--event-teal-text); border-color: var(--event-teal-badge); }
+.event-chip.amber { background: var(--event-amber-bg); color: var(--event-amber-text); border-color: var(--event-amber-badge); }
+.event-chip.rose { background: var(--event-rose-bg); color: var(--event-rose-text); border-color: var(--event-rose-badge); }
+.event-chip.slate { background: var(--event-slate-bg); color: var(--event-slate-text); border-color: var(--event-slate-badge); }
+
+/* Week / Day Time Grid Layout */
+.week-grid-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.timegrid-header {
+  display: grid;
+  grid-template-columns: 60px repeat(7, 1fr);
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-surface-subtle);
+  position: sticky;
+  top: 0;
+  z-index: 6;
+}
+
+.timegrid-body {
+  display: grid;
+  grid-template-columns: 60px repeat(7, 1fr);
+  position: relative;
+}
+
+.time-slot-label {
+  height: 48px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-align: right;
+  padding-right: 8px;
+  border-bottom: 1px solid var(--border-subtle);
+  transform: translateY(-8px);
+}
+
+.day-column {
+  border-left: 1px solid var(--border-subtle);
+  position: relative;
+  height: calc(48px * 16); /* 06:00 to 22:00 = 16 hours */
+}
+
+.hour-cell-line {
+  height: 48px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.timegrid-event {
+  position: absolute;
+  left: 3px;
+  right: 3px;
+  padding: 4px 6px;
+  border-radius: var(--radius-sm);
+  font-size: 0.72rem;
+  font-weight: 600;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  border-left: 3px solid;
+  z-index: 2;
+}
+
+.timegrid-event.sky { background: var(--event-sky-bg); color: var(--event-sky-text); border-color: var(--event-sky-badge); }
+.timegrid-event.indigo { background: var(--event-indigo-bg); color: var(--event-indigo-text); border-color: var(--event-indigo-badge); }
+.timegrid-event.teal { background: var(--event-teal-bg); color: var(--event-teal-text); border-color: var(--event-teal-badge); }
+.timegrid-event.amber { background: var(--event-amber-bg); color: var(--event-amber-text); border-color: var(--event-amber-badge); }
+.timegrid-event.rose { background: var(--event-rose-bg); color: var(--event-rose-text); border-color: var(--event-rose-badge); }
+.timegrid-event.slate { background: var(--event-slate-bg); color: var(--event-slate-text); border-color: var(--event-slate-badge); }
+
+/* Agenda Timeline View */
+.agenda-container {
+  padding: 24px 32px;
+  max-width: 860px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.agenda-day-group {
+  margin-bottom: 24px;
+}
+
+.agenda-date-header {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.agenda-date-badge {
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  background: var(--primary-light);
+  color: var(--primary);
+  font-size: 0.75rem;
+}
+
+.agenda-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.agenda-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-sm);
+}

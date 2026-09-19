@@ -1,0 +1,42 @@
+================================================================================
+DOCUMENTO EXTRAÍDO: Juan Perez (Demo).md
+UBICACIÓN ORIGINAL: c:\Users\mayra\projects\Medicina\whatsapp_business_backup\markdown_chats\Juan Perez (Demo)\Juan Perez (Demo).md
+TAMAÑO ORIGINAL:    1,066 bytes
+FECHA EXTRACCIÓN:   2026-08-21 21:36:14
+================================================================================
+
+TIPO: Texto Plano / Datos (.md)
+CODIFICACIÓN: utf-8
+
+# 💬 Chat: Juan Perez (Demo)
+
+> [!NOTE]
+> **Participantes**: Juan, Mayra  
+> **Periodo**:  - 10/07/2023  
+> **Total de Mensajes**: 7  
+
+---
+
+* — ⚙️ ﻿10/07/2023, 09:15 a. m. - Las llamadas y los mensajes están cifrados de extremo a extremo. Nadie fuera de este chat, ni siquiera WhatsApp, puede leerlos ni escucharlos.*
+
+
+### 📅 10/07/2023
+
+> **Juan** `[09:16 a. m.]`  
+> ¡Hola Mayra! ¿Cómo estás? Te comparto la información del caso médico y la foto de referencia.
+
+> **Juan** `[09:17 a. m.]`  
+> ![IMG-20230710-WA0082.jpg](media/IMG-20230710-WA0082.jpg)
+
+> **Mayra** `[09:18 a. m.]`  
+> ¡Hola Juan! Muchas gracias por enviarlo. Ya revisé la imagen.
+
+> **Mayra** `[09:19 a. m.]`  
+> Te dejo una nota de voz con las indicaciones y detalles del tratamiento.
+
+> **Mayra** `[09:20 a. m.]`  
+> <audio controls src="media/PTT-20231231-WA0017.opus"></audio>
+> *🎵 Audio: [PTT-20231231-WA0017.opus](media/PTT-20231231-WA0017.opus)*
+
+> **Juan** `[09:21 a. m.]`  
+> Excelente, me quedó todo muy claro. ¡Muchas gracias!

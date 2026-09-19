@@ -1,0 +1,40 @@
+{
+  "firstName": "Natalie Monica",
+  "lastName": "Bito e/v Rumai",
+  "country": "Curazao",
+  "language": "Papiamento / Holandés / Español",
+  "phone": "+599 9 521 8844",
+  "email": "natalie.bito@medicaltrip.test",
+  "arrivalDate": "2026-10-15T14:30:00.000Z",
+  "departureDate": "2026-10-20T17:00:00.000Z",
+  "airline": "Arajet",
+  "flightNumber": "DM-101 (CUR -> MDE)",
+  "hotelName": "HOTEL 1616 Poblado",
+  "specialtyPreset": "CARDIOLOGY_5D",
+  "companionNames": ["Alci Amundaray Rumai"],
+  "advancesCOP": [
+    {
+      "description": "Depósito Inicial de Reserva / Anticipo Bancolombia",
+      "amountCOP": 1500000,
+      "date": "2026-09-19T11:45:00.000Z"
+    }
+  ],
+  "initialExpensesCOP": [
+    {
+      "category": "SIM_CARD",
+      "description": "2 SIM Cards Claro 80GB Conectividad Pareja",
+      "amountCOP": 90000
+    },
+    {
+      "category": "OTHER",
+      "description": "Póliza Asistencia Médica Colasistencia (2 Pax x 5 Días)",
+      "amountCOP": 60000
+    },
+    {
+      "category": "MEDICAL_LAB",
+      "description": "Laboratorio Clínico Domiciliario Echavarría (Perfil Ejecutivo)",
+      "amountCOP": 250000
+    }
+  ],
+  "notes": "Chequeo Médico Ejecutivo Integral para Natalie Monica Bito (Pasaporte NP54RL234) y acompañante Alci Amundaray Rumai procedentes de Curazao. Incluye laboratorios, evaluación cardiovascular, acompañamiento presencial y certificado Fit-to-Fly."
+}

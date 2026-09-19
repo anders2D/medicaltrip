@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ES2022",
+    "moduleResolution": "bundler",
+    "outDir": "./dist_runner",
+    "rootDir": ".",
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "strict": false,
+    "noEmit": false
+  },
+  "include": [
+    "src/infrastructure/crdt/**/*",
+    "src/infrastructure/security/**/*",
+    "src/domain/**/*",
+    "src/workers/**/*",
+    "tests/adversarial/adversarial_runner.ts"
+  ]
+}

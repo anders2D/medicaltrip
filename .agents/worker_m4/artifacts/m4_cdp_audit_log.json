@@ -1,0 +1,216 @@
+{
+  "timestamp": "2026-08-25T00:18:45.882Z",
+  "engine": "Chromium CDP Live Runtime Engine + Formal MBT + LTL Invariants",
+  "targetUrl": "http://localhost:3000/apps/medicaltrip_react_app/dist/",
+  "runtimeAudit": {
+    "exceptionsCount": 0,
+    "consoleErrorsCount": 0,
+    "errors": [],
+    "warningsCount": 0
+  },
+  "journeys": {
+    "J1_Multilingual_Switching": {
+      "status": "PASSED",
+      "supportedLanguages": [
+        "es",
+        "en",
+        "nl",
+        "pap"
+      ],
+      "details": {
+        "pap": {
+          "active": true,
+          "lang": "pap"
+        },
+        "nl": {
+          "active": true,
+          "lang": "nl"
+        },
+        "en": {
+          "active": true,
+          "lang": "en"
+        },
+        "es": {
+          "active": true,
+          "lang": "es"
+        }
+      }
+    },
+    "J2_Archetype_Switching": {
+      "status": "PASSED",
+      "archetypesLoaded": 4,
+      "details": {
+        "rva171": {
+          "loaded": true,
+          "title": "Agosto 2026\nHotel Inntu Laureles"
+        },
+        "rva077": {
+          "loaded": true,
+          "title": "Agosto 2026\nHotel Novelty Suites Poblado"
+        },
+        "rva341": {
+          "loaded": true,
+          "title": "Agosto 2026\nHotel Inntu Laureles"
+        },
+        "rva282": {
+          "loaded": true,
+          "title": "Agosto 2026\nAirbnb Ed. Park 42 Poblado"
+        }
+      }
+    },
+    "J3_Airport_Arrival_Logistics": {
+      "status": "PASSED",
+      "driverAssigned": "[DRV-01] Ramón Rosero (NLX666)",
+      "flightDetected": "Wingo 7449 / JMC Rionegro",
+      "checkedInTerminalBadge": true
+    },
+    "J4_Welcome_Orientation_Kit": {
+      "status": "PASSED",
+      "emergencyContactsVerified": true,
+      "eSimClaroVerified": true,
+      "currencyExchangeVerified": true
+    },
+    "J5_Companion_Turn_Management": {
+      "status": "PASSED",
+      "hoursLogged": "5.25",
+      "hourlySubtotal": "$ 81.375",
+      "prepAllowance": "$ 15.500",
+      "mealSubsidyTier": "TIER_2 ($25.000 COP)",
+      "mealSubsidyAmount": "$ 25.000",
+      "totalShiftFee": "$ 121.875",
+      "sha256Seal": "🔒 9dd503301c090ba165b1e512bd00292d66d15cc1cefee69bf649e90c284dcdb1"
+    },
+    "J6_Fast_Expenses_BigInt": {
+      "status": "PASSED",
+      "netBalanceFormatted": "Saldo Neto: -$ 282.475",
+      "arithmeticPrecision": "Exact BigInt Cents",
+      "floatingPointDriftCOP": 0
+    },
+    "J7_One_Tap_Settlement": {
+      "status": "PASSED",
+      "signaturePadDrawn": true,
+      "masterSha256Seal": "a0da49185f4d8a65f5608116d2c1195e6ab45910047f71e732972ca14956e6f5"
+    }
+  },
+  "financialAudit": {
+    "status": "PASSED",
+    "netBalanceFormatted": "Saldo Neto: -$ 282.475",
+    "arithmeticPrecision": "Exact BigInt Cents",
+    "floatingPointDriftCOP": 0
+  },
+  "ltlFormulas": {
+    "formula": "G(LangSwitched) ^ G(ArchetypeSwitched) ^ G(ArrivalCheckIn) ^ G(CompanionTurnSealed) ^ G(FastExpense -> BigIntValid ^ SHA256Sealed)",
+    "satisfied": true,
+    "traceLength": 8,
+    "trace": [
+      {
+        "state": "LANG_SWITCHED_ALL",
+        "timestamp": 1787617129648,
+        "payload": {
+          "pap": {
+            "active": true,
+            "lang": "pap"
+          },
+          "nl": {
+            "active": true,
+            "lang": "nl"
+          },
+          "en": {
+            "active": true,
+            "lang": "en"
+          },
+          "es": {
+            "active": true,
+            "lang": "es"
+          }
+        }
+      },
+      {
+        "state": "ARCHETYPES_SWITCHED_ALL",
+        "timestamp": 1787617131173,
+        "payload": {
+          "rva171": {
+            "loaded": true,
+            "title": "Agosto 2026\nHotel Inntu Laureles"
+          },
+          "rva077": {
+            "loaded": true,
+            "title": "Agosto 2026\nHotel Novelty Suites Poblado"
+          },
+          "rva341": {
+            "loaded": true,
+            "title": "Agosto 2026\nHotel Inntu Laureles"
+          },
+          "rva282": {
+            "loaded": true,
+            "title": "Agosto 2026\nAirbnb Ed. Park 42 Poblado"
+          }
+        }
+      },
+      {
+        "state": "DRIVER_CHECKIN_VERIFIED",
+        "timestamp": 1787617131585,
+        "payload": {
+          "checkInSuccess": true
+        }
+      },
+      {
+        "state": "ORIENTATION_KIT_VERIFIED",
+        "timestamp": 1787617132752,
+        "payload": {
+          "kitOpen": true,
+          "hasEmergencyContacts": true,
+          "hasEsimStatus": true,
+          "hasCurrencyGuidance": true
+        }
+      },
+      {
+        "state": "COMPANION_TURN_SEALED_SAVED",
+        "timestamp": 1787617135649,
+        "payload": {
+          "status": "PASSED",
+          "hoursLogged": "5.25",
+          "hourlySubtotal": "$ 81.375",
+          "prepAllowance": "$ 15.500",
+          "mealSubsidyTier": "TIER_2 ($25.000 COP)",
+          "mealSubsidyAmount": "$ 25.000",
+          "totalShiftFee": "$ 121.875",
+          "sha256Seal": "🔒 9dd503301c090ba165b1e512bd00292d66d15cc1cefee69bf649e90c284dcdb1"
+        }
+      },
+      {
+        "state": "FAST_EXPENSE_INJECTED",
+        "timestamp": 1787617135649,
+        "payload": {
+          "item": "Café Preset",
+          "amountCOP": 15000
+        }
+      },
+      {
+        "state": "BIGINT_EXACT_VERIFIED",
+        "timestamp": 1787617136154,
+        "payload": {
+          "status": "PASSED",
+          "netBalanceFormatted": "Saldo Neto: -$ 282.475",
+          "arithmeticPrecision": "Exact BigInt Cents",
+          "floatingPointDriftCOP": 0
+        }
+      },
+      {
+        "state": "SETTLEMENT_SIGNATURE_SEALED",
+        "timestamp": 1787617137012,
+        "payload": {
+          "hash": "a0da49185f4d8a65f5608116d2c1195e6ab45910047f71e732972ca14956e6f5"
+        }
+      }
+    ]
+  },
+  "screenshots": {
+    "arrival_tracking": "/Users/miyo123/projects/medicaltrip/.agents/worker_m4/artifacts/arrival_tracking_card_preview.png",
+    "welcome_kit": "/Users/miyo123/projects/medicaltrip/.agents/worker_m4/artifacts/welcome_orientation_kit_preview.png",
+    "companion_turn": "/Users/miyo123/projects/medicaltrip/.agents/worker_m4/artifacts/companion_turn_sheet_preview.png",
+    "desktop": "/Users/miyo123/projects/medicaltrip/.agents/worker_m4/artifacts/desktop_preview.png",
+    "mobile": "/Users/miyo123/projects/medicaltrip/.agents/worker_m4/artifacts/mobile_preview.png",
+    "drawer": "/Users/miyo123/projects/medicaltrip/.agents/worker_m4/artifacts/drawer_preview.png"
+  }
+}

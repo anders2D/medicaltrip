@@ -1,0 +1,107 @@
+{
+  "tag": "body",
+  "name": "  ",
+  "children": [
+    {
+      "tag": "div",
+      "name": "    ",
+      "children": [
+        {
+          "tag": "div",
+          "name": "     ",
+          "children": [
+            {
+              "tag": "div",
+              "name": "  ",
+              "children": [
+                {
+                  "tag": "div",
+                  "name": "         ",
+                  "children": [
+                    {
+                      "tag": "h1",
+                      "name": " ",
+                      "children": [
+                        {
+                          "tag": "span",
+                          "name": "This site can’t be reached"
+                        }
+                      ]
+                    },
+                    {
+                      "tag": "p",
+                      "name": "refused to connect.",
+                      "children": [
+                        {
+                          "tag": "strong",
+                          "name": "localhost"
+                        }
+                      ]
+                    },
+                    {
+                      "tag": "div",
+                      "name": "  ",
+                      "children": [
+                        {
+                          "tag": "p",
+                          "name": "Try:"
+                        },
+                        {
+                          "tag": "ul",
+                          "name": "     ",
+                          "children": [
+                            {
+                              "tag": "li",
+                              "name": "Checking the connection"
+                            },
+                            {
+                              "tag": "li",
+                              "name": "Checking the proxy and the firewall",
+                              "children": [
+                                {
+                                  "tag": "a",
+                                  "role": "a",
+                                  "name": "Checking the proxy and the firewall"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "tag": "div",
+                      "name": "ERR_CONNECTION_REFUSED"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tag": "div",
+              "name": "    ",
+              "children": [
+                {
+                  "tag": "div",
+                  "name": "    ",
+                  "children": [
+                    {
+                      "tag": "button",
+                      "role": "button",
+                      "name": " Reload "
+                    }
+                  ]
+                },
+                {
+                  "tag": "button",
+                  "role": "button",
+                  "name": " Details "
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

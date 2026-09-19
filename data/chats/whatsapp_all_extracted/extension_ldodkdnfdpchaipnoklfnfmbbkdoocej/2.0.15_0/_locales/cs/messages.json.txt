@@ -1,0 +1,14 @@
+================================================================================
+ARCHIVO: messages.json
+ORIGEN:  c:\Users\mayra\projects\Medicina\whatsapp_business_backup\extension_ldodkdnfdpchaipnoklfnfmbbkdoocej\2.0.15_0\_locales\cs\messages.json
+TAMAÑO:  307 bytes
+================================================================================
+
+{
+   "desc": {
+      "message": "Exportujte chat WhatsApp s médii do HTML, uložte číslo skupiny a kontakty do Excelu. Místní, bezpečné, soukromé. Žádná sbíraná data."
+   },
+   "name": {
+      "message": "WhatsApp Contacts Export - Stáhnout čísla WhatsApp do Excel/CSV/VCard"
+   }
+}

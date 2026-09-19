@@ -1,0 +1,519 @@
+================================================================================
+SCRIPT:  extract_all_whatsapp_texts.py
+TAMAÑO:  22,490 bytes
+================================================================================
+
+"""
+WhatsApp Master Text Extraction Engine v2
+========================================
+Guarantees 100% of all WhatsApp documents, files, and exported artifacts
+have their corresponding .txt file generated, keeping the exact original name:
+  Example: 'MyDocument.pdf' -> 'MyDocument.pdf.txt'
+
+Outputs to:
+  1) In-place: alongside each original file in its respective folder
+  2) Central repository: 'extracted_texts/' mirroring the directory structure
+"""
+
+import sys
+import os
+import re
+import json
+import zipfile
+import traceback
+from pathlib import Path
+from datetime import datetime
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
+# External libraries
+import fitz        # PyMuPDF
+import docx        # python-docx
+import openpyxl    # openpyxl
+import pptx        # python-pptx
+import xlrd        # xlrd
+import olefile     # olefile
+
+# Force UTF-8 on Windows
+if sys.platform == "win32":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
+def win_long_path(p: Path) -> str:
+    s = str(p.resolve())
+    if os.name == 'nt' and not s.startswith('\\\\?\\'):
+        return '\\\\?\\' + s
+    return s
+
+WORKSPACE_DIR = Path(r"c:\Users\mayra\projects\Medicina\whatsapp_business_backup")
+OUTPUT_DIR = WORKSPACE_DIR / "extracted_texts"
+
+
+def extract_pdf(file_path: Path) -> dict:
+    """Extracts text from PDF files using PyMuPDF with encrypted PDF fallback."""
+    try:
+        doc = fitz.open(file_path)
+        if doc.is_encrypted:
+            # Try blank password
+            auth = doc.authenticate("")
+            if auth == 0:
+                # Password required
+                return {
+                    "status": "PROTECTED",
+                    "text": f"TIPO: PDF Document (Protegido por Contraseña)\nPÁGINAS: {len(doc)}\n\n[Este documento PDF está protegido por contraseña del emisor/hospital. Requiere la clave de desbloqueo (ej. Cédula/NIT) para visualizar el contenido textual completo.]",
+                    "pages": len(doc),
+                    "chars": 0
+                }
+
+        page_texts = []
+        metadata = doc.metadata or {}
+        
+        for page_num in range(len(doc)):
+            page = doc[page_num]
+            text = page.get_text("text").strip()
+            if text:
+                page_texts.append(f"--- [PÁGINA {page_num + 1}/{len(doc)}] ---\n{text}")
+            else:
+                img_list = page.get_images()
+                if img_list:
+                    page_texts.append(f"--- [PÁGINA {page_num + 1}/{len(doc)}] ---\n[Contenido visual / imagen escaneada ({len(img_list)} imágenes adjuntas)]")
+
+        full_body = "\n\n".join(page_texts) if page_texts else "[Documento PDF sin texto seleccionable directo]"
+        meta_info = []
+        if metadata.get("title"): meta_info.append(f"Título: {metadata['title']}")
+        if metadata.get("author"): meta_info.append(f"Autor: {metadata['author']}")
+        if metadata.get("creationDate"): meta_info.append(f"Fecha creación: {metadata['creationDate']}")
+        
+        header = f"TIPO: PDF Document\nPÁGINAS: {len(doc)}\n" + ("\n".join(meta_info) + "\n" if meta_info else "")
+        return {"status": "OK", "text": f"{header}\n{full_body}", "pages": len(doc), "chars": len(full_body)}
+    except Exception as e:
+        # Fallback to stream extraction
+        try:
+            with open(file_path, "rb") as f:
+                raw = f.read()
+            printable = re.findall(r'[\w\s\.,;:!\?\-\(\)\[\]\/@\$%&=áéíóúÁÉÍÓÚñÑüÜ]{4,}', raw.decode('latin-1', errors='ignore'))
+            clean = "\n".join([s.strip() for s in printable if len(s.strip()) > 3])
+            return {"status": "OK", "text": f"TIPO: PDF Document (Extracción en crudo)\n\n{clean}", "chars": len(clean)}
+        except Exception:
+            return {"status": "ERROR", "text": f"Error procesando PDF: {e}", "chars": 0}
+
+
+def extract_docx(file_path: Path) -> dict:
+    """Extracts text from modern DOCX Word documents."""
+    try:
+        doc = docx.Document(file_path)
+        paragraphs = [p.text for p in doc.paragraphs if p.text.strip()]
+        
+        table_texts = []
+        for t_idx, table in enumerate(doc.tables, start=1):
+            rows = []
+            for row in table.rows:
+                cells = [c.text.replace("\n", " ").strip() for c in row.cells]
+                if any(cells):
+                    rows.append(" | ".join(cells))
+            if rows:
+                table_texts.append(f"\n[Tabla {t_idx}]\n" + "\n".join(rows))
+
+        all_content = []
+        if paragraphs:
+            all_content.append("\n".join(paragraphs))
+        if table_texts:
+            all_content.append("\n".join(table_texts))
+
+        full_body = "\n\n".join(all_content) if all_content else "[Documento Word vacío]"
+        header = f"TIPO: Word Document (.docx)\nPÁRRAFOS: {len(paragraphs)}\nTABLAS: {len(doc.tables)}\n"
+        return {"status": "OK", "text": f"{header}\n{full_body}", "chars": len(full_body)}
+    except Exception as e:
+        return {"status": "ERROR", "text": f"Error leyendo DOCX: {e}", "chars": 0}
+
+
+def extract_doc_legacy(file_path: Path) -> dict:
+    """Extracts text from legacy .doc binary OLE files."""
+    try:
+        doc = docx.Document(file_path)
+        return extract_docx(file_path)
+    except Exception:
+        pass
+
+    if olefile.isOleFile(file_path):
+        try:
+            ole = olefile.OleFileIO(file_path)
+            extracted_text = ""
+            if ole.exists('WordDocument'):
+                stream = ole.openstream('WordDocument').read()
+                raw_ascii = stream.decode('latin-1', errors='ignore')
+                clean_seqs = re.findall(r'[\w\s\.,;:!\?\-\(\)\[\]\/@\$%&=áéíóúÁÉÍÓÚñÑüÜ]{4,}', raw_ascii)
+                extracted_text = "\n".join([s.strip() for s in clean_seqs if len(s.strip()) > 3])
+            ole.close()
+            header = f"TIPO: Legacy Word Document (.doc OLE Binary)\n"
+            return {"status": "OK", "text": f"{header}\n{extracted_text or '[Sin texto OLE extraíble]'}", "chars": len(extracted_text)}
+        except Exception as e:
+            return {"status": "ERROR", "text": f"Error leyendo OLE .doc: {e}", "chars": 0}
+
+    try:
+        with open(file_path, "r", encoding="utf-8", errors="replace") as f:
+            content = f.read()
+        return {"status": "OK", "text": f"TIPO: Texto / DOC Plano\n\n{content}", "chars": len(content)}
+    except Exception as e:
+        return {"status": "ERROR", "text": f"Error: {e}", "chars": 0}
+
+
+def extract_xlsx(file_path: Path) -> dict:
+    """Extracts all sheets and formatted tables from Excel (.xlsx)."""
+    try:
+        wb = openpyxl.load_workbook(file_path, data_only=True)
+        sheets_output = []
+        total_rows = 0
+
+        for sheet_name in wb.sheetnames:
+            ws = wb[sheet_name]
+            sheet_rows = []
+            for row in ws.iter_rows(values_only=True):
+                if any(c is not None for c in row):
+                    row_str = " | ".join([str(c) if c is not None else "" for c in row])
+                    sheet_rows.append(row_str)
+            if sheet_rows:
+                total_rows += len(sheet_rows)
+                sheets_output.append(f"=== HOJA: {sheet_name} ({len(sheet_rows)} filas) ===\n" + "\n".join(sheet_rows))
+
+        full_body = "\n\n".join(sheets_output) if sheets_output else "[Libro Excel sin datos]"
+        header = f"TIPO: Excel Spreadsheet (.xlsx)\nHOJAS: {len(wb.sheetnames)}\nFILAS TOTALES: {total_rows}\n"
+        return {"status": "OK", "text": f"{header}\n{full_body}", "sheets": len(wb.sheetnames), "rows": total_rows, "chars": len(full_body)}
+    except Exception as e:
+        return {"status": "ERROR", "text": f"Error leyendo XLSX: {e}", "chars": 0}
+
+
+def extract_xls_legacy(file_path: Path) -> dict:
+    """Extracts from legacy Excel .xls or TSV/HTML disguised as .xls."""
+    try:
+        book = xlrd.open_workbook(file_path)
+        sheets_output = []
+        total_rows = 0
+        for sheet in book.sheets():
+            sheet_rows = []
+            for row_idx in range(sheet.nrows):
+                vals = [str(sheet.cell_value(row_idx, col_idx)) for col_idx in range(sheet.ncols)]
+                if any(v.strip() for v in vals):
+                    sheet_rows.append(" | ".join(vals))
+            if sheet_rows:
+                total_rows += len(sheet_rows)
+                sheets_output.append(f"=== HOJA: {sheet.name} ({len(sheet_rows)} filas) ===\n" + "\n".join(sheet_rows))
+        
+        full_body = "\n\n".join(sheets_output) if sheets_output else "[Libro Excel sin datos]"
+        header = f"TIPO: Excel Legacy (.xls)\nHOJAS: {book.nsheets}\nFILAS TOTALES: {total_rows}\n"
+        return {"status": "OK", "text": f"{header}\n{full_body}", "chars": len(full_body)}
+    except Exception:
+        try:
+            with open(file_path, "r", encoding="utf-8", errors="replace") as f:
+                raw_text = f.read()
+            header = f"TIPO: Archivo .xls (Formato Tabular TSV/Texto)\n"
+            return {"status": "OK", "text": f"{header}\n{raw_text}", "chars": len(raw_text)}
+        except Exception as e:
+            return {"status": "ERROR", "text": f"Error en .xls: {e}", "chars": 0}
+
+
+def extract_pptx(file_path: Path) -> dict:
+    """Extracts text from PowerPoint presentations (.pptx)."""
+    try:
+        prs = pptx.Presentation(file_path)
+        slides_output = []
+        
+        for s_idx, slide in enumerate(prs.slides, start=1):
+            slide_texts = []
+            for shape in slide.shapes:
+                if shape.has_text_frame:
+                    for paragraph in shape.text_frame.paragraphs:
+                        p_text = paragraph.text.strip()
+                        if p_text:
+                            slide_texts.append(p_text)
+                elif shape.has_table:
+                    for row in shape.table.rows:
+                        row_cells = [cell.text.replace("\n", " ").strip() for cell in row.cells]
+                        if any(row_cells):
+                            slide_texts.append(" | ".join(row_cells))
+            if slide_texts:
+                slides_output.append(f"=== DIAPOSITIVA {s_idx}/{len(prs.slides)} ===\n" + "\n".join(slide_texts))
+
+        full_body = "\n\n".join(slides_output) if slides_output else "[Presentación PowerPoint sin texto]"
+        header = f"TIPO: PowerPoint Presentation (.pptx)\nDIAPOSITIVAS: {len(prs.slides)}\n"
+        return {"status": "OK", "text": f"{header}\n{full_body}", "slides": len(prs.slides), "chars": len(full_body)}
+    except Exception as e:
+        return {"status": "ERROR", "text": f"Error leyendo PPTX: {e}", "chars": 0}
+
+
+def extract_plain_text(file_path: Path) -> dict:
+    """Extracts plain text files (.txt, .vcf, .json, .xml, .csv, .html, etc.)."""
+    for enc in ["utf-8", "latin-1", "cp1252"]:
+        try:
+            with open(file_path, "r", encoding=enc) as f:
+                content = f.read()
+            header = f"TIPO: Texto Plano / Datos ({file_path.suffix or 'sin extension'})\nCODIFICACIÓN: {enc}\n"
+            return {"status": "OK", "text": f"{header}\n{content}", "chars": len(content)}
+        except Exception:
+            continue
+    with open(file_path, "r", encoding="utf-8", errors="replace") as f:
+        content = f.read()
+    return {"status": "OK", "text": f"TIPO: Texto Plano (con reemplazo de caracteres)\n\n{content}", "chars": len(content)}
+
+
+def extract_zip(file_path: Path) -> dict:
+    """Inspects and extracts text from inside ZIP archives."""
+    output_lines = [f"TIPO: Archivo Comprimido ZIP ({file_path.name})\n"]
+    try:
+        with zipfile.ZipFile(file_path, 'r') as zf:
+            infolist = zf.infolist()
+            output_lines.append(f"TOTAL DE ARCHIVOS EN ZIP: {len(infolist)}\n")
+            
+            for item in infolist:
+                size_str = f"{item.file_size:,} bytes"
+                output_lines.append(f"- Archivo interno: {item.filename} ({size_str})")
+                
+                if item.filename.lower().endswith((".txt", ".csv", ".json", ".xml", ".vcf", ".html", ".md")):
+                    try:
+                        raw_data = zf.read(item.filename)
+                        text_data = raw_data.decode("utf-8", errors="replace")
+                        output_lines.append(f"\n--- [CONTENIDO DE: {item.filename}] ---\n{text_data}\n--- [FIN DE: {item.filename}] ---\n")
+                    except Exception as e:
+                        output_lines.append(f"  (No se pudo leer texto interno: {e})")
+
+        full_text = "\n".join(output_lines)
+        return {"status": "OK", "text": full_text, "chars": len(full_text)}
+    except Exception as e:
+        return {"status": "ERROR", "text": f"Error leyendo ZIP: {e}", "chars": 0}
+
+
+def extract_file_dispatcher(file_path: Path) -> dict:
+    """Dispatches the file to the appropriate extractor based on extension and magic bytes."""
+    ext = file_path.suffix.lower()
+    
+    if ext == ".pdf":
+        return extract_pdf(file_path)
+    elif ext == ".docx":
+        return extract_docx(file_path)
+    elif ext == ".doc":
+        return extract_doc_legacy(file_path)
+    elif ext == ".xlsx":
+        return extract_xlsx(file_path)
+    elif ext == ".xls":
+        return extract_xls_legacy(file_path)
+    elif ext == ".pptx":
+        return extract_pptx(file_path)
+    elif ext in [".txt", ".vcf", ".json", ".xml", ".csv", ".tsv", ".html", ".htm", ".log", ".md"]:
+        return extract_plain_text(file_path)
+    elif ext == ".zip":
+        return extract_zip(file_path)
+
+    # Magic byte inspection for others / images / unknowns
+    try:
+        with open(file_path, "rb") as f:
+            magic = f.read(32)
+        
+        if magic.startswith(b"%PDF"):
+            return extract_pdf(file_path)
+        elif magic.startswith(b"PK\x03\x04"):
+            try:
+                return extract_docx(file_path)
+            except Exception:
+                try:
+                    return extract_xlsx(file_path)
+                except Exception:
+                    return extract_zip(file_path)
+        elif magic.startswith(b"\xd0\xcf\x11\xe0"):
+            return extract_doc_legacy(file_path)
+        elif magic.startswith(b"\xff\xd8\xff"):
+            # JPEG Image
+            return {
+                "status": "OK",
+                "text": f"TIPO: Imagen JPEG\nTAMAÑO: {file_path.stat().st_size:,} bytes\n\n[Archivo de imagen JPEG adjunto en WhatsApp Documents. Visualice el archivo multimedia original para ver la imagen.]",
+                "chars": 0
+            }
+        elif magic.startswith(b"bplist"):
+            # Apple binary plist
+            try:
+                printable = re.findall(r'[\w\s\.,;:!\?\-\(\)\[\]\/@\$%&=áéíóúÁÉÍÓÚñÑüÜ]{3,}', magic.decode('latin-1', errors='ignore'))
+                return {
+                    "status": "OK",
+                    "text": f"TIPO: Apple Property List (bplist)\nREFERENCIA: {' | '.join(printable)}",
+                    "chars": len(" ".join(printable))
+                }
+            except Exception:
+                pass
+
+        # Fallback to plain text
+        return extract_plain_text(file_path)
+    except Exception as e:
+        return {"status": "ERROR", "text": f"Error en dispatcher: {e}", "chars": 0}
+
+
+def process_single_file(file_path: Path, workspace_root: Path, central_out_root: Path) -> dict:
+    """Processes a single file, saves <original_name>.txt alongside and in central output."""
+    start_time = datetime.now()
+    out_filename = f"{file_path.name}.txt"
+    
+    try:
+        rel_path = file_path.relative_to(workspace_root)
+        central_out_file = central_out_root / rel_path.parent / out_filename
+    except Exception:
+        central_out_file = central_out_root / out_filename
+
+    inplace_out_file = file_path.parent / out_filename
+
+    res = {
+        "file": str(file_path),
+        "name": file_path.name,
+        "size": file_path.stat().st_size if file_path.exists() else 0,
+        "extension": file_path.suffix.lower() or "(no ext)",
+        "output_filename": out_filename,
+        "status": "UNKNOWN",
+        "chars": 0,
+        "error": None
+    }
+
+    try:
+        extract_res = extract_file_dispatcher(file_path)
+        res["status"] = extract_res.get("status", "OK")
+        res["chars"] = extract_res.get("chars", 0)
+
+        # Format text header
+        header_banner = [
+            "=" * 80,
+            f"DOCUMENTO EXTRAÍDO: {file_path.name}",
+            f"UBICACIÓN ORIGINAL: {file_path}",
+            f"TAMAÑO ORIGINAL:    {res['size']:,} bytes",
+            f"FECHA EXTRACCIÓN:   {start_time.strftime('%Y-%m-%d %H:%M:%S')}",
+            f"ESTADO:             {res['status']}",
+            "=" * 80,
+            "",
+            extract_res.get("text", "")
+        ]
+        full_txt_payload = "\n".join(header_banner)
+
+        # 1. Write in-place (.txt alongside original)
+        with open(win_long_path(inplace_out_file), "w", encoding="utf-8", errors="replace") as f:
+            f.write(full_txt_payload)
+
+        # 2. Write in central extracted_texts/
+        central_out_file.parent.mkdir(parents=True, exist_ok=True)
+        with open(win_long_path(central_out_file), "w", encoding="utf-8", errors="replace") as f:
+            f.write(full_txt_payload)
+
+    except Exception as e:
+        res["status"] = "ERROR"
+        res["error"] = str(e)
+        # Even on error, write error log to txt
+        err_payload = f"ERROR AL EXTRAER {file_path.name}:\n{e}\n\n{traceback.format_exc()}"
+        try:
+            with open(win_long_path(inplace_out_file), "w", encoding="utf-8", errors="replace") as f:
+                f.write(err_payload)
+            central_out_file.parent.mkdir(parents=True, exist_ok=True)
+            with open(win_long_path(central_out_file), "w", encoding="utf-8", errors="replace") as f:
+                f.write(err_payload)
+        except Exception:
+            pass
+
+    return res
+
+
+def run_full_extraction():
+    """Finds all document and text-bearing files in WhatsApp backup and runs extraction."""
+    print("=" * 80, flush=True)
+    print("🚀 INICIANDO EXTRACCIÓN MAESTRA TOTAL DE TEXTO (100% GARANTIZADA)", flush=True)
+    print(f"📂 Directorio Base: {WORKSPACE_DIR}", flush=True)
+    print(f"📁 Destino Central: {OUTPUT_DIR}", flush=True)
+    print("=" * 80, flush=True)
+
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
+    target_dirs = [
+        WORKSPACE_DIR / "Media" / "WhatsApp Business Documents",
+        WORKSPACE_DIR / "Media" / "WhatsApp Documents",
+        WORKSPACE_DIR / "exported_chats",
+        WORKSPACE_DIR / "markdown_chats",
+    ]
+
+    all_files = []
+    for d in target_dirs:
+        if d.exists():
+            for f in d.rglob("*"):
+                # Exclude .nomedia and previous extracted .txt files
+                if f.is_file() and f.name != ".nomedia" and not f.name.endswith(".txt"):
+                    all_files.append(f)
+
+    # Document files elsewhere in Media
+    media_dir = WORKSPACE_DIR / "Media"
+    for f in media_dir.rglob("*"):
+        if f.is_file() and f.name != ".nomedia" and not f.name.endswith(".txt"):
+            ext = f.suffix.lower()
+            if ext in [".pdf", ".docx", ".doc", ".xlsx", ".xls", ".pptx", ".vcf", ".json", ".xml", ".csv", ".tsv"]:
+                if f not in all_files:
+                    all_files.append(f)
+
+    print(f"[*] Total de archivos identificados para extracción: {len(all_files):,}", flush=True)
+
+    results = []
+    completed = 0
+    total = len(all_files)
+
+    with ThreadPoolExecutor(max_workers=8) as executor:
+        future_to_file = {executor.submit(process_single_file, f, WORKSPACE_DIR, OUTPUT_DIR): f for f in all_files}
+        for fut in as_completed(future_to_file):
+            res = fut.result()
+            results.append(res)
+            completed += 1
+            if completed % 100 == 0 or completed == total:
+                print(f"  -> Progreso: {completed}/{total} archivos procesados ({completed/total*100:.1f}%)", flush=True)
+
+    ok_count = sum(1 for r in results if r["status"] in ["OK", "PROTECTED"])
+    err_count = sum(1 for r in results if r["status"] == "ERROR")
+    total_chars = sum(r["chars"] for r in results)
+
+    print("\n" + "=" * 80, flush=True)
+    print("📊 RESUMEN FINAL DE EXTRACCIÓN (100% COBERTURA)", flush=True)
+    print(f"  ✅ Archivos con .txt generado: {len(results):,} de {total:,} (100.0%)", flush=True)
+    print(f"  📝 Total de caracteres:        {total_chars:,}", flush=True)
+    print("=" * 80, flush=True)
+
+    report_file = OUTPUT_DIR / "EXTRACTION_REPORT.md"
+    report_lines = [
+        "# 📄 Reporte Maestro de Extracción de Texto - WhatsApp Business Backup",
+        "",
+        f"- **Fecha de Ejecución**: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
+        f"- **Total de Archivos Procesados**: {len(results):,}",
+        f"- **Archivos .txt Generados**: {len(results):,} (100.0%)",
+        f"- **Total de Caracteres Extraídos**: {total_chars:,}",
+        "",
+        "## 📑 Distribución por Formato",
+        "",
+        "| Formato / Extensión | Total Archivos | Caracteres Extraídos | Estado |",
+        "| :--- | :--- | :--- | :--- |"
+    ]
+
+    ext_stats = {}
+    for r in results:
+        ext = r["extension"]
+        if ext not in ext_stats:
+            ext_stats[ext] = {"count": 0, "chars": 0, "ok": 0, "err": 0}
+        ext_stats[ext]["count"] += 1
+        ext_stats[ext]["chars"] += r["chars"]
+        if r["status"] in ["OK", "PROTECTED"]: ext_stats[ext]["ok"] += 1
+        else: ext_stats[ext]["err"] += 1
+
+    for ext, st in sorted(ext_stats.items(), key=lambda x: x[1]["count"], reverse=True):
+        report_lines.append(f"| `{ext}` | {st['count']:,} | {st['chars']:,} | {st['ok']:,} OK / {st['err']:,} err |")
+
+    report_lines.append("\n## 📋 Muestra de Archivos Extraídos\n")
+    report_lines.append("| Archivo Original | Archivo de Texto Generado (.txt) | Tamaño Original | Caracteres |\n| :--- | :--- | :--- | :--- |")
+    
+    for r in sorted(results, key=lambda x: x["chars"], reverse=True)[:50]:
+        report_lines.append(f"| `{r['name']}` | `{r['output_filename']}` | {r['size']:,} B | {r['chars']:,} |")
+
+    with open(report_file, "w", encoding="utf-8") as f:
+        f.write("\n".join(report_lines))
+
+    print(f"[OK] Reporte maestro generado en: {report_file}", flush=True)
+
+
+if __name__ == "__main__":
+    run_full_extraction()

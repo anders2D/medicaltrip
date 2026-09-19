@@ -1,0 +1,14 @@
+================================================================================
+ARCHIVO: messages.json
+ORIGEN:  c:\Users\mayra\projects\Medicina\whatsapp_business_backup\extension_ldodkdnfdpchaipnoklfnfmbbkdoocej\2.0.15_0\_locales\zh_TW\messages.json
+TAMAÑO:  521 bytes
+================================================================================
+
+{
+   "desc": {
+      "message": "全能WhatsApp匯出與資料備份工具！一鍵安全匯出WhatsApp聊天記錄到HTML/Excel（含圖片影片等多媒體文件），批次匯出聯絡人，快速擷取群組號碼，備份通訊錄，保存未存聯絡人到Excel/CSV/VCard。本地處理，不收集任何用戶數據，確保隱私安全。"
+   },
+   "name": {
+      "message": "WhatsApp聊天記錄匯出與聯絡人匯出工具 - 批次下載群組成員號碼及備份通訊錄至Excel/CSV/HTML"
+   }
+}

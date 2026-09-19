@@ -1,0 +1,19 @@
+================================================================================
+DOCUMENTO EXTRAÍDO: INDEX.md
+UBICACIÓN ORIGINAL: c:\Users\mayra\projects\Medicina\whatsapp_business_backup\markdown_chats\INDEX.md
+TAMAÑO ORIGINAL:    469 bytes
+FECHA EXTRACCIÓN:   2026-08-21 21:36:14
+================================================================================
+
+TIPO: Texto Plano / Datos (.md)
+CODIFICACIÓN: utf-8
+
+# 📚 Índice de Chats Respaldados de WhatsApp
+
+> [!TIP]
+> **Total de conversaciones**: 1  
+> Haz clic en cualquier conversación para abrir y leer el chat completo con imágenes y audios.
+
+| Conversación | Participantes | Periodo | Mensajes | Archivo |
+| :--- | :--- | :--- | :--- | :--- |
+| [Juan Perez (Demo)](./Juan Perez (Demo)/Juan Perez (Demo).md) | Juan, Mayra |  - 10/07/2023 | 7 | [`Juan Perez (Demo).md`](./Juan Perez (Demo)/Juan Perez (Demo).md) |

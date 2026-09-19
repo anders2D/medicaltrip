@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "tag": "a",
+    "role": "a",
+    "label": "Checking the proxy and the firewall",
+    "rect": {
+      "x": 74,
+      "y": 264,
+      "width": 241,
+      "height": 18
+    },
+    "centroid": {
+      "x": 194,
+      "y": 273
+    }
+  },
+  {
+    "id": 2,
+    "tag": "button",
+    "role": "button",
+    "label": "Reload",
+    "rect": {
+      "x": 646,
+      "y": 413,
+      "width": 76,
+      "height": 32
+    },
+    "centroid": {
+      "x": 684,
+      "y": 429
+    }
+  },
+  {
+    "id": 3,
+    "tag": "button",
+    "role": "button",
+    "label": "Details",
+    "rect": {
+      "x": 34,
+      "y": 413,
+      "width": 77,
+      "height": 34
+    },
+    "centroid": {
+      "x": 72,
+      "y": 430
+    }
+  }
+]

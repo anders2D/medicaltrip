@@ -1,0 +1,14 @@
+================================================================================
+ARCHIVO: messages.json
+ORIGEN:  c:\Users\mayra\projects\Medicina\whatsapp_business_backup\extension_ldodkdnfdpchaipnoklfnfmbbkdoocej\2.0.15_0\_locales\id\messages.json
+TAMAÑO:  287 bytes
+================================================================================
+
+{
+   "desc": {
+      "message": "Ekspor obrolan WhatsApp dengan media ke HTML, simpan nomor grup & unduh kontak ke Excel. Lokal, aman. Tanpa pengumpulan data."
+   },
+   "name": {
+      "message": "Download WhatsApp Group Member - Ekspor Nomor WhatsApp ke Excel/CSV/VCard"
+   }
+}

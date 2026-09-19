@@ -1,0 +1,1867 @@
+[
+  {
+    "rel": "App.tsx",
+    "exports": [
+      "MainAppLayout",
+      "App",
+      "App"
+    ],
+    "imports": [
+      "react",
+      "./presentation/state/AppContext",
+      "./presentation/state/AuthContext",
+      "./presentation/i18n",
+      "./presentation/components/auth/LoginView"
+    ]
+  },
+  {
+    "rel": "application/index.ts",
+    "exports": [],
+    "imports": [
+      "./use-cases/CreateEventUseCase",
+      "./use-cases/RescheduleEventUseCase",
+      "./use-cases/SettleExpenseUseCase",
+      "./use-cases/ReconcileSettlementUseCase",
+      "./use-cases/SignOffItineraryUseCase"
+    ]
+  },
+  {
+    "rel": "application/use-cases/CreateEventUseCase.ts",
+    "exports": [
+      "CreateEventCommand",
+      "CreateEventUseCase"
+    ],
+    "imports": [
+      "../../domain/ports/IStoragePort",
+      "../../domain/ports/IActorEventBusPort",
+      "../../domain/entities/ItineraryEvent",
+      "../../domain/value-objects/EventCategory",
+      "../../domain/value-objects/EventStatus"
+    ]
+  },
+  {
+    "rel": "application/use-cases/CreatePatientBookingUseCase.ts",
+    "exports": [
+      "CreatePatientBookingDTO",
+      "CreatePatientBookingCommand",
+      "CreatePatientBookingResult",
+      "CreatePatientBookingUseCase"
+    ],
+    "imports": [
+      "../../domain/ports/IStoragePort",
+      "../../domain/ports/IActorEventBusPort",
+      "../../domain/entities/PatientBooking",
+      "../../domain/entities/SettlementLedger",
+      "../../domain/value-objects/OperativeTerritory"
+    ]
+  },
+  {
+    "rel": "application/use-cases/CreatePatientInvitationUseCase.ts",
+    "exports": [
+      "CreatePatientInvitationCommand",
+      "CreatePatientInvitationResult",
+      "CreatePatientInvitationUseCase"
+    ],
+    "imports": [
+      "../../domain/entities/PatientInvitation",
+      "../../domain/ports/IPatientInvitationRepository"
+    ]
+  },
+  {
+    "rel": "application/use-cases/ExportSettlementPDFUseCase.ts",
+    "exports": [
+      "ExportSettlementPDFCommand",
+      "ExportSettlementPDFResult",
+      "ExportSettlementPDFUseCase"
+    ],
+    "imports": [
+      "../../domain/ports/IStoragePort",
+      "../../domain/ports/IExportPort",
+      "../../domain/ports/IBlobStoragePort",
+      "../../domain/entities/PatientBooking",
+      "../../domain/entities/SettlementLedger"
+    ]
+  },
+  {
+    "rel": "application/use-cases/GenerateSmartItineraryUseCase.ts",
+    "exports": [
+      "SmartPresetType",
+      "GenerateSmartItineraryCommand",
+      "GenerateSmartItineraryDTO",
+      "GenerateSmartItineraryResult",
+      "normalizePresetKey",
+      "GenerateSmartItineraryUseCase"
+    ],
+    "imports": [
+      "../../domain/ports/IStoragePort",
+      "../../domain/ports/IActorEventBusPort",
+      "../../domain/entities/PatientBooking",
+      "../../domain/entities/ItineraryEvent",
+      "../../domain/entities/CompanionShift"
+    ]
+  },
+  {
+    "rel": "application/use-cases/GetPatientInvitationUseCase.ts",
+    "exports": [
+      "GetPatientInvitationQuery",
+      "GetPatientInvitationUseCase"
+    ],
+    "imports": [
+      "../../domain/entities/PatientInvitation",
+      "../../domain/ports/IPatientInvitationRepository"
+    ]
+  },
+  {
+    "rel": "application/use-cases/LoadArchetypeUseCase.ts",
+    "exports": [
+      "LoadArchetypeCommand",
+      "LoadArchetypeUseCase"
+    ],
+    "imports": [
+      "../../domain/ports/IStoragePort",
+      "../../infrastructure/data/archetypes.data",
+      "../../domain/errors/DomainError"
+    ]
+  },
+  {
+    "rel": "application/use-cases/OneTapSettlementWorkflowUseCase.ts",
+    "exports": [
+      "SignatoryRole",
+      "OneTapSettlementWorkflowDTO",
+      "OneTapSettlementWorkflowResult",
+      "OneTapSettlementWorkflowUseCase"
+    ],
+    "imports": [
+      "../../domain/ports/IStoragePort",
+      "../../domain/ports/IExportPort",
+      "../../domain/ports/IBlobStoragePort",
+      "../../domain/entities/PatientBooking",
+      "../../domain/entities/SettlementLedger"
+    ]
+  },
+  {
+    "rel": "application/use-cases/PerformDriverCheckInUseCase.ts",
+    "exports": [
+      "PerformDriverCheckInCommand",
+      "PerformDriverCheckInResult",
+      "PerformDriverCheckInUseCase"
+    ],
+    "imports": [
+      "../../domain/ports/IStoragePort",
+      "../../domain/ports/IActorEventBusPort",
+      "../../domain/entities/DriverTransfer",
+      "../../domain/entities/ItineraryEvent",
+      "../../domain/value-objects/EventStatus"
+    ]
+  },
+  {
+    "rel": "application/use-cases/PersistStorageUseCase.ts",
+    "exports": [
+      "PersistStorageResult",
+      "PersistStorageUseCase"
+    ],
+    "imports": [
+      "../../domain/ports/IStoragePersistPort"
+    ]
+  },
+  {
+    "rel": "application/use-cases/ReconcileSettlementUseCase.ts",
+    "exports": [
+      "ReconcileSettlementCommand",
+      "ReconcileSettlementUseCase"
+    ],
+    "imports": [
+      "../../domain/ports/IStoragePort",
+      "../../domain/entities/SettlementLedger"
+    ]
+  },
+  {
+    "rel": "application/use-cases/RescheduleEventUseCase.ts",
+    "exports": [
+      "RescheduleEventCommand",
+      "RescheduleEventUseCase"
+    ],
+    "imports": [
+      "../../domain/ports/IStoragePort",
+      "../../domain/ports/IActorEventBusPort",
+      "../../domain/entities/ItineraryEvent",
+      "../../domain/errors/DomainError",
+      "../../domain/value-objects/OperativeTerritory"
+    ]
+  },
+  {
+    "rel": "application/use-cases/SettleExpenseUseCase.ts",
+    "exports": [
+      "SettleExpenseCommand",
+      "SettleExpenseResult",
+      "SettleExpenseUseCase"
+    ],
+    "imports": [
+      "../../domain/ports/IStoragePort",
+      "../../domain/ports/IBlobStoragePort",
+      "../../domain/entities/ReceiptExpense",
+      "../../domain/entities/SettlementLedger",
+      "../../domain/value-objects/Money"
+    ]
+  },
+  {
+    "rel": "application/use-cases/SignOffItineraryUseCase.ts",
+    "exports": [
+      "SignOffItineraryCommand",
+      "SignOffItineraryResult",
+      "SignOffItineraryUseCase"
+    ],
+    "imports": [
+      "../../domain/ports/IStoragePort",
+      "../../domain/ports/IBlobStoragePort",
+      "../../domain/entities/ItineraryEvent"
+    ]
+  },
+  {
+    "rel": "application/use-cases/__tests__/PerformDriverCheckInUseCase.test.ts",
+    "exports": [],
+    "imports": [
+      "vitest",
+      "../PerformDriverCheckInUseCase",
+      "../../../infrastructure/storage/InMemoryStorageAdapter",
+      "../../../domain/entities/DriverTransfer",
+      "../../../domain/entities/ItineraryEvent"
+    ]
+  },
+  {
+    "rel": "domain/entities/CompanionShift.ts",
+    "exports": [
+      "MealSubsidyTier",
+      "CompanionShift"
+    ],
+    "imports": [
+      "../value-objects/Money"
+    ]
+  },
+  {
+    "rel": "domain/entities/DriverTransfer.ts",
+    "exports": [
+      "VehicleClass",
+      "RouteClass",
+      "DriverTransfer"
+    ],
+    "imports": [
+      "../value-objects/Money",
+      "../value-objects/OperativeTerritory"
+    ]
+  },
+  {
+    "rel": "domain/entities/ItineraryEvent.ts",
+    "exports": [
+      "FinancialExpenseType",
+      "ItineraryEvent"
+    ],
+    "imports": [
+      "../value-objects/Money",
+      "../value-objects/OperativeTerritory",
+      "../value-objects/EventCategory",
+      "../value-objects/EventStatus",
+      "../errors/DomainError"
+    ]
+  },
+  {
+    "rel": "domain/entities/PatientBooking.ts",
+    "exports": [
+      "AgeCategory",
+      "PassengerRole",
+      "RoomPreference",
+      "MedicalSurvey",
+      "PassengerDocuments",
+      "PassengerRecord",
+      "PatientBooking"
+    ],
+    "imports": [
+      "../errors/DomainError"
+    ]
+  },
+  {
+    "rel": "domain/entities/PatientInvitation.ts",
+    "exports": [
+      "InvitationStatus",
+      "PatientInvitationProps",
+      "PatientInvitation"
+    ],
+    "imports": [
+      "../errors/DomainError"
+    ]
+  },
+  {
+    "rel": "domain/entities/ReceiptExpense.ts",
+    "exports": [
+      "ExpenseCategory",
+      "ReceiptExpense"
+    ],
+    "imports": [
+      "../value-objects/Money"
+    ]
+  },
+  {
+    "rel": "domain/entities/SettlementLedger.ts",
+    "exports": [
+      "SettlementType",
+      "InvalidSettlementTypeError",
+      "CashAdvance",
+      "SettlementLedger"
+    ],
+    "imports": [
+      "../value-objects/Money",
+      "./ReceiptExpense",
+      "./CompanionShift",
+      "./DriverTransfer"
+    ]
+  },
+  {
+    "rel": "domain/entities/__tests__/CompanionShiftDeterministicRates.test.ts",
+    "exports": [],
+    "imports": [
+      "vitest",
+      "../CompanionShift"
+    ]
+  },
+  {
+    "rel": "domain/errors/DomainError.ts",
+    "exports": [
+      "InvalidMoneyAmountError",
+      "CurrencyMismatchError",
+      "InvalidEventTransitionError",
+      "InvalidBookingError",
+      "EventNotFoundError",
+      "InvariantViolationError"
+    ],
+    "imports": []
+  },
+  {
+    "rel": "domain/errors/NonOperativeTerritoryError.ts",
+    "exports": [
+      "NonOperativeTerritoryError"
+    ],
+    "imports": [
+      "./DomainError"
+    ]
+  },
+  {
+    "rel": "domain/index.ts",
+    "exports": [],
+    "imports": [
+      "./errors/DomainError",
+      "./errors/NonOperativeTerritoryError",
+      "./value-objects/Money",
+      "./value-objects/OperativeTerritory",
+      "./value-objects/EventCategory"
+    ]
+  },
+  {
+    "rel": "domain/ports/IActorEventBusPort.ts",
+    "exports": [
+      "ActorRole",
+      "ActorMessage",
+      "IActorEventBusPort"
+    ],
+    "imports": []
+  },
+  {
+    "rel": "domain/ports/IBlobStoragePort.ts",
+    "exports": [
+      "BlobMetadata",
+      "IBlobStoragePort"
+    ],
+    "imports": []
+  },
+  {
+    "rel": "domain/ports/IExportPort.ts",
+    "exports": [
+      "IExportPort"
+    ],
+    "imports": [
+      "../entities/PatientBooking",
+      "../entities/SettlementLedger",
+      "../entities/ItineraryEvent"
+    ]
+  },
+  {
+    "rel": "domain/ports/IOCRPort.ts",
+    "exports": [
+      "OCRParsedItem",
+      "OCRResult",
+      "IOCRPort"
+    ],
+    "imports": [
+      "../value-objects/Money"
+    ]
+  },
+  {
+    "rel": "domain/ports/IPatientInvitationRepository.ts",
+    "exports": [
+      "IPatientInvitationRepository"
+    ],
+    "imports": [
+      "../entities/PatientInvitation"
+    ]
+  },
+  {
+    "rel": "domain/ports/IStoragePersistPort.ts",
+    "exports": [
+      "StorageEstimate",
+      "IStoragePersistPort"
+    ],
+    "imports": []
+  },
+  {
+    "rel": "domain/ports/IStoragePort.ts",
+    "exports": [
+      "DomainEventRecord",
+      "IStoragePort"
+    ],
+    "imports": [
+      "../entities/PatientBooking",
+      "../entities/ItineraryEvent",
+      "../entities/CompanionShift",
+      "../entities/DriverTransfer",
+      "../entities/ReceiptExpense"
+    ]
+  },
+  {
+    "rel": "domain/value-objects/EventCategory.ts",
+    "exports": [
+      "EventCategoryType",
+      "EventCategoryMetadata",
+      "EventCategory"
+    ],
+    "imports": []
+  },
+  {
+    "rel": "domain/value-objects/EventStatus.ts",
+    "exports": [
+      "EventStatusType",
+      "EventStatus"
+    ],
+    "imports": [
+      "../errors/DomainError"
+    ]
+  },
+  {
+    "rel": "domain/value-objects/Money.ts",
+    "exports": [
+      "CurrencyCode",
+      "Money"
+    ],
+    "imports": [
+      "../errors/DomainError"
+    ]
+  },
+  {
+    "rel": "domain/value-objects/OperativeTerritory.ts",
+    "exports": [
+      "OperativeZone",
+      "GeoCoordinates",
+      "OperativeTerritory"
+    ],
+    "imports": [
+      "../errors/NonOperativeTerritoryError"
+    ]
+  },
+  {
+    "rel": "infrastructure/crdt/LWWElementSet.ts",
+    "exports": [
+      "LWWSerializedState",
+      "LWWElementSet"
+    ],
+    "imports": [
+      "../security/Sha256LedgerChain"
+    ]
+  },
+  {
+    "rel": "infrastructure/crdt/PNCounter.ts",
+    "exports": [
+      "PNCounterState",
+      "PNCounter"
+    ],
+    "imports": []
+  },
+  {
+    "rel": "infrastructure/crdt/index.ts",
+    "exports": [],
+    "imports": [
+      "./LWWElementSet",
+      "./PNCounter"
+    ]
+  },
+  {
+    "rel": "infrastructure/data/archetypes.data.ts",
+    "exports": [
+      "ArchetypeBundle",
+      "ARCHETYPES_DATA"
+    ],
+    "imports": [
+      "../../domain/entities/PatientBooking",
+      "../../domain/entities/ItineraryEvent",
+      "../../domain/entities/CompanionShift",
+      "../../domain/entities/DriverTransfer",
+      "../../domain/entities/ReceiptExpense"
+    ]
+  },
+  {
+    "rel": "infrastructure/data/providers.data.ts",
+    "exports": [
+      "MedicalProvider",
+      "FleetDriverInfo",
+      "FieldStaffInfo",
+      "CLINICAL_PROVIDERS",
+      "ACCOMMODATION_PROVIDERS",
+      "FLEET_DRIVERS",
+      "FIELD_STAFF",
+      "BILINGUAL_COMPANIONS"
+    ],
+    "imports": []
+  },
+  {
+    "rel": "infrastructure/data/rates.data.ts",
+    "exports": [
+      "GuideRateCard",
+      "FleetRateCard",
+      "StandardDisbursementsCard",
+      "GUIDE_RATES",
+      "FLEET_RATES",
+      "STANDARD_DISBURSEMENTS"
+    ],
+    "imports": [
+      "../../domain/value-objects/Money"
+    ]
+  },
+  {
+    "rel": "infrastructure/export/JsonPdfExportAdapter.ts",
+    "exports": [
+      "JsonPdfExportAdapter"
+    ],
+    "imports": [
+      "../../domain/ports/IExportPort",
+      "../../domain/entities/PatientBooking",
+      "../../domain/entities/SettlementLedger",
+      "../../domain/entities/ItineraryEvent",
+      "../../presentation/i18n"
+    ]
+  },
+  {
+    "rel": "infrastructure/index.ts",
+    "exports": [],
+    "imports": [
+      "./storage/DexieStorageAdapter",
+      "./storage/InMemoryStorageAdapter",
+      "./storage/LocalStorageEventStreamAdapter",
+      "./storage/WebKitPersistAdapter",
+      "./data/providers.data"
+    ]
+  },
+  {
+    "rel": "infrastructure/ocr/SimulatedReceiptOCRAdapter.ts",
+    "exports": [
+      "ReceiptPresetDefinition",
+      "KNOWN_RECEIPT_PRESETS",
+      "SimulatedReceiptOCRAdapter"
+    ],
+    "imports": [
+      "../../domain/ports/IOCRPort",
+      "../../domain/value-objects/Money"
+    ]
+  },
+  {
+    "rel": "infrastructure/security/Sha256LedgerChain.ts",
+    "exports": [
+      "utf8Encode",
+      "sha256",
+      "LedgerBlock",
+      "LedgerVerificationResult",
+      "LedgerSealCertificate",
+      "canonicalStringify",
+      "calculateBlockHash",
+      "Sha256LedgerChain"
+    ],
+    "imports": []
+  },
+  {
+    "rel": "infrastructure/security/index.ts",
+    "exports": [],
+    "imports": [
+      "./Sha256LedgerChain"
+    ]
+  },
+  {
+    "rel": "infrastructure/storage/DexieStorageAdapter.ts",
+    "exports": [
+      "SerializedBooking",
+      "SerializedEvent",
+      "SerializedShift",
+      "SerializedTransfer",
+      "SerializedExpense",
+      "SerializedSettlement",
+      "SerializedBlob",
+      "SerializedDomainEventRecord",
+      "MedicalTripDexieDB",
+      "DexieStorageAdapter"
+    ],
+    "imports": [
+      "dexie",
+      "../../domain/ports/IStoragePort",
+      "../../domain/ports/IBlobStoragePort",
+      "../../domain/entities/PatientBooking",
+      "../../domain/entities/ItineraryEvent"
+    ]
+  },
+  {
+    "rel": "infrastructure/storage/InMemoryStorageAdapter.ts",
+    "exports": [
+      "InMemoryStorageAdapter"
+    ],
+    "imports": [
+      "../../domain/ports/IStoragePort",
+      "../../domain/ports/IBlobStoragePort",
+      "../../domain/entities/PatientBooking",
+      "../../domain/entities/ItineraryEvent",
+      "../../domain/entities/CompanionShift"
+    ]
+  },
+  {
+    "rel": "infrastructure/storage/LocalStorageEventStreamAdapter.ts",
+    "exports": [
+      "LocalStorageEventStreamAdapter"
+    ],
+    "imports": [
+      "../../domain/ports/IStoragePort"
+    ]
+  },
+  {
+    "rel": "infrastructure/storage/LocalStoragePatientInvitationAdapter.ts",
+    "exports": [
+      "LocalStoragePatientInvitationAdapter"
+    ],
+    "imports": [
+      "../../domain/ports/IPatientInvitationRepository",
+      "../../domain/entities/PatientInvitation"
+    ]
+  },
+  {
+    "rel": "infrastructure/storage/SupabasePatientInvitationAdapter.ts",
+    "exports": [
+      "SupabaseClientStub",
+      "SupabasePatientInvitationAdapter"
+    ],
+    "imports": [
+      "../../domain/ports/IPatientInvitationRepository",
+      "../../domain/entities/PatientInvitation"
+    ]
+  },
+  {
+    "rel": "infrastructure/storage/WebKitPersistAdapter.ts",
+    "exports": [
+      "WebKitPersistAdapter"
+    ],
+    "imports": [
+      "../../domain/ports/IStoragePersistPort"
+    ]
+  },
+  {
+    "rel": "main.tsx",
+    "exports": [],
+    "imports": [
+      "react",
+      "react-dom/client",
+      "./App",
+      "./index.css"
+    ]
+  },
+  {
+    "rel": "presentation/components/__tests__/ArrivalTrackingCard.test.tsx",
+    "exports": [],
+    "imports": [
+      "react",
+      "vitest",
+      "@testing-library/react",
+      "../logistics/ArrivalTrackingCard",
+      "../../state/AppContext"
+    ]
+  },
+  {
+    "rel": "presentation/components/__tests__/BadgesAndLanguageSwitcher.test.tsx",
+    "exports": [],
+    "imports": [
+      "react",
+      "vitest",
+      "@testing-library/react",
+      "../../i18n",
+      "../badges/NationalityBadge"
+    ]
+  },
+  {
+    "rel": "presentation/components/__tests__/CompanionFinancialLedgerIntegration.test.tsx",
+    "exports": [],
+    "imports": [
+      "react",
+      "vitest",
+      "@testing-library/react",
+      "../../state/AppContext",
+      "../../i18n"
+    ]
+  },
+  {
+    "rel": "presentation/components/__tests__/CompanionTurnSheetModal.test.tsx",
+    "exports": [],
+    "imports": [
+      "react",
+      "vitest",
+      "@testing-library/react",
+      "../companion/CompanionTurnSheetModal",
+      "../../state/AppContext"
+    ]
+  },
+  {
+    "rel": "presentation/components/__tests__/DriverCheckInAction.test.tsx",
+    "exports": [],
+    "imports": [
+      "react",
+      "vitest",
+      "@testing-library/react",
+      "../logistics/DriverCheckInAction",
+      "../../state/AppContext"
+    ]
+  },
+  {
+    "rel": "presentation/components/__tests__/LocalizedDigitalSignaturePad.test.tsx",
+    "exports": [],
+    "imports": [
+      "fake-indexeddb/auto",
+      "vitest",
+      "@testing-library/react",
+      "../../i18n",
+      "../../state/AppContext"
+    ]
+  },
+  {
+    "rel": "presentation/components/__tests__/MealSubsidySelector.test.tsx",
+    "exports": [],
+    "imports": [
+      "react",
+      "vitest",
+      "@testing-library/react",
+      "../companion/MealSubsidySelector",
+      "../../i18n"
+    ]
+  },
+  {
+    "rel": "presentation/components/__tests__/MultilingualArrivalParity.test.tsx",
+    "exports": [],
+    "imports": [
+      "vitest",
+      "@testing-library/react",
+      "../logistics/ArrivalTrackingCard",
+      "../logistics/OrientationKitPreview",
+      "../../state/AppContext"
+    ]
+  },
+  {
+    "rel": "presentation/components/__tests__/WelcomeOrientationModal.test.tsx",
+    "exports": [],
+    "imports": [
+      "react",
+      "vitest",
+      "@testing-library/react",
+      "../logistics/WelcomeOrientationModal",
+      "../../state/AppContext"
+    ]
+  },
+  {
+    "rel": "presentation/components/auth/LoginView.tsx",
+    "exports": [
+      "LoginView"
+    ],
+    "imports": [
+      "react",
+      "../../state/AuthContext",
+      "lucide-react"
+    ]
+  },
+  {
+    "rel": "presentation/components/badges/LanguageBadge.tsx",
+    "exports": [
+      "LanguageBadgeProps",
+      "LanguageBadge",
+      "LanguageBadge"
+    ],
+    "imports": [
+      "react",
+      "../../i18n",
+      "lucide-react"
+    ]
+  },
+  {
+    "rel": "presentation/components/badges/NationalityBadge.tsx",
+    "exports": [
+      "NationalityBadgeProps",
+      "NationalityBadge",
+      "NationalityBadge"
+    ],
+    "imports": [
+      "react",
+      "../../i18n"
+    ]
+  },
+  {
+    "rel": "presentation/components/badges/index.ts",
+    "exports": [],
+    "imports": [
+      "./NationalityBadge",
+      "./NationalityBadge",
+      "./LanguageBadge",
+      "./LanguageBadge"
+    ]
+  },
+  {
+    "rel": "presentation/components/calendar/AgendaView.tsx",
+    "exports": [
+      "AgendaView"
+    ],
+    "imports": [
+      "react",
+      "../../state/AppContext",
+      "../../../domain/entities/ItineraryEvent",
+      "./EventCard",
+      "../common/Button"
+    ]
+  },
+  {
+    "rel": "presentation/components/calendar/CalendarContainer.tsx",
+    "exports": [
+      "CalendarContainer"
+    ],
+    "imports": [
+      "react",
+      "../../state/AppContext",
+      "./CalendarHeader",
+      "./MonthView",
+      "./WeekView"
+    ]
+  },
+  {
+    "rel": "presentation/components/calendar/CalendarHeader.tsx",
+    "exports": [
+      "CalendarHeader"
+    ],
+    "imports": [
+      "react",
+      "../../state/AppContext",
+      "../timezone/DualTimezoneChip",
+      "lucide-react"
+    ]
+  },
+  {
+    "rel": "presentation/components/calendar/DayView.tsx",
+    "exports": [
+      "DayView"
+    ],
+    "imports": [
+      "react",
+      "../../state/AppContext",
+      "../../hooks/useSettlement",
+      "../../../domain/entities/CompanionShift",
+      "../../../domain/value-objects/Money"
+    ]
+  },
+  {
+    "rel": "presentation/components/calendar/EventCard.tsx",
+    "exports": [
+      "EventCardProps",
+      "EventCard"
+    ],
+    "imports": [
+      "react",
+      "../../../domain/entities/ItineraryEvent",
+      "../../../domain/value-objects/EventCategory",
+      "../../../domain/value-objects/EventStatus",
+      "./EventHoverCard"
+    ]
+  },
+  {
+    "rel": "presentation/components/calendar/EventHoverCard.tsx",
+    "exports": [
+      "EventHoverCardProps",
+      "EventHoverCard"
+    ],
+    "imports": [
+      "react",
+      "../../../domain/entities/ItineraryEvent",
+      "../../../domain/value-objects/EventCategory",
+      "../../../domain/value-objects/EventStatus",
+      "lucide-react"
+    ]
+  },
+  {
+    "rel": "presentation/components/calendar/GhostDropIndicator.tsx",
+    "exports": [
+      "GhostDropIndicatorProps",
+      "GhostDropIndicator"
+    ],
+    "imports": [
+      "react",
+      "lucide-react",
+      "../../../domain/value-objects/EventCategory"
+    ]
+  },
+  {
+    "rel": "presentation/components/calendar/MonthView.tsx",
+    "exports": [
+      "MonthView"
+    ],
+    "imports": [
+      "react",
+      "../../state/AppContext",
+      "../../hooks/useSettlement",
+      "../../../domain/entities/ItineraryEvent",
+      "lucide-react"
+    ]
+  },
+  {
+    "rel": "presentation/components/calendar/WeekView.tsx",
+    "exports": [
+      "WeekView"
+    ],
+    "imports": [
+      "react",
+      "../../state/AppContext",
+      "../../../domain/entities/ItineraryEvent",
+      "./EventCard",
+      "./GhostDropIndicator"
+    ]
+  },
+  {
+    "rel": "presentation/components/calendar/index.ts",
+    "exports": [],
+    "imports": [
+      "./CalendarHeader",
+      "./EventCard",
+      "./MonthView",
+      "./WeekView",
+      "./DayView"
+    ]
+  },
+  {
+    "rel": "presentation/components/common/Badge.tsx",
+    "exports": [
+      "BadgeVariant",
+      "BadgeSize",
+      "BadgeProps",
+      "Badge"
+    ],
+    "imports": [
+      "react"
+    ]
+  },
+  {
+    "rel": "presentation/components/common/Button.tsx",
+    "exports": [
+      "ButtonVariant",
+      "ButtonSize",
+      "ButtonProps",
+      "Button"
+    ],
+    "imports": [
+      "react"
+    ]
+  },
+  {
+    "rel": "presentation/components/common/Input.tsx",
+    "exports": [
+      "InputProps",
+      "Input"
+    ],
+    "imports": [
+      "react"
+    ]
+  },
+  {
+    "rel": "presentation/components/common/Modal.tsx",
+    "exports": [
+      "ModalProps",
+      "Modal"
+    ],
+    "imports": [
+      "react",
+      "lucide-react"
+    ]
+  },
+  {
+    "rel": "presentation/components/common/Select.tsx",
+    "exports": [
+      "SelectOption",
+      "SelectProps",
+      "Select"
+    ],
+    "imports": [
+      "react"
+    ]
+  },
+  {
+    "rel": "presentation/components/common/index.ts",
+    "exports": [],
+    "imports": [
+      "./Badge",
+      "./Button",
+      "./Input",
+      "./Select",
+      "./Modal"
+    ]
+  },
+  {
+    "rel": "presentation/components/companion/CompanionTurnSheetModal.tsx",
+    "exports": [
+      "CompanionTurnSheetModalProps",
+      "CompanionTurnSheetModal"
+    ],
+    "imports": [
+      "react",
+      "lucide-react",
+      "../common/Modal",
+      "../common/Button",
+      "./MealSubsidySelector"
+    ]
+  },
+  {
+    "rel": "presentation/components/companion/MealSubsidySelector.tsx",
+    "exports": [
+      "MealSubsidySelectorProps",
+      "MealTierOption",
+      "MEAL_TIER_CONFIGS",
+      "MealSubsidySelector"
+    ],
+    "imports": [
+      "react",
+      "lucide-react",
+      "../../../domain/entities/CompanionShift",
+      "../../i18n"
+    ]
+  },
+  {
+    "rel": "presentation/components/companion/index.ts",
+    "exports": [],
+    "imports": [
+      "./CompanionTurnSheetModal",
+      "./CompanionTurnSheetModal",
+      "./MealSubsidySelector",
+      "./MealSubsidySelector"
+    ]
+  },
+  {
+    "rel": "presentation/components/drawer/EventDetailDrawer.tsx",
+    "exports": [
+      "EventDetailDrawer"
+    ],
+    "imports": [
+      "react",
+      "../../state/AppContext",
+      "./EventForm",
+      "../../../domain/entities/ItineraryEvent",
+      "lucide-react"
+    ]
+  },
+  {
+    "rel": "presentation/components/drawer/EventForm.tsx",
+    "exports": [
+      "EventFormProps",
+      "EventForm"
+    ],
+    "imports": [
+      "react",
+      "../../../domain/entities/ItineraryEvent",
+      "../../../domain/value-objects/EventCategory",
+      "../../../domain/value-objects/EventStatus",
+      "../../../domain/value-objects/OperativeTerritory"
+    ]
+  },
+  {
+    "rel": "presentation/components/drawer/index.ts",
+    "exports": [],
+    "imports": [
+      "./EventForm",
+      "./EventDetailDrawer"
+    ]
+  },
+  {
+    "rel": "presentation/components/language/LanguageSwitcher.tsx",
+    "exports": [
+      "LanguageSwitcherProps",
+      "LanguageSwitcher",
+      "LanguageSwitcher"
+    ],
+    "imports": [
+      "react",
+      "../../i18n",
+      "lucide-react"
+    ]
+  },
+  {
+    "rel": "presentation/components/language/index.ts",
+    "exports": [],
+    "imports": [
+      "./LanguageSwitcher",
+      "./LanguageSwitcher"
+    ]
+  },
+  {
+    "rel": "presentation/components/logistics/ArrivalTrackingCard.tsx",
+    "exports": [
+      "ArrivalTrackingCardProps",
+      "ArrivalTrackingCard"
+    ],
+    "imports": [
+      "react",
+      "../../state/AppContext",
+      "../../i18n",
+      "./DriverCheckInAction",
+      "./WelcomeOrientationModal"
+    ]
+  },
+  {
+    "rel": "presentation/components/logistics/DriverCheckInAction.tsx",
+    "exports": [
+      "DriverCheckInActionProps",
+      "DriverCheckInAction"
+    ],
+    "imports": [
+      "react",
+      "../../state/AppContext",
+      "../../i18n",
+      "../../../application/use-cases/PerformDriverCheckInUseCase",
+      "lucide-react"
+    ]
+  },
+  {
+    "rel": "presentation/components/logistics/OrientationKitPreview.tsx",
+    "exports": [
+      "OrientationKitPreviewProps",
+      "OrientationKitPreview"
+    ],
+    "imports": [
+      "react",
+      "../../state/AppContext",
+      "../../i18n",
+      "../../../infrastructure/data/providers.data",
+      "lucide-react"
+    ]
+  },
+  {
+    "rel": "presentation/components/logistics/WelcomeOrientationModal.tsx",
+    "exports": [
+      "WelcomeOrientationModalProps",
+      "WelcomeOrientationModal"
+    ],
+    "imports": [
+      "react",
+      "../common/Modal",
+      "./OrientationKitPreview",
+      "../../i18n",
+      "lucide-react"
+    ]
+  },
+  {
+    "rel": "presentation/components/logistics/index.ts",
+    "exports": [],
+    "imports": [
+      "./DriverCheckInAction",
+      "./OrientationKitPreview",
+      "./WelcomeOrientationModal",
+      "./ArrivalTrackingCard"
+    ]
+  },
+  {
+    "rel": "presentation/components/modal/NewPatientModal.tsx",
+    "exports": [],
+    "imports": [
+      "../modals/NewPatientModal",
+      "../modals/NewPatientModal"
+    ]
+  },
+  {
+    "rel": "presentation/components/modal/SmartItineraryModal.tsx",
+    "exports": [],
+    "imports": [
+      "../modals/SmartItineraryModal",
+      "../modals/SmartItineraryModal"
+    ]
+  },
+  {
+    "rel": "presentation/components/modals/NewPatientModal.tsx",
+    "exports": [
+      "NewPatientModalProps",
+      "NewPatientModal",
+      "NewPatientModal"
+    ],
+    "imports": [
+      "react",
+      "../../state/AppContext",
+      "../../../domain/entities/PatientBooking",
+      "../../../domain/value-objects/OperativeTerritory",
+      "../../../application/use-cases/CreatePatientBookingUseCase"
+    ]
+  },
+  {
+    "rel": "presentation/components/modals/SendPatientInvitationModal.tsx",
+    "exports": [
+      "SendPatientInvitationModalProps",
+      "SendPatientInvitationModal"
+    ],
+    "imports": [
+      "react",
+      "../../state/AppContext",
+      "../../../application/use-cases/CreatePatientInvitationUseCase",
+      "../../../infrastructure/storage/LocalStoragePatientInvitationAdapter",
+      "../../../domain/entities/PatientInvitation"
+    ]
+  },
+  {
+    "rel": "presentation/components/modals/SmartItineraryModal.tsx",
+    "exports": [
+      "ClinicalPresetKey",
+      "ClinicalPresetDefinition",
+      "CLINICAL_PRESETS_CATALOG",
+      "SmartItineraryModalProps",
+      "SmartItineraryModal",
+      "SmartItineraryModal"
+    ],
+    "imports": [
+      "react",
+      "../../state/AppContext",
+      "../../../domain/entities/PatientBooking",
+      "lucide-react"
+    ]
+  },
+  {
+    "rel": "presentation/components/modules/ModuleNav.tsx",
+    "exports": [
+      "ModuleNavProps",
+      "ModuleNav"
+    ],
+    "imports": [
+      "react",
+      "../../state/AppContext",
+      "lucide-react",
+      "../../state/AppContext"
+    ]
+  },
+  {
+    "rel": "presentation/components/modules/PassengersView.tsx",
+    "exports": [
+      "PassengersView"
+    ],
+    "imports": [
+      "react",
+      "../../state/AppContext",
+      "../../hooks/useArchetypes",
+      "lucide-react"
+    ]
+  },
+  {
+    "rel": "presentation/components/modules/PlanView.tsx",
+    "exports": [
+      "PlanView"
+    ],
+    "imports": [
+      "react",
+      "../../state/AppContext",
+      "lucide-react"
+    ]
+  },
+  {
+    "rel": "presentation/components/modules/SettlementView.tsx",
+    "exports": [
+      "QuickExpenseCategory",
+      "QUICK_CATEGORIES",
+      "SettlementViewProps",
+      "SettlementView"
+    ],
+    "imports": [
+      "react",
+      "../../state/AppContext",
+      "../../hooks/useSettlement",
+      "../../../domain/value-objects/Money",
+      "../../../domain/entities/CompanionShift"
+    ]
+  },
+  {
+    "rel": "presentation/components/modules/UsersView.tsx",
+    "exports": [
+      "UsersView"
+    ],
+    "imports": [
+      "react",
+      "../../state/AuthContext",
+      "../../state/AppContext",
+      "lucide-react"
+    ]
+  },
+  {
+    "rel": "presentation/components/navigation/FloatingActionButton.tsx",
+    "exports": [
+      "FloatingActionButtonProps",
+      "FloatingActionButton"
+    ],
+    "imports": [
+      "react",
+      "lucide-react",
+      "../../state/AppContext"
+    ]
+  },
+  {
+    "rel": "presentation/components/navigation/MobileBottomNav.tsx",
+    "exports": [
+      "MobileBottomNavProps",
+      "MobileBottomNav"
+    ],
+    "imports": [
+      "react",
+      "lucide-react",
+      "../../state/AppContext",
+      "../../hooks/useSettlement"
+    ]
+  },
+  {
+    "rel": "presentation/components/navigation/PatientSidebar.tsx",
+    "exports": [
+      "PatientSidebar"
+    ],
+    "imports": [
+      "react",
+      "../../hooks/useArchetypes",
+      "../../state/AppContext",
+      "../../state/AuthContext",
+      "lucide-react"
+    ]
+  },
+  {
+    "rel": "presentation/components/navigation/index.ts",
+    "exports": [],
+    "imports": [
+      "./MobileBottomNav",
+      "./FloatingActionButton",
+      "./PatientSidebar"
+    ]
+  },
+  {
+    "rel": "presentation/components/onboarding/PatientSelfRegistrationView.tsx",
+    "exports": [
+      "PatientSelfRegistrationViewProps",
+      "PatientSelfRegistrationView",
+      "PatientSelfRegistrationView"
+    ],
+    "imports": [
+      "react",
+      "lucide-react",
+      "../../../application/use-cases/CreatePatientBookingUseCase",
+      "../../../application/use-cases/GetPatientInvitationUseCase",
+      "../../../infrastructure/storage/DexieStorageAdapter"
+    ]
+  },
+  {
+    "rel": "presentation/components/settlement/DigitalSignaturePad.tsx",
+    "exports": [
+      "DigitalSignaturePadProps",
+      "DigitalSignaturePad",
+      "DigitalSignaturePad"
+    ],
+    "imports": [
+      "react",
+      "lucide-react",
+      "../common/Modal",
+      "../common/Button",
+      "../common/Input"
+    ]
+  },
+  {
+    "rel": "presentation/components/settlement/DockedSettlementBar.tsx",
+    "exports": [
+      "DockedSettlementBarProps",
+      "FAST_EXPENSE_PRESETS",
+      "DockedSettlementBar",
+      "DockedSettlementBar"
+    ],
+    "imports": [
+      "react",
+      "lucide-react",
+      "../../hooks/useSettlement",
+      "../../state/AppContext",
+      "../common/Button"
+    ]
+  },
+  {
+    "rel": "presentation/components/settlement/ReceiptOcrModal.tsx",
+    "exports": [
+      "ReceiptOcrModalProps",
+      "ReceiptOcrModal",
+      "ReceiptOcrModal"
+    ],
+    "imports": [
+      "react",
+      "lucide-react",
+      "../common/Modal",
+      "../common/Button",
+      "../common/Badge"
+    ]
+  },
+  {
+    "rel": "presentation/components/settlement/SettlementKpiCards.tsx",
+    "exports": [
+      "SettlementKpiCardsProps",
+      "SettlementKpiCards"
+    ],
+    "imports": [
+      "react",
+      "lucide-react",
+      "../../hooks/useSettlement",
+      "../common/Badge"
+    ]
+  },
+  {
+    "rel": "presentation/components/settlement/index.ts",
+    "exports": [],
+    "imports": [
+      "./SettlementKpiCards",
+      "./ReceiptOcrModal",
+      "./DigitalSignaturePad",
+      "./DockedSettlementBar"
+    ]
+  },
+  {
+    "rel": "presentation/components/swarm/SwarmDiagnosticsModal.tsx",
+    "exports": [
+      "SwarmDiagnosticsModalProps",
+      "SwarmDiagnosticsModal"
+    ],
+    "imports": [
+      "react",
+      "lucide-react",
+      "../common/Modal",
+      "../common/Button",
+      "../common/Badge"
+    ]
+  },
+  {
+    "rel": "presentation/components/swarm/SwarmStatusIndicator.tsx",
+    "exports": [
+      "SwarmStatusIndicator"
+    ],
+    "imports": [
+      "react",
+      "lucide-react",
+      "../../hooks/useSwarmActors",
+      "./SwarmDiagnosticsModal"
+    ]
+  },
+  {
+    "rel": "presentation/components/swarm/index.ts",
+    "exports": [],
+    "imports": [
+      "./SwarmStatusIndicator",
+      "./SwarmDiagnosticsModal"
+    ]
+  },
+  {
+    "rel": "presentation/components/switcher/ArchetypeSwitcherBar.tsx",
+    "exports": [
+      "ArchetypeSwitcherBar"
+    ],
+    "imports": [
+      "react",
+      "../../hooks/useArchetypes",
+      "../../state/AppContext",
+      "../../state/AuthContext",
+      "lucide-react"
+    ]
+  },
+  {
+    "rel": "presentation/components/timezone/DualTimezoneChip.tsx",
+    "exports": [
+      "DualTimezoneChipProps",
+      "DualTimezoneChip",
+      "DualTimezoneChip"
+    ],
+    "imports": [
+      "react",
+      "lucide-react"
+    ]
+  },
+  {
+    "rel": "presentation/components/timezone/index.ts",
+    "exports": [],
+    "imports": [
+      "./DualTimezoneChip"
+    ]
+  },
+  {
+    "rel": "presentation/hooks/index.ts",
+    "exports": [],
+    "imports": [
+      "./useItinerary",
+      "./useArchetypes",
+      "./useSettlement",
+      "./useSwarmActors",
+      "./useMediaQuery"
+    ]
+  },
+  {
+    "rel": "presentation/hooks/useArchetypes.ts",
+    "exports": [
+      "ArchetypeItem",
+      "useArchetypes"
+    ],
+    "imports": [
+      "react",
+      "../state/AppContext",
+      "../../infrastructure/data/archetypes.data",
+      "../i18n"
+    ]
+  },
+  {
+    "rel": "presentation/hooks/useConfetti.ts",
+    "exports": [
+      "ConfettiOptions",
+      "MEDICAL_TRIP_CONFETTI_COLORS",
+      "fireConfettiSafely",
+      "fireSettlementZeroBlast",
+      "fireSignatureSealBurst",
+      "useConfetti",
+      "useConfetti"
+    ],
+    "imports": [
+      "react",
+      "canvas-confetti"
+    ]
+  },
+  {
+    "rel": "presentation/hooks/useItinerary.ts",
+    "exports": [
+      "useItinerary"
+    ],
+    "imports": [
+      "react",
+      "../state/AppContext",
+      "../../domain/entities/ItineraryEvent",
+      "../../domain/value-objects/EventStatus",
+      "../../application/use-cases/CreateEventUseCase"
+    ]
+  },
+  {
+    "rel": "presentation/hooks/useMediaQuery.ts",
+    "exports": [
+      "ViewportMode",
+      "ViewportState",
+      "useMediaQuery"
+    ],
+    "imports": [
+      "react"
+    ]
+  },
+  {
+    "rel": "presentation/hooks/useSettlement.ts",
+    "exports": [
+      "SettlementStatusCategory",
+      "useSettlement"
+    ],
+    "imports": [
+      "react",
+      "../state/AppContext",
+      "../../domain/value-objects/Money",
+      "../../domain/entities/SettlementLedger"
+    ]
+  },
+  {
+    "rel": "presentation/hooks/useSwarmActors.ts",
+    "exports": [
+      "useSwarmActors"
+    ],
+    "imports": [
+      "react",
+      "../../workers/actorPool",
+      "../../domain/ports/IActorEventBusPort",
+      "../../workers/driverActor.worker",
+      "../../workers/guideActor.worker"
+    ]
+  },
+  {
+    "rel": "presentation/i18n/LanguageContext.tsx",
+    "exports": [
+      "LanguageContext",
+      "LanguageProviderProps",
+      "LanguageProvider",
+      "useLanguage",
+      "useTranslation"
+    ],
+    "imports": [
+      "react",
+      "./types",
+      "./index"
+    ]
+  },
+  {
+    "rel": "presentation/i18n/__tests__/LanguageContext.test.tsx",
+    "exports": [],
+    "imports": [
+      "react",
+      "vitest",
+      "@testing-library/react",
+      "../index"
+    ]
+  },
+  {
+    "rel": "presentation/i18n/__tests__/i18nDictionaries.test.ts",
+    "exports": [],
+    "imports": [
+      "vitest",
+      "../index"
+    ]
+  },
+  {
+    "rel": "presentation/i18n/index.ts",
+    "exports": [
+      "TRANSLATIONS",
+      "CARIBBEAN_TERRITORIES",
+      "resolveLanguage",
+      "resolveTerritory",
+      "getTranslation"
+    ],
+    "imports": [
+      "./types",
+      "./translations/es",
+      "./translations/en",
+      "./translations/nl",
+      "./translations/pap"
+    ]
+  },
+  {
+    "rel": "presentation/i18n/translations/en.ts",
+    "exports": [
+      "enTranslations"
+    ],
+    "imports": [
+      "../types"
+    ]
+  },
+  {
+    "rel": "presentation/i18n/translations/es.ts",
+    "exports": [
+      "esTranslations"
+    ],
+    "imports": [
+      "../types"
+    ]
+  },
+  {
+    "rel": "presentation/i18n/translations/nl.ts",
+    "exports": [
+      "nlTranslations"
+    ],
+    "imports": [
+      "../types"
+    ]
+  },
+  {
+    "rel": "presentation/i18n/translations/pap.ts",
+    "exports": [
+      "papTranslations"
+    ],
+    "imports": [
+      "../types"
+    ]
+  },
+  {
+    "rel": "presentation/i18n/types.ts",
+    "exports": [
+      "LanguageCode",
+      "CaribbeanCountryCode",
+      "CaribbeanTerritoryProfile",
+      "TranslationDictionary",
+      "LanguageContextType"
+    ],
+    "imports": []
+  },
+  {
+    "rel": "presentation/index.ts",
+    "exports": [],
+    "imports": [
+      "./components/common",
+      "./components/switcher/ArchetypeSwitcherBar",
+      "./components/calendar",
+      "./components/drawer",
+      "./components/settlement"
+    ]
+  },
+  {
+    "rel": "presentation/state/AppContext.tsx",
+    "exports": [
+      "CalendarViewType",
+      "ActiveModuleType",
+      "DateSlotPreset",
+      "AppContextType",
+      "AppProviderProps",
+      "AppProvider",
+      "useAppContext"
+    ],
+    "imports": [
+      "react",
+      "../../domain/ports/IStoragePort",
+      "../../domain/entities/PatientBooking",
+      "../../domain/entities/ItineraryEvent",
+      "../../domain/entities/CompanionShift"
+    ]
+  },
+  {
+    "rel": "presentation/state/AuthContext.tsx",
+    "exports": [
+      "UserRole",
+      "User",
+      "ADMIN_USER_PRESET",
+      "COMPANION_USER_PRESET",
+      "AuthContextType",
+      "AuthProvider",
+      "useAuth"
+    ],
+    "imports": [
+      "react"
+    ]
+  },
+  {
+    "rel": "presentation/state/ToastContext.tsx",
+    "exports": [
+      "ToastType",
+      "ToastOptions",
+      "ToastItem",
+      "ToastContextType",
+      "ToastProvider",
+      "useToast",
+      "ToastContainerProps",
+      "ToastContainer"
+    ],
+    "imports": [
+      "react",
+      "lucide-react"
+    ]
+  },
+  {
+    "rel": "vite-env.d.ts",
+    "exports": [],
+    "imports": []
+  },
+  {
+    "rel": "workers/actorPool.ts",
+    "exports": [
+      "ActorStatusType",
+      "ActorNodeStatus",
+      "SwarmStatusInfo",
+      "ActorPool"
+    ],
+    "imports": [
+      "../domain/ports/IActorEventBusPort",
+      "./driverActor.worker",
+      "./guideActor.worker",
+      "./nurseActor.worker",
+      "./financialAuditorActor.worker"
+    ]
+  },
+  {
+    "rel": "workers/driverActor.worker.ts",
+    "exports": [
+      "DriverFareRequest",
+      "DriverFareResult",
+      "Coordinates",
+      "DistanceCalculationRequest",
+      "DistanceCalculationResult",
+      "RouteValidationRequest",
+      "RouteValidationResult",
+      "DriverPayload",
+      "DriverResult",
+      "isProhibitedTerritory",
+      "calculateHaversineDistance",
+      "isNightShift",
+      "computeDriverFare",
+      "handleDriverMessage"
+    ],
+    "imports": [
+      "../domain/ports/IActorEventBusPort"
+    ]
+  },
+  {
+    "rel": "workers/financialAuditorActor.worker.ts",
+    "exports": [
+      "AuditSettlementRequest",
+      "AuditSettlementResult",
+      "CreateBlockRequest",
+      "VerifyChainRequest",
+      "SignSealRequest",
+      "FinancialAuditorPayload",
+      "FinancialAuditorResult",
+      "auditSettlement",
+      "createLedgerBlock",
+      "verifyLedgerChain",
+      "signLedgerSeal",
+      "handleFinancialAuditorMessage"
+    ],
+    "imports": [
+      "../domain/ports/IActorEventBusPort",
+      "../domain/value-objects/Money",
+      "../infrastructure/security/Sha256LedgerChain"
+    ]
+  },
+  {
+    "rel": "workers/guideActor.worker.ts",
+    "exports": [
+      "GuideHoursFeeRequest",
+      "GuideHoursFeeResult",
+      "LanguageMatchingRequest",
+      "GuideProfile",
+      "LanguageMatchingResult",
+      "GuidePayload",
+      "GuideResult",
+      "GUIDE_ROSTER",
+      "computeMealSubsidy",
+      "computeGuideFee",
+      "matchLanguages",
+      "handleGuideMessage"
+    ],
+    "imports": [
+      "../domain/ports/IActorEventBusPort"
+    ]
+  },
+  {
+    "rel": "workers/index.ts",
+    "exports": [],
+    "imports": [
+      "./driverActor.worker",
+      "./guideActor.worker",
+      "./nurseActor.worker",
+      "./financialAuditorActor.worker",
+      "./actorPool"
+    ]
+  },
+  {
+    "rel": "workers/nurseActor.worker.ts",
+    "exports": [
+      "FastingWindowRequest",
+      "FastingCheckpoint",
+      "FastingWindowResult",
+      "HomeSampleRequest",
+      "HomeSampleResult",
+      "PreOpChecklistRequest",
+      "PreOpChecklistResult",
+      "NursePayload",
+      "NurseResult",
+      "computeFastingWindow",
+      "scheduleHomeSample",
+      "validatePreOpChecklist",
+      "handleNurseMessage"
+    ],
+    "imports": [
+      "../domain/ports/IActorEventBusPort"
+    ]
+  }
+]

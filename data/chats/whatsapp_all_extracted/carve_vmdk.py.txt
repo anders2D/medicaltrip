@@ -1,0 +1,92 @@
+================================================================================
+SCRIPT:  carve_vmdk.py
+TAMAÑO:  4,252 bytes
+================================================================================
+
+import os
+import struct
+import sqlite3
+
+def carve_sqlite_from_vmdk():
+    vmdk_path = r'C:\LDPlayer\LDPlayer9\vms\leidian0\data.vmdk'
+    out_dir = r'c:\Users\mayra\projects\Medicina\whatsapp_business_backup\extracted_dbs'
+    os.makedirs(out_dir, exist_ok=True)
+
+    magic = b'SQLite format 3\x00'
+    found = 0
+    file_size = os.path.getsize(vmdk_path)
+    print(f"Iniciando escaneo forense de {file_size / (1024*1024):.1f} MB en {vmdk_path}...")
+
+    with open(vmdk_path, 'rb') as f:
+        chunk_size = 64 * 1024 * 1024
+        pos = 0
+        while True:
+            chunk = f.read(chunk_size)
+            if not chunk:
+                break
+            idx = 0
+            while True:
+                idx = chunk.find(magic, idx)
+                if idx == -1:
+                    break
+                abs_pos = pos + idx
+                
+                # Leer cabecera SQLite
+                f.seek(abs_pos)
+                hdr = f.read(100)
+                if len(hdr) == 100 and hdr[:16] == magic:
+                    page_size = struct.unpack('>H', hdr[16:18])[0]
+                    if page_size == 1:
+                        page_size = 65536
+                    page_count = struct.unpack('>I', hdr[28:32])[0]
+                    
+                    if 512 <= page_size <= 65536 and 1 <= page_count <= 500000:
+                        total_size = page_size * page_count
+                        if total_size > 50 * 1024:  # mas de 50 KB
+                            f.seek(abs_pos)
+                            db_bytes = f.read(total_size)
+                            temp_file = os.path.join(out_dir, f'carved_{hex(abs_pos)}.db')
+                            with open(temp_file, 'wb') as tf:
+                                tf.write(db_bytes)
+                            
+                            # Probar si es WhatsApp
+                            try:
+                                c = sqlite3.connect(temp_file)
+                                cur = c.cursor()
+                                cur.execute("SELECT name FROM sqlite_master WHERE type='table'")
+                                tables = [r[0] for r in cur.fetchall()]
+                                c.close()
+                                
+                                is_wa = any(t in tables for t in ['message', 'chat', 'jid', 'wa_contacts', 'messages', 'message_view'])
+                                if is_wa:
+                                    print(f"🎉 [ENCONTRADA] DB de WhatsApp en offset {hex(abs_pos)}! Tamano: {len(db_bytes)/(1024*1024):.2f} MB")
+                                    print(f"   Tablas: {tables[:10]}")
+                                    
+                                    # Si es msgstore principal, copiarlo a la raíz
+                                    if 'message' in tables or 'messages' in tables:
+                                        target_msgstore = r'c:\Users\mayra\projects\Medicina\whatsapp_business_backup\msgstore.db'
+                                        with open(target_msgstore, 'wb') as mf:
+                                            mf.write(db_bytes)
+                                        print(f"   -> Guardada como {target_msgstore}!")
+                                        
+                                    if 'wa_contacts' in tables:
+                                        target_wa = r'c:\Users\mayra\projects\Medicina\whatsapp_business_backup\wa.db'
+                                        with open(target_wa, 'wb') as wf:
+                                            wf.write(db_bytes)
+                                        print(f"   -> Guardada como {target_wa}!")
+                                        
+                                    found += 1
+                                else:
+                                    os.remove(temp_file)
+                            except Exception:
+                                if os.path.exists(temp_file):
+                                    os.remove(temp_file)
+
+                f.seek(pos + idx + 16)
+                idx += 16
+            pos += len(chunk)
+
+    print(f"\nResumen: Se extrajeron {found} bases de datos de WhatsApp directamente desde el disco virtual.")
+
+if __name__ == "__main__":
+    carve_sqlite_from_vmdk()

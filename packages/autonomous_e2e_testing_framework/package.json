@@ -1,0 +1,35 @@
+{
+  "name": "@medicaltrip/autonomous-e2e-testing-framework",
+  "version": "1.0.0",
+  "description": "Enterprise-grade Autonomous E2E Testing & Formal Flow Verification Framework with AI",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "test": "node ../../node_modules/.bin/tsx --test tests/*.test.ts tests/e2e-suite/*.test.ts",
+    "test:m1": "node ../../node_modules/.bin/tsx --test tests/m1-perception-routing.test.ts",
+    "test:m2": "node ../../node_modules/.bin/tsx --test tests/m2-formal-petri-ltl.test.ts",
+    "test:m3": "node ../../node_modules/.bin/tsx --test tests/m3-cdp-emulation.test.ts",
+    "test:m4": "node ../../node_modules/.bin/tsx --test tests/m4-visual-self-healing.test.ts",
+    "test:m5": "node ../../node_modules/.bin/tsx --test tests/m5-master-lifecycle.test.ts",
+    "test:e2e": "node ../../node_modules/.bin/tsx --test tests/e2e-suite/*.test.ts",
+    "typecheck": "node ../../node_modules/.bin/tsc --noEmit"
+  },
+  "keywords": [
+    "e2e-testing",
+    "model-based-testing",
+    "petri-nets",
+    "ltl-model-checking",
+    "stagehand",
+    "set-of-marks",
+    "cdp-hardware-emulation",
+    "ssim",
+    "agentic-memory",
+    "quarantine",
+    "sarif",
+    "tap13",
+    "junit-xml"
+  ],
+  "author": "Medical Trip Colombia S.A.S.",
+  "license": "UNLICENSED"
+}

@@ -1,0 +1,414 @@
+/* =====================================================================
+   DRAWERS, MODALS & CALCULATORS
+   ===================================================================== */
+
+.drawer-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+    z-index: 50;
+    display: none;
+    justify-content: flex-end;
+}
+
+.drawer-panel {
+    width: 680px;
+    max-width: 92vw;
+    height: 100vh;
+    background: var(--bg-surface);
+    border-left: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-lg);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    animation: slideInRight 0.25s ease-out;
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+}
+
+@media (max-width: 640px) {
+    .drawer-panel {
+        width: 100vw;
+        max-width: 100vw;
+        padding: 18px;
+    }
+}
+
+.drawer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-subtle);
+    margin-bottom: 16px;
+}
+
+.drawer-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-heading);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* =====================================================================
+   DATABASE EXPLORER ENHANCED STYLES
+   ===================================================================== */
+
+.db-stats-banner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    background: var(--bg-card-subtle);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin-bottom: 16px;
+}
+
+.db-stat-item {
+    text-align: center;
+}
+
+.db-stat-val {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.db-stat-lbl {
+    font-size: 0.68rem;
+    color: var(--text-subtle);
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+.db-tabs-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 14px;
+}
+
+.db-tab-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    font-size: 0.76rem;
+    font-weight: 600;
+    background: var(--bg-card-subtle);
+    border: 1px solid var(--border-subtle);
+    border-radius: 20px;
+    color: var(--text-main);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.db-tab-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.db-tab-btn.active {
+    background: var(--primary-light);
+    border-color: var(--primary);
+    color: var(--primary-text);
+}
+
+.db-tab-count {
+    background: rgba(0,0,0,0.08);
+    font-size: 0.65rem;
+    padding: 2px 6px;
+    border-radius: 10px;
+}
+
+.db-search-bar {
+    position: relative;
+    margin-bottom: 14px;
+}
+
+.db-search-bar input {
+    width: 100%;
+    padding: 8px 12px 8px 34px;
+    font-size: 0.82rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    background: var(--bg-card-subtle);
+    color: var(--text-main);
+}
+
+.db-search-bar input:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: var(--bg-surface);
+}
+
+.db-search-bar i {
+    position: absolute;
+    left: 11px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-subtle);
+    font-size: 0.8rem;
+}
+
+.db-table-wrapper {
+    background: var(--bg-card-subtle);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    overflow-x: auto;
+    margin-bottom: 16px;
+    max-height: 480px;
+    overflow-y: auto;
+}
+
+.db-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.78rem;
+    text-align: left;
+}
+
+.db-table th {
+    background: var(--bg-surface);
+    padding: 10px 12px;
+    font-weight: 700;
+    color: var(--text-heading);
+    border-bottom: 2px solid var(--border-subtle);
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    white-space: nowrap;
+}
+
+.db-table td {
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--border-subtle);
+    color: var(--text-main);
+    white-space: nowrap;
+}
+
+.db-table tr:hover td {
+    background: var(--bg-surface);
+}
+
+.db-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size: 0.72rem;
+    font-weight: 600;
+}
+
+.db-pill-uuid {
+    background: var(--primary-light);
+    color: var(--primary-text);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.db-pill-role {
+    background: var(--purple-light);
+    color: var(--purple);
+}
+
+.db-pill-status {
+    background: var(--emerald-light);
+    color: var(--emerald);
+}
+
+.db-pill-money {
+    background: var(--amber-light);
+    color: var(--amber);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+}
+
+.table-preview-card {
+    background: var(--bg-card-subtle);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    padding: 14px;
+    margin-bottom: 16px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    overflow-x: auto;
+    color: var(--text-heading);
+}
+
+/* =====================================================================
+   GLOSSARY & DICTIONARY DRAWER STYLES
+   ===================================================================== */
+
+.glossary-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.glossary-card {
+    background: var(--bg-card-subtle);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    padding: 14px 16px;
+    transition: all var(--transition-fast);
+}
+
+.glossary-card:hover {
+    border-color: var(--primary);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+.glossary-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.glossary-term-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.glossary-term-code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+.glossary-term-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-heading);
+}
+
+.glossary-term-origin {
+    font-size: 0.72rem;
+    color: var(--text-subtle);
+    margin-bottom: 6px;
+    font-style: italic;
+}
+
+.glossary-term-meaning {
+    font-size: 0.82rem;
+    color: var(--text-main);
+    line-height: 1.45;
+    margin-bottom: 8px;
+}
+
+.glossary-example-box {
+    background: var(--bg-surface);
+    border-left: 3px solid var(--primary);
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 0.76rem;
+    color: var(--text-muted);
+}
+
+.calc-box {
+    background: var(--bg-card-subtle);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 20px;
+}
+
+.calc-slider-wrap {
+    margin: 12px 0;
+}
+
+.calc-slider-wrap input {
+    width: 100%;
+    cursor: pointer;
+    accent-color: var(--primary);
+}
+
+.calc-kpis {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.calc-kpi-item {
+    background: var(--bg-surface);
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--border-subtle);
+    text-align: center;
+}
+
+.calc-kpi-val {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--primary-text);
+}
+
+.calc-kpi-lbl {
+    font-size: 0.76rem;
+    color: var(--text-muted);
+}
+
+.meeting-notes-area {
+    width: 100%;
+    height: 160px;
+    background: var(--bg-card-subtle);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    padding: 12px;
+    color: var(--text-heading);
+    font-family: inherit;
+    font-size: 0.88rem;
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.15s ease;
+}
+
+.meeting-notes-area:focus {
+    border-color: var(--border-active);
+}
+
+.diag-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+    margin-top: 12px;
+}
+
+.diag-table th, .diag-table td {
+    padding: 8px 10px;
+    border: 1px solid var(--border-subtle);
+    text-align: left;
+}
+
+.diag-table th {
+    background: var(--bg-card-subtle);
+    font-weight: 700;
+    color: var(--text-heading);
+}
+
+.diag-badge-pass {
+    background: var(--emerald-light);
+    color: var(--emerald);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.76rem;
+}

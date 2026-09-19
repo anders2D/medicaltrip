@@ -1,0 +1,14 @@
+================================================================================
+ARCHIVO: messages.json
+ORIGEN:  c:\Users\mayra\projects\Medicina\whatsapp_business_backup\extension_ldodkdnfdpchaipnoklfnfmbbkdoocej\2.0.15_0\_locales\ru\messages.json
+TAMAÑO:  381 bytes
+================================================================================
+
+{
+   "desc": {
+      "message": "Экспорт чата WhatsApp с медиа в HTML, сохранение номеров групп и контактов в Excel. Локально, безопасно. Данные не собираются."
+   },
+   "name": {
+      "message": "WhatsApp Number Export - Скачать номера WhatsApp в Excel/CSV/VCard"
+   }
+}

@@ -1,0 +1,27 @@
+{
+  "timestamp": "2026-09-16T20:56:16.869Z",
+  "passed": true,
+  "metrics": {
+    "consoleErrors": 0,
+    "unhandledExceptions": 0,
+    "supabaseHttpCalls": 271,
+    "httpFailures": 0
+  },
+  "supabaseRecordCounts": {
+    "bookings": 6,
+    "events": 7,
+    "shifts": 15,
+    "transfers": 4,
+    "expenses": 108,
+    "settlements": 6
+  },
+  "screenshots": [
+    "journey_1_admin_settlement.png",
+    "journey_1_admin_users.png",
+    "journey_1_admin_plan.png",
+    "journey_1_admin_passengers.png",
+    "journey_2_companion_console.png",
+    "journey_3_patient_portal.png",
+    "journey_4_self_registration.png"
+  ]
+}

@@ -1,0 +1,17 @@
+================================================================================
+DOCUMENTO EXTRAÍDO: Chat de WhatsApp con Juan Perez (Demo).txt
+UBICACIÓN ORIGINAL: c:\Users\mayra\projects\Medicina\whatsapp_business_backup\exported_chats\Chat de WhatsApp con Juan Perez (Demo).txt
+TAMAÑO ORIGINAL:    746 bytes
+FECHA EXTRACCIÓN:   2026-08-21 21:36:14
+================================================================================
+
+TIPO: Texto Plano / Datos (.txt)
+CODIFICACIÓN: utf-8
+
+﻿10/07/2023, 09:15 a. m. - Las llamadas y los mensajes están cifrados de extremo a extremo. Nadie fuera de este chat, ni siquiera WhatsApp, puede leerlos ni escucharlos.
+10/07/2023, 09:16 a. m. - Juan: ¡Hola Mayra! ¿Cómo estás? Te comparto la información del caso médico y la foto de referencia.
+10/07/2023, 09:17 a. m. - Juan: IMG-20230710-WA0082.jpg (archivo adjunto)
+10/07/2023, 09:18 a. m. - Mayra: ¡Hola Juan! Muchas gracias por enviarlo. Ya revisé la imagen.
+10/07/2023, 09:19 a. m. - Mayra: Te dejo una nota de voz con las indicaciones y detalles del tratamiento.
+10/07/2023, 09:20 a. m. - Mayra: PTT-20231231-WA0017.opus (archivo adjunto)
+10/07/2023, 09:21 a. m. - Juan: Excelente, me quedó todo muy claro. ¡Muchas gracias!

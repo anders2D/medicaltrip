@@ -1,0 +1,188 @@
+================================================================================
+SCRIPT:  export_sqlite_to_markdown.py
+TAMAÑO:  7,162 bytes
+================================================================================
+
+import sqlite3
+import os
+import re
+from datetime import datetime
+
+WORKSPACE_DIR = r"c:\Users\mayra\projects\Medicina\whatsapp_business_backup"
+SHARED_PICTURES = r"C:\Users\mayra\OneDrive\Documentos\XuanZhi9\Pictures"
+SHARED_MISC = r"C:\Users\mayra\OneDrive\Documentos\XuanZhi9\Misc"
+OUTPUT_DIR = os.path.join(WORKSPACE_DIR, "markdown_chats")
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+
+def find_db():
+    candidates = [
+        os.path.join(SHARED_PICTURES, "msgstore.db"),
+        os.path.join(SHARED_MISC, "msgstore.db"),
+        os.path.join(WORKSPACE_DIR, "msgstore.db"),
+    ]
+    for c in candidates:
+        if os.path.exists(c) and os.path.getsize(c) > 10000:
+            return c
+    return None
+
+def find_wa_db():
+    candidates = [
+        os.path.join(SHARED_PICTURES, "wa.db"),
+        os.path.join(SHARED_MISC, "wa.db"),
+        os.path.join(WORKSPACE_DIR, "wa.db"),
+    ]
+    for c in candidates:
+        if os.path.exists(c) and os.path.getsize(c) > 1000:
+            return c
+    return None
+
+def sanitize_filename(name):
+    clean = re.sub(r'[\\/*?:"<>|]', "", name)
+    clean = clean.strip()
+    return clean if clean else "chat_sin_nombre"
+
+def main():
+    db_path = find_db()
+    if not db_path:
+        print("ERROR: msgstore.db no encontrado todavia. Copialo a Pictures en LDPlayer.")
+        return False
+
+    print(f"Abriendo base de datos SQLite descifrada: {db_path}")
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+
+    # Cargar nombres de contactos de wa.db si existe
+    contacts = {}
+    wa_path = find_wa_db()
+    if wa_path:
+        try:
+            wa_conn = sqlite3.connect(wa_path)
+            wa_cur = wa_conn.cursor()
+            for row in wa_cur.execute("SELECT jid, display_name FROM wa_contacts WHERE display_name IS NOT NULL"):
+                jid, name = row
+                if name:
+                    contacts[jid] = name
+            wa_conn.close()
+            print(f"Contactos cargados desde wa.db: {len(contacts)}")
+        except Exception as e:
+            print(f"Nota: No se pudo leer wa.db ({e})")
+
+    # Mapeo de JIDs
+    jid_map = {}
+    try:
+        for row in cursor.execute("SELECT _id, raw_string FROM jid"):
+            jid_map[row[0]] = row[1]
+    except Exception:
+        pass
+
+    # Detectar esquema de tablas (antiguo vs moderno)
+    cursor.execute("SELECT name FROM sqlite_master WHERE type='table'")
+    tables = [r[0] for r in cursor.fetchall()]
+    print(f"Tablas encontradas: {len(tables)}")
+
+    # Procesar chats
+    chat_list = []
+    if "chat" in tables:
+        for row in cursor.execute("SELECT _id, jid_row_id, subject FROM chat"):
+            chat_id, jid_id, subject = row[0], row[1], row[2]
+            raw_jid = jid_map.get(jid_id, f"chat_{chat_id}")
+            name = subject or contacts.get(raw_jid) or raw_jid.split("@")[0]
+            chat_list.append({"id": chat_id, "jid": raw_jid, "name": name})
+
+    print(f"Total de conversaciones identificadas: {len(chat_list)}")
+    
+    total_messages = 0
+    index_entries = []
+
+    for chat in chat_list:
+        c_id = chat["id"]
+        c_name = chat["name"]
+        safe_name = sanitize_filename(c_name)
+        md_filename = f"{safe_name}.md"
+        md_filepath = os.path.join(OUTPUT_DIR, md_filename)
+
+        # Buscar mensajes del chat
+        msgs = []
+        try:
+            # Esquema moderno de WhatsApp
+            q = """
+            SELECT m.timestamp, m.from_me, m.text_data, mm.file_path, mm.media_name
+            FROM message m
+            LEFT JOIN message_media mm ON m._id = mm.message_row_id
+            WHERE m.chat_row_id = ?
+            ORDER BY m.timestamp ASC
+            """
+            for m in cursor.execute(q, (c_id,)):
+                ts, from_me, text, fpath, mname = m
+                msgs.append({"ts": ts, "from_me": from_me, "text": text, "file_path": fpath, "media_name": mname})
+        except Exception:
+            # Esquema alternativo
+            try:
+                q_old = """
+                SELECT timestamp, key_from_me, data, media_name
+                FROM messages
+                WHERE key_remote_jid = ?
+                ORDER BY timestamp ASC
+                """
+                for m in cursor.execute(q_old, (chat["jid"],)):
+                    ts, from_me, text, mname = m
+                    msgs.append({"ts": ts, "from_me": from_me, "text": text, "file_path": None, "media_name": mname})
+            except Exception:
+                pass
+
+        if not msgs:
+            continue
+
+        total_messages += len(msgs)
+        index_entries.append((c_name, md_filename, len(msgs)))
+
+        # Escribir Markdown del chat
+        with open(md_filepath, "w", encoding="utf-8") as f:
+            f.write(f"# 💬 Conversación: {c_name}\n\n")
+            f.write(f"- **JID**: `{chat['jid']}`\n")
+            f.write(f"- **Total mensajes**: {len(msgs)}\n")
+            f.write(f"- **Generado**: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n---\n\n")
+
+            for m in msgs:
+                ts_str = ""
+                if m["ts"]:
+                    try:
+                        ts_val = int(m["ts"])
+                        if ts_val > 1e11:  # milisegundos
+                            ts_val /= 1000
+                        ts_str = datetime.fromtimestamp(ts_val).strftime("[%d/%m/%Y, %I:%M:%S %p]")
+                    except Exception:
+                        ts_str = f"[{m['ts']}]"
+
+                sender = "**Tú**" if m["from_me"] else f"**{c_name}**"
+                text = m["text"] or ""
+                
+                f.write(f"{ts_str} {sender}: {text}\n\n")
+                
+                # Adjunto si existe
+                media = m["media_name"] or m["file_path"]
+                if media:
+                    fname = os.path.basename(media)
+                    if fname.lower().endswith(('.opus', '.ogg', '.m4a', '.mp3', '.aac')):
+                        f.write(f"> 🎙️ **Nota de voz / Audio**: `../Media/WhatsApp Business Audio/{fname}`\n\n")
+                    elif fname.lower().endswith(('.jpg', '.jpeg', '.png', '.webp')):
+                        f.write(f"> 🖼️ **Imagen**: `../Media/WhatsApp Business Images/{fname}`\n\n")
+
+    # Generar INDEX.md general
+    index_path = os.path.join(OUTPUT_DIR, "INDEX.md")
+    with open(index_path, "w", encoding="utf-8") as f:
+        f.write("# 📚 Índice General de Chats - WhatsApp Business\n\n")
+        f.write(f"- **Total conversaciones exportadas**: {len(index_entries)}\n")
+        f.write(f"- **Total mensajes procesados**: {total_messages:,}\n")
+        f.write(f"- **Fecha de extracción**: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
+        f.write("| # | Conversación / Contacto | Mensajes | Archivo Markdown |\n")
+        f.write("| :- | :--- | :--- | :--- |\n")
+        for idx, (cname, fname, count) in enumerate(sorted(index_entries, key=lambda x: x[2], reverse=True), start=1):
+            f.write(f"| {idx} | **{cname}** | {count:,} | [{fname}](./{fname}) |\n")
+
+    conn.close()
+    print(f"EXITO: Se procesaron {len(index_entries)} chats y {total_messages:,} mensajes en {OUTPUT_DIR}")
+    return True
+
+if __name__ == "__main__":
+    main()

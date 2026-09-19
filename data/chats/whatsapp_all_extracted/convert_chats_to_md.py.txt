@@ -1,0 +1,284 @@
+================================================================================
+SCRIPT:  convert_chats_to_md.py
+TAMAÑO:  11,090 bytes
+================================================================================
+
+﻿"""
+WhatsApp Chat to Markdown (.md) Converter
+=========================================
+Converts WhatsApp / WhatsApp Business exported chats into clean, formatted
+Markdown (.md) files with embedded images, audio players, videos, and documents.
+Also automatically resolves media from the local backup Media/ folder if missing!
+"""
+
+import os
+import re
+import sys
+import zipfile
+import shutil
+from pathlib import Path
+
+# Force UTF-8 on Windows console
+if sys.platform == "win32":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+        sys.stderr.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
+
+DATE_PATTERNS = [
+    # [15/08/2024, 10:30:15 AM] Sender: Message
+    re.compile(r"^\[(\d{1,2}[\/\.\-]\d{1,2}[\/\.\-]\d{2,4}),?\s+(\d{1,2}:\d{2}(?::\d{2})?(?:\s*[AaPp][Mm]|\s*[a-zA-Z\.\s]+)?)\]\s+([^:]+?):\s+(.*)$"),
+    # 15/08/2024, 10:30 - Sender: Message
+    re.compile(r"^(\d{1,2}[\/\.\-]\d{1,2}[\/\.\-]\d{2,4}),?\s+(\d{1,2}:\d{2}(?::\d{2})?(?:\s*[AaPp][Mm]|\s*[a-zA-Z\.\s]+)?)\s*-\s+([^:]+?):\s+(.*)$"),
+    # 15/08/2024, 10:30 - System message (no colon after sender)
+    re.compile(r"^(\d{1,2}[\/\.\-]\d{1,2}[\/\.\-]\d{2,4}),?\s+(\d{1,2}:\d{2}(?::\d{2})?(?:\s*[AaPp][Mm]|\s*[a-zA-Z\.\s]+)?)\s*-\s+(.*)$"),
+    # [15/08/2024, 10:30:15] System message
+    re.compile(r"^\[(\d{1,2}[\/\.\-]\d{1,2}[\/\.\-]\d{2,4}),?\s+(\d{1,2}:\d{2}(?::\d{2})?(?:\s*[AaPp][Mm]|\s*[a-zA-Z\.\s]+)?)\]\s+(.*)$"),
+]
+
+MEDIA_EXT_IMAGE = {".jpg", ".jpeg", ".png", ".webp", ".gif"}
+MEDIA_EXT_AUDIO = {".opus", ".m4a", ".mp3", ".ogg", ".wav", ".aac"}
+MEDIA_EXT_VIDEO = {".mp4", ".3gp", ".mkv", ".mov"}
+MEDIA_EXT_DOC = {".pdf", ".docx", ".xlsx", ".pptx", ".txt", ".zip", ".vcf"}
+
+
+def clean_filename(name: str) -> str:
+    """Sanitize string to be safe as a filename."""
+    return re.sub(r'[\\/*?:"<>|]', "_", name).strip()
+
+
+def find_media_in_backup(filename: str, global_media_dir: Path) -> Path:
+    """Searches for a media file in the global Media backup directory."""
+    if not global_media_dir.exists():
+        return None
+    for match in global_media_dir.rglob(filename):
+        if match.is_file():
+            return match
+    return None
+
+
+def parse_chat_file(txt_path: Path, media_dir: Path, output_md: Path, chat_title: str, global_media_dir: Path = None):
+    """Parses a WhatsApp exported .txt file and creates a Markdown file with embedded media."""
+    print(f"[*] Procesando: {txt_path.name} -> {output_md.name}")
+
+    with open(txt_path, "r", encoding="utf-8", errors="replace") as f:
+        lines = f.readlines()
+
+    parsed_messages = []
+    current_msg = None
+
+    for line in lines:
+        matched = False
+        for pattern in DATE_PATTERNS:
+            m = pattern.match(line)
+            if m:
+                matched = True
+                if current_msg:
+                    parsed_messages.append(current_msg)
+
+                groups = m.groups()
+                if len(groups) == 4:
+                    date, time, sender, content = groups
+                    current_msg = {
+                        "date": date.strip(),
+                        "time": time.strip(),
+                        "sender": sender.strip(),
+                        "content": content.strip(),
+                        "type": "message"
+                    }
+                elif len(groups) == 3:
+                    date, time, content = groups
+                    current_msg = {
+                        "date": date.strip(),
+                        "time": time.strip(),
+                        "sender": "Sistema",
+                        "content": content.strip(),
+                        "type": "system"
+                    }
+                break
+
+        if not matched:
+            if current_msg:
+                # Continuation of previous message (multiline)
+                current_msg["content"] += "\n" + line.rstrip("\r\n")
+            else:
+                current_msg = {
+                    "date": "",
+                    "time": "",
+                    "sender": "Info",
+                    "content": line.rstrip("\r\n"),
+                    "type": "system"
+                }
+
+    if current_msg:
+        parsed_messages.append(current_msg)
+
+    # Generate Markdown
+    participants = sorted(list(set(m["sender"] for m in parsed_messages if m["type"] == "message" and m["sender"] != "Sistema")))
+    total_messages = len(parsed_messages)
+    date_start = parsed_messages[0]["date"] if parsed_messages else ""
+    date_end = parsed_messages[-1]["date"] if parsed_messages else ""
+
+    md_lines = [
+        f"# 💬 Chat: {chat_title}",
+        "",
+        "> [!NOTE]",
+        f"> **Participantes**: {', '.join(participants) if participants else 'N/A'}  ",
+        f"> **Periodo**: {date_start} - {date_end}  ",
+        f"> **Total de Mensajes**: {total_messages}  ",
+        "",
+        "---",
+        ""
+    ]
+
+    last_date = None
+
+    for msg in parsed_messages:
+        date = msg["date"]
+        time = msg["time"]
+        sender = msg["sender"]
+        content = msg["content"]
+        msg_type = msg["type"]
+
+        # Date separator
+        if date and date != last_date:
+            md_lines.append(f"\n### 📅 {date}\n")
+            last_date = date
+
+        # Detect attached media in content
+        media_match = re.search(r"([\w\-]+\.(?:jpg|jpeg|png|webp|gif|opus|m4a|mp3|ogg|wav|aac|mp4|3gp|pdf|docx|xlsx|txt|vcf|zip))\s*(?:\(archivo adjunto\)|\(file attached\)|<adjunto:)?", content, re.IGNORECASE)
+
+        if media_match:
+            filename = media_match.group(1).strip()
+            file_ext = Path(filename).suffix.lower()
+            local_media_file = media_dir / filename
+            rel_media_path = f"media/{filename}"
+
+            # If not in local media folder, try resolving from global Media backup folder
+            if not local_media_file.exists() and global_media_dir:
+                found_in_backup = find_media_in_backup(filename, global_media_dir)
+                if found_in_backup:
+                    try:
+                        shutil.copy2(found_in_backup, local_media_file)
+                    except Exception:
+                        pass
+
+            cleaned_text = re.sub(re.escape(media_match.group(0)), "", content).strip()
+            
+            media_md = ""
+            if file_ext in MEDIA_EXT_IMAGE:
+                media_md = f"\n\n![{filename}]({rel_media_path})\n"
+            elif file_ext in MEDIA_EXT_AUDIO:
+                media_md = f'\n\n<audio controls src="{rel_media_path}"></audio>\n*🎵 Audio: [{filename}]({rel_media_path})*\n'
+            elif file_ext in MEDIA_EXT_VIDEO:
+                media_md = f'\n\n<video controls width="360" src="{rel_media_path}"></video>\n*🎬 Video: [{filename}]({rel_media_path})*\n'
+            elif file_ext in MEDIA_EXT_DOC:
+                media_md = f"\n\n📎 **Documento**: [{filename}]({rel_media_path})\n"
+
+            content = (cleaned_text + media_md).strip()
+
+        if msg_type == "system":
+            md_lines.append(f"*{time} — ⚙️ {content}*\n")
+        else:
+            content_formatted = content.replace("\n", "\n> ")
+            md_lines.append(f"> **{sender}** `[{time}]`  \n> {content_formatted}\n")
+
+    with open(output_md, "w", encoding="utf-8") as f:
+        f.write("\n".join(md_lines))
+
+    print(f"[OK] Archivo Markdown generado: {output_md}")
+    return {
+        "title": chat_title,
+        "filename": output_md.name,
+        "dir": output_md.parent.name,
+        "participants": participants,
+        "messages": total_messages,
+        "period": f"{date_start} - {date_end}"
+    }
+
+
+def generate_index_file(markdown_dir: Path, chat_summaries: list):
+    """Generates an INDEX.md table of all converted chats."""
+    if not chat_summaries:
+        return
+
+    index_lines = [
+        "# 📚 Índice de Chats Respaldados de WhatsApp",
+        "",
+        "> [!TIP]",
+        f"> **Total de conversaciones**: {len(chat_summaries)}  ",
+        "> Haz clic en cualquier conversación para abrir y leer el chat completo con imágenes y audios.",
+        "",
+        "| Conversación | Participantes | Periodo | Mensajes | Archivo |",
+        "| :--- | :--- | :--- | :--- | :--- |"
+    ]
+
+    for s in chat_summaries:
+        chat_link = f"[{s['title']}](./{s['dir']}/{s['filename']})"
+        parts = ", ".join(s["participants"][:3]) + ("..." if len(s["participants"]) > 3 else "")
+        index_lines.append(f"| {chat_link} | {parts} | {s['period']} | {s['messages']} | [`{s['filename']}`](./{s['dir']}/{s['filename']}) |")
+
+    index_file = markdown_dir / "INDEX.md"
+    with open(index_file, "w", encoding="utf-8") as f:
+        f.write("\n".join(index_lines))
+    print(f"[OK] Índice general creado: {index_file}")
+
+
+def process_exports_folder(base_dir: Path):
+    """Scans exported_chats folder for .zip files or .txt files and converts all chats to markdown."""
+    exported_dir = base_dir / "exported_chats"
+    markdown_dir = base_dir / "markdown_chats"
+    global_media_dir = base_dir / "Media"
+
+    exported_dir.mkdir(parents=True, exist_ok=True)
+    markdown_dir.mkdir(parents=True, exist_ok=True)
+
+    print(f"[*] Buscando chats en: {exported_dir}")
+
+    summaries = []
+
+    # Process .zip exports
+    zip_files = list(exported_dir.glob("*.zip"))
+    for zf in zip_files:
+        chat_name = clean_filename(zf.stem.replace("Chat de WhatsApp con ", "").replace("WhatsApp Chat - ", ""))
+        target_chat_dir = markdown_dir / chat_name
+        media_target = target_chat_dir / "media"
+        target_chat_dir.mkdir(parents=True, exist_ok=True)
+        media_target.mkdir(parents=True, exist_ok=True)
+
+        print(f"[*] Extrayendo {zf.name}...")
+        txt_file = None
+        with zipfile.ZipFile(zf, "r") as zip_ref:
+            for item in zip_ref.namelist():
+                if item.endswith(".txt"):
+                    zip_ref.extract(item, target_chat_dir)
+                    txt_file = target_chat_dir / item
+                else:
+                    zip_ref.extract(item, media_target)
+
+        if txt_file:
+            out_md = target_chat_dir / f"{chat_name}.md"
+            summary = parse_chat_file(txt_file, media_target, out_md, chat_name, global_media_dir)
+            summaries.append(summary)
+
+    # Process direct .txt files
+    txt_files = list(exported_dir.glob("*.txt"))
+    for tf in txt_files:
+        chat_name = clean_filename(tf.stem.replace("Chat de WhatsApp con ", "").replace("WhatsApp Chat - ", ""))
+        target_chat_dir = markdown_dir / chat_name
+        media_target = target_chat_dir / "media"
+        target_chat_dir.mkdir(parents=True, exist_ok=True)
+        media_target.mkdir(parents=True, exist_ok=True)
+
+        out_md = target_chat_dir / f"{chat_name}.md"
+        summary = parse_chat_file(tf, media_target, out_md, chat_name, global_media_dir)
+        summaries.append(summary)
+
+    generate_index_file(markdown_dir, summaries)
+    print(f"\n[OK] Proceso finalizado. Total de chats convertidos a Markdown: {len(summaries)}")
+
+
+if __name__ == "__main__":
+    current_dir = Path(__file__).resolve().parent
+    process_exports_folder(current_dir)

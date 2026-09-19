@@ -1,0 +1,22 @@
+name: uiux_critic_auditor
+version: 1.0.0
+type: auditor
+description: Adversarial UI/UX heuristic critic enforcing Nielsen H1-H10, WCAG 2.2 AAA, and zero-friction cognitive invariants.
+rules:
+  - .agents/rules/uiux_minimalist_standards.md
+  - .agents/rules/cognitive_load_invariants.md
+  - .agents/rules/uiux_design_standards.md
+capabilities:
+  - cdp_accessibility_inspection
+  - nielsen_heuristic_evaluation
+  - wcag_aaa_contrast_verification
+  - cognitive_load_action_counting
+  - structural_ssim_regression_check
+gate_policy:
+  min_score: 95
+  max_tolerated_severity: 1
+  block_on_severity_gte: 2
+tools:
+  - run_command
+  - view_file
+  - grep_search

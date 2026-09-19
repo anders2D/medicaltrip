@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Surface Tokens - Light (Neutral Zinc Foundation - Linear / Notion Standard) */
+  --bg-app: #f4f4f5;                /* zinc-100 (crisp neutral canvas) */
+  --bg-surface: #ffffff;            /* pure white primary surface */
+  --bg-surface-subtle: #fafafa;     /* zinc-50 subtle alternating row */
+  --bg-surface-muted: #f4f4f5;      /* zinc-100 muted container */
+  --bg-surface-hover: #e4e4e7;      /* zinc-200 hover state */
+
+  /* Hairline Borders (Subtle 1px Precision) */
+  --border-subtle: #e4e4e7;         /* zinc-200 (light divider) */
+  --border-default: #d4d4d8;        /* zinc-300 (standard card border) */
+  --border-strong: #71717a;         /* zinc-500 (focused border) */
+
+  /* Accessible Typography Tokens (WCAG 2.2 AAA Compliant >= 7.0:1) */
+  --text-primary: #09090b;          /* zinc-950 (18.1:1 contrast on white - AAA) */
+  --text-secondary: #3f3f46;        /* zinc-700 (9.4:1 contrast on white - AAA) */
+  --text-muted: #52525b;            /* zinc-600 (7.1:1 contrast on white - AAA) */
+  --text-inverse: #ffffff;          /* pure white on dark buttons */
+
+  /* Semantic Category Color Tokens - Light (WCAG AAA >= 7.0:1) */
+  --cat-flight-bg: #f0f9ff;
+  --cat-flight-border: #bae6fd;
+  --cat-flight-text: #0369a1;
+
+  --cat-clinical-bg: #eef2ff;
+  --cat-clinical-border: #c7d2fe;
+  --cat-clinical-text: #3730a3;
+
+  --cat-lab-bg: #f0fdfa;
+  --cat-lab-border: #99f6e4;
+  --cat-lab-text: #115e59;
+
+  --cat-pharmacy-bg: #ecfdf5;
+  --cat-pharmacy-border: #a7f3d0;
+  --cat-pharmacy-text: #065f46;
+
+  --cat-pocket-bg: #fffbeb;
+  --cat-pocket-border: #fde68a;
+  --cat-pocket-text: #78350f;
+
+  --cat-hotel-bg: #f4f4f5;
+  --cat-hotel-border: #d4d4d8;
+  --cat-hotel-text: #27272a;
+}
+
+.dark {
+  /* Surface Tokens - Dark (Deep Midnight Slate) */
+  --bg-app: #09090b;
+  --bg-surface: #18181b;
+  --bg-surface-subtle: #27272a;
+  --bg-surface-muted: #3f3f46;
+
+  --border-subtle: #27272a;
+  --border-default: #3f3f46;
+  --border-strong: #71717a;
+
+  --text-primary: #f4f4f5;
+  --text-secondary: #d4d4d8;
+  --text-muted: #a1a1aa;
+
+  /* Category Color Tokens - Dark (WCAG AAA >= 7.0:1) */
+  --cat-flight-bg: #082f49;
+  --cat-flight-border: #0284c7;
+  --cat-flight-text: #38bdf8;
+
+  --cat-clinical-bg: #1e1b4b;
+  --cat-clinical-border: #4f46e5;
+  --cat-clinical-text: #818cf8;
+
+  --cat-lab-bg: #042f2e;
+  --cat-lab-border: #0d9488;
+  --cat-lab-text: #2dd4bf;
+
+  --cat-pharmacy-bg: #022c22;
+  --cat-pharmacy-border: #10b981;
+  --cat-pharmacy-text: #34d399;
+
+  --cat-pocket-bg: #451a03;
+  --cat-pocket-border: #d97706;
+  --cat-pocket-text: #fbbf24;
+
+  --cat-hotel-bg: #27272a;
+  --cat-hotel-border: #3f3f46;
+  --cat-hotel-text: #d4d4d8;
+}
+
+/* Custom Scrollbar for Time Columns and Drawers */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d4d4d8;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1aa;
+}
+
+/* Tabular numbers for financial arithmetic, timestamps, and flight codes */
+.tabular-nums {
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings: "tnum" 1, "lnum" 1;
+}
+
+/* Touch & Interaction Optimizations */
+button, input, select, textarea {
+  touch-action: manipulation;
+}
+
+/* Safe area insets for mobile devices */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}

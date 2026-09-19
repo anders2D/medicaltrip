@@ -1,0 +1,131 @@
+================================================================================
+SCRIPT:  decrypt_crypt14.py
+TAMAÑO:  4,489 bytes
+================================================================================
+
+import os
+import zlib
+from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+from cryptography.hazmat.primitives.kdf.hkdf import HKDF
+from cryptography.hazmat.primitives import hashes
+
+def parse_crypt14_header(data):
+    """
+    Parsea la cabecera Protobuf de un archivo .crypt14 / .crypt15
+    Retorna: (iv, salt, ciphertext, tag, header_size)
+    """
+    # En crypt14, los primeros bytes contienen el mensaje protobuf con:
+    # - salt (32 bytes)
+    # - iv (16 bytes)
+    # - versión de WhatsApp
+    # El payload cifrado comienza después de la cabecera protobuf
+    
+    # Búsqueda de salt (32 bytes) e iv (16 bytes) en la cabecera
+    # Estructura típica:
+    # Tag 1a 20 [32 bytes salt]
+    # Tag 22 10 [16 bytes iv]
+    salt = None
+    iv = None
+    
+    pos_salt = data.find(b'\x1a\x20')
+    if pos_salt != -1:
+        salt = data[pos_salt + 2 : pos_salt + 34]
+        
+    pos_iv = data.find(b'\x22\x10')
+    if pos_iv != -1:
+        iv = data[pos_iv + 2 : pos_iv + 18]
+        
+    # Encontrar inicio del ciphertext (después de la cabecera)
+    # Típicamente a partir del byte 67 o 191 dependiendo del tipo
+    return salt, iv
+
+def decrypt_crypt14_with_key_bytes(crypt_file, key_bytes, output_file=None):
+    if not os.path.exists(crypt_file):
+        print(f"Error: Archivo {crypt_file} no existe.")
+        return False
+
+    with open(crypt_file, "rb") as f:
+        data = f.read()
+
+    print(f"--- Descifrando {os.path.basename(crypt_file)} ({len(data)} bytes) ---")
+    
+    # Extraer los 32 bytes de la clave AES si viene del archivo 'key' (158 bytes)
+    if len(key_bytes) == 158:
+        aes_key = key_bytes[126:158]
+        print("Clave extraida de archivo 'key' (158 bytes) -> AES key de 32 bytes")
+    elif len(key_bytes) == 32:
+        aes_key = key_bytes
+    elif len(key_bytes) == 64: # Hex string
+        aes_key = bytes.fromhex(key_bytes.decode('utf-8') if isinstance(key_bytes, bytes) else key_bytes)
+    else:
+        print(f"Longitud de clave no reconocida: {len(key_bytes)} bytes")
+        return False
+
+    salt, iv = parse_crypt14_header(data)
+    print(f"Salt detectado: {salt.hex() if salt else 'No encontrado'}")
+    print(f"IV detectado: {iv.hex() if iv else 'No encontrado'}")
+
+    if not iv:
+        print("Error: No se pudo extraer el vector de inicialización (IV).")
+        return False
+
+    # El ciphertext en crypt14 típicamente se encuentra al final de la cabecera
+    # Probamos con los offsets comunes de crypt14: 67, 98, 122, 191
+    offsets = [67, 98, 122, 128, 191]
+    
+    # Derivación de clave si es necesaria (HKDF con salt)
+    derived_key = aes_key
+    if salt:
+        try:
+            hkdf = HKDF(
+                algorithm=hashes.SHA256(),
+                length=32,
+                salt=salt,
+                info=b"WhatsApp Backup",
+            )
+            derived_key = hkdf.derive(aes_key)
+        except Exception:
+            derived_key = aes_key
+
+    decrypted = None
+    for k in [aes_key, derived_key]:
+        aesgcm = AESGCM(k)
+        for offset in range(30, min(250, len(data) - 16)):
+            ciphertext = data[offset:]
+            try:
+                # AES-GCM espera que los últimos 16 bytes sean el Authentication Tag
+                pt = aesgcm.decrypt(iv, ciphertext, None)
+                decrypted = pt
+                print(f"🎉 Exito con offset {offset}!")
+                break
+            except Exception:
+                continue
+        if decrypted:
+            break
+
+    if not decrypted:
+        print("No se pudo descifrar con esta clave (la clave no coincide o el archivo fue cifrado con otra cuenta).")
+        return False
+
+    # Descomprimir si tiene compresión zlib
+    try:
+        decompressed = zlib.decompress(decrypted)
+        decrypted = decompressed
+        print("Descompresión ZLIB completada.")
+    except Exception:
+        pass
+
+    if not output_file:
+        base_name = os.path.basename(crypt_file).replace(".crypt14", "").replace(".crypt15", "")
+        output_file = os.path.join(os.path.dirname(crypt_file), f"decrypted_{base_name}")
+
+    with open(output_file, "wb") as out:
+        out.write(decrypted)
+
+    print(f"✅ Archivo descifrado guardado en: {output_file} ({len(decrypted)} bytes)")
+    return True
+
+if __name__ == "__main__":
+    # Test de verificación de estructura
+    small_file = r"c:\Users\mayra\projects\Medicina\whatsapp_business_backup\Backups\backup_settings.json.crypt14"
+    print("Módulo de descifrado crypt14 listo.")

@@ -1,0 +1,20 @@
+================================================================================
+EXTRACCIÓN DE PAQUETE APK: split_config.arm64_v8a.apk
+TAMAÑO: 14,459,541 bytes
+================================================================================
+
+TOTAL DE ARCHIVOS EN APK: 9
+DEX Classes: 0 ()
+Librerías Nativas (SO): 4
+Assets: 0
+
+--- ARCHIVOS PRINCIPALES DENTRO DEL APK ---
+  AndroidManifest.xml (1,028 bytes)
+  lib/arm64-v8a/libs.so (14,163,488 bytes)
+  lib/arm64-v8a/libsuperpack.so (220,920 bytes)
+  lib/arm64-v8a/libunwindstack_binary.so (11,848 bytes)
+  lib/arm64-v8a/libwamo_graphql_flipper.so (9,928 bytes)
+  stamp-cert-sha256 (32 bytes)
+  META-INF/BNDLTOOL.SF (615 bytes)
+  META-INF/BNDLTOOL.DSA (1,094 bytes)
+  META-INF/MANIFEST.MF (507 bytes)

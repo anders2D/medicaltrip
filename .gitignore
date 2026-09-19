@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Production & Build
+dist/
+build/
+.vite/
+*.tsbuildinfo
+
+# Environment & Secrets
+.env
+.env.*
+!.env.example
+
+# Vercel & Deployment
+.vercel
+
+# Binaries & Large raw data
+.bin/
+*.zip
+*.MOV*
+*.mp4*
+*.avi
+*.mov
+data/chats/whatsapp_all_extracted/Media/
+
+# OS metadata
+.DS_Store
+Thumbs.db

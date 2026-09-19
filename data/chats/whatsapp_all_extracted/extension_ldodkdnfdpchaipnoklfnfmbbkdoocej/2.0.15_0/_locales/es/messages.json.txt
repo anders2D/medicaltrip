@@ -1,0 +1,14 @@
+================================================================================
+ARCHIVO: messages.json
+ORIGEN:  c:\Users\mayra\projects\Medicina\whatsapp_business_backup\extension_ldodkdnfdpchaipnoklfnfmbbkdoocej\2.0.15_0\_locales\es\messages.json
+TAMAÑO:  290 bytes
+================================================================================
+
+{
+   "desc": {
+      "message": "Exporta chat WhatsApp con multimedia a HTML, guarda números de grupos y contactos a Excel. Local, seguro, privado. Sin recopilación."
+   },
+   "name": {
+      "message": "WhatsApp Chat Export - Exportar números WhatsApp a Excel/CSV/VCard"
+   }
+}

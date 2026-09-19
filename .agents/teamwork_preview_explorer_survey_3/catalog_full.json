@@ -1,0 +1,1066 @@
+[
+  {
+    "file": "App.tsx",
+    "slice": "app/shell",
+    "type": "App Shell / State",
+    "targetPath": "src/App.tsx",
+    "rationale": "Top-level application orchestrator, navigation layout, toast manager, or entry point"
+  },
+  {
+    "file": "application/index.ts",
+    "slice": "app/shell",
+    "type": "App Shell / State",
+    "targetPath": "src/application/index.ts",
+    "rationale": "Top-level application orchestrator, navigation layout, toast manager, or entry point"
+  },
+  {
+    "file": "application/use-cases/CreateEventUseCase.ts",
+    "slice": "features/itinerary",
+    "type": "Use Case",
+    "targetPath": "src/features/itinerary/application/CreateEventUseCase.ts",
+    "rationale": "Calendar event scheduling, rescheduling, smart pathway generation, or event sign-off"
+  },
+  {
+    "file": "application/use-cases/CreatePatientBookingUseCase.ts",
+    "slice": "features/onboarding",
+    "type": "Use Case",
+    "targetPath": "src/features/onboarding/application/CreatePatientBookingUseCase.ts",
+    "rationale": "Self-registration token creation, resolution, or booking creation"
+  },
+  {
+    "file": "application/use-cases/CreatePatientInvitationUseCase.ts",
+    "slice": "features/onboarding",
+    "type": "Use Case",
+    "targetPath": "src/features/onboarding/application/CreatePatientInvitationUseCase.ts",
+    "rationale": "Self-registration token creation, resolution, or booking creation"
+  },
+  {
+    "file": "application/use-cases/ExportSettlementPDFUseCase.ts",
+    "slice": "features/settlement",
+    "type": "Use Case",
+    "targetPath": "src/features/settlement/application/ExportSettlementPDFUseCase.ts",
+    "rationale": "Settlement calculation, reconciliation, sign-off or PDF export orchestration"
+  },
+  {
+    "file": "application/use-cases/GenerateSmartItineraryUseCase.ts",
+    "slice": "features/itinerary",
+    "type": "Use Case",
+    "targetPath": "src/features/itinerary/application/GenerateSmartItineraryUseCase.ts",
+    "rationale": "Calendar event scheduling, rescheduling, smart pathway generation, or event sign-off"
+  },
+  {
+    "file": "application/use-cases/GetPatientInvitationUseCase.ts",
+    "slice": "features/onboarding",
+    "type": "Use Case",
+    "targetPath": "src/features/onboarding/application/GetPatientInvitationUseCase.ts",
+    "rationale": "Self-registration token creation, resolution, or booking creation"
+  },
+  {
+    "file": "application/use-cases/LoadArchetypeUseCase.ts",
+    "slice": "app/shell",
+    "type": "App Shell / State",
+    "targetPath": "src/application/use-cases/LoadArchetypeUseCase.ts",
+    "rationale": "Top-level application orchestrator, navigation layout, toast manager, or entry point"
+  },
+  {
+    "file": "application/use-cases/OneTapSettlementWorkflowUseCase.ts",
+    "slice": "features/settlement",
+    "type": "Use Case",
+    "targetPath": "src/features/settlement/application/OneTapSettlementWorkflowUseCase.ts",
+    "rationale": "Settlement calculation, reconciliation, sign-off or PDF export orchestration"
+  },
+  {
+    "file": "application/use-cases/PerformDriverCheckInUseCase.ts",
+    "slice": "features/logistics-fleet",
+    "type": "Use Case",
+    "targetPath": "src/features/logistics-fleet/application/PerformDriverCheckInUseCase.ts",
+    "rationale": "Driver terminal check-in and transit state transition"
+  },
+  {
+    "file": "application/use-cases/PersistStorageUseCase.ts",
+    "slice": "app/shell",
+    "type": "App Shell / State",
+    "targetPath": "src/application/use-cases/PersistStorageUseCase.ts",
+    "rationale": "Top-level application orchestrator, navigation layout, toast manager, or entry point"
+  },
+  {
+    "file": "application/use-cases/ReconcileSettlementUseCase.ts",
+    "slice": "features/settlement",
+    "type": "Use Case",
+    "targetPath": "src/features/settlement/application/ReconcileSettlementUseCase.ts",
+    "rationale": "Settlement calculation, reconciliation, sign-off or PDF export orchestration"
+  },
+  {
+    "file": "application/use-cases/RescheduleEventUseCase.ts",
+    "slice": "features/itinerary",
+    "type": "Use Case",
+    "targetPath": "src/features/itinerary/application/RescheduleEventUseCase.ts",
+    "rationale": "Calendar event scheduling, rescheduling, smart pathway generation, or event sign-off"
+  },
+  {
+    "file": "application/use-cases/SettleExpenseUseCase.ts",
+    "slice": "features/settlement",
+    "type": "Use Case",
+    "targetPath": "src/features/settlement/application/SettleExpenseUseCase.ts",
+    "rationale": "Settlement calculation, reconciliation, sign-off or PDF export orchestration"
+  },
+  {
+    "file": "application/use-cases/SignOffItineraryUseCase.ts",
+    "slice": "features/itinerary",
+    "type": "Use Case",
+    "targetPath": "src/features/itinerary/application/SignOffItineraryUseCase.ts",
+    "rationale": "Calendar event scheduling, rescheduling, smart pathway generation, or event sign-off"
+  },
+  {
+    "file": "application/use-cases/__tests__/PerformDriverCheckInUseCase.test.ts",
+    "slice": "features/logistics-fleet",
+    "type": "Use Case",
+    "targetPath": "src/features/logistics-fleet/application/PerformDriverCheckInUseCase.test.ts",
+    "rationale": "Driver terminal check-in and transit state transition"
+  },
+  {
+    "file": "domain/entities/CompanionShift.ts",
+    "slice": "features/companion-shifts",
+    "type": "Domain Entity",
+    "targetPath": "src/features/companion-shifts/domain/CompanionShift.ts",
+    "rationale": "Hourly companion turn sheet entity and rates"
+  },
+  {
+    "file": "domain/entities/DriverTransfer.ts",
+    "slice": "features/logistics-fleet",
+    "type": "Domain Entity",
+    "targetPath": "src/features/logistics-fleet/domain/DriverTransfer.ts",
+    "rationale": "Airport transfer and fleet mobility entity"
+  },
+  {
+    "file": "domain/entities/ItineraryEvent.ts",
+    "slice": "features/itinerary",
+    "type": "Domain Entity",
+    "targetPath": "src/features/itinerary/domain/ItineraryEvent.ts",
+    "rationale": "Itinerary event model and category/status value objects"
+  },
+  {
+    "file": "domain/entities/PatientBooking.ts",
+    "slice": "core/domain",
+    "type": "Shared Domain Model",
+    "targetPath": "src/core/domain/entities/PatientBooking.ts",
+    "rationale": "Cross-cutting domain entity (PatientBooking), value object (Money, OperativeTerritory), error or shared port"
+  },
+  {
+    "file": "domain/entities/PatientInvitation.ts",
+    "slice": "features/onboarding",
+    "type": "Domain Entity",
+    "targetPath": "src/features/onboarding/domain/PatientInvitation.ts",
+    "rationale": "Patient self-registration invitation token model and repository interface"
+  },
+  {
+    "file": "domain/entities/ReceiptExpense.ts",
+    "slice": "features/settlement",
+    "type": "Domain Entity",
+    "targetPath": "src/features/settlement/domain/ReceiptExpense.ts",
+    "rationale": "Core financial entity representing settlement ledger or expenses"
+  },
+  {
+    "file": "domain/entities/SettlementLedger.ts",
+    "slice": "features/settlement",
+    "type": "Domain Entity",
+    "targetPath": "src/features/settlement/domain/SettlementLedger.ts",
+    "rationale": "Core financial entity representing settlement ledger or expenses"
+  },
+  {
+    "file": "domain/entities/__tests__/CompanionShiftDeterministicRates.test.ts",
+    "slice": "features/companion-shifts",
+    "type": "Domain Entity",
+    "targetPath": "src/features/companion-shifts/domain/CompanionShiftDeterministicRates.test.ts",
+    "rationale": "Hourly companion turn sheet entity and rates"
+  },
+  {
+    "file": "domain/errors/DomainError.ts",
+    "slice": "core/domain",
+    "type": "Shared Domain Model",
+    "targetPath": "src/core/domain/errors/DomainError.ts",
+    "rationale": "Cross-cutting domain entity (PatientBooking), value object (Money, OperativeTerritory), error or shared port"
+  },
+  {
+    "file": "domain/errors/NonOperativeTerritoryError.ts",
+    "slice": "core/domain",
+    "type": "Shared Domain Model",
+    "targetPath": "src/core/domain/errors/NonOperativeTerritoryError.ts",
+    "rationale": "Cross-cutting domain entity (PatientBooking), value object (Money, OperativeTerritory), error or shared port"
+  },
+  {
+    "file": "domain/index.ts",
+    "slice": "core/domain",
+    "type": "Shared Domain Model",
+    "targetPath": "src/core/domain/index.ts",
+    "rationale": "Cross-cutting domain entity (PatientBooking), value object (Money, OperativeTerritory), error or shared port"
+  },
+  {
+    "file": "domain/ports/IActorEventBusPort.ts",
+    "slice": "features/swarm",
+    "type": "Port",
+    "targetPath": "src/features/swarm/domain/IActorEventBusPort.ts",
+    "rationale": "Web Worker swarm event bus interface"
+  },
+  {
+    "file": "domain/ports/IBlobStoragePort.ts",
+    "slice": "core/domain",
+    "type": "Shared Domain Model",
+    "targetPath": "src/core/domain/ports/IBlobStoragePort.ts",
+    "rationale": "Cross-cutting domain entity (PatientBooking), value object (Money, OperativeTerritory), error or shared port"
+  },
+  {
+    "file": "domain/ports/IExportPort.ts",
+    "slice": "features/settlement",
+    "type": "Port",
+    "targetPath": "src/features/settlement/infrastructure/IExportPort.ts",
+    "rationale": "Financial OCR adapter, PDF generator, or SHA-256 ledger security hash chain"
+  },
+  {
+    "file": "domain/ports/IOCRPort.ts",
+    "slice": "features/settlement",
+    "type": "Port",
+    "targetPath": "src/features/settlement/infrastructure/IOCRPort.ts",
+    "rationale": "Financial OCR adapter, PDF generator, or SHA-256 ledger security hash chain"
+  },
+  {
+    "file": "domain/ports/IPatientInvitationRepository.ts",
+    "slice": "features/onboarding",
+    "type": "Port",
+    "targetPath": "src/features/onboarding/domain/IPatientInvitationRepository.ts",
+    "rationale": "Patient self-registration invitation token model and repository interface"
+  },
+  {
+    "file": "domain/ports/IStoragePersistPort.ts",
+    "slice": "core/domain",
+    "type": "Shared Domain Model",
+    "targetPath": "src/core/domain/ports/IStoragePersistPort.ts",
+    "rationale": "Cross-cutting domain entity (PatientBooking), value object (Money, OperativeTerritory), error or shared port"
+  },
+  {
+    "file": "domain/ports/IStoragePort.ts",
+    "slice": "core/domain",
+    "type": "Shared Domain Model",
+    "targetPath": "src/core/domain/ports/IStoragePort.ts",
+    "rationale": "Cross-cutting domain entity (PatientBooking), value object (Money, OperativeTerritory), error or shared port"
+  },
+  {
+    "file": "domain/value-objects/EventCategory.ts",
+    "slice": "features/itinerary",
+    "type": "Value Object",
+    "targetPath": "src/features/itinerary/domain/EventCategory.ts",
+    "rationale": "Itinerary event model and category/status value objects"
+  },
+  {
+    "file": "domain/value-objects/EventStatus.ts",
+    "slice": "features/itinerary",
+    "type": "Value Object",
+    "targetPath": "src/features/itinerary/domain/EventStatus.ts",
+    "rationale": "Itinerary event model and category/status value objects"
+  },
+  {
+    "file": "domain/value-objects/Money.ts",
+    "slice": "core/domain",
+    "type": "Shared Domain Model",
+    "targetPath": "src/core/domain/value-objects/Money.ts",
+    "rationale": "Cross-cutting domain entity (PatientBooking), value object (Money, OperativeTerritory), error or shared port"
+  },
+  {
+    "file": "domain/value-objects/OperativeTerritory.ts",
+    "slice": "core/domain",
+    "type": "Shared Domain Model",
+    "targetPath": "src/core/domain/value-objects/OperativeTerritory.ts",
+    "rationale": "Cross-cutting domain entity (PatientBooking), value object (Money, OperativeTerritory), error or shared port"
+  },
+  {
+    "file": "infrastructure/crdt/LWWElementSet.ts",
+    "slice": "core/infrastructure",
+    "type": "Shared Infrastructure",
+    "targetPath": "src/core/infrastructure/crdt/LWWElementSet.ts",
+    "rationale": "Shared persistence (DexieStorageAdapter, InMemoryStorageAdapter, WebKitPersistAdapter), CRDT (LWW, PN), or rates/archetype data"
+  },
+  {
+    "file": "infrastructure/crdt/PNCounter.ts",
+    "slice": "core/infrastructure",
+    "type": "Shared Infrastructure",
+    "targetPath": "src/core/infrastructure/crdt/PNCounter.ts",
+    "rationale": "Shared persistence (DexieStorageAdapter, InMemoryStorageAdapter, WebKitPersistAdapter), CRDT (LWW, PN), or rates/archetype data"
+  },
+  {
+    "file": "infrastructure/crdt/index.ts",
+    "slice": "core/infrastructure",
+    "type": "Shared Infrastructure",
+    "targetPath": "src/core/infrastructure/crdt/index.ts",
+    "rationale": "Shared persistence (DexieStorageAdapter, InMemoryStorageAdapter, WebKitPersistAdapter), CRDT (LWW, PN), or rates/archetype data"
+  },
+  {
+    "file": "infrastructure/data/archetypes.data.ts",
+    "slice": "core/infrastructure",
+    "type": "Shared Infrastructure",
+    "targetPath": "src/core/infrastructure/data/archetypes.data.ts",
+    "rationale": "Shared persistence (DexieStorageAdapter, InMemoryStorageAdapter, WebKitPersistAdapter), CRDT (LWW, PN), or rates/archetype data"
+  },
+  {
+    "file": "infrastructure/data/providers.data.ts",
+    "slice": "features/directory",
+    "type": "Reference Data",
+    "targetPath": "src/features/directory/infrastructure/providers.data.ts",
+    "rationale": "Clinical and logistic provider network directory"
+  },
+  {
+    "file": "infrastructure/data/rates.data.ts",
+    "slice": "core/infrastructure",
+    "type": "Shared Infrastructure",
+    "targetPath": "src/core/infrastructure/data/rates.data.ts",
+    "rationale": "Shared persistence (DexieStorageAdapter, InMemoryStorageAdapter, WebKitPersistAdapter), CRDT (LWW, PN), or rates/archetype data"
+  },
+  {
+    "file": "infrastructure/export/JsonPdfExportAdapter.ts",
+    "slice": "features/settlement",
+    "type": "Adapter / Security",
+    "targetPath": "src/features/settlement/infrastructure/JsonPdfExportAdapter.ts",
+    "rationale": "Financial OCR adapter, PDF generator, or SHA-256 ledger security hash chain"
+  },
+  {
+    "file": "infrastructure/index.ts",
+    "slice": "core/infrastructure",
+    "type": "Shared Infrastructure",
+    "targetPath": "src/core/infrastructure/index.ts",
+    "rationale": "Shared persistence (DexieStorageAdapter, InMemoryStorageAdapter, WebKitPersistAdapter), CRDT (LWW, PN), or rates/archetype data"
+  },
+  {
+    "file": "infrastructure/ocr/SimulatedReceiptOCRAdapter.ts",
+    "slice": "features/settlement",
+    "type": "Adapter / Security",
+    "targetPath": "src/features/settlement/infrastructure/SimulatedReceiptOCRAdapter.ts",
+    "rationale": "Financial OCR adapter, PDF generator, or SHA-256 ledger security hash chain"
+  },
+  {
+    "file": "infrastructure/security/Sha256LedgerChain.ts",
+    "slice": "features/settlement",
+    "type": "Adapter / Security",
+    "targetPath": "src/features/settlement/infrastructure/Sha256LedgerChain.ts",
+    "rationale": "Financial OCR adapter, PDF generator, or SHA-256 ledger security hash chain"
+  },
+  {
+    "file": "infrastructure/security/index.ts",
+    "slice": "core/infrastructure",
+    "type": "Shared Infrastructure",
+    "targetPath": "src/core/infrastructure/security/index.ts",
+    "rationale": "Shared persistence (DexieStorageAdapter, InMemoryStorageAdapter, WebKitPersistAdapter), CRDT (LWW, PN), or rates/archetype data"
+  },
+  {
+    "file": "infrastructure/storage/DexieStorageAdapter.ts",
+    "slice": "core/infrastructure",
+    "type": "Shared Infrastructure",
+    "targetPath": "src/core/infrastructure/storage/DexieStorageAdapter.ts",
+    "rationale": "Shared persistence (DexieStorageAdapter, InMemoryStorageAdapter, WebKitPersistAdapter), CRDT (LWW, PN), or rates/archetype data"
+  },
+  {
+    "file": "infrastructure/storage/InMemoryStorageAdapter.ts",
+    "slice": "core/infrastructure",
+    "type": "Shared Infrastructure",
+    "targetPath": "src/core/infrastructure/storage/InMemoryStorageAdapter.ts",
+    "rationale": "Shared persistence (DexieStorageAdapter, InMemoryStorageAdapter, WebKitPersistAdapter), CRDT (LWW, PN), or rates/archetype data"
+  },
+  {
+    "file": "infrastructure/storage/LocalStorageEventStreamAdapter.ts",
+    "slice": "core/infrastructure",
+    "type": "Shared Infrastructure",
+    "targetPath": "src/core/infrastructure/storage/LocalStorageEventStreamAdapter.ts",
+    "rationale": "Shared persistence (DexieStorageAdapter, InMemoryStorageAdapter, WebKitPersistAdapter), CRDT (LWW, PN), or rates/archetype data"
+  },
+  {
+    "file": "infrastructure/storage/LocalStoragePatientInvitationAdapter.ts",
+    "slice": "features/onboarding",
+    "type": "Adapter",
+    "targetPath": "src/features/onboarding/infrastructure/LocalStoragePatientInvitationAdapter.ts",
+    "rationale": "Local/Supabase storage adapter for patient invitation tokens"
+  },
+  {
+    "file": "infrastructure/storage/SupabasePatientInvitationAdapter.ts",
+    "slice": "features/onboarding",
+    "type": "Adapter",
+    "targetPath": "src/features/onboarding/infrastructure/SupabasePatientInvitationAdapter.ts",
+    "rationale": "Local/Supabase storage adapter for patient invitation tokens"
+  },
+  {
+    "file": "infrastructure/storage/WebKitPersistAdapter.ts",
+    "slice": "core/infrastructure",
+    "type": "Shared Infrastructure",
+    "targetPath": "src/core/infrastructure/storage/WebKitPersistAdapter.ts",
+    "rationale": "Shared persistence (DexieStorageAdapter, InMemoryStorageAdapter, WebKitPersistAdapter), CRDT (LWW, PN), or rates/archetype data"
+  },
+  {
+    "file": "main.tsx",
+    "slice": "app/shell",
+    "type": "App Shell / State",
+    "targetPath": "src/main.tsx",
+    "rationale": "Top-level application orchestrator, navigation layout, toast manager, or entry point"
+  },
+  {
+    "file": "presentation/components/__tests__/ArrivalTrackingCard.test.tsx",
+    "slice": "features/logistics-fleet",
+    "type": "UI Component / Modal",
+    "targetPath": "src/features/logistics-fleet/presentation/ArrivalTrackingCard.test.tsx",
+    "rationale": "Flight arrival tracker card, driver check-in action, or welcome kit orientation modal"
+  },
+  {
+    "file": "presentation/components/__tests__/BadgesAndLanguageSwitcher.test.tsx",
+    "slice": "app/shell",
+    "type": "App Shell / State",
+    "targetPath": "src/presentation/components/__tests__/BadgesAndLanguageSwitcher.test.tsx",
+    "rationale": "Top-level application orchestrator, navigation layout, toast manager, or entry point"
+  },
+  {
+    "file": "presentation/components/__tests__/CompanionFinancialLedgerIntegration.test.tsx",
+    "slice": "app/shell",
+    "type": "App Shell / State",
+    "targetPath": "src/presentation/components/__tests__/CompanionFinancialLedgerIntegration.test.tsx",
+    "rationale": "Top-level application orchestrator, navigation layout, toast manager, or entry point"
+  },
+  {
+    "file": "presentation/components/__tests__/CompanionTurnSheetModal.test.tsx",
+    "slice": "features/companion-shifts",
+    "type": "UI Component / Modal",
+    "targetPath": "src/features/companion-shifts/presentation/CompanionTurnSheetModal.test.tsx",
+    "rationale": "Turn sheet modal, companion timekeeping and meal subsidy selector"
+  },
+  {
+    "file": "presentation/components/__tests__/DriverCheckInAction.test.tsx",
+    "slice": "features/logistics-fleet",
+    "type": "UI Component / Modal",
+    "targetPath": "src/features/logistics-fleet/presentation/DriverCheckInAction.test.tsx",
+    "rationale": "Flight arrival tracker card, driver check-in action, or welcome kit orientation modal"
+  },
+  {
+    "file": "presentation/components/__tests__/LocalizedDigitalSignaturePad.test.tsx",
+    "slice": "features/settlement",
+    "type": "UI Component / View",
+    "targetPath": "src/features/settlement/presentation/LocalizedDigitalSignaturePad.test.tsx",
+    "rationale": "Settlement UI view, docked settlement bar, KPI cards, OCR modal or signature pad"
+  },
+  {
+    "file": "presentation/components/__tests__/MealSubsidySelector.test.tsx",
+    "slice": "features/companion-shifts",
+    "type": "UI Component / Modal",
+    "targetPath": "src/features/companion-shifts/presentation/MealSubsidySelector.test.tsx",
+    "rationale": "Turn sheet modal, companion timekeeping and meal subsidy selector"
+  },
+  {
+    "file": "presentation/components/__tests__/MultilingualArrivalParity.test.tsx",
+    "slice": "app/shell",
+    "type": "App Shell / State",
+    "targetPath": "src/presentation/components/__tests__/MultilingualArrivalParity.test.tsx",
+    "rationale": "Top-level application orchestrator, navigation layout, toast manager, or entry point"
+  },
+  {
+    "file": "presentation/components/__tests__/WelcomeOrientationModal.test.tsx",
+    "slice": "features/logistics-fleet",
+    "type": "UI Component / Modal",
+    "targetPath": "src/features/logistics-fleet/presentation/WelcomeOrientationModal.test.tsx",
+    "rationale": "Flight arrival tracker card, driver check-in action, or welcome kit orientation modal"
+  },
+  {
+    "file": "presentation/components/auth/LoginView.tsx",
+    "slice": "core/auth",
+    "type": "Auth Module",
+    "targetPath": "src/core/auth/LoginView.tsx",
+    "rationale": "Deterministic role-based authentication context and login view"
+  },
+  {
+    "file": "presentation/components/badges/LanguageBadge.tsx",
+    "slice": "core/ui",
+    "type": "Shared UI Primitive",
+    "targetPath": "src/core/ui/LanguageBadge.tsx",
+    "rationale": "Reusable design system primitive (Button, Input, Modal, Badge, LanguageBadge, Select)"
+  },
+  {
+    "file": "presentation/components/badges/NationalityBadge.tsx",
+    "slice": "core/ui",
+    "type": "Shared UI Primitive",
+    "targetPath": "src/core/ui/NationalityBadge.tsx",
+    "rationale": "Reusable design system primitive (Button, Input, Modal, Badge, LanguageBadge, Select)"
+  },
+  {
+    "file": "presentation/components/badges/index.ts",
+    "slice": "core/ui",
+    "type": "Shared UI Primitive",
+    "targetPath": "src/core/ui/index.ts",
+    "rationale": "Reusable design system primitive (Button, Input, Modal, Badge, LanguageBadge, Select)"
+  },
+  {
+    "file": "presentation/components/calendar/AgendaView.tsx",
+    "slice": "features/itinerary",
+    "type": "UI Component / Modal",
+    "targetPath": "src/features/itinerary/presentation/AgendaView.tsx",
+    "rationale": "Calendar views (Day/Week/Month/Agenda), event cards, detail drawer, or smart generator modal"
+  },
+  {
+    "file": "presentation/components/calendar/CalendarContainer.tsx",
+    "slice": "features/itinerary",
+    "type": "UI Component / Modal",
+    "targetPath": "src/features/itinerary/presentation/CalendarContainer.tsx",
+    "rationale": "Calendar views (Day/Week/Month/Agenda), event cards, detail drawer, or smart generator modal"
+  },
+  {
+    "file": "presentation/components/calendar/CalendarHeader.tsx",
+    "slice": "features/itinerary",
+    "type": "UI Component / Modal",
+    "targetPath": "src/features/itinerary/presentation/CalendarHeader.tsx",
+    "rationale": "Calendar views (Day/Week/Month/Agenda), event cards, detail drawer, or smart generator modal"
+  },
+  {
+    "file": "presentation/components/calendar/DayView.tsx",
+    "slice": "features/itinerary",
+    "type": "UI Component / Modal",
+    "targetPath": "src/features/itinerary/presentation/DayView.tsx",
+    "rationale": "Calendar views (Day/Week/Month/Agenda), event cards, detail drawer, or smart generator modal"
+  },
+  {
+    "file": "presentation/components/calendar/EventCard.tsx",
+    "slice": "features/itinerary",
+    "type": "UI Component / Modal",
+    "targetPath": "src/features/itinerary/presentation/EventCard.tsx",
+    "rationale": "Calendar views (Day/Week/Month/Agenda), event cards, detail drawer, or smart generator modal"
+  },
+  {
+    "file": "presentation/components/calendar/EventHoverCard.tsx",
+    "slice": "features/itinerary",
+    "type": "UI Component / Modal",
+    "targetPath": "src/features/itinerary/presentation/EventHoverCard.tsx",
+    "rationale": "Calendar views (Day/Week/Month/Agenda), event cards, detail drawer, or smart generator modal"
+  },
+  {
+    "file": "presentation/components/calendar/GhostDropIndicator.tsx",
+    "slice": "features/itinerary",
+    "type": "UI Component / Modal",
+    "targetPath": "src/features/itinerary/presentation/GhostDropIndicator.tsx",
+    "rationale": "Calendar views (Day/Week/Month/Agenda), event cards, detail drawer, or smart generator modal"
+  },
+  {
+    "file": "presentation/components/calendar/MonthView.tsx",
+    "slice": "features/itinerary",
+    "type": "UI Component / Modal",
+    "targetPath": "src/features/itinerary/presentation/MonthView.tsx",
+    "rationale": "Calendar views (Day/Week/Month/Agenda), event cards, detail drawer, or smart generator modal"
+  },
+  {
+    "file": "presentation/components/calendar/WeekView.tsx",
+    "slice": "features/itinerary",
+    "type": "UI Component / Modal",
+    "targetPath": "src/features/itinerary/presentation/WeekView.tsx",
+    "rationale": "Calendar views (Day/Week/Month/Agenda), event cards, detail drawer, or smart generator modal"
+  },
+  {
+    "file": "presentation/components/calendar/index.ts",
+    "slice": "features/itinerary",
+    "type": "UI Component / Modal",
+    "targetPath": "src/features/itinerary/presentation/index.ts",
+    "rationale": "Calendar views (Day/Week/Month/Agenda), event cards, detail drawer, or smart generator modal"
+  },
+  {
+    "file": "presentation/components/common/Badge.tsx",
+    "slice": "core/ui",
+    "type": "Shared UI Primitive",
+    "targetPath": "src/core/ui/Badge.tsx",
+    "rationale": "Reusable design system primitive (Button, Input, Modal, Badge, LanguageBadge, Select)"
+  },
+  {
+    "file": "presentation/components/common/Button.tsx",
+    "slice": "core/ui",
+    "type": "Shared UI Primitive",
+    "targetPath": "src/core/ui/Button.tsx",
+    "rationale": "Reusable design system primitive (Button, Input, Modal, Badge, LanguageBadge, Select)"
+  },
+  {
+    "file": "presentation/components/common/Input.tsx",
+    "slice": "core/ui",
+    "type": "Shared UI Primitive",
+    "targetPath": "src/core/ui/Input.tsx",
+    "rationale": "Reusable design system primitive (Button, Input, Modal, Badge, LanguageBadge, Select)"
+  },
+  {
+    "file": "presentation/components/common/Modal.tsx",
+    "slice": "core/ui",
+    "type": "Shared UI Primitive",
+    "targetPath": "src/core/ui/Modal.tsx",
+    "rationale": "Reusable design system primitive (Button, Input, Modal, Badge, LanguageBadge, Select)"
+  },
+  {
+    "file": "presentation/components/common/Select.tsx",
+    "slice": "core/ui",
+    "type": "Shared UI Primitive",
+    "targetPath": "src/core/ui/Select.tsx",
+    "rationale": "Reusable design system primitive (Button, Input, Modal, Badge, LanguageBadge, Select)"
+  },
+  {
+    "file": "presentation/components/common/index.ts",
+    "slice": "core/ui",
+    "type": "Shared UI Primitive",
+    "targetPath": "src/core/ui/index.ts",
+    "rationale": "Reusable design system primitive (Button, Input, Modal, Badge, LanguageBadge, Select)"
+  },
+  {
+    "file": "presentation/components/companion/CompanionTurnSheetModal.tsx",
+    "slice": "features/companion-shifts",
+    "type": "UI Component / Modal",
+    "targetPath": "src/features/companion-shifts/presentation/CompanionTurnSheetModal.tsx",
+    "rationale": "Turn sheet modal, companion timekeeping and meal subsidy selector"
+  },
+  {
+    "file": "presentation/components/companion/MealSubsidySelector.tsx",
+    "slice": "features/companion-shifts",
+    "type": "UI Component / Modal",
+    "targetPath": "src/features/companion-shifts/presentation/MealSubsidySelector.tsx",
+    "rationale": "Turn sheet modal, companion timekeeping and meal subsidy selector"
+  },
+  {
+    "file": "presentation/components/companion/index.ts",
+    "slice": "features/companion-shifts",
+    "type": "UI Component / Modal",
+    "targetPath": "src/features/companion-shifts/presentation/index.ts",
+    "rationale": "Turn sheet modal, companion timekeeping and meal subsidy selector"
+  },
+  {
+    "file": "presentation/components/drawer/EventDetailDrawer.tsx",
+    "slice": "features/itinerary",
+    "type": "UI Component / Modal",
+    "targetPath": "src/features/itinerary/presentation/EventDetailDrawer.tsx",
+    "rationale": "Calendar views (Day/Week/Month/Agenda), event cards, detail drawer, or smart generator modal"
+  },
+  {
+    "file": "presentation/components/drawer/EventForm.tsx",
+    "slice": "features/itinerary",
+    "type": "UI Component / Modal",
+    "targetPath": "src/features/itinerary/presentation/EventForm.tsx",
+    "rationale": "Calendar views (Day/Week/Month/Agenda), event cards, detail drawer, or smart generator modal"
+  },
+  {
+    "file": "presentation/components/drawer/index.ts",
+    "slice": "features/itinerary",
+    "type": "UI Component / Modal",
+    "targetPath": "src/features/itinerary/presentation/index.ts",
+    "rationale": "Calendar views (Day/Week/Month/Agenda), event cards, detail drawer, or smart generator modal"
+  },
+  {
+    "file": "presentation/components/language/LanguageSwitcher.tsx",
+    "slice": "core/ui",
+    "type": "Shared UI Primitive",
+    "targetPath": "src/core/ui/LanguageSwitcher.tsx",
+    "rationale": "Reusable design system primitive (Button, Input, Modal, Badge, LanguageBadge, Select)"
+  },
+  {
+    "file": "presentation/components/language/index.ts",
+    "slice": "core/ui",
+    "type": "Shared UI Primitive",
+    "targetPath": "src/core/ui/index.ts",
+    "rationale": "Reusable design system primitive (Button, Input, Modal, Badge, LanguageBadge, Select)"
+  },
+  {
+    "file": "presentation/components/logistics/ArrivalTrackingCard.tsx",
+    "slice": "features/logistics-fleet",
+    "type": "UI Component / Modal",
+    "targetPath": "src/features/logistics-fleet/presentation/ArrivalTrackingCard.tsx",
+    "rationale": "Flight arrival tracker card, driver check-in action, or welcome kit orientation modal"
+  },
+  {
+    "file": "presentation/components/logistics/DriverCheckInAction.tsx",
+    "slice": "features/logistics-fleet",
+    "type": "UI Component / Modal",
+    "targetPath": "src/features/logistics-fleet/presentation/DriverCheckInAction.tsx",
+    "rationale": "Flight arrival tracker card, driver check-in action, or welcome kit orientation modal"
+  },
+  {
+    "file": "presentation/components/logistics/OrientationKitPreview.tsx",
+    "slice": "features/logistics-fleet",
+    "type": "UI Component / Modal",
+    "targetPath": "src/features/logistics-fleet/presentation/OrientationKitPreview.tsx",
+    "rationale": "Flight arrival tracker card, driver check-in action, or welcome kit orientation modal"
+  },
+  {
+    "file": "presentation/components/logistics/WelcomeOrientationModal.tsx",
+    "slice": "features/logistics-fleet",
+    "type": "UI Component / Modal",
+    "targetPath": "src/features/logistics-fleet/presentation/WelcomeOrientationModal.tsx",
+    "rationale": "Flight arrival tracker card, driver check-in action, or welcome kit orientation modal"
+  },
+  {
+    "file": "presentation/components/logistics/index.ts",
+    "slice": "features/logistics-fleet",
+    "type": "UI Component / Modal",
+    "targetPath": "src/features/logistics-fleet/presentation/index.ts",
+    "rationale": "Flight arrival tracker card, driver check-in action, or welcome kit orientation modal"
+  },
+  {
+    "file": "presentation/components/modal/NewPatientModal.tsx",
+    "slice": "features/onboarding",
+    "type": "UI View / Modal",
+    "targetPath": "src/features/onboarding/presentation/NewPatientModal.tsx",
+    "rationale": "Patient self-registration form, modal to send WhatsApp link, or new patient modal"
+  },
+  {
+    "file": "presentation/components/modal/SmartItineraryModal.tsx",
+    "slice": "features/itinerary",
+    "type": "UI Component / Modal",
+    "targetPath": "src/features/itinerary/presentation/SmartItineraryModal.tsx",
+    "rationale": "Calendar views (Day/Week/Month/Agenda), event cards, detail drawer, or smart generator modal"
+  },
+  {
+    "file": "presentation/components/modals/NewPatientModal.tsx",
+    "slice": "features/onboarding",
+    "type": "UI View / Modal",
+    "targetPath": "src/features/onboarding/presentation/NewPatientModal.tsx",
+    "rationale": "Patient self-registration form, modal to send WhatsApp link, or new patient modal"
+  },
+  {
+    "file": "presentation/components/modals/SendPatientInvitationModal.tsx",
+    "slice": "features/onboarding",
+    "type": "UI View / Modal",
+    "targetPath": "src/features/onboarding/presentation/SendPatientInvitationModal.tsx",
+    "rationale": "Patient self-registration form, modal to send WhatsApp link, or new patient modal"
+  },
+  {
+    "file": "presentation/components/modals/SmartItineraryModal.tsx",
+    "slice": "features/itinerary",
+    "type": "UI Component / Modal",
+    "targetPath": "src/features/itinerary/presentation/SmartItineraryModal.tsx",
+    "rationale": "Calendar views (Day/Week/Month/Agenda), event cards, detail drawer, or smart generator modal"
+  },
+  {
+    "file": "presentation/components/modules/ModuleNav.tsx",
+    "slice": "app/shell",
+    "type": "App Shell / State",
+    "targetPath": "src/presentation/components/modules/ModuleNav.tsx",
+    "rationale": "Top-level application orchestrator, navigation layout, toast manager, or entry point"
+  },
+  {
+    "file": "presentation/components/modules/PassengersView.tsx",
+    "slice": "features/directory",
+    "type": "UI View",
+    "targetPath": "src/features/directory/presentation/PassengersView.tsx",
+    "rationale": "Staff operative directory and passenger/companion group roster view"
+  },
+  {
+    "file": "presentation/components/modules/PlanView.tsx",
+    "slice": "features/medical-plan",
+    "type": "UI View",
+    "targetPath": "src/features/medical-plan/presentation/PlanView.tsx",
+    "rationale": "Medical plan technical sheet, contracted package, clinical network & recovery hotel display"
+  },
+  {
+    "file": "presentation/components/modules/SettlementView.tsx",
+    "slice": "features/settlement",
+    "type": "UI Component / View",
+    "targetPath": "src/features/settlement/presentation/SettlementView.tsx",
+    "rationale": "Settlement UI view, docked settlement bar, KPI cards, OCR modal or signature pad"
+  },
+  {
+    "file": "presentation/components/modules/UsersView.tsx",
+    "slice": "features/directory",
+    "type": "UI View",
+    "targetPath": "src/features/directory/presentation/UsersView.tsx",
+    "rationale": "Staff operative directory and passenger/companion group roster view"
+  },
+  {
+    "file": "presentation/components/navigation/FloatingActionButton.tsx",
+    "slice": "app/shell",
+    "type": "App Shell / State",
+    "targetPath": "src/presentation/components/navigation/FloatingActionButton.tsx",
+    "rationale": "Top-level application orchestrator, navigation layout, toast manager, or entry point"
+  },
+  {
+    "file": "presentation/components/navigation/MobileBottomNav.tsx",
+    "slice": "app/shell",
+    "type": "App Shell / State",
+    "targetPath": "src/presentation/components/navigation/MobileBottomNav.tsx",
+    "rationale": "Top-level application orchestrator, navigation layout, toast manager, or entry point"
+  },
+  {
+    "file": "presentation/components/navigation/PatientSidebar.tsx",
+    "slice": "app/shell",
+    "type": "App Shell / State",
+    "targetPath": "src/presentation/components/navigation/PatientSidebar.tsx",
+    "rationale": "Top-level application orchestrator, navigation layout, toast manager, or entry point"
+  },
+  {
+    "file": "presentation/components/navigation/index.ts",
+    "slice": "app/shell",
+    "type": "App Shell / State",
+    "targetPath": "src/presentation/components/navigation/index.ts",
+    "rationale": "Top-level application orchestrator, navigation layout, toast manager, or entry point"
+  },
+  {
+    "file": "presentation/components/onboarding/PatientSelfRegistrationView.tsx",
+    "slice": "features/onboarding",
+    "type": "UI View / Modal",
+    "targetPath": "src/features/onboarding/presentation/PatientSelfRegistrationView.tsx",
+    "rationale": "Patient self-registration form, modal to send WhatsApp link, or new patient modal"
+  },
+  {
+    "file": "presentation/components/settlement/DigitalSignaturePad.tsx",
+    "slice": "features/settlement",
+    "type": "UI Component / View",
+    "targetPath": "src/features/settlement/presentation/DigitalSignaturePad.tsx",
+    "rationale": "Settlement UI view, docked settlement bar, KPI cards, OCR modal or signature pad"
+  },
+  {
+    "file": "presentation/components/settlement/DockedSettlementBar.tsx",
+    "slice": "features/settlement",
+    "type": "UI Component / View",
+    "targetPath": "src/features/settlement/presentation/DockedSettlementBar.tsx",
+    "rationale": "Settlement UI view, docked settlement bar, KPI cards, OCR modal or signature pad"
+  },
+  {
+    "file": "presentation/components/settlement/ReceiptOcrModal.tsx",
+    "slice": "features/settlement",
+    "type": "UI Component / View",
+    "targetPath": "src/features/settlement/presentation/ReceiptOcrModal.tsx",
+    "rationale": "Settlement UI view, docked settlement bar, KPI cards, OCR modal or signature pad"
+  },
+  {
+    "file": "presentation/components/settlement/SettlementKpiCards.tsx",
+    "slice": "features/settlement",
+    "type": "UI Component / View",
+    "targetPath": "src/features/settlement/presentation/SettlementKpiCards.tsx",
+    "rationale": "Settlement UI view, docked settlement bar, KPI cards, OCR modal or signature pad"
+  },
+  {
+    "file": "presentation/components/settlement/index.ts",
+    "slice": "features/settlement",
+    "type": "UI Component / View",
+    "targetPath": "src/features/settlement/presentation/index.ts",
+    "rationale": "Settlement UI view, docked settlement bar, KPI cards, OCR modal or signature pad"
+  },
+  {
+    "file": "presentation/components/swarm/SwarmDiagnosticsModal.tsx",
+    "slice": "features/swarm",
+    "type": "UI Component / Modal",
+    "targetPath": "src/features/swarm/presentation/SwarmDiagnosticsModal.tsx",
+    "rationale": "Swarm actor status indicator pill and developer diagnostics modal"
+  },
+  {
+    "file": "presentation/components/swarm/SwarmStatusIndicator.tsx",
+    "slice": "features/swarm",
+    "type": "UI Component / Modal",
+    "targetPath": "src/features/swarm/presentation/SwarmStatusIndicator.tsx",
+    "rationale": "Swarm actor status indicator pill and developer diagnostics modal"
+  },
+  {
+    "file": "presentation/components/swarm/index.ts",
+    "slice": "features/swarm",
+    "type": "UI Component / Modal",
+    "targetPath": "src/features/swarm/presentation/index.ts",
+    "rationale": "Swarm actor status indicator pill and developer diagnostics modal"
+  },
+  {
+    "file": "presentation/components/switcher/ArchetypeSwitcherBar.tsx",
+    "slice": "app/shell",
+    "type": "App Shell / State",
+    "targetPath": "src/presentation/components/switcher/ArchetypeSwitcherBar.tsx",
+    "rationale": "Top-level application orchestrator, navigation layout, toast manager, or entry point"
+  },
+  {
+    "file": "presentation/components/timezone/DualTimezoneChip.tsx",
+    "slice": "features/itinerary",
+    "type": "UI Component / Modal",
+    "targetPath": "src/features/itinerary/presentation/DualTimezoneChip.tsx",
+    "rationale": "Calendar views (Day/Week/Month/Agenda), event cards, detail drawer, or smart generator modal"
+  },
+  {
+    "file": "presentation/components/timezone/index.ts",
+    "slice": "features/itinerary",
+    "type": "UI Component / Modal",
+    "targetPath": "src/features/itinerary/presentation/index.ts",
+    "rationale": "Calendar views (Day/Week/Month/Agenda), event cards, detail drawer, or smart generator modal"
+  },
+  {
+    "file": "presentation/hooks/index.ts",
+    "slice": "app/shell",
+    "type": "App Shell / State",
+    "targetPath": "src/presentation/hooks/index.ts",
+    "rationale": "Top-level application orchestrator, navigation layout, toast manager, or entry point"
+  },
+  {
+    "file": "presentation/hooks/useArchetypes.ts",
+    "slice": "app/shell",
+    "type": "App Shell / State",
+    "targetPath": "src/presentation/hooks/useArchetypes.ts",
+    "rationale": "Top-level application orchestrator, navigation layout, toast manager, or entry point"
+  },
+  {
+    "file": "presentation/hooks/useConfetti.ts",
+    "slice": "features/settlement",
+    "type": "Hook",
+    "targetPath": "src/features/settlement/presentation/hooks/useConfetti.ts",
+    "rationale": "Settlement reactive state hook or signature celebratory feedback"
+  },
+  {
+    "file": "presentation/hooks/useItinerary.ts",
+    "slice": "features/itinerary",
+    "type": "Hook",
+    "targetPath": "src/features/itinerary/presentation/hooks/useItinerary.ts",
+    "rationale": "Itinerary scheduling hook"
+  },
+  {
+    "file": "presentation/hooks/useMediaQuery.ts",
+    "slice": "app/shell",
+    "type": "App Shell / State",
+    "targetPath": "src/presentation/hooks/useMediaQuery.ts",
+    "rationale": "Top-level application orchestrator, navigation layout, toast manager, or entry point"
+  },
+  {
+    "file": "presentation/hooks/useSettlement.ts",
+    "slice": "features/settlement",
+    "type": "Hook",
+    "targetPath": "src/features/settlement/presentation/hooks/useSettlement.ts",
+    "rationale": "Settlement reactive state hook or signature celebratory feedback"
+  },
+  {
+    "file": "presentation/hooks/useSwarmActors.ts",
+    "slice": "features/swarm",
+    "type": "Hook",
+    "targetPath": "src/features/swarm/presentation/hooks/useSwarmActors.ts",
+    "rationale": "Reactive hook connecting UI to swarm worker threads"
+  },
+  {
+    "file": "presentation/i18n/LanguageContext.tsx",
+    "slice": "core/i18n",
+    "type": "i18n Module",
+    "targetPath": "src/core/i18n/LanguageContext.tsx",
+    "rationale": "Multilingual Caribbean dictionaries (Papiamento, Dutch, English, Spanish) and context provider"
+  },
+  {
+    "file": "presentation/i18n/__tests__/LanguageContext.test.tsx",
+    "slice": "core/i18n",
+    "type": "i18n Module",
+    "targetPath": "src/core/i18n/LanguageContext.test.tsx",
+    "rationale": "Multilingual Caribbean dictionaries (Papiamento, Dutch, English, Spanish) and context provider"
+  },
+  {
+    "file": "presentation/i18n/__tests__/i18nDictionaries.test.ts",
+    "slice": "core/i18n",
+    "type": "i18n Module",
+    "targetPath": "src/core/i18n/i18nDictionaries.test.ts",
+    "rationale": "Multilingual Caribbean dictionaries (Papiamento, Dutch, English, Spanish) and context provider"
+  },
+  {
+    "file": "presentation/i18n/index.ts",
+    "slice": "core/i18n",
+    "type": "i18n Module",
+    "targetPath": "src/core/i18n/index.ts",
+    "rationale": "Multilingual Caribbean dictionaries (Papiamento, Dutch, English, Spanish) and context provider"
+  },
+  {
+    "file": "presentation/i18n/translations/en.ts",
+    "slice": "core/i18n",
+    "type": "i18n Module",
+    "targetPath": "src/core/i18n/en.ts",
+    "rationale": "Multilingual Caribbean dictionaries (Papiamento, Dutch, English, Spanish) and context provider"
+  },
+  {
+    "file": "presentation/i18n/translations/es.ts",
+    "slice": "core/i18n",
+    "type": "i18n Module",
+    "targetPath": "src/core/i18n/es.ts",
+    "rationale": "Multilingual Caribbean dictionaries (Papiamento, Dutch, English, Spanish) and context provider"
+  },
+  {
+    "file": "presentation/i18n/translations/nl.ts",
+    "slice": "core/i18n",
+    "type": "i18n Module",
+    "targetPath": "src/core/i18n/nl.ts",
+    "rationale": "Multilingual Caribbean dictionaries (Papiamento, Dutch, English, Spanish) and context provider"
+  },
+  {
+    "file": "presentation/i18n/translations/pap.ts",
+    "slice": "core/i18n",
+    "type": "i18n Module",
+    "targetPath": "src/core/i18n/pap.ts",
+    "rationale": "Multilingual Caribbean dictionaries (Papiamento, Dutch, English, Spanish) and context provider"
+  },
+  {
+    "file": "presentation/i18n/types.ts",
+    "slice": "core/i18n",
+    "type": "i18n Module",
+    "targetPath": "src/core/i18n/types.ts",
+    "rationale": "Multilingual Caribbean dictionaries (Papiamento, Dutch, English, Spanish) and context provider"
+  },
+  {
+    "file": "presentation/index.ts",
+    "slice": "app/shell",
+    "type": "App Shell / State",
+    "targetPath": "src/presentation/index.ts",
+    "rationale": "Top-level application orchestrator, navigation layout, toast manager, or entry point"
+  },
+  {
+    "file": "presentation/state/AppContext.tsx",
+    "slice": "app/shell",
+    "type": "App Shell / State",
+    "targetPath": "src/presentation/state/AppContext.tsx",
+    "rationale": "Top-level application orchestrator, navigation layout, toast manager, or entry point"
+  },
+  {
+    "file": "presentation/state/AuthContext.tsx",
+    "slice": "core/auth",
+    "type": "Auth Module",
+    "targetPath": "src/core/auth/AuthContext.tsx",
+    "rationale": "Deterministic role-based authentication context and login view"
+  },
+  {
+    "file": "presentation/state/ToastContext.tsx",
+    "slice": "app/shell",
+    "type": "App Shell / State",
+    "targetPath": "src/presentation/state/ToastContext.tsx",
+    "rationale": "Top-level application orchestrator, navigation layout, toast manager, or entry point"
+  },
+  {
+    "file": "vite-env.d.ts",
+    "slice": "app/shell",
+    "type": "App Shell / State",
+    "targetPath": "src/vite-env.d.ts",
+    "rationale": "Top-level application orchestrator, navigation layout, toast manager, or entry point"
+  },
+  {
+    "file": "workers/actorPool.ts",
+    "slice": "features/swarm",
+    "type": "Worker / Pool",
+    "targetPath": "src/features/swarm/infrastructure/actorPool.ts",
+    "rationale": "Web Worker background threads (nurse, driver, auditor, guide) and actor pool manager"
+  },
+  {
+    "file": "workers/driverActor.worker.ts",
+    "slice": "features/swarm",
+    "type": "Worker / Pool",
+    "targetPath": "src/features/swarm/infrastructure/driverActor.worker.ts",
+    "rationale": "Web Worker background threads (nurse, driver, auditor, guide) and actor pool manager"
+  },
+  {
+    "file": "workers/financialAuditorActor.worker.ts",
+    "slice": "features/swarm",
+    "type": "Worker / Pool",
+    "targetPath": "src/features/swarm/infrastructure/financialAuditorActor.worker.ts",
+    "rationale": "Web Worker background threads (nurse, driver, auditor, guide) and actor pool manager"
+  },
+  {
+    "file": "workers/guideActor.worker.ts",
+    "slice": "features/swarm",
+    "type": "Worker / Pool",
+    "targetPath": "src/features/swarm/infrastructure/guideActor.worker.ts",
+    "rationale": "Web Worker background threads (nurse, driver, auditor, guide) and actor pool manager"
+  },
+  {
+    "file": "workers/index.ts",
+    "slice": "features/swarm",
+    "type": "Worker / Pool",
+    "targetPath": "src/features/swarm/infrastructure/index.ts",
+    "rationale": "Web Worker background threads (nurse, driver, auditor, guide) and actor pool manager"
+  },
+  {
+    "file": "workers/nurseActor.worker.ts",
+    "slice": "features/swarm",
+    "type": "Worker / Pool",
+    "targetPath": "src/features/swarm/infrastructure/nurseActor.worker.ts",
+    "rationale": "Web Worker background threads (nurse, driver, auditor, guide) and actor pool manager"
+  }
+]

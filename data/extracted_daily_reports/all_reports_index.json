@@ -1,0 +1,284 @@
+[
+  {
+    "formato": "FORMATO DIARIO ACP",
+    "metadata": {
+      "extracted_at": "2026-09-11T20:20:52.485Z",
+      "source_file": "uploaded_media_1789157757060.png",
+      "raw_header": "RVA171-4-Rodrigues/Catia Mrs Reporte Lunes 10 de Junio de 2026",
+      "status": "VERIFIED"
+    },
+    "rva": {
+      "codigo": "RVA171-4",
+      "paciente": "Catia Rodrigues",
+      "raw_paciente": "Rodrigues/Catia Mrs"
+    },
+    "fecha": {
+      "texto_original": "Lunes 10 de Junio de 2026",
+      "iso": "2026-06-10",
+      "dia": 10,
+      "mes": 6,
+      "anio": 2026,
+      "dia_semana": "Lunes"
+    },
+    "tiempo_laborado": {
+      "hora_inicio": "14:00",
+      "hora_finalizacion": "18:00",
+      "total_horas_calculadas": 4,
+      "jornada": "DIURNA"
+    },
+    "traslados_carro_acp": [
+      {
+        "id": 1,
+        "punto_recogida": "CC Oviedo (Poblado)",
+        "punto_destino": "INNTU Hotel (Laureles)",
+        "zona_origen": "Poblado",
+        "zona_destino": "Laureles",
+        "tarifa_oficial_cop": 35000
+      },
+      {
+        "id": 2,
+        "punto_recogida": "INNTU Hotel (Laureles)",
+        "punto_destino": "Clínica Clofán (Poblado)",
+        "zona_origen": "Laureles",
+        "zona_destino": "Poblado",
+        "tarifa_oficial_cop": 35000
+      }
+    ],
+    "gastos": {
+      "pasajero": [
+        {
+          "concepto": "4 tarritos de muestra para Orina/Coprologico",
+          "categoria": "FARMACIA_INSUMOS_CLINICOS",
+          "cantidad": 4,
+          "valor_cop": 8320,
+          "soporte_requerido": "FOTO_FACTURA"
+        }
+      ],
+      "acp": [],
+      "parqueaderos": [
+        {
+          "lugar": "Clínica Clofán",
+          "valor_cop": 24300,
+          "soporte_requerido": "FOTO_RECIBO_PAGO"
+        }
+      ],
+      "transportes_hechos_en_uber": []
+    },
+    "totales_gastos": {
+      "total_pasajero_cop": 8320,
+      "total_acp_cop": 0,
+      "total_parqueaderos_cop": 24300,
+      "total_uber_cop": 0,
+      "gran_total_gastos_cop": 32620
+    },
+    "raw_text": "RVA171-4-Rodrigues/Catia Mrs Reporte Lunes 10 de Junio de 2026\nHorario\nHora de inicio de turno: 14:00\nhora de salida de turno: 18:00\nTotal horas trabajadas: 4 horas\n\nTraslados:\nCC Oviedo (Poblado) - INNTU Hotel (Laureles)\n\nINNTU Hotel (Laureles) - Clínica Clofán (Poblado)\n\nGastos:\n\nParqueadero: Clínica Clofán $24.300\n\nFarmacia: 4 tarritos de muestra para Orina/Coprologico - $8.320"
+  },
+  {
+    "formato": "FORMATO DIARIO ACP",
+    "metadata": {
+      "extracted_at": "2026-09-11T20:22:47.224Z",
+      "source_file": "uploaded_media_1789157828261.png",
+      "raw_header": "RVA322-1-Davinia-BON reporte Martes 14 de Julio de 2026",
+      "status": "VERIFIED"
+    },
+    "rva": {
+      "codigo": "RVA322-1",
+      "paciente": "Davinia Martis",
+      "raw_paciente": "Davinia-BON",
+      "acp_asignado": "Andres Cantero"
+    },
+    "fecha": {
+      "texto_original": "Martes 14 de Julio de 2026",
+      "iso": "2026-07-14",
+      "dia": 14,
+      "mes": 7,
+      "anio": 2026,
+      "dia_semana": "Martes"
+    },
+    "tiempo_laborado": {
+      "manana": {
+        "inicio": "06:00",
+        "fin": "11:00",
+        "horas": 5
+      },
+      "tarde": {
+        "inicio": "13:00",
+        "fin": "17:30",
+        "horas": 4.5
+      },
+      "total_horas_calculadas": 9.5,
+      "total_horas_reportadas": 9.5,
+      "jornada": "DIURNA"
+    },
+    "traslados_carro_acp": [
+      {
+        "id": 1,
+        "punto_recogida": "Hotel Portón de San Joaquín (Laureles)",
+        "punto_destino": "IVS Sede La 80 (Belén)",
+        "zona_origen": "Laureles",
+        "zona_destino": "Belén",
+        "tarifa_oficial_cop": 35000
+      },
+      {
+        "id": 2,
+        "punto_recogida": "IVS Sede La 80 (Belén)",
+        "punto_destino": "Hotel Portón de San Joaquín (Laureles)",
+        "zona_origen": "Belén",
+        "zona_destino": "Laureles",
+        "tarifa_oficial_cop": 35000
+      },
+      {
+        "id": 3,
+        "punto_recogida": "Hotel Portón de San Joaquín (Laureles)",
+        "punto_destino": "Drogas La Rebaja (Laureles)",
+        "zona_origen": "Laureles",
+        "zona_destino": "Laureles",
+        "tarifa_oficial_cop": 30000
+      },
+      {
+        "id": 4,
+        "punto_recogida": "Drogas La Rebaja (Laureles)",
+        "punto_destino": "Hotel Portón de San Joaquín (Laureles)",
+        "zona_origen": "Laureles",
+        "zona_destino": "Laureles",
+        "tarifa_oficial_cop": 30000
+      }
+    ],
+    "gastos": {
+      "pasajero": [
+        {
+          "concepto": "Sim Card y Recarga Claro",
+          "categoria": "COMUNICACIONES_SIM",
+          "valor_cop": 15000
+        },
+        {
+          "concepto": "Medicamento Travad Oral",
+          "categoria": "FARMACIA_MEDICAMENTOS",
+          "valor_cop": 30000
+        },
+        {
+          "concepto": "Impresiones x9",
+          "categoria": "PAPELERIA_IMPRESIONES",
+          "valor_cop": 3600
+        }
+      ],
+      "acp": [],
+      "parqueaderos": [
+        {
+          "lugar": "IVS Sede La 80",
+          "valor_cop": 16200,
+          "soporte_requerido": "FOTO_RECIBO_PAGO"
+        }
+      ],
+      "transportes_hechos_en_uber": []
+    },
+    "totales": {
+      "gastos_pasajero_cop": 48600,
+      "gastos_acp_cop": 0,
+      "gastos_parqueaderos_cop": 16200,
+      "gastos_uber_cop": 0,
+      "gran_total_gastos_caja_menor_cop": 64800,
+      "total_traslados_carro_acp_cop": 130000
+    }
+  },
+  {
+    "formato": "FORMATO DIARIO ACP",
+    "metadata": {
+      "extracted_at": "2026-09-11T20:22:47.225Z",
+      "source_file": "uploaded_media_1789157828261.png",
+      "raw_header": "RVA322-1-Davinia-BON reporte Viernes 17 de Julio de 2026",
+      "status": "VERIFIED"
+    },
+    "rva": {
+      "codigo": "RVA322-1",
+      "paciente": "Davinia Martis",
+      "raw_paciente": "Davinia-BON",
+      "acp_asignado": "Andres Cantero"
+    },
+    "fecha": {
+      "texto_original": "Viernes 17 de Julio de 2026",
+      "iso": "2026-07-17",
+      "dia": 17,
+      "mes": 7,
+      "anio": 2026,
+      "dia_semana": "Viernes"
+    },
+    "tiempo_laborado": {
+      "manana": {
+        "inicio": "07:00am",
+        "fin": "13:00am",
+        "horas": 6
+      },
+      "total_horas_calculadas": 6,
+      "total_horas_reportadas": 7,
+      "horas_liquidadas_en_planilla": 6,
+      "jornada": "DIURNA"
+    },
+    "traslados_carro_acp": [
+      {
+        "id": 1,
+        "punto_recogida": "Hotel Portón de San Joaquín (Laureles)",
+        "punto_destino": "Torre Médica Clofán (Ciudad del Río)",
+        "zona_origen": "Laureles",
+        "zona_destino": "Poblado",
+        "tarifa_oficial_cop": 35000
+      },
+      {
+        "id": 2,
+        "punto_recogida": "Torre Médica Clofán (Ciudad del Río)",
+        "punto_destino": "Jumbo La 65",
+        "zona_origen": "Poblado",
+        "zona_destino": "Laureles_Suramericana",
+        "tarifa_oficial_cop": 30000
+      },
+      {
+        "id": 3,
+        "punto_recogida": "Jumbo La 65",
+        "punto_destino": "Hotel Portón de San Joaquín (Laureles)",
+        "zona_origen": "Laureles_Suramericana",
+        "zona_destino": "Laureles",
+        "tarifa_oficial_cop": 30000
+      },
+      {
+        "id": 4,
+        "punto_recogida": "Hotel Novelty (Poblado)",
+        "punto_destino": "CC Oviedo (Poblado)",
+        "observaciones": "Consignación de dinero recibido",
+        "zona_origen": "Poblado",
+        "zona_destino": "Poblado",
+        "tarifa_oficial_cop": 30000
+      }
+    ],
+    "gastos": {
+      "pasajero": [
+        {
+          "concepto": "Electrolit",
+          "categoria": "ALIMENTOS_HIDRATACION",
+          "valor_cop": 7700
+        },
+        {
+          "concepto": "Impresiones x40",
+          "categoria": "PAPELERIA_IMPRESIONES",
+          "valor_cop": 16000
+        }
+      ],
+      "acp": [],
+      "parqueaderos": [
+        {
+          "lugar": "Torre Médica Clofán",
+          "valor_cop": 26000,
+          "soporte_requerido": "FOTO_RECIBO_PAGO"
+        }
+      ],
+      "transportes_hechos_en_uber": []
+    },
+    "totales": {
+      "gastos_pasajero_cop": 23700,
+      "gastos_acp_cop": 0,
+      "gastos_parqueaderos_cop": 26000,
+      "gastos_uber_cop": 0,
+      "gran_total_gastos_caja_menor_cop": 49700,
+      "total_traslados_carro_acp_cop": 125000
+    }
+  }
+]

@@ -1,0 +1,13 @@
+{
+  "name": "medicaltrip-colombia",
+  "version": "2.0.0",
+  "scripts": {
+    "build": "cd apps/medicaltrip_react_app && npm install && npm run build"
+  },
+  "dependencies": {
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "vercel": "^59.4.0"
+  }
+}

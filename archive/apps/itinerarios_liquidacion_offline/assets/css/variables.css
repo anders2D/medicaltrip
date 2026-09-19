@@ -1,0 +1,100 @@
+/**
+ * Medical Trip Colombia S.A.S. — Design Tokens & CSS Variables
+ * WCAG AAA Sunlight Contrast (>7:1 Ratio), >=48px Touch Targets, Tabular Numerals.
+ */
+
+:root {
+  /* Color Palette — High Sunlight Contrast WCAG AAA */
+  --bg-app: #0A0F1D;
+  --bg-surface: #0F172A;
+  --bg-surface-elevated: #1E293B;
+  --bg-surface-highlight: #334155;
+  --bg-surface-card: rgba(30, 41, 59, 0.85);
+
+  /* Primary Brand & Accents */
+  --color-primary: #0284C7;
+  --color-primary-light: #38BDF8;
+  --color-primary-dark: #0369A1;
+  --color-primary-glow: rgba(2, 132, 199, 0.35);
+
+  /* Functional Status Colors */
+  --color-success: #10B981;
+  --color-success-light: #34D399;
+  --color-success-bg: rgba(16, 185, 129, 0.15);
+  --color-success-border: #059669;
+
+  --color-warning: #F59E0B;
+  --color-warning-light: #FBBF24;
+  --color-warning-bg: rgba(245, 158, 11, 0.15);
+  --color-warning-border: #D97706;
+
+  --color-danger: #EF4444;
+  --color-danger-light: #F87171;
+  --color-danger-bg: rgba(239, 68, 68, 0.15);
+  --color-danger-border: #DC2626;
+
+  --color-info: #6366F1;
+  --color-info-light: #818CF8;
+  --color-info-bg: rgba(99, 102, 241, 0.15);
+  --color-info-border: #4F46E5;
+
+  --color-cyan: #06B6D4;
+  --color-cyan-bg: rgba(6, 182, 212, 0.15);
+
+  /* Rubric Category Colors (Balance Bar) */
+  --color-rubric-taxi: #F59E0B;
+  --color-rubric-companion: #8B5CF6;
+  --color-rubric-pharmacy: #10B981;
+  --color-rubric-lab: #06B6D4;
+  --color-rubric-other: #64748B;
+  --color-advances: #0284C7;
+
+  /* Typography Colors */
+  --text-primary: #FFFFFF;
+  --text-secondary: #CBD5E1;
+  --text-muted: #94A3B8;
+  --text-inverse: #0F172A;
+
+  /* Borders & Dividers */
+  --border-subtle: #1E293B;
+  --border-card: #334155;
+  --border-focus: #38BDF8;
+
+  /* Typography */
+  --font-family-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-family-mono: 'SF Mono', SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+  --font-variant-numeric: tabular-nums;
+
+  /* Touch Targets & Metrics (>=48px accessibility requirement) */
+  --touch-target-min: 48px;
+  --btn-height: 48px;
+  --btn-height-sm: 40px;
+  --input-height: 48px;
+
+  /* Radii */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.35), 0 2px 4px -2px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.45), 0 4px 6px -4px rgba(0, 0, 0, 0.45);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.55), 0 8px 10px -6px rgba(0, 0, 0, 0.55);
+  --shadow-glow-primary: 0 0 15px rgba(2, 132, 199, 0.4);
+  --shadow-glow-success: 0 0 15px rgba(16, 185, 129, 0.4);
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s ease;
+  --transition-slow: 0.35s ease;
+
+  /* Layout Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+}

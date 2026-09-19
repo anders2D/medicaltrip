@@ -1,0 +1,74 @@
+{
+  "formato": "FORMATO DIARIO ACP",
+  "metadata": {
+    "extracted_at": "2026-09-11T20:20:52.485Z",
+    "source_file": "uploaded_media_1789157757060.png",
+    "raw_header": "RVA171-4-Rodrigues/Catia Mrs Reporte Lunes 10 de Junio de 2026",
+    "status": "VERIFIED"
+  },
+  "rva": {
+    "codigo": "RVA171-4",
+    "paciente": "Catia Rodrigues",
+    "raw_paciente": "Rodrigues/Catia Mrs"
+  },
+  "fecha": {
+    "texto_original": "Lunes 10 de Junio de 2026",
+    "iso": "2026-06-10",
+    "dia": 10,
+    "mes": 6,
+    "anio": 2026,
+    "dia_semana": "Lunes"
+  },
+  "tiempo_laborado": {
+    "hora_inicio": "14:00",
+    "hora_finalizacion": "18:00",
+    "total_horas_calculadas": 4,
+    "jornada": "DIURNA"
+  },
+  "traslados_carro_acp": [
+    {
+      "id": 1,
+      "punto_recogida": "CC Oviedo (Poblado)",
+      "punto_destino": "INNTU Hotel (Laureles)",
+      "zona_origen": "Poblado",
+      "zona_destino": "Laureles",
+      "tarifa_oficial_cop": 35000
+    },
+    {
+      "id": 2,
+      "punto_recogida": "INNTU Hotel (Laureles)",
+      "punto_destino": "Clínica Clofán (Poblado)",
+      "zona_origen": "Laureles",
+      "zona_destino": "Poblado",
+      "tarifa_oficial_cop": 35000
+    }
+  ],
+  "gastos": {
+    "pasajero": [
+      {
+        "concepto": "4 tarritos de muestra para Orina/Coprologico",
+        "categoria": "FARMACIA_INSUMOS_CLINICOS",
+        "cantidad": 4,
+        "valor_cop": 8320,
+        "soporte_requerido": "FOTO_FACTURA"
+      }
+    ],
+    "acp": [],
+    "parqueaderos": [
+      {
+        "lugar": "Clínica Clofán",
+        "valor_cop": 24300,
+        "soporte_requerido": "FOTO_RECIBO_PAGO"
+      }
+    ],
+    "transportes_hechos_en_uber": []
+  },
+  "totales_gastos": {
+    "total_pasajero_cop": 8320,
+    "total_acp_cop": 0,
+    "total_parqueaderos_cop": 24300,
+    "total_uber_cop": 0,
+    "gran_total_gastos_cop": 32620
+  },
+  "raw_text": "RVA171-4-Rodrigues/Catia Mrs Reporte Lunes 10 de Junio de 2026\nHorario\nHora de inicio de turno: 14:00\nhora de salida de turno: 18:00\nTotal horas trabajadas: 4 horas\n\nTraslados:\nCC Oviedo (Poblado) - INNTU Hotel (Laureles)\n\nINNTU Hotel (Laureles) - Clínica Clofán (Poblado)\n\nGastos:\n\nParqueadero: Clínica Clofán $24.300\n\nFarmacia: 4 tarritos de muestra para Orina/Coprologico - $8.320"
+}

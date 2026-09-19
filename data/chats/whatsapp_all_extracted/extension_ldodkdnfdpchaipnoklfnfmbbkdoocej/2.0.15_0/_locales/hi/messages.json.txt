@@ -1,0 +1,14 @@
+================================================================================
+ARCHIVO: messages.json
+ORIGEN:  c:\Users\mayra\projects\Medicina\whatsapp_business_backup\extension_ldodkdnfdpchaipnoklfnfmbbkdoocej\2.0.15_0\_locales\hi\messages.json
+TAMAÑO:  514 bytes
+================================================================================
+
+{
+   "desc": {
+      "message": "मीडिया के साथ WhatsApp चैट HTML में एक्सपोर्ट करें, ग्रुप नंबर और संपर्क एक्सेल में सेव करें। स्थानीय, सुरक्षित। कोई डेटा नहीं।"
+   },
+   "name": {
+      "message": "Export WhatsApp Group Contacts - व्हाट्सएप नंबर एक्सेल डाउनलोड"
+   }
+}

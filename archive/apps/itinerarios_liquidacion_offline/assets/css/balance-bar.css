@@ -1,0 +1,253 @@
+/**
+ * Medical Trip Colombia S.A.S. — Settlement Balance Bar & Financial KPIs
+ * Multi-Segment Proportional Balance Bar, KPI Grid, Category Breakdown, Overdraft Alerts.
+ */
+
+/* Right Pane Container Card */
+.settlement-card {
+  background-color: var(--bg-surface-elevated);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.settlement-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.patient-info-summary {
+  display: flex;
+  flex-direction: column;
+}
+
+.patient-name-display {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.patient-meta-display {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+/* 4 Financial KPI Cards Grid */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-md);
+}
+
+@media (max-width: 480px) {
+  .kpi-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.kpi-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.kpi-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 4px;
+  background-color: var(--color-primary);
+}
+
+.kpi-card.kpi-advances::before { background-color: var(--color-advances); }
+.kpi-card.kpi-expenses::before { background-color: var(--color-rubric-taxi); }
+.kpi-card.kpi-net-balance::before { background-color: var(--color-success); }
+.kpi-card.kpi-net-balance.is-debt::before { background-color: var(--color-danger); }
+.kpi-card.kpi-burn::before { background-color: var(--color-info); }
+
+.kpi-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.kpi-value {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.kpi-card.kpi-net-balance.is-debt .kpi-value {
+  color: var(--color-danger-light);
+}
+
+.kpi-subtext {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+}
+
+/* Multi-Segment Proportional Settlement Balance Bar */
+.balance-bar-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.balance-bar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.balance-bar-track {
+  height: 28px;
+  background-color: rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  display: flex;
+  position: relative;
+  border: 1px solid var(--border-card);
+}
+
+.balance-bar-segment {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  position: relative;
+  transition: width var(--transition-normal);
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.segment-advances { background-color: var(--color-advances); }
+.segment-taxi { background-color: var(--color-rubric-taxi); }
+.segment-companion { background-color: var(--color-rubric-companion); }
+.segment-pharmacy { background-color: var(--color-rubric-pharmacy); }
+.segment-lab { background-color: var(--color-rubric-lab); }
+.segment-other { background-color: var(--color-rubric-other); }
+
+/* Category Breakdown Pills */
+.category-breakdown-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: var(--spacing-sm);
+}
+
+.category-pill {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 10px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-xs);
+  gap: 2px;
+}
+
+.category-pill-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.category-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.category-pill-value {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.category-pill-percent {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+/* Overdraft & Settlement Status Banner */
+.overdraft-banner {
+  padding: var(--spacing-md);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-md);
+  font-size: 0.9rem;
+}
+
+.overdraft-banner.is-refund {
+  background-color: var(--color-success-bg);
+  border: 1px solid var(--color-success-border);
+  color: var(--color-success-light);
+}
+
+.overdraft-banner.is-debt {
+  background-color: var(--color-danger-bg);
+  border: 1px solid var(--color-danger-border);
+  color: var(--color-danger-light);
+}
+
+.overdraft-banner.is-balanced {
+  background-color: var(--color-info-bg);
+  border: 1px solid var(--color-info-border);
+  color: var(--color-info-light);
+}
+
+.overdraft-banner-content h4 {
+  color: inherit;
+  margin-bottom: 2px;
+}
+
+.overdraft-banner-content p {
+  color: inherit;
+  opacity: 0.9;
+  font-size: 0.82rem;
+}
+
+/* Settlement Action Bar */
+.settlement-actions-bar {
+  display: flex;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+  padding-top: var(--spacing-sm);
+  border-top: 1px solid var(--border-card);
+}

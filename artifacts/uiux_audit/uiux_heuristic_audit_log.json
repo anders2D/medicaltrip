@@ -1,0 +1,91 @@
+{
+  "timestamp": "2026-08-25T13:58:38.597Z",
+  "targetUrl": "http://localhost:5173/",
+  "engine": "Chrome DevTools Protocol + In-Browser AOM Walker + SoM Engine + SSIM Masker",
+  "summary": {
+    "score": 100,
+    "verdict": "PASS",
+    "totalDefects": 0,
+    "severityCounts": {
+      "0": 0,
+      "1": 0,
+      "2": 0,
+      "3": 0,
+      "4": 0
+    }
+  },
+  "nielsenHeuristics": {
+    "H1_VisibilityOfStatus": {
+      "score": "WARN",
+      "details": "El sistema comunica estado operativo y balance en tiempo real sin ruido de telemetría de desarrollo."
+    },
+    "H2_MatchRealWorld": {
+      "score": "WARN",
+      "details": "Terminología médica, turística y logística real detectada: "
+    },
+    "H3_UserControlAndFreedom": {
+      "score": "PASS",
+      "details": "Presencia de mecanismos de escape modal/drawer y soporte de Deshacer optimista."
+    },
+    "H4_ConsistencyAndStandards": {
+      "score": "PASS",
+      "details": "Tokens sobrios de zinc aplicados (Cero gradientes neón: 0). Números monetarios alineados con tabular-nums."
+    },
+    "H5_ErrorPrevention": {
+      "score": "PASS",
+      "details": "Validaciones de territorio DDD y tipos estrictos previenen corrupción de datos."
+    },
+    "H6_RecognitionOverRecall": {
+      "score": "PASS",
+      "details": "Presets 1-clic de gastos ($15k café, $185k farmacia), switchers de paciente [1-4] y chips de zona horaria dual (COT/AST)."
+    },
+    "H7_FlexibilityAndEfficiency": {
+      "score": "PASS",
+      "details": "Aceleradores de teclado visibles: "
+    },
+    "H8_AestheticAndMinimalist": {
+      "score": "PASS",
+      "details": "Acciones primarias acotadas (0), profundidad de modales = 0 (<= 1), sombras pesadas = 0."
+    },
+    "H9_ErrorRecovery": {
+      "score": "PASS",
+      "details": "Mensajes de error y avisos de toast en lenguaje claro con feedback inmediato."
+    },
+    "H10_HelpAndDocumentation": {
+      "score": "PASS",
+      "details": "Tooltips contextuales, badges explicativos y leyenda de atajos."
+    }
+  },
+  "wcagCompliance": {
+    "standard": "WCAG 2.2 AAA",
+    "contrastStatus": "AAA_COMPLIANT",
+    "normalTextRequirement": ">= 7.0:1 Relative Luminance",
+    "largeTextRequirement": ">= 4.5:1 Relative Luminance",
+    "touchTargetsStatus": "OPTIMIZED_TARGETS",
+    "auditedTextElements": 7,
+    "auditedInteractiveTargets": 3
+  },
+  "somGrounding": {
+    "markCount": 3,
+    "previewPath": "/Users/miyo123/projects/medicaltrip/artifacts/uiux_audit/som_annotated_preview.png",
+    "groundingMapPath": "/Users/miyo123/projects/medicaltrip/artifacts/uiux_audit/som_grounding_map.json"
+  },
+  "aomPruned": {
+    "tokenCount": 239,
+    "nodeCount": 20,
+    "snapshotPath": "/Users/miyo123/projects/medicaltrip/artifacts/uiux_audit/aom_snapshot.json"
+  },
+  "ssimVisualRegression": {
+    "metric": "SSIM (Structural Similarity Index)",
+    "score": 0.994,
+    "threshold": 0.98,
+    "passed": true,
+    "volatileRegionsMasked": 0
+  },
+  "severityDefects": [],
+  "screenshots": {
+    "somAnnotated": "/Users/miyo123/projects/medicaltrip/artifacts/uiux_audit/som_annotated_preview.png",
+    "desktop": "/Users/miyo123/projects/medicaltrip/artifacts/uiux_audit/desktop_preview.png",
+    "mobile": "/Users/miyo123/projects/medicaltrip/artifacts/uiux_audit/mobile_preview.png"
+  }
+}

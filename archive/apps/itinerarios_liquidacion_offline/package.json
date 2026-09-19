@@ -1,0 +1,22 @@
+{
+  "name": "itinerarios-liquidacion-offline",
+  "version": "1.0.0",
+  "description": "Gestión de Itinerarios Médicos en Terreno y Liquidación Financiera Automática (PWA Offline)",
+  "type": "module",
+  "main": "src/domain/index.js",
+  "scripts": {
+    "test": "node --test tests/unit/*.test.js",
+    "test:domain": "node tests/unit/domain.test.js",
+    "test:infra": "node tests/unit/infrastructure.test.js",
+    "test:e2e": "node tests/e2e_test_runner.js"
+  },
+  "keywords": [
+    "pwa",
+    "offline-first",
+    "ddd",
+    "hexagonal-architecture",
+    "medicaltrip"
+  ],
+  "author": "Medical Trip Colombia S.A.S.",
+  "license": "UNLICENSED"
+}

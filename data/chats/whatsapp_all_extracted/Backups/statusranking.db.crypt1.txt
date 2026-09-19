@@ -1,0 +1,12 @@
+================================================================================
+INFORMACIÓN FORENSE DE BASE DE DATOS CIFRADA: statusranking.db.crypt1
+RUTA:   c:\Users\mayra\projects\Medicina\whatsapp_business_backup\Backups\statusranking.db.crypt1
+TAMAÑO: 94,591 bytes (0.09 MB)
+================================================================================
+
+FORMATO: WhatsApp Crypt14/Crypt15 Encrypted Database
+SALT (Hex): No detectado en primeros 512 bytes
+IV   (Hex): No detectado en primeros 512 bytes
+CABECERA RAW (Hex primeros 64 bytes): 0001022070720f3d6fd84156987e87c2ff5266f4b05b54c6d47381ab1300868a387ec88b800e6f39e370d747e1c403c2d80e6599af201ef01e9657ee79f24675
+
+[NOTA]: Este archivo contiene la base de datos cifrada SQLite de WhatsApp. Para descifrar el texto completo de las conversaciones se requiere la clave simétrica AES-GCM (158 bytes key file de /data/data/com.whatsapp.w4b/files/key).

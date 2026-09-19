@@ -1,0 +1,225 @@
+/* =====================================================================
+   VIEWPORT, DIAGRAM CANVAS, HUD CONTROLS & GESTURES
+   ===================================================================== */
+
+.flow-card-container {
+    display: none;
+}
+
+.flow-card-container.active {
+    display: block;
+    animation: fadeIn 0.2s ease-out;
+}
+
+.canvas-split {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 20px;
+    align-items: start;
+}
+
+@media (max-width: 1200px) {
+    .canvas-split {
+        grid-template-columns: 1fr;
+    }
+}
+
+.diagram-viewport {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+    min-height: 520px;
+    user-select: none;
+    touch-action: none;
+    transition: all 0.2s ease;
+}
+
+.diagram-hud-controls {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--bg-card-subtle);
+    border: 1px solid var(--border-subtle);
+    padding: 4px;
+    border-radius: 8px;
+    z-index: 10;
+    backdrop-filter: blur(8px);
+}
+
+.hud-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    transition: all 0.15s ease;
+    user-select: none;
+    font-family: inherit;
+}
+
+.hud-btn:hover {
+    color: var(--text-heading);
+    background: var(--bg-surface);
+    transform: scale(1.05);
+}
+
+.diagram-canvas-inner {
+    transform-origin: center center;
+    cursor: grab;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 460px;
+    will-change: transform;
+    user-select: none;
+    -webkit-user-drag: none;
+    width: 100%;
+}
+
+.diagram-canvas-inner svg {
+    max-width: 100% !important;
+    height: auto !important;
+    pointer-events: none;
+}
+
+.diagram-canvas-inner:active {
+    cursor: grabbing;
+}
+
+.gesture-hint-badge {
+    position: absolute;
+    bottom: 12px;
+    left: 14px;
+    font-size: 0.78rem;
+    color: var(--text-subtle);
+    background: var(--bg-card-subtle);
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--border-subtle);
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Laser Pointer Dot */
+.laser-pointer-dot {
+    position: fixed;
+    width: 14px;
+    height: 14px;
+    background: #f43f5e;
+    border-radius: 50%;
+    box-shadow: 0 0 16px 6px rgba(244, 63, 94, 0.7);
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+/* Floating Robot Logger Badge */
+.robot-logger-overlay {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--bg-surface);
+    border: 2px solid var(--primary);
+    border-radius: 12px;
+    padding: 14px 18px;
+    box-shadow: var(--shadow-lg);
+    z-index: 99999;
+    max-width: 380px;
+    display: none;
+    font-size: 0.85rem;
+    animation: fadeIn 0.2s ease-out;
+}
+
+.robot-log-title {
+    font-weight: 700;
+    color: var(--primary-text);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.robot-log-body {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--text-heading);
+    line-height: 1.4;
+}
+
+/* Fullscreen Overlay Mode */
+.fullscreen-active {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 99990 !important;
+    border-radius: 0 !important;
+    background: var(--bg-surface) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 40px !important;
+}
+
+.fullscreen-active .diagram-canvas-inner {
+    height: 85vh !important;
+    width: 90vw !important;
+}
+
+.fullscreen-active .diagram-canvas-inner svg {
+    max-height: 80vh !important;
+    width: auto !important;
+}
+
+.fullscreen-exit-btn {
+    display: none;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: var(--rose-light);
+    color: var(--rose);
+    border: 1px solid var(--rose);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.88rem;
+    cursor: pointer;
+    z-index: 99999;
+    box-shadow: var(--shadow-md);
+    font-family: inherit;
+}
+
+.fullscreen-active .fullscreen-exit-btn {
+    display: flex !important;
+    align-items: center;
+    gap: 6px;
+}
+
+@media (max-width: 640px) {
+    .diagram-viewport {
+        min-height: 380px;
+        padding: 12px;
+    }
+    
+    .diagram-canvas-inner {
+        min-height: 320px;
+    }
+}

@@ -1,0 +1,45 @@
+{
+  "timestamp": "2026-08-25T00:10:44.509Z",
+  "engine": "Poli-Modal Playwright CDP + Formal MBT + LTL Invariants",
+  "mbtStates": {
+    "S1_Onboarding": {
+      "status": "PASSED",
+      "pillsCount": 4,
+      "soundness": "No Deadlocks (Reachable)"
+    },
+    "S2_Clinical_Itinerary": {
+      "status": "PASSED",
+      "presetEngineAvailable": true
+    },
+    "S3_Calendar_Grid": {
+      "status": "PASSED",
+      "gridCells": 42,
+      "eventsDiscovered": 5
+    },
+    "S4_Ledger_Balance": {
+      "status": "PASSED",
+      "balanceDisplay": "Saldo Neto: -$ 419.350",
+      "bigIntDrift": "0.00 Float Discrepancy (Exact Cents)"
+    },
+    "S5_Settlement_SignOff": {
+      "status": "PASSED",
+      "canvasSignatureCaptured": true,
+      "sha256LedgerSeal": "5f5223adcc0715557a3b0412dc003515b0a0e5c2e84e0473629a8b38479fd23d"
+    }
+  },
+  "ltlFormulas": {
+    "formula": "G(ExpenseCaptured -> F(BigIntCalculated && LedgerSealedSHA256))",
+    "satisfied": true,
+    "traceLength": 6
+  },
+  "runtimeAudit": {
+    "exceptionsCount": 0,
+    "consoleErrorsCount": 0,
+    "errors": []
+  },
+  "screenshots": {
+    "desktop": "/Users/miyo123/.gemini/antigravity/brain/331296b7-7aae-41cb-b288-0117170f289b/desktop_preview.png",
+    "mobile": "/Users/miyo123/.gemini/antigravity/brain/331296b7-7aae-41cb-b288-0117170f289b/mobile_preview.png",
+    "drawer": "/Users/miyo123/.gemini/antigravity/brain/331296b7-7aae-41cb-b288-0117170f289b/drawer_preview.png"
+  }
+}

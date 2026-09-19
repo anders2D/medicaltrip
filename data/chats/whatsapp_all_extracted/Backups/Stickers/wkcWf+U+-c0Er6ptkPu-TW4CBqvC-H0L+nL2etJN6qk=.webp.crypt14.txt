@@ -1,0 +1,12 @@
+================================================================================
+INFORMACIÓN FORENSE DE BASE DE DATOS CIFRADA: wkcWf+U+-c0Er6ptkPu-TW4CBqvC-H0L+nL2etJN6qk=.webp.crypt14
+RUTA:   c:\Users\mayra\projects\Medicina\whatsapp_business_backup\Backups\Stickers\wkcWf+U+-c0Er6ptkPu-TW4CBqvC-H0L+nL2etJN6qk=.webp.crypt14
+TAMAÑO: 47,992 bytes (0.05 MB)
+================================================================================
+
+FORMATO: WhatsApp Crypt14/Crypt15 Encrypted Database
+SALT (Hex): 2070720f3d6fd84156987e87c2ff5266f4b05b54c6d47381ab1300868a387ec8
+IV   (Hex): 8b800e6f39e370d747e1c403c2d80e65
+CABECERA RAW (Hex primeros 64 bytes): 9c010800124d0a0200011201321a202070720f3d6fd84156987e87c2ff5266f4b05b54c6d47381ab1300868a387ec822108b800e6f39e370d747e1c403c2d80e
+
+[NOTA]: Este archivo contiene la base de datos cifrada SQLite de WhatsApp. Para descifrar el texto completo de las conversaciones se requiere la clave simétrica AES-GCM (158 bytes key file de /data/data/com.whatsapp.w4b/files/key).

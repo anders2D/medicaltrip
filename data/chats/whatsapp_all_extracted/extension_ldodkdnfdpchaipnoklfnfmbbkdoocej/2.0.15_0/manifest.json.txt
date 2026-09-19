@@ -1,0 +1,41 @@
+================================================================================
+ARCHIVO: manifest.json
+ORIGEN:  c:\Users\mayra\projects\Medicina\whatsapp_business_backup\extension_ldodkdnfdpchaipnoklfnfmbbkdoocej\2.0.15_0\manifest.json
+TAMAÑO:  1,484 bytes
+================================================================================
+
+{
+   "action": {
+      "default_icon": {
+         "128": "icons/128.png"
+      },
+      "default_popup": "popup.html",
+      "default_title": "WhatsApp Group Exporter- Group download"
+   },
+   "background": {
+      "service_worker": "background.js"
+   },
+   "content_scripts": [ {
+      "js": [ "content-script.js" ],
+      "matches": [ "https://web.whatsapp.com/*" ],
+      "run_at": "document_end"
+   } ],
+   "default_locale": "en",
+   "description": "__MSG_desc__",
+   "homepage_url": "https://chromewebstore.google.com/detail/ldodkdnfdpchaipnoklfnfmbbkdoocej",
+   "host_permissions": [ "*://*.whatsapp.com/*" ],
+   "icons": {
+      "128": "icons/128.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAixGI+E8d9+plhwBB+Me7fkCRNfvRFEarL7j+/vLTPJIq9V8cA4d0P2M+3zS1KYWfBWfkd+E57b4w2wRftk8ecYY2/N4I9IF2SwUyzHyBOJ6yZnHs4urXAlDST+p7Js33ebqVDx6/MwS3ncwcLVRCH9BKCcSFSxr7y4fG4paFn9dK0mPSXBdc++SbE0ot+vGCY0JV89X7kLQDhAJt7SSyuP6MZMvUaPtIYjI5jp0PDFkfWeU9272N3OIhrzmcxZ/1nOyjCSW1Ua+HbirMGRiBewSDixlLwhirDVMwq0oXy3hJdaJ+HAcHqQFQw9XhUoSA9MMjIpUfHVXsYr1XgFzucQIDAQAB",
+   "manifest_version": 3,
+   "name": "__MSG_name__",
+   "optional_host_permissions": [  ],
+   "permissions": [ "tabs", "storage" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "2.0.15",
+   "web_accessible_resources": [ {
+      "matches": [ "https://web.whatsapp.com/*" ],
+      "resources": [ "inject-script/*.js", "inject/*.js" ]
+   } ]
+}

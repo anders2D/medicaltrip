@@ -1,0 +1,14 @@
+================================================================================
+ARCHIVO: messages.json
+ORIGEN:  c:\Users\mayra\projects\Medicina\whatsapp_business_backup\extension_ldodkdnfdpchaipnoklfnfmbbkdoocej\2.0.15_0\_locales\ja\messages.json
+TAMAÑO:  317 bytes
+================================================================================
+
+{
+   "desc": {
+      "message": "WhatsAppチャットをHTMLへ、グループ番号と連絡先をExcelへエクスポート。ローカル、安全、プライベート。データ収集なし。"
+   },
+   "name": {
+      "message": "Save WhatsApp Number - WhatsApp番号をExcel/CSV/VCardに保存"
+   }
+}

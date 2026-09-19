@@ -1,0 +1,19 @@
+{
+  "totalWorkbooks": 223,
+  "totalSheets": 1685,
+  "rvaCount": 151,
+  "ctzCount": 59,
+  "plantillasCount": 2,
+  "tarifariosCount": 1,
+  "extractedPassengers": 218,
+  "extractedFlights": 203,
+  "extractedFinancialRows": 218,
+  "extractedItineraryMilestones": 2910,
+  "countriesDetected": {
+    "Curazao": 200,
+    "Bonaire": 8,
+    "Países Bajos": 3,
+    "Surinam": 11,
+    "Aruba": 1
+  }
+}

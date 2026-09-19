@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light" data-font-size="normal" data-contrast="normal">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Trip Colombia S.A.S. — Suite Modular Interactiva & Robot Tester 108 Botones</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Modular CSS Styles -->
+    <link rel="stylesheet" href="assets/css/variables.css">
+    <link rel="stylesheet" href="assets/css/base.css">
+    <link rel="stylesheet" href="assets/css/sidebar.css">
+    <link rel="stylesheet" href="assets/css/toolbar.css">
+    <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/viewport.css">
+    <link rel="stylesheet" href="assets/css/drawers.css">
+
+    <!-- Mermaid.js Runtime -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+</head>
+<body>
+
+<!-- Laser Pointer Virtual -->
+<div class="laser-pointer-dot" id="laserPointer"></div>
+
+<!-- Live Robot Tester Floating Logger -->
+<div class="robot-logger-overlay" id="robotLoggerOverlay">
+    <div class="robot-log-title"><i class="fa-solid fa-robot" aria-hidden="true"></i> Robot Tester en Ejecución</div>
+    <div class="robot-log-body" id="robotLogBody">Iniciando prueba automática de 108 botones...</div>
+</div>
+
+<div class="app-layout">
+    <!-- ======================================================================= -->
+    <!-- SIDEBAR NAVIGATION (13 WORKFLOW NODES) -->
+    <!-- ======================================================================= -->
+    <aside class="sidebar" role="navigation" aria-label="Navegación de Flujos">
+        <div class="sidebar-header">
+            <div class="brand-badge">
+                <i class="fa-solid fa-heart-pulse" aria-hidden="true"></i>
+            </div>
+            <div>
+                <div class="brand-title">Medical Trip Hub</div>
+                <span class="brand-tag">Modular v2.0</span>
+            </div>
+        </div>
+
+        <div class="nav-category">
+            <div class="nav-cat-label">Vista General</div>
+            <div class="nav-link active" id="nav-flow-macro" data-target-flow="flow-macro" tabindex="0">
+                <i class="fa-solid fa-diagram-project" aria-hidden="true" style="color: #0284c7;"></i>
+                <span>0. Ciclo de Vida Macro 360°</span>
+            </div>
+        </div>
+
+        <div class="nav-category">
+            <div class="nav-cat-label">Comercial & Pre-Viaje</div>
+            <div class="nav-link" id="nav-flow-lead" data-target-flow="flow-lead" tabindex="0">
+                <i class="fa-solid fa-user-plus" aria-hidden="true" style="color: #7c3aed;"></i>
+                <span>1. Lead & Medisch Dossier ([COORD] Carolina)</span>
+            </div>
+            <div class="nav-link" id="nav-flow-quote" data-target-flow="flow-quote" tabindex="0">
+                <i class="fa-solid fa-file-invoice-dollar" aria-hidden="true" style="color: #0d9488;"></i>
+                <span>2. Cotización Dinámica CTZ ([COM-INT] Gilma)</span>
+            </div>
+            <div class="nav-link" id="nav-flow-booking" data-target-flow="flow-booking" tabindex="0">
+                <i class="fa-solid fa-shield-halved" aria-hidden="true" style="color: #d97706;"></i>
+                <span>3. Depósito & Póliza RVA ([COORD] Carolina)</span>
+            </div>
+            <div class="nav-link" id="nav-flow-checkmig" data-target-flow="flow-checkmig" tabindex="0">
+                <i class="fa-solid fa-passport" aria-hidden="true" style="color: #e11d48;"></i>
+                <span>4. Check-Mig & Vuelos ([COORD] Carolina)</span>
+            </div>
+        </div>
+
+        <div class="nav-category">
+            <div class="nav-cat-label">Operación & Terreno</div>
+            <div class="nav-link" id="nav-flow-transport" data-target-flow="flow-transport" tabindex="0">
+                <i class="fa-solid fa-car-side" aria-hidden="true" style="color: #0284c7;"></i>
+                <span>5. Despacho Aeroturex ([DRV] Ramón Rosero)</span>
+            </div>
+            <div class="nav-link" id="nav-flow-clinical" data-target-flow="flow-clinical" tabindex="0">
+                <i class="fa-solid fa-hospital-user" aria-hidden="true" style="color: #0d9488;"></i>
+                <span>6. Citas HPTU & Labs ([MED] Dr. Yepes)</span>
+            </div>
+            <div class="nav-link" id="nav-flow-companion" data-target-flow="flow-companion" tabindex="0">
+                <i class="fa-solid fa-hands-holding-child" aria-hidden="true" style="color: #7c3aed;"></i>
+                <span>7. Acompañamiento Bilingüe ([GUIA] Guía)</span>
+            </div>
+            <div class="nav-link" id="nav-flow-postop" data-target-flow="flow-postop" tabindex="0">
+                <i class="fa-solid fa-bed" aria-hidden="true" style="color: #d97706;"></i>
+                <span>8. Villa Anita & Post-Op ([GUIA] Enfermera)</span>
+            </div>
+            <div class="nav-link" id="nav-flow-fittotly" data-target-flow="flow-fittotly" tabindex="0">
+                <i class="fa-solid fa-plane-departure" aria-hidden="true" style="color: #059669;"></i>
+                <span>9. Alta Médica Fit-to-Fly ([MED] Dr. Yepes)</span>
+            </div>
+        </div>
+
+        <div class="nav-category">
+            <div class="nav-cat-label">Finanzas & Sistema</div>
+            <div class="nav-link" id="nav-flow-finance" data-target-flow="flow-finance" tabindex="0">
+                <i class="fa-solid fa-scale-balanced" aria-hidden="true" style="color: #d97706;"></i>
+                <span>10. Liquidaciones & DTW ([DIR-MED] Jenny)</span>
+            </div>
+            <div class="nav-link" id="nav-flow-whatsapp" data-target-flow="flow-whatsapp" tabindex="0">
+                <i class="fa-brands fa-whatsapp" aria-hidden="true" style="color: #059669;"></i>
+                <span>11. Atención WhatsApp & Excepciones ([COORD] Carolina)</span>
+            </div>
+            <div class="nav-link" id="nav-flow-audit" data-target-flow="flow-audit" tabindex="0">
+                <i class="fa-solid fa-triangle-exclamation" aria-hidden="true" style="color: #e11d48;"></i>
+                <span>12. Auditoría de Vacíos & Gaps</span>
+            </div>
+            <div class="nav-link" id="nav-flow-itinerarios" data-target-flow="flow-itinerarios" tabindex="0">
+                <i class="fa-solid fa-route" aria-hidden="true" style="color: #0d9488;"></i>
+                <span>13. Itinerarios & Liquidación en Campo</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ======================================================================= -->
+    <!-- MAIN CONTENT -->
+    <!-- ======================================================================= -->
+    <main class="main-pane" id="mainContent" role="main">
+        <!-- Top Toolbar -->
+        <div class="top-toolbar" role="toolbar" aria-label="Herramientas y Utilidades de la Suite">
+            <div class="search-box-wrap">
+                <i class="fa-solid fa-magnifying-glass" aria-hidden="true" style="color: var(--text-subtle);" aria-hidden="true"></i>
+                <input type="text" id="liveSearchInput" placeholder="Buscar flujo, paciente, CUPS..." aria-label="Buscar flujos, pacientes o procedimientos CUPS">
+            </div>
+            <div class="tools-cluster">
+                <button class="tool-btn" id="btnRobotTest" style="background: linear-gradient(135deg, var(--purple), var(--primary)); color: white; border: none;" aria-label="Ejecutar prueba de 108 botones con Robot Tester"><i class="fa-solid fa-robot" aria-hidden="true"></i> <strong>Robot Tester (108 Clics)</strong></button>
+                <button class="tool-btn" id="btnAutoTest" style="background: var(--emerald-light); color: var(--emerald); border-color: var(--emerald);" aria-label="Auto-test de 13 vistas de diagramas"><i class="fa-solid fa-vial-circle-check" aria-hidden="true"></i> Auto-Test 13 Vistas</button>
+                <div class="meeting-timer-badge" id="meetingTimerBadge" role="timer" aria-label="Tiempo transcurrido en la reunión"><i class="fa-solid fa-stopwatch" aria-hidden="true"></i> <span id="timerDigits">00:00</span></div>
+                <button class="tool-btn" id="btnLaser" aria-label="Activar puntero láser virtual" title="Puntero Láser"><i class="fa-solid fa-crosshairs" aria-hidden="true" style="color: #f43f5e;" aria-hidden="true"></i> Láser</button>
+                <button class="tool-btn" id="btnAutoPlay" aria-label="Iniciar presentación guiada" title="Presentación Guiada"><i class="fa-solid fa-film" aria-hidden="true" style="color: var(--purple);" aria-hidden="true"></i> Presentar</button>
+                <button class="tool-btn" id="btnGlossary" aria-label="Abrir glosario y diccionario de términos" title="Glosario y Términos"><i class="fa-solid fa-book-open" aria-hidden="true" style="color: var(--purple);"></i> Glosario</button>
+                <button class="tool-btn" id="btnRoi" aria-label="Abrir calculadora de ROI y resumen ejecutivo" title="ROI y Negocio"><i class="fa-solid fa-calculator" aria-hidden="true" style="color: var(--emerald);"></i> ROI & Negocio</button>
+                <button class="tool-btn" id="btnDb" aria-label="Abrir explorador de base de datos normalizada 3NF" title="Base de Datos 3NF"><i class="fa-solid fa-database" aria-hidden="true" style="color: var(--primary);"></i> BD 3NF</button>
+                <button class="tool-btn" id="btnA11y" aria-label="Abrir opciones de accesibilidad visual" title="Suite de Accesibilidad"><i class="fa-solid fa-universal-access" aria-hidden="true" style="color: var(--teal);"></i> A11y</button>
+                <button class="tool-btn" id="btnTheme" aria-label="Cambiar entre tema claro y oscuro" title="Cambiar tema claro/oscuro"><i class="fa-solid fa-sun" aria-hidden="true" id="themeIcon" aria-hidden="true"></i></button>
+            </div>
+        </div>
+
+        <!-- Role Filter Chips -->
+        <div class="filter-chips-bar" role="toolbar" aria-label="Filtro de Roles Operativos">
+            <span class="chip-lbl"><i class="fa-solid fa-filter" aria-hidden="true"></i> Rol:</span>
+            <button class="filter-chip active" id="chip-ALL" aria-label="Mostrar todos los roles">Todos los Roles</button>
+            <button class="filter-chip" id="chip-PAX" aria-label="Filtrar por rol [PAX] Paciente Curazao">[PAX] Paciente (Curazao)</button>
+            <button class="filter-chip" id="chip-COORD" aria-label="Filtrar por rol [COORD] Coordinadora Carolina">[COORD] Carolina Cortázar (ACV)</button>
+            <button class="filter-chip" id="chip-MED" aria-label="Filtrar por rol [MED] Médico Dr. Marcos Yepes">[MED] Dr. Marcos Yepes / Médicos</button>
+            <button class="filter-chip" id="chip-DRV" aria-label="Filtrar por rol [DRV] Conductor Ramón Rosero">[DRV] Ramón Rosero (Conductor)</button>
+            <button class="filter-chip" id="chip-CLINIC" aria-label="Filtrar por rol [CLINIC] Clínicas HPTU y Cardio VID">[CLINIC] HPTU / Cardio VID</button>
+            <button class="filter-chip" id="chip-FIN" aria-label="Filtrar por rol [FIN] Contabilidad y Finanzas">[FIN] Contabilidad / Finanzas</button>
+        </div>
+
+        <!-- KPIs Row -->
+        <div class="kpi-row" role="region" aria-label="Métricas Clave del Proyecto">
+            <div class="kpi-card">
+                <div class="kpi-icon" style="background: var(--primary-light); color: var(--primary-text);"><i class="fa-solid fa-users" aria-hidden="true"></i></div>
+                <div><div class="kpi-val">304</div><div class="kpi-label">Pacientes Normalizados</div></div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-icon" style="background: var(--teal-light); color: var(--teal);"><i class="fa-solid fa-bolt" aria-hidden="true"></i></div>
+                <div><div class="kpi-val">18,602</div><div class="kpi-label">Eventos OCEL 2.0</div></div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-icon" style="background: var(--amber-light); color: var(--amber);"><i class="fa-solid fa-car" aria-hidden="true"></i></div>
+                <div><div class="kpi-val">63</div><div class="kpi-label">Traslados Aeroturex</div></div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-icon" style="background: var(--purple-light); color: var(--purple);"><i class="fa-solid fa-check-double" aria-hidden="true"></i></div>
+                <div><div class="kpi-val">100%</div><div class="kpi-label">Soundness & Integridad</div></div>
+            </div>
+        </div>
+
+        <!-- =================================================================== -->
+        <!-- 0. WORKFLOW MACRO 360 -->
+        <!-- =================================================================== -->
+        <section id="flow-macro" class="flow-card-container active">
+            <div class="flow-header">
+                <div>
+                    <span class="flow-badge badge-blue">Flujo Maestro</span>
+                    <h2 class="flow-title-text">0. Ciclo de Vida Operativo Completo (Macro-Flow 360°)</h2>
+                    <p class="flow-subtext">Visión de extremo a extremo desde el contacto inicial hasta el retorno con alta médica.</p>
+                </div>
+            </div>
+            <div class="canvas-split">
+                <div class="diagram-viewport" id="vp-macro" data-canvas-id="can-macro">
+                    <button class="fullscreen-exit-btn" id="exit-btn-macro" aria-label="Salir de pantalla completa" title="Salir de pantalla completa (Esc)"><i class="fa-solid fa-compress" aria-hidden="true"></i> Salir de Pantalla Completa (Esc)</button>
+                    <div class="diagram-hud-controls">
+                        <button class="hud-btn hud-btn-zoom-in" onclick="MedicalTripApp.zoom('can-macro', 1.2)" aria-label="Acercar diagrama" title="Acercar (Zoom In)"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i></button>
+                        <button class="hud-btn hud-btn-zoom-out" onclick="MedicalTripApp.zoom('can-macro', 0.8)" aria-label="Alejar diagrama" title="Alejar (Zoom Out)"><i class="fa-solid fa-magnifying-glass-minus" aria-hidden="true"></i></button>
+                        <button class="hud-btn hud-btn-reset" onclick="MedicalTripApp.resetZoom('can-macro')" aria-label="Restablecer vista del diagrama" title="Restablecer"><i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i></button>
+                        <button class="hud-btn hud-btn-fullscreen" onclick="MedicalTripApp.toggleFullscreen('vp-macro')" aria-label="Ver diagrama en pantalla completa" title="Pantalla Completa"><i class="fa-solid fa-expand" aria-hidden="true"></i></button>
+                    </div>
+                    <div class="diagram-canvas-inner" id="can-macro"></div>
+                    <div class="gesture-hint-badge"><i class="fa-solid fa-hand-pointer" aria-hidden="true"></i> Arrastra libremente • Pellizca Touchpad para Zoom</div>
+                </div>
+                <div class="steps-timeline-card">
+                    <div class="timeline-header">
+                        <span class="timeline-title"><i class="fa-solid fa-play" aria-hidden="true" style="color: #0284c7;"></i> Simulador Paso a Paso</span>
+                        <div class="player-controls">
+                            <button class="player-btn btn-step-prev"><i class="fa-solid fa-backward-step" aria-hidden="true"></i></button>
+                            <button class="player-btn btn-step-next"><i class="fa-solid fa-forward-step" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                    <div class="step-entry active" data-role="PAX COORD">
+                        <div class="step-entry-header"><span class="step-seq-num">PASO 01</span><span class="step-role-badge">[COORD] Carolina</span></div>
+                        <div class="step-entry-title">Captación y Triaje Clínico</div>
+                        <div class="step-entry-desc">Recepción del dossier médico de [PAX] George Hernandez y cotización formal por [COORD] Carolina Cortázar.</div>
+                        <span class="step-pill-code">CTZ###-PDF</span>
+                    </div>
+                    <div class="step-entry" data-role="COORD FIN">
+                        <div class="step-entry-header"><span class="step-seq-num">PASO 02</span><span class="step-role-badge">[FIN] Bancolombia</span></div>
+                        <div class="step-entry-title">Preparación de Viaje</div>
+                        <div class="step-entry-desc">Confirmación de depósito bancario, emisión de póliza médica y Check-Mig por [COORD] Carolina.</div>
+                        <span class="step-pill-code">RVA### + Póliza</span>
+                    </div>
+                    <div class="step-entry" data-role="DRV CLINIC">
+                        <div class="step-entry-header"><span class="step-seq-num">PASO 03</span><span class="step-role-badge">[DRV] Ramón Rosero</span></div>
+                        <div class="step-entry-title">Atención Médica & Hospitalidad</div>
+                        <div class="step-entry-desc">Traslados con [DRV] Ramón Rosero, citas en [CLINIC] HPTU con [MED] Dr. Marcos Yepes y estadía.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- 1. WORKFLOW LEAD & DOSSIER -->
+        <!-- =================================================================== -->
+        <section id="flow-lead" class="flow-card-container">
+            <div class="flow-header">
+                <div>
+                    <span class="flow-badge badge-purple">Módulo Comercial</span>
+                    <h2 class="flow-title-text">1. Captación de Lead & Triaje de Medisch Dossier ([COORD] Carolina)</h2>
+                    <p class="flow-subtext">Recepción por WhatsApp, traducción de Papiamento y concepto médico de [MED] Dr. Marcos Yepes.</p>
+                </div>
+            </div>
+            <div class="canvas-split">
+                <div class="diagram-viewport" id="vp-lead" data-canvas-id="can-lead">
+                    <button class="fullscreen-exit-btn" id="exit-btn-lead" aria-label="Salir de pantalla completa" title="Salir de pantalla completa (Esc)"><i class="fa-solid fa-compress" aria-hidden="true"></i> Salir de Pantalla Completa (Esc)</button>
+                    <div class="diagram-hud-controls">
+                        <button class="hud-btn hud-btn-zoom-in" onclick="MedicalTripApp.zoom('can-lead', 1.2)" title="Acercar (Zoom In)" aria-label="Acercar diagrama"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i></button>
+                        <button class="hud-btn hud-btn-zoom-out" onclick="MedicalTripApp.zoom('can-lead', 0.8)" title="Alejar (Zoom Out)" aria-label="Alejar diagrama"><i class="fa-solid fa-magnifying-glass-minus" aria-hidden="true"></i></button>
+                        <button class="hud-btn hud-btn-reset" onclick="MedicalTripApp.resetZoom('can-lead')" title="Restablecer vista" aria-label="Restablecer vista del diagrama"><i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i></button>
+                        <button class="hud-btn hud-btn-fullscreen" onclick="MedicalTripApp.toggleFullscreen('vp-lead')" title="Pantalla Completa" aria-label="Ver diagrama en pantalla completa"><i class="fa-solid fa-expand" aria-hidden="true"></i></button>
+                    </div>
+                    <div class="diagram-canvas-inner" id="can-lead"></div>
+                    <div class="gesture-hint-badge"><i class="fa-solid fa-hand-pointer" aria-hidden="true"></i> Arrastra libremente • Pellizca Touchpad para Zoom</div>
+                </div>
+                <div class="steps-timeline-card">
+                    <div class="timeline-header"><span class="timeline-title"><i class="fa-solid fa-stethoscope" aria-hidden="true" style="color: #7c3aed;"></i> Puntos de Control</span></div>
+                    <div class="step-entry active" data-role="PAX">
+                        <div class="step-entry-header"><span class="step-seq-num">PASO 1.1</span><span class="step-role-badge">[PAX] George Hernandez</span></div>
+                        <div class="step-entry-title">Envío de Historial Clínico</div>
+                        <div class="step-entry-desc">[PAX] George Hernandez aporta exámenes previos y síntomas en Papiamento o Inglés a [COORD] Carolina.</div>
+                    </div>
+                    <div class="step-entry" data-role="MED">
+                        <div class="step-entry-header"><span class="step-seq-num">PASO 1.2</span><span class="step-role-badge">[MED] Dr. Marcos Yepes</span></div>
+                        <div class="step-entry-title">Definición de CUPS</div>
+                        <div class="step-entry-desc">[MED] Dr. Marcos Yepes asocia los procedimientos clínicos exactos (Resonancias, laboratorios, cirugía).</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- 2. WORKFLOW COTIZACIÓN DINÁMICA CTZ -->
+        <!-- =================================================================== -->
+        <section id="flow-quote" class="flow-card-container">
+            <div class="flow-header">
+                <div>
+                    <span class="flow-badge badge-teal">Motor de Precios</span>
+                    <h2 class="flow-title-text">2. Motor de Cotización Dinámica CTZ ([COM-INT] Blanca Gilma)</h2>
+                    <p class="flow-subtext">Cálculo de tarifas convenio vs particulares por [DIR-MED] Dra. Jenny Acosta y conversión multidivisa USD/COP.</p>
+                </div>
+            </div>
+            <div class="canvas-split">
+                <div class="diagram-viewport" id="vp-quote" data-canvas-id="can-quote">
+                    <button class="fullscreen-exit-btn" id="exit-btn-quote" aria-label="Salir de pantalla completa" title="Salir de pantalla completa (Esc)"><i class="fa-solid fa-compress" aria-hidden="true"></i> Salir de Pantalla Completa (Esc)</button>
+                    <div class="diagram-hud-controls">
+                        <button class="hud-btn hud-btn-zoom-in" onclick="MedicalTripApp.zoom('can-quote', 1.2)" title="Acercar (Zoom In)" aria-label="Acercar diagrama"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i></button>
+                        <button class="hud-btn hud-btn-zoom-out" onclick="MedicalTripApp.zoom('can-quote', 0.8)" title="Alejar (Zoom Out)" aria-label="Alejar diagrama"><i class="fa-solid fa-magnifying-glass-minus" aria-hidden="true"></i></button>
+                        <button class="hud-btn hud-btn-reset" onclick="MedicalTripApp.resetZoom('can-quote')" title="Restablecer vista" aria-label="Restablecer vista del diagrama"><i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i></button>
+                        <button class="hud-btn hud-btn-fullscreen" onclick="MedicalTripApp.toggleFullscreen('vp-quote')" title="Pantalla Completa" aria-label="Ver diagrama en pantalla completa"><i class="fa-solid fa-expand" aria-hidden="true"></i></button>
+                    </div>
+                    <div class="diagram-canvas-inner" id="can-quote"></div>
+                    <div class="gesture-hint-badge"><i class="fa-solid fa-hand-pointer" aria-hidden="true"></i> Arrastra libremente • Pellizca Touchpad para Zoom</div>
+                </div>
+                <div class="steps-timeline-card">
+                    <div class="timeline-header"><span class="timeline-title"><i class="fa-solid fa-coins" aria-hidden="true" style="color: #0d9488;"></i> Reglas de Negocio</span></div>
+                    <div class="step-entry active" data-role="COORD FIN">
+                        <div class="step-entry-header"><span class="step-seq-num">REGLA 2.1</span><span class="step-role-badge">[DIR-MED] Dra. Jenny</span></div>
+                        <div class="step-entry-title">Margen Spread 30%</div>
+                        <div class="step-entry-desc">Diferencial entre la tarifa institucional convenio y la tarifa particular cobrada al viajero.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- 3. WORKFLOW BOOKING & PÓLIZA RVA -->
+        <!-- =================================================================== -->
+        <section id="flow-booking" class="flow-card-container">
+            <div class="flow-header">
+                <div>
+                    <span class="flow-badge badge-amber">Confirmación</span>
+                    <h2 class="flow-title-text">3. Depósito Bancolombia, Reserva RVA & Póliza ([COORD] Carolina)</h2>
+                    <p class="flow-subtext">Validación del anticipo en Bancolombia, apertura del grupo de WhatsApp y emisión de póliza de viajero.</p>
+                </div>
+            </div>
+            <div class="canvas-split">
+                <div class="diagram-viewport" id="vp-booking" data-canvas-id="can-booking">
+                    <button class="fullscreen-exit-btn" id="exit-btn-booking" aria-label="Salir de pantalla completa" title="Salir de pantalla completa (Esc)"><i class="fa-solid fa-compress" aria-hidden="true"></i> Salir de Pantalla Completa (Esc)</button>
+                    <div class="diagram-hud-controls">
+                        <button class="hud-btn hud-btn-zoom-in" onclick="MedicalTripApp.zoom('can-booking', 1.2)" title="Acercar (Zoom In)" aria-label="Acercar diagrama"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i></button>
+                        <button class="hud-btn hud-btn-zoom-out" onclick="MedicalTripApp.zoom('can-booking', 0.8)" title="Alejar (Zoom Out)" aria-label="Alejar diagrama"><i class="fa-solid fa-magnifying-glass-minus" aria-hidden="true"></i></button>
+                        <button class="hud-btn hud-btn-reset" onclick="MedicalTripApp.resetZoom('can-booking')" title="Restablecer vista" aria-label="Restablecer vista del diagrama"><i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i></button>
+                        <button class="hud-btn hud-btn-fullscreen" onclick="MedicalTripApp.toggleFullscreen('vp-booking')" title="Pantalla Completa" aria-label="Ver diagrama en pantalla completa"><i class="fa-solid fa-expand" aria-hidden="true"></i></button>
+                    </div>
+                    <div class="diagram-canvas-inner" id="can-booking"></div>
+                    <div class="gesture-hint-badge"><i class="fa-solid fa-hand-pointer" aria-hidden="true"></i> Arrastra libremente • Pellizca Touchpad para Zoom</div>
+                </div>
+                <div class="steps-timeline-card">
+                    <div class="timeline-header"><span class="timeline-title"><i class="fa-solid fa-file-shield" aria-hidden="true" style="color: #d97706;"></i> Hitos de Reserva</span></div>
+                    <div class="step-entry active" data-role="PAX FIN">
+                        <div class="step-entry-header"><span class="step-seq-num">PASO 3.1</span><span class="step-role-badge">[FIN] Bancolombia</span></div>
+                        <div class="step-entry-title">Validación Bancaria</div>
+                        <div class="step-entry-desc">[FIN] Bancolombia acredita el depósito de [PAX] George Hernandez antes de emitir vouchers de hotel.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- 4. WORKFLOW CHECK-MIG & VUELOS -->
+        <!-- =================================================================== -->
+        <section id="flow-checkmig" class="flow-card-container">
+            <div class="flow-header">
+                <div>
+                    <span class="flow-badge badge-rose">Migración</span>
+                    <h2 class="flow-title-text">4. Gestión Check-Mig Colombia & Vuelos ([COORD] Carolina Cortázar)</h2>
+                    <p class="flow-subtext">Generación del formulario migratorio 48h antes del viaje y tracking de vuelos (Wingo 7449 / Avianca).</p>
+                </div>
+            </div>
+            <div class="canvas-split">
+                <div class="diagram-viewport" id="vp-checkmig" data-canvas-id="can-checkmig">
+                    <button class="fullscreen-exit-btn" id="exit-btn-checkmig" aria-label="Salir de pantalla completa" title="Salir de pantalla completa (Esc)"><i class="fa-solid fa-compress" aria-hidden="true"></i> Salir de Pantalla Completa (Esc)</button>
+                    <div class="diagram-hud-controls">
+                        <button class="hud-btn hud-btn-zoom-in" onclick="MedicalTripApp.zoom('can-checkmig', 1.2)" title="Acercar (Zoom In)" aria-label="Acercar diagrama"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i></button>
+                        <button class="hud-btn hud-btn-zoom-out" onclick="MedicalTripApp.zoom('can-checkmig', 0.8)" title="Alejar (Zoom Out)" aria-label="Alejar diagrama"><i class="fa-solid fa-magnifying-glass-minus" aria-hidden="true"></i></button>
+                        <button class="hud-btn hud-btn-reset" onclick="MedicalTripApp.resetZoom('can-checkmig')" title="Restablecer vista" aria-label="Restablecer vista del diagrama"><i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i></button>
+                        <button class="hud-btn hud-btn-fullscreen" onclick="MedicalTripApp.toggleFullscreen('vp-checkmig')" title="Pantalla Completa" aria-label="Ver diagrama en pantalla completa"><i class="fa-solid fa-expand" aria-hidden="true"></i></button>
+                    </div>
+                    <div class="diagram-canvas-inner" id="can-checkmig"></div>
+                    <div class="gesture-hint-badge"><i class="fa-solid fa-hand-pointer" aria-hidden="true"></i> Arrastra libremente • Pellizca Touchpad para Zoom</div>
+                </div>
+                <div class="steps-timeline-card">
+                    <div class="timeline-header"><span class="timeline-title"><i class="fa-solid fa-passport" aria-hidden="true" style="color: #e11d48;"></i> Gestión Migratoria</span></div>
+                    <div class="step-entry active" data-role="COORD PAX">
+                        <div class="step-entry-header"><span class="step-seq-num">MIG 4.1</span><span class="step-role-badge">[COORD] Carolina</span></div>
+                        <div class="step-entry-title">Radicación Check-Mig</div>
+                        <div class="step-entry-desc">[COORD] Carolina Cortázar radica el formulario oficial de Migración Colombia para [PAX] George Hernandez.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- 5. WORKFLOW DESPACHO AEROTUREX -->
+        <!-- =================================================================== -->
+        <section id="flow-transport" class="flow-card-container">
+            <div class="flow-header">
+                <div>
+                    <span class="flow-badge badge-blue">Logística</span>
+                    <h2 class="flow-title-text">5. Despacho Aeroturex & Conductor ([DRV] Ramón Rosero)</h2>
+                    <p class="flow-subtext">Protocolo de despacho diario (16:30 pm), asignación de chofer ([DRV] Ramón Rosero) y recepción de vuelos en JMC.</p>
+                </div>
+            </div>
+            <div class="canvas-split">
+                <div class="diagram-viewport" id="vp-transport" data-canvas-id="can-transport">
+                    <button class="fullscreen-exit-btn" id="exit-btn-transport" aria-label="Salir de pantalla completa" title="Salir de pantalla completa (Esc)"><i class="fa-solid fa-compress" aria-hidden="true"></i> Salir de Pantalla Completa (Esc)</button>
+                    <div class="diagram-hud-controls">
+                        <button class="hud-btn hud-btn-zoom-in" onclick="MedicalTripApp.zoom('can-transport', 1.2)" title="Acercar (Zoom In)" aria-label="Acercar diagrama"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i></button>
+                        <button class="hud-btn hud-btn-zoom-out" onclick="MedicalTripApp.zoom('can-transport', 0.8)" title="Alejar (Zoom Out)" aria-label="Alejar diagrama"><i class="fa-solid fa-magnifying-glass-minus" aria-hidden="true"></i></button>
+                        <button class="hud-btn hud-btn-reset" onclick="MedicalTripApp.resetZoom('can-transport')" title="Restablecer vista" aria-label="Restablecer vista del diagrama"><i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i></button>
+                        <button class="hud-btn hud-btn-fullscreen" onclick="MedicalTripApp.toggleFullscreen('vp-transport')" title="Pantalla Completa" aria-label="Ver diagrama en pantalla completa"><i class="fa-solid fa-expand" aria-hidden="true"></i></button>
+                    </div>
+                    <div class="diagram-canvas-inner" id="can-transport"></div>
+                    <div class="gesture-hint-badge"><i class="fa-solid fa-hand-pointer" aria-hidden="true"></i> Arrastra libremente • Pellizca Touchpad para Zoom</div>
+                </div>
+                <div class="steps-timeline-card">
+                    <div class="timeline-header"><span class="timeline-title"><i class="fa-solid fa-map-location-dot" aria-hidden="true" style="color: #0284c7;"></i> Evidencia Real Extraída</span></div>
+                    <div class="step-entry active" data-role="COORD DRV">
+                        <div class="step-entry-header"><span class="step-seq-num">RVA282-5</span><span class="step-role-badge">[DRV] Ramón Rosero</span></div>
+                        <div class="step-entry-title">Caso [PAX] George Hernandez</div>
+                        <div class="step-entry-desc">Vuelo WINGO 7449 recibido el 5 de agosto a las 3:27 pm por [DRV] Ramón Rosero hacia Ed. Park 42.</div>
+                        <span class="step-pill-code">Tarifa: $110.000 COP</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- 6. WORKFLOW CITAS CLINICAS & LABS -->
+        <!-- =================================================================== -->
+        <section id="flow-clinical" class="flow-card-container">
+            <div class="flow-header">
+                <div>
+                    <span class="flow-badge badge-teal">Gestión Médica</span>
+                    <h2 class="flow-title-text">6. Citas Médicas, Control de Ayuno y Labs ([MED] Dr. Marcos Yepes)</h2>
+                    <p class="flow-subtext">Protocolo pre-quirúrgico en [CLINIC] HPTU y Cardio VID, toma de muestras y custodia de resultados clínicos.</p>
+                </div>
+            </div>
+            <div class="canvas-split">
+                <div class="diagram-viewport" id="vp-clinical" data-canvas-id="can-clinical">
+                    <button class="fullscreen-exit-btn" id="exit-btn-clinical" aria-label="Salir de pantalla completa" title="Salir de pantalla completa (Esc)"><i class="fa-solid fa-compress" aria-hidden="true"></i> Salir de Pantalla Completa (Esc)</button>
+                    <div class="diagram-hud-controls">
+                        <button class="hud-btn hud-btn-zoom-in" onclick="MedicalTripApp.zoom('can-clinical', 1.2)" title="Acercar (Zoom In)" aria-label="Acercar diagrama"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i></button>
+                        <button class="hud-btn hud-btn-zoom-out" onclick="MedicalTripApp.zoom('can-clinical', 0.8)" title="Alejar (Zoom Out)" aria-label="Alejar diagrama"><i class="fa-solid fa-magnifying-glass-minus" aria-hidden="true"></i></button>
+                        <button class="hud-btn hud-btn-reset" onclick="MedicalTripApp.resetZoom('can-clinical')" title="Restablecer vista" aria-label="Restablecer vista del diagrama"><i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i></button>
+                        <button class="hud-btn hud-btn-fullscreen" onclick="MedicalTripApp.toggleFullscreen('vp-clinical')" title="Pantalla Completa" aria-label="Ver diagrama en pantalla completa"><i class="fa-solid fa-expand" aria-hidden="true"></i></button>
+                    </div>
+                    <div class="diagram-canvas-inner" id="can-clinical"></div>
+                    <div class="gesture-hint-badge"><i class="fa-solid fa-hand-pointer" aria-hidden="true"></i> Arrastra libremente • Pellizca Touchpad para Zoom</div>
+                </div>
+                <div class="steps-timeline-card">
+                    <div class="timeline-header"><span class="timeline-title"><i class="fa-solid fa-notes-medical" aria-hidden="true" style="color: #0d9488;"></i> Evidencia Clínica</span></div>
+                    <div class="step-entry active" data-role="CLINIC MED">
+                        <div class="step-entry-header"><span class="step-seq-num">RVA271-5</span><span class="step-role-badge">[CLINIC] HPTU</span></div>
+                        <div class="step-entry-title">Caso [PAX] Zulaica Giterson</div>
+                        <div class="step-entry-desc">Laboratorios clínicos y consulta con [MED] Dr. Marcos Yepes para aval de tratamiento.</div>
+                        <span class="step-pill-code">PDF: Laboratorios 28-01</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- 7. WORKFLOW ACOMPAÑAMIENTO BILINGÜE -->
+        <!-- =================================================================== -->
+        <section id="flow-companion" class="flow-card-container">
+            <div class="flow-header">
+                <div>
+                    <span class="flow-badge badge-purple">Guianza & Hospitalidad</span>
+                    <h2 class="flow-title-text">7. Acompañamiento Presencial Bilingüe ([GUIA] Guianza Express)</h2>
+                    <p class="flow-subtext">Traducción simultánea en consultorio, compra de fórmulas médicas y registro de turnos para liquidación.</p>
+                </div>
+            </div>
+            <div class="canvas-split">
+                <div class="diagram-viewport" id="vp-companion" data-canvas-id="can-companion">
+                    <button class="fullscreen-exit-btn" id="exit-btn-companion" aria-label="Salir de pantalla completa" title="Salir de pantalla completa (Esc)"><i class="fa-solid fa-compress" aria-hidden="true"></i> Salir de Pantalla Completa (Esc)</button>
+                    <div class="diagram-hud-controls">
+                        <button class="hud-btn hud-btn-zoom-in" onclick="MedicalTripApp.zoom('can-companion', 1.2)" title="Acercar (Zoom In)" aria-label="Acercar diagrama"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i></button>
+                        <button class="hud-btn hud-btn-zoom-out" onclick="MedicalTripApp.zoom('can-companion', 0.8)" title="Alejar (Zoom Out)" aria-label="Alejar diagrama"><i class="fa-solid fa-magnifying-glass-minus" aria-hidden="true"></i></button>
+                        <button class="hud-btn hud-btn-reset" onclick="MedicalTripApp.resetZoom('can-companion')" title="Restablecer vista" aria-label="Restablecer vista del diagrama"><i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i></button>
+                        <button class="hud-btn hud-btn-fullscreen" onclick="MedicalTripApp.toggleFullscreen('vp-companion')" title="Pantalla Completa" aria-label="Ver diagrama en pantalla completa"><i class="fa-solid fa-expand" aria-hidden="true"></i></button>
+                    </div>
+                    <div class="diagram-canvas-inner" id="can-companion"></div>
+                    <div class="gesture-hint-badge"><i class="fa-solid fa-hand-pointer" aria-hidden="true"></i> Arrastra libremente • Pellizca Touchpad para Zoom</div>
+                </div>
+                <div class="steps-timeline-card">
+                    <div class="timeline-header"><span class="timeline-title"><i class="fa-solid fa-person-chalkboard" aria-hidden="true" style="color: #7c3aed;"></i> Turno Presencial</span></div>
+                    <div class="step-entry active" data-role="COORD">
+                        <div class="step-entry-header"><span class="step-seq-num">TURNO 7.1</span><span class="step-role-badge">[GUIA] Guía Bilingüe</span></div>
+                        <div class="step-entry-title">Acompañamiento Clínico</div>
+                        <div class="step-entry-desc">Turno de 6.5 horas asistiendo a [PAX] Zulaica Giterson en [CLINIC] HPTU, farmacia y regreso al hotel.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- 8. WORKFLOW VILLA ANITA & POST-OP -->
+        <!-- =================================================================== -->
+        <section id="flow-postop" class="flow-card-container">
+            <div class="flow-header">
+                <div>
+                    <span class="flow-badge badge-rose">Recuperación</span>
+                    <h2 class="flow-title-text">8. Casa de Recuperación Villa Anita & Post-Op ([GUIA] Enfermera)</h2>
+                    <p class="flow-subtext">Cuidado postquirúrgico, curaciones de enfermería, dieta blanda especializada y tours suaves de recuperación.</p>
+                </div>
+            </div>
+            <div class="canvas-split">
+                <div class="diagram-viewport" id="vp-postop" data-canvas-id="can-postop">
+                    <button class="fullscreen-exit-btn" id="exit-btn-postop" aria-label="Salir de pantalla completa" title="Salir de pantalla completa (Esc)"><i class="fa-solid fa-compress" aria-hidden="true"></i> Salir de Pantalla Completa (Esc)</button>
+                    <div class="diagram-hud-controls">
+                        <button class="hud-btn hud-btn-zoom-in" onclick="MedicalTripApp.zoom('can-postop', 1.2)" title="Acercar (Zoom In)" aria-label="Acercar diagrama"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i></button>
+                        <button class="hud-btn hud-btn-zoom-out" onclick="MedicalTripApp.zoom('can-postop', 0.8)" title="Alejar (Zoom Out)" aria-label="Alejar diagrama"><i class="fa-solid fa-magnifying-glass-minus" aria-hidden="true"></i></button>
+                        <button class="hud-btn hud-btn-reset" onclick="MedicalTripApp.resetZoom('can-postop')" title="Restablecer vista" aria-label="Restablecer vista del diagrama"><i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i></button>
+                        <button class="hud-btn hud-btn-fullscreen" onclick="MedicalTripApp.toggleFullscreen('vp-postop')" title="Pantalla Completa" aria-label="Ver diagrama en pantalla completa"><i class="fa-solid fa-expand" aria-hidden="true"></i></button>
+                    </div>
+                    <div class="diagram-canvas-inner" id="can-postop"></div>
+                    <div class="gesture-hint-badge"><i class="fa-solid fa-hand-pointer" aria-hidden="true"></i> Arrastra libremente • Pellizca Touchpad para Zoom</div>
+                </div>
+                <div class="steps-timeline-card">
+                    <div class="timeline-header"><span class="timeline-title"><i class="fa-solid fa-house-chimney-medical" aria-hidden="true" style="color: #e11d48;"></i> Cuidados Villa Anita</span></div>
+                    <div class="step-entry active" data-role="CLINIC">
+                        <div class="step-entry-header"><span class="step-seq-num">POST 8.1</span><span class="step-role-badge">[HOTEL] Villa Anita</span></div>
+                        <div class="step-entry-title">Protocolo Post-Op</div>
+                        <div class="step-entry-desc">Drenajes linfáticos, curaciones diarias y suministro de alimentación balanceada para [PAX] Zulaica Giterson.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- 9. WORKFLOW ALTA MEDICA FIT TO FLY -->
+        <!-- =================================================================== -->
+        <section id="flow-fittotly" class="flow-card-container">
+            <div class="flow-header">
+                <div>
+                    <span class="flow-badge badge-teal">Cierre Clínico</span>
+                    <h2 class="flow-title-text">9. Valoración de Control y Certificado Fit-to-Fly ([MED] Dr. Marcos Yepes)</h2>
+                    <p class="flow-subtext">Aval final del cirujano tratante, expedición de certificado de aptitud de vuelo y Check-Mig de salida.</p>
+                </div>
+            </div>
+            <div class="canvas-split">
+                <div class="diagram-viewport" id="vp-fittotly" data-canvas-id="can-fittotly">
+                    <button class="fullscreen-exit-btn" id="exit-btn-fittotly" aria-label="Salir de pantalla completa" title="Salir de pantalla completa (Esc)"><i class="fa-solid fa-compress" aria-hidden="true"></i> Salir de Pantalla Completa (Esc)</button>
+                    <div class="diagram-hud-controls">
+                        <button class="hud-btn hud-btn-zoom-in" onclick="MedicalTripApp.zoom('can-fittotly', 1.2)" title="Acercar (Zoom In)" aria-label="Acercar diagrama"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i></button>
+                        <button class="hud-btn hud-btn-zoom-out" onclick="MedicalTripApp.zoom('can-fittotly', 0.8)" title="Alejar (Zoom Out)" aria-label="Alejar diagrama"><i class="fa-solid fa-magnifying-glass-minus" aria-hidden="true"></i></button>
+                        <button class="hud-btn hud-btn-reset" onclick="MedicalTripApp.resetZoom('can-fittotly')" title="Restablecer vista" aria-label="Restablecer vista del diagrama"><i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i></button>
+                        <button class="hud-btn hud-btn-fullscreen" onclick="MedicalTripApp.toggleFullscreen('vp-fittotly')" title="Pantalla Completa" aria-label="Ver diagrama en pantalla completa"><i class="fa-solid fa-expand" aria-hidden="true"></i></button>
+                    </div>
+                    <div class="diagram-canvas-inner" id="can-fittotly"></div>
+                    <div class="gesture-hint-badge"><i class="fa-solid fa-hand-pointer" aria-hidden="true"></i> Arrastra libremente • Pellizca Touchpad para Zoom</div>
+                </div>
+                <div class="steps-timeline-card">
+                    <div class="timeline-header"><span class="timeline-title"><i class="fa-solid fa-plane-circle-check" aria-hidden="true" style="color: #0d9488;"></i> Alta Médica</span></div>
+                    <div class="step-entry active" data-role="MED COORD">
+                        <div class="step-entry-header"><span class="step-seq-num">ALTA 9.1</span><span class="step-role-badge">[MED] Dr. Marcos Yepes</span></div>
+                        <div class="step-entry-title">Certificado de Vuelo</div>
+                        <div class="step-entry-desc">[MED] Dr. Marcos Yepes firma el certificado médico que autoriza el retorno seguro de [PAX] Zulaica Giterson.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- 10. WORKFLOW LIQUIDACIONES & DTW -->
+        <!-- =================================================================== -->
+        <section id="flow-finance" class="flow-card-container">
+            <div class="flow-header">
+                <div>
+                    <span class="flow-badge badge-amber">Finanzas & Contabilidad</span>
+                    <h2 class="flow-title-text">10. Reconciliación DTW, Gastos en Campo & Liquidaciones ([DIR-MED] Dra. Jenny Acosta)</h2>
+                    <p class="flow-subtext">Ciclo completo de caja menor de agentes, traslados urbanos, alimentación, farmacia post-op, algoritmo DTW y cruce de cuentas multi-reserva.</p>
+                </div>
+            </div>
+            <div class="canvas-split">
+                <div class="diagram-viewport" id="vp-finance" data-canvas-id="can-finance">
+                    <button class="fullscreen-exit-btn" id="exit-btn-finance" aria-label="Salir de pantalla completa" title="Salir de pantalla completa (Esc)"><i class="fa-solid fa-compress" aria-hidden="true"></i> Salir de Pantalla Completa (Esc)</button>
+                    <div class="diagram-hud-controls">
+                        <button class="hud-btn hud-btn-zoom-in" onclick="MedicalTripApp.zoom('can-finance', 1.2)" title="Acercar (Zoom In)" aria-label="Acercar diagrama"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i></button>
+                        <button class="hud-btn hud-btn-zoom-out" onclick="MedicalTripApp.zoom('can-finance', 0.8)" title="Alejar (Zoom Out)" aria-label="Alejar diagrama"><i class="fa-solid fa-magnifying-glass-minus" aria-hidden="true"></i></button>
+                        <button class="hud-btn hud-btn-reset" onclick="MedicalTripApp.resetZoom('can-finance')" title="Restablecer vista" aria-label="Restablecer vista del diagrama"><i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i></button>
+                        <button class="hud-btn hud-btn-fullscreen" onclick="MedicalTripApp.toggleFullscreen('vp-finance')" title="Pantalla Completa" aria-label="Ver diagrama en pantalla completa"><i class="fa-solid fa-expand" aria-hidden="true"></i></button>
+                    </div>
+                    <div class="diagram-canvas-inner" id="can-finance"></div>
+                    <div class="gesture-hint-badge"><i class="fa-solid fa-hand-pointer" aria-hidden="true"></i> Arrastra libremente • Pellizca Touchpad para Zoom</div>
+                </div>
+                <div class="steps-timeline-card">
+                    <div class="timeline-header"><span class="timeline-title"><i class="fa-solid fa-scale-balanced" aria-hidden="true" style="color: #d97706;"></i> Liquidación de Campo</span></div>
+                    
+                    <div class="step-entry active" data-role="FIN COORD">
+                        <div class="step-entry-header"><span class="step-seq-num">FIN 10.1</span><span class="step-role-badge">[FIN] Anticipo</span></div>
+                        <div class="step-entry-title">Fondeo de Caja Menor</div>
+                        <div class="step-entry-desc">Medical Trip transfiere anticipos ($1.000.000 a $2.098.100 COP por Nequi/Bancolombia) a la guía ([GUIA] Yenny) o chofer ([DRV] Ramón) antes de la llegada del paciente.</div>
+                    </div>
+
+                    <div class="step-entry" data-role="GUIA DRV">
+                        <div class="step-entry-header"><span class="step-seq-num">FIN 10.2</span><span class="step-role-badge">[GUIA] Gastos en Calle</span></div>
+                        <div class="step-entry-title">Ejecución de los 6 Rubros de Gasto</div>
+                        <div class="step-entry-desc">El agente cubre en efectivo: Taxis ($30k-$38k), Parqueaderos ($12k-$16.5k HPTU), Alimentación escalonada ($8k-$45k) y Horas laboradas ($15.500/h base + Domingos).</div>
+                    </div>
+
+                    <div class="step-entry" data-role="GUIA COORD">
+                        <div class="step-entry-header"><span class="step-seq-num">FIN 10.3</span><span class="step-role-badge">[GUIA] Farmacia Post-Op</span></div>
+                        <div class="step-entry-title">Dispensación y Tickets Farmacéuticos</div>
+                        <div class="step-entry-desc">Compra de fajas postquirúrgicas, analgésicos e inyecciones de Enoxaparina en droguerías (Cruz Verde), enviando fotos del comprobante al grupo de WhatsApp.</div>
+                    </div>
+
+                    <div class="step-entry" data-role="FIN">
+                        <div class="step-entry-header"><span class="step-seq-num">FIN 10.4</span><span class="step-role-badge">[DIR-MED] Dra. Jenny</span></div>
+                        <div class="step-entry-title">Reconciliación Algorítmica DTW</div>
+                        <div class="step-entry-desc">El algoritmo DTW mapea las marcas de tiempo de los mensajes de chat con los asientos de las sábanas de Excel, absorbiendo desfases de 3 a 14 días.</div>
+                    </div>
+
+                    <div class="step-entry" data-role="FIN GUIA">
+                        <div class="step-entry-header"><span class="step-seq-num">FIN 10.5</span><span class="step-role-badge">[FIN] Cierre Bancario</span></div>
+                        <div class="step-entry-title">Balanza Multi-Reserva y Pago Final</div>
+                        <div class="step-entry-desc">Se cruzan Cuentas de Cobro vs Anticipos recibidos (ej. Caso RVA171 Yenny: Cuentas $2.564.892 vs Anticipos $2.098.100 = Saldo a favor de la Guía +$466.792 COP transferido por Bancolombia).</div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 16px; padding: 12px 16px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                <div>
+                    <strong style="color: var(--text-heading); font-size: 0.88rem;"><i class="fa-solid fa-route" style="color: var(--primary);"></i> Matriz Interactiva de Itinerarios en Campo</strong>
+                    <div style="font-size: 0.78rem; color: var(--text-muted);">Explora cómo cada traslado y hora de guianza liquida honorarios y caja menor en tiempo real.</div>
+                </div>
+                <button class="tool-btn" onclick="MedicalTripApp.navigateFlow('flow-itinerarios', document.getElementById('nav-flow-itinerarios'))" style="background: var(--primary); color: white; border: none; font-weight: 700;">
+                    <i class="fa-solid fa-arrow-right"></i> Ver Matriz de Itinerarios (Pestaña 13)
+                </button>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- 11. WORKFLOW WHATSAPP & EXCEPCIONES -->
+        <!-- =================================================================== -->
+        <section id="flow-whatsapp" class="flow-card-container">
+            <div class="flow-header">
+                <div>
+                    <span class="flow-badge badge-emerald">Coordinación Operativa</span>
+                    <h2 class="flow-title-text">11. Canal WhatsApp & Gestión de Excepciones ([COORD] Carolina Cortázar)</h2>
+                    <p class="flow-subtext">Atención directa por WhatsApp, manejo de retrasos de vuelos, alertas post-quirúrgicas y reprogramación de traslados.</p>
+                </div>
+            </div>
+            <div class="canvas-split">
+                <div class="diagram-viewport" id="vp-whatsapp" data-canvas-id="can-whatsapp">
+                    <button class="fullscreen-exit-btn" id="exit-btn-whatsapp" aria-label="Salir de pantalla completa" title="Salir de pantalla completa (Esc)"><i class="fa-solid fa-compress" aria-hidden="true"></i> Salir de Pantalla Completa (Esc)</button>
+                    <div class="diagram-hud-controls">
+                        <button class="hud-btn hud-btn-zoom-in" onclick="MedicalTripApp.zoom('can-whatsapp', 1.2)" title="Acercar (Zoom In)" aria-label="Acercar diagrama"><i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i></button>
+                        <button class="hud-btn hud-btn-zoom-out" onclick="MedicalTripApp.zoom('can-whatsapp', 0.8)" title="Alejar (Zoom Out)" aria-label="Alejar diagrama"><i class="fa-solid fa-magnifying-glass-minus" aria-hidden="true"></i></button>
+                        <button class="hud-btn hud-btn-reset" onclick="MedicalTripApp.resetZoom('can-whatsapp')" title="Restablecer vista" aria-label="Restablecer vista del diagrama"><i class="fa-solid fa-arrows-rotate" aria-hidden="true"></i></button>
+                        <button class="hud-btn hud-btn-fullscreen" onclick="MedicalTripApp.toggleFullscreen('vp-whatsapp')" title="Pantalla Completa" aria-label="Ver diagrama en pantalla completa"><i class="fa-solid fa-expand" aria-hidden="true"></i></button>
+                    </div>
+                    <div class="diagram-canvas-inner" id="can-whatsapp"></div>
+                    <div class="gesture-hint-badge"><i class="fa-solid fa-hand-pointer" aria-hidden="true"></i> Arrastra libremente • Pellizca Touchpad para Zoom</div>
+                </div>
+                <div class="steps-timeline-card">
+                    <div class="timeline-header"><span class="timeline-title"><i class="fa-brands fa-whatsapp" aria-hidden="true" style="color: #059669;"></i> Gestión de Novedades</span></div>
+                    <div class="step-entry active" data-role="COORD PAX">
+                        <div class="step-entry-header"><span class="step-seq-num">NOV 11.1</span><span class="step-role-badge">[COORD] Carolina</span></div>
+                        <div class="step-entry-title">Retrasos de Vuelo y Novedades</div>
+                        <div class="step-entry-desc">[COORD] Carolina coordina con [DRV] Ramón Rosero para evitar tiempos muertos en el Aeropuerto JMC.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- 12. WORKFLOW AUDITORÍA DE GAPS, VACÍOS Y AMBIGÜEDADES -->
+        <!-- =================================================================== -->
+        <section id="flow-audit" class="flow-card-container">
+            <div class="flow-header">
+                <div>
+                    <span class="flow-badge badge-rose">Auditoría Operativa & Reingeniería</span>
+                    <h2 class="flow-title-text">12. Auditoría de Vacíos, Ambigüedades y Puntos Ciegos del Negocio</h2>
+                    <p class="flow-subtext">Diagnóstico exhaustivo de 10 puntos ciegos empíricos detectados en los 4 años de datos (chats, sábanas de Excel y libros RVA/CTZ) y su resolución técnica en el sistema.</p>
+                </div>
+            </div>
+            <div class="audit-grid">
+                <!-- GAP 1 -->
+                <div class="audit-card" style="border-top: 4px solid var(--rose);">
+                    <div>
+                        <div style="font-size: 0.95rem; font-weight: 700; color: var(--text-heading); margin-bottom: 4px; display: flex; justify-content: space-between; align-items: center;">
+                            <span>1. Pasaportes no Estructurados</span>
+                            <span class="flow-badge badge-rose" style="margin-bottom: 0;">ALTO RIESGO MIGRATORIO</span>
+                        </div>
+                        <div style="font-size: 0.78rem; color: var(--text-subtle); margin-bottom: 8px;"><strong>Área:</strong> Legal, Migración y Aeropuertos (Hato CUR ➔ JMC MDE)</div>
+                        <div style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 12px; line-height: 1.45;">
+                            En los chats, los pasaportes se enviaban como fotos borrosas sin verificar previamente la vigencia mínima de 6 meses exigida por la legislación internacional ni la lectura de la zona MRZ. Pacientes con pasaportes próximos a vencer arriesgaban ser inadmitidos en el counter de Wingo/Avianca.
+                        </div>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.8rem; background: var(--emerald-light); color: var(--emerald); padding: 9px 12px; border-radius: 8px; line-height: 1.4;">
+                            <strong><i class="fa-solid fa-shield-check"></i> Solución en App:</strong> Ingesta OCR automática con extracción de zona MRZ, validación matemática de vigencia > 180 días y generación asistida del radicado Check-Mig 48h antes del vuelo.
+                        </div>
+                        <button class="gap-sim-btn" onclick="MedicalTripApp.runGapSimulation(1)" aria-label="Probar validador de pasaporte"><i class="fa-solid fa-flask" aria-hidden="true"></i> Probar Validador OCR & Check-Mig</button>
+                        <div id="gapResult-1" style="display:none;"></div>
+                    </div>
+                </div>
+
+                <!-- GAP 2 -->
+                <div class="audit-card" style="border-top: 4px solid var(--amber);">
+                    <div>
+                        <div style="font-size: 0.95rem; font-weight: 700; color: var(--text-heading); margin-bottom: 4px; display: flex; justify-content: space-between; align-items: center;">
+                            <span>2. Latencia en Liquidación de Flota</span>
+                            <span class="flow-badge badge-amber" style="margin-bottom: 0;">DESFASE CONTABLE</span>
+                        </div>
+                        <div style="font-size: 0.78rem; color: var(--text-subtle); margin-bottom: 8px;"><strong>Área:</strong> Logística (Aeroturex) & Contabilidad</div>
+                        <div style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 12px; line-height: 1.45;">
+                            Desfase de hasta 14 días entre el trayecto operado por el chofer ([DRV] Ramón Rosero) y su asiento contable en Excel. Vuelos con demoras nocturnas no registraban recargos de espera en tiempo real, distorsionando el costo unitario por traslado ($110.000 vs tarifas con recargo).
+                        </div>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.8rem; background: var(--emerald-light); color: var(--emerald); padding: 9px 12px; border-radius: 8px; line-height: 1.4;">
+                            <strong><i class="fa-solid fa-calculator"></i> Solución en App:</strong> Reconciliación algorítmica DTW (Dynamic Time Warping) entre eventos de chat y contabilidad, complementada con App móvil de chofer con geocerca GPS y cierre instantáneo.
+                        </div>
+                        <button class="gap-sim-btn" onclick="MedicalTripApp.runGapSimulation(2)" aria-label="Probar reconciliación DTW"><i class="fa-solid fa-flask" aria-hidden="true"></i> Probar Reconciliador DTW</button>
+                        <div id="gapResult-2" style="display:none;"></div>
+                    </div>
+                </div>
+
+                <!-- GAP 3 -->
+                <div class="audit-card" style="border-top: 4px solid var(--purple);">
+                    <div>
+                        <div style="font-size: 0.95rem; font-weight: 700; color: var(--text-heading); margin-bottom: 4px; display: flex; justify-content: space-between; align-items: center;">
+                            <span>3. Traducción y Homologación CUPS</span>
+                            <span class="flow-badge badge-purple" style="margin-bottom: 0;">RIESGO CLÍNICO</span>
+                        </div>
+                        <div style="font-size: 0.78rem; color: var(--text-subtle); margin-bottom: 8px;"><strong>Área:</strong> Dirección Médica & Cotizaciones</div>
+                        <div style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 12px; line-height: 1.45;">
+                            Los historiales ("Medisch Dossier") llegaban en Papiamento y Neerlandés. La traducción informal en WhatsApp arriesgaba malinterpretar antecedentes alérgicos, patologías cardíacas o requerimientos prequirúrgicos, retrasando la emisión de cotizaciones formales.
+                        </div>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.8rem; background: var(--emerald-light); color: var(--emerald); padding: 9px 12px; border-radius: 8px; line-height: 1.4;">
+                            <strong><i class="fa-solid fa-language"></i> Solución en App:</strong> Pipeline NLP de traducción médica con mapeo semántico hacia el catálogo oficial de códigos CUPS (Ministerio de Salud) y validación del médico asesor ([MED] Dr. Marcos Yepes).
+                        </div>
+                        <button class="gap-sim-btn" onclick="MedicalTripApp.runGapSimulation(3)" aria-label="Probar homologador CUPS"><i class="fa-solid fa-flask" aria-hidden="true"></i> Probar Homologador Papiamento/Dutch ➔ CUPS</button>
+                        <div id="gapResult-3" style="display:none;"></div>
+                    </div>
+                </div>
+
+                <!-- GAP 4 -->
+                <div class="audit-card" style="border-top: 4px solid var(--rose);">
+                    <div>
+                        <div style="font-size: 0.95rem; font-weight: 700; color: var(--text-heading); margin-bottom: 4px; display: flex; justify-content: space-between; align-items: center;">
+                            <span>4. Exposición de Datos PHI en Grupos</span>
+                            <span class="flow-badge badge-rose" style="margin-bottom: 0;">PRIVACIDAD & LEGAL</span>
+                        </div>
+                        <div style="font-size: 0.78rem; color: var(--text-subtle); margin-bottom: 8px;"><strong>Área:</strong> Cumplimiento HIPAA / Ley 1581 / GDPR</div>
+                        <div style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 12px; line-height: 1.45;">
+                            Resultados de biopsias, fotos prequirúrgicas y perfiles hematológicos circulaban en chats grupales de WhatsApp compartidos con choferes y personal de hotel, violando principios de necesidad de conocer y confidencialidad médica.
+                        </div>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.8rem; background: var(--emerald-light); color: var(--emerald); padding: 9px 12px; border-radius: 8px; line-height: 1.4;">
+                            <strong><i class="fa-solid fa-lock"></i> Solución en App:</strong> Bóveda Segura de Documentos Clínicos con enlaces temporales autenticados (Signed URLs), permisos granulares por rol y seudonimización estricta (<code>ENT-PAX-XXXX</code>).
+                        </div>
+                        <button class="gap-sim-btn" onclick="MedicalTripApp.runGapSimulation(4)" aria-label="Probar seudonimizador PHI"><i class="fa-solid fa-flask" aria-hidden="true"></i> Probar Seudonimizador Zero-Knowledge PHI</button>
+                        <div id="gapResult-4" style="display:none;"></div>
+                    </div>
+                </div>
+
+                <!-- GAP 5 -->
+                <div class="audit-card" style="border-top: 4px solid var(--amber);">
+                    <div>
+                        <div style="font-size: 0.95rem; font-weight: 700; color: var(--text-heading); margin-bottom: 4px; display: flex; justify-content: space-between; align-items: center;">
+                            <span>5. Volatilidad Cambiaria TRM (USD/COP)</span>
+                            <span class="flow-badge badge-amber" style="margin-bottom: 0;">RIESGO FINANCIERO</span>
+                        </div>
+                        <div style="font-size: 0.78rem; color: var(--text-subtle); margin-bottom: 8px;"><strong>Área:</strong> Tesorería & Facturación</div>
+                        <div style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 12px; line-height: 1.45;">
+                            Las cotizaciones se emitían en USD con base en una TRM fija, pero el paciente transfería 15 días después y las clínicas facturaban en COP a 30 días, absorbiendo Medical Trip fluctuaciones de tasa de cambio y comisiones de giros internacionales sin cobertura.
+                        </div>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.8rem; background: var(--emerald-light); color: var(--emerald); padding: 9px 12px; border-radius: 8px; line-height: 1.4;">
+                            <strong><i class="fa-solid fa-money-bill-trend-up"></i> Solución en App:</strong> Cotizador dinámico con feeds TRM en tiempo real, cálculo de spread cambiario automático y bloqueo de tasa garantizada por 72 horas con liquidación bancaria Bancolombia.
+                        </div>
+                        <button class="gap-sim-btn" onclick="MedicalTripApp.runGapSimulation(5)" aria-label="Probar hedging TRM"><i class="fa-solid fa-flask" aria-hidden="true"></i> Probar Hedging TRM & Spread 30%</button>
+                        <div id="gapResult-5" style="display:none;"></div>
+                    </div>
+                </div>
+
+                <!-- GAP 6 -->
+                <div class="audit-card" style="border-top: 4px solid var(--teal);">
+                    <div>
+                        <div style="font-size: 0.95rem; font-weight: 700; color: var(--text-heading); margin-bottom: 4px; display: flex; justify-content: space-between; align-items: center;">
+                            <span>6. Protocolo Informal del "Fit-to-Fly"</span>
+                            <span class="flow-badge badge-teal" style="margin-bottom: 0;">SEGURIDAD AÉREA</span>
+                        </div>
+                        <div style="font-size: 0.78rem; color: var(--text-subtle); margin-bottom: 8px;"><strong>Área:</strong> Auditoría Médica & Aerolíneas</div>
+                        <div style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 12px; line-height: 1.45;">
+                            El certificado de aptitud de vuelo muchas veces se redactaba en papel físico en consulta final. Si la aerolínea en JMC cuestionaba al pasajero por inflamación o vendajes, no existía un repositorio digital accesible para validar la autorización con el cirujano.
+                        </div>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.8rem; background: var(--emerald-light); color: var(--emerald); padding: 9px 12px; border-radius: 8px; line-height: 1.4;">
+                            <strong><i class="fa-solid fa-plane-circle-check"></i> Solución en App:</strong> Certificado médico Fit-to-Fly digital firmado electrónicamente con código QR público de validación y soporte de póliza médica para inspectores de aerolínea.
+                        </div>
+                        <button class="gap-sim-btn" onclick="MedicalTripApp.runGapSimulation(6)" aria-label="Probar generador Fit-to-Fly"><i class="fa-solid fa-flask" aria-hidden="true"></i> Probar Generador Digital Fit-to-Fly con QR</button>
+                        <div id="gapResult-6" style="display:none;"></div>
+                    </div>
+                </div>
+
+                <!-- GAP 7 -->
+                <div class="audit-card" style="border-top: 4px solid var(--purple);">
+                    <div>
+                        <div style="font-size: 0.95rem; font-weight: 700; color: var(--text-heading); margin-bottom: 4px; display: flex; justify-content: space-between; align-items: center;">
+                            <span>7. Acompañantes Extra no Declarados</span>
+                            <span class="flow-badge badge-purple" style="margin-bottom: 0;">DESCUADRE LOGÍSTICO</span>
+                        </div>
+                        <div style="font-size: 0.78rem; color: var(--text-subtle); margin-bottom: 8px;"><strong>Área:</strong> Hotelería (Park 42 / Villa Anita) & Flota</div>
+                        <div style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 12px; line-height: 1.45;">
+                            Múltiples expedientes (ej. <code>CTZ150-1 Rosa Lourens x4</code>, <code>CTZ192 Inecia x2</code>) revelan que los pacientes viajan con familiares adicionales no registrados desde el inicio, colapsando la capacidad del sedán de Aeroturex o el tipo de suite con cama hospitalaria.
+                        </div>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.8rem; background: var(--emerald-light); color: var(--emerald); padding: 9px 12px; border-radius: 8px; line-height: 1.4;">
+                            <strong><i class="fa-solid fa-users-viewfinder"></i> Solución en App:</strong> Módulo de registro de Pasajeros Secundarios (<code>PAX-COMPANION</code>) con pre-reserva de capacidad de van y recálculo automático de suplementos de hospedaje.
+                        </div>
+                        <button class="gap-sim-btn" onclick="MedicalTripApp.runGapSimulation(7)" aria-label="Probar reescalado de acompañantes"><i class="fa-solid fa-flask" aria-hidden="true"></i> Probar Reescalado de Flota y Hotel</button>
+                        <div id="gapResult-7" style="display:none;"></div>
+                    </div>
+                </div>
+
+                <!-- GAP 8 -->
+                <div class="audit-card" style="border-top: 4px solid var(--amber);">
+                    <div>
+                        <div style="font-size: 0.95rem; font-weight: 700; color: var(--text-heading); margin-bottom: 4px; display: flex; justify-content: space-between; align-items: center;">
+                            <span>8. Fugas en Gasto Farmacéutico</span>
+                            <span class="flow-badge badge-amber" style="margin-bottom: 0;">CONTROL DE GASTOS</span>
+                        </div>
+                        <div style="font-size: 0.78rem; color: var(--text-subtle); margin-bottom: 8px;"><strong>Área:</strong> Farmacovigilancia & Conciliación</div>
+                        <div style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 12px; line-height: 1.45;">
+                            La compra de analgésicos, fajas postoperatorias y anticoagulantes (ej. <code>RVA005-8 Hillary - Medicamentos</code>) se realizaba por encargo verbal con recibos en papel, sin conciliar con los depósitos del paciente ni verificar dosis prescritas.
+                        </div>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.8rem; background: var(--emerald-light); color: var(--emerald); padding: 9px 12px; border-radius: 8px; line-height: 1.4;">
+                            <strong><i class="fa-solid fa-prescription-bottle-medical"></i> Solución en App:</strong> Módulo de Farmacia con digitalización de tickets por foto, deducción en cuenta del paciente y alertas horarias de administración para la enfermera de campo.
+                        </div>
+                        <button class="gap-sim-btn" onclick="MedicalTripApp.runGapSimulation(8)" aria-label="Probar auditoría de farmacia"><i class="fa-solid fa-flask" aria-hidden="true"></i> Probar Auditoría y Alertas de Farmacia</button>
+                        <div id="gapResult-8" style="display:none;"></div>
+                    </div>
+                </div>
+
+                <!-- GAP 9 -->
+                <div class="audit-card" style="border-top: 4px solid var(--teal);">
+                    <div>
+                        <div style="font-size: 0.95rem; font-weight: 700; color: var(--text-heading); margin-bottom: 4px; display: flex; justify-content: space-between; align-items: center;">
+                            <span>9. Vacío en Postoperatorio Remoto</span>
+                            <span class="flow-badge badge-teal" style="margin-bottom: 0;">SEGUIMIENTO CLÍNICO</span>
+                        </div>
+                        <div style="font-size: 0.78rem; color: var(--text-subtle); margin-bottom: 8px;"><strong>Área:</strong> Telemedicina & Calidad Asistencial</div>
+                        <div style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 12px; line-height: 1.45;">
+                            Tras el vuelo de retorno a Curazao o Surinam, el canal de WhatsApp quedaba inactivo sin un protocolo formal de citas virtuales de control a los 15, 30 y 90 días, aumentando el riesgo de complicaciones no detectadas a distancia.
+                        </div>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.8rem; background: var(--emerald-light); color: var(--emerald); padding: 9px 12px; border-radius: 8px; line-height: 1.4;">
+                            <strong><i class="fa-solid fa-video"></i> Solución en App:</strong> Agendamiento automatizado de teleconsultas postquirúrgicas transfronterizas con recordatorios por WhatsApp y ficha de evolución compartida con el cirujano.
+                        </div>
+                        <button class="gap-sim-btn" onclick="MedicalTripApp.runGapSimulation(9)" aria-label="Probar agendador de telemedicina"><i class="fa-solid fa-flask" aria-hidden="true"></i> Probar Agendador de Telemedicina</button>
+                        <div id="gapResult-9" style="display:none;"></div>
+                    </div>
+                </div>
+
+                <!-- GAP 10 -->
+                <div class="audit-card" style="border-top: 4px solid var(--emerald);">
+                    <div>
+                        <div style="font-size: 0.95rem; font-weight: 700; color: var(--text-heading); margin-bottom: 4px; display: flex; justify-content: space-between; align-items: center;">
+                            <span>10. Descontrol en Horas de Guianza</span>
+                            <span class="flow-badge badge-emerald" style="margin-bottom: 0;">LIQUIDACIÓN OPERATIVA</span>
+                        </div>
+                        <div style="font-size: 0.78rem; color: var(--text-subtle); margin-bottom: 8px;"><strong>Área:</strong> Guianza Express & Acompañamiento Bilingüe</div>
+                        <div style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 12px; line-height: 1.45;">
+                            Las planillas de liquidación de acompañamiento presencial en HPTU/Cardio VID se reportaban por mensajes manuales aproximados, generando inconsistencias entre las horas cobradas al paciente y las horas liquidadas a la enfermera.
+                        </div>
+                    </div>
+                    <div>
+                        <div style="font-size: 0.8rem; background: var(--emerald-light); color: var(--emerald); padding: 9px 12px; border-radius: 8px; line-height: 1.4;">
+                            <strong><i class="fa-solid fa-clock"></i> Solución en App:</strong> Check-in / Check-out geolocalizado en la clínica por app móvil con firma digital del paciente al finalizar cada turno de acompañamiento.
+                        </div>
+                        <button class="gap-sim-btn" onclick="MedicalTripApp.runGapSimulation(10)" aria-label="Probar control de guianza"><i class="fa-solid fa-flask" aria-hidden="true"></i> Probar Check-In/Out GPS de Guianza</button>
+                        <div id="gapResult-10" style="display:none;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- 13. WORKFLOW ITINERARIOS EN CAMPO & LIQUIDACIÓN CRUZADA -->
+        <!-- =================================================================== -->
+        <section id="flow-itinerarios" class="flow-card-container">
+            <div class="flow-header">
+                <div>
+                    <span class="flow-badge badge-teal">Coordinación en Campo & Finanzas</span>
+                    <h2 class="flow-title-text">13. Matriz de Itinerarios & Liquidación en Campo ([COORD] & [FIN])</h2>
+                    <p class="flow-subtext">Sincronización hora a hora de choferes, guías bilingües y enfermeras con su impacto directo en Caja Menor, Honorarios y Balanza Bancaria.</p>
+                </div>
+            </div>
+
+            <!-- Matriz Interactiva Dinámica -->
+            <div id="itinerary-settlement-container"></div>
+
+            <!-- Comparativo de los 4 Arquetipos de Itinerarios Reales -->
+            <div style="margin-top: 24px;">
+                <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--text-heading); margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+                    <i class="fa-solid fa-layer-group" style="color: var(--primary);"></i>
+                    Los 4 Arquetipos de Itinerarios Reales Extraídos de Google Drive
+                </h3>
+                <div class="audit-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+                    <div class="audit-card" style="border-top: 4px solid var(--primary);">
+                        <div style="font-weight: 700; color: var(--text-heading); margin-bottom: 6px;">👨‍👩‍👧‍👦 A. Grupo Familiar Multiprocedimiento</div>
+                        <div style="font-size: 0.78rem; color: var(--text-subtle); margin-bottom: 6px;"><code>RVA171 Catia Rodrigues (5 Pax)</code> • Curazao</div>
+                        <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.45;">Despliegue de Van Especial (Uber XL con Andrés) para 5 personas con citas simultáneas en Clofán, ecografías en CIMA y hospedaje en Hotel Inntu Laureles.</p>
+                    </div>
+                    <div class="audit-card" style="border-top: 4px solid var(--rose);">
+                        <div style="font-weight: 700; color: var(--text-heading); margin-bottom: 6px;">🫀 B. Chequeo Cardiovascular & Urología</div>
+                        <div style="font-size: 0.78rem; color: var(--text-subtle); margin-bottom: 6px;"><code>RVA282 George Hernandez (2 Pax)</code> • Curazao</div>
+                        <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.45;">Sedán Aeroturex, entrega de SIM Claro en JMC, recolección de muestras de orina en Airbnb Ed. Park 42 y cita pre-quirúrgica en CES Oviedo.</p>
+                    </div>
+                    <div class="audit-card" style="border-top: 4px solid var(--amber);">
+                        <div style="font-weight: 700; color: var(--text-heading); margin-bottom: 6px;">🏥 C. Cirugía Especializada & Post-Op 12 Días</div>
+                        <div style="font-size: 0.78rem; color: var(--text-subtle); margin-bottom: 6px;"><code>RVA077 Alejandra Rumai (2 Pax)</code> • Curazao</div>
+                        <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.45;">12 días de estancia en Novelty Suites, consulta con Dr. Mosquera en HPTU Robledo, compras ortopédicas en Locatel y visitas diarias de enfermería.</p>
+                    </div>
+                    <div class="audit-card" style="border-top: 4px solid var(--purple);">
+                        <div style="font-weight: 700; color: var(--text-heading); margin-bottom: 6px;">🌙 D. Vuelo Nocturno Surinam & Lab a Domicilio</div>
+                        <div style="font-size: 0.78rem; color: var(--text-subtle); margin-bottom: 6px;"><code>CTZ306 Mohamed Chiragally (2 Pax)</code> • Surinam</div>
+                        <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.45;">Llegada por Copa Airlines a la 01:00 AM. Toma de muestras de sangre por Lab Echavarría a las 05:30 AM en la habitación del hotel para evitar traslados en ayunas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+<!-- =========================================================================== -->
+<!-- GLOSSARY & TERMS DICTIONARY DRAWER -->
+<!-- =========================================================================== -->
+<div class="drawer-overlay" id="glossaryDrawerOverlay" role="dialog" aria-modal="true" aria-labelledby="glossaryTitle">
+    <div class="drawer-panel" onclick="event.stopPropagation()">
+        <div class="drawer-header">
+            <div class="drawer-title" id="glossaryTitle"><i class="fa-solid fa-book-open" aria-hidden="true" style="color: var(--purple);"></i> Glosario & Diccionario Operativo</div>
+            <button class="hud-btn" id="close-glossary-btn" aria-label="Cerrar glosario de términos" title="Cerrar"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+        </div>
+        <p style="font-size: 0.84rem; color: var(--text-muted); margin-bottom: 12px;">
+            Guía completa de significado, origen y ejemplos reales de roles (<code>[PAX]</code>, <code>[COORD]</code>), códigos (<code>RVA</code>, <code>CTZ</code>, <code>CUPS</code>) y conceptos técnicos (<code>DTW</code>, <code>Spread</code>, <code>3NF</code>).
+        </p>
+        <div id="glossaryContent"></div>
+    </div>
+</div>
+
+<!-- =========================================================================== -->
+<!-- DIAGNOSTICS & SELF-TEST MODAL -->
+<!-- =========================================================================== -->
+<div class="drawer-overlay" id="diagDrawerOverlay" role="dialog" aria-modal="true" aria-labelledby="diagTitle">
+    <div class="drawer-panel" onclick="event.stopPropagation()">
+        <div class="drawer-header">
+            <div class="drawer-title" id="diagTitle"><i class="fa-solid fa-vial-circle-check" aria-hidden="true" style="color: var(--emerald);" aria-hidden="true"></i> Reporte de Diagnóstico y Salud (13/13)</div>
+            <button class="hud-btn" id="close-diag-btn" aria-label="Cerrar reporte de diagnóstico" title="Cerrar"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">
+            Resultado de la verificación automatizada en tiempo real de cada uno de los 13 diagramas vectoriales, viewBox, interactividad de botones HUD y escalado:
+        </p>
+        <table class="diag-table" id="diagTable">
+            <thead>
+                <tr>
+                    <th>Flujo Operativo</th>
+                    <th>Estado</th>
+                    <th>Dimensiones SVG</th>
+                    <th>Latencia</th>
+                </tr>
+            </thead>
+            <tbody id="diagTableBody"></tbody>
+        </table>
+        <div style="margin-top: 16px; padding: 12px; background: var(--emerald-light); border-radius: 8px; color: var(--emerald); font-size: 0.85rem; font-weight: 700;" id="diagSummaryBox">
+            <i class="fa-solid fa-circle-check" aria-hidden="true"></i> Todas las 13 vistas y gráficos vectoriales operan al 100% sin errores de sintaxis.
+        </div>
+    </div>
+</div>
+
+<!-- =========================================================================== -->
+<!-- EXECUTIVE SUMMARY & ROI CALCULATOR DRAWER -->
+<!-- =========================================================================== -->
+<div class="drawer-overlay" id="execDrawerOverlay" role="dialog" aria-modal="true" aria-labelledby="execTitle">
+    <div class="drawer-panel" onclick="event.stopPropagation()">
+        <div class="drawer-header">
+            <div class="drawer-title" id="execTitle"><i class="fa-solid fa-briefcase" aria-hidden="true" style="color: var(--emerald);" aria-hidden="true"></i> Resumen Ejecutivo & ROI</div>
+            <button class="hud-btn" id="close-exec-btn" aria-label="Cerrar resumen ejecutivo" title="Cerrar"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+        </div>
+
+        <div class="calc-box">
+            <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--text-heading); margin-bottom: 4px;">Simulador de Rentabilidad Mensual</h4>
+            <p style="font-size: 0.82rem; color: var(--text-muted);">Calcula los ingresos y margen bruto estimado según el volumen de pacientes:</p>
+            
+            <div class="calc-slider-wrap">
+                <div style="display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; margin-bottom: 4px;">
+                    <span>Pacientes por Mes:</span>
+                    <span id="paxCountLabel" style="color: var(--primary-text);">15 Pacientes</span>
+                </div>
+                <input type="range" id="paxSlider" min="5" max="60" value="15" aria-label="Control deslizante de número de pacientes por mes">
+            </div>
+
+            <div class="calc-kpis">
+                <div class="calc-kpi-item">
+                    <div class="calc-kpi-val" id="calcRevenueUsd">$37,500 USD</div>
+                    <div class="calc-kpi-lbl">Ingreso Bruto Facturado</div>
+                </div>
+                <div class="calc-kpi-item">
+                    <div class="calc-kpi-val" id="calcMarginUsd" style="color: var(--emerald);">$11,250 USD</div>
+                    <div class="calc-kpi-lbl">Margen Bruto (30% Spread)</div>
+                </div>
+            </div>
+        </div>
+
+        <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--text-heading); margin-bottom: 6px;">Bloc de Notas en Vivo de la Reunión</h4>
+        <textarea class="meeting-notes-area" id="meetingNotes" placeholder="Escribe notas, compromisos o preguntas de los clientes/stakeholders durante la presentación..." aria-label="Notas en vivo de la reunión"></textarea>
+        <button class="tool-btn" id="btnDownloadNotes" style="margin-top: 8px; justify-content: center; width: 100%;" aria-label="Descargar notas de la reunión"><i class="fa-solid fa-download" aria-hidden="true"></i> Descargar Notas de la Reunión (.md)</button>
+    </div>
+</div>
+
+<!-- =========================================================================== -->
+<!-- ACCESSIBILITY DRAWER -->
+<!-- =========================================================================== -->
+<div class="drawer-overlay" id="a11yDrawerOverlay" role="dialog" aria-modal="true" aria-labelledby="a11yTitle">
+    <div class="drawer-panel" onclick="event.stopPropagation()">
+        <div class="drawer-header">
+            <div class="drawer-title" id="a11yTitle"><i class="fa-solid fa-universal-access" aria-hidden="true" style="color: var(--teal);" aria-hidden="true"></i> Suite de Accesibilidad</div>
+            <button class="hud-btn" id="close-a11y-btn" aria-label="Cerrar suite de accesibilidad" title="Cerrar"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+        </div>
+
+        <div class="a11y-option-group">
+            <div class="a11y-opt-title" style="font-size: 0.85rem; font-weight: 700; color: var(--text-subtle); margin-bottom: 8px;">Tamaño de Texto</div>
+            <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+                <button class="tool-btn active" id="btnFontNormal" style="flex: 1; justify-content: center;" aria-label="Establecer tamaño de fuente normal">A Normal</button>
+                <button class="tool-btn" id="btnFontLarge" style="flex: 1; justify-content: center;" aria-label="Establecer tamaño de fuente grande">A+ Grande</button>
+                <button class="tool-btn" id="btnFontXLarge" style="flex: 1; justify-content: center;" aria-label="Establecer tamaño de fuente extra grande">A++ Extra</button>
+            </div>
+        </div>
+
+        <div class="a11y-option-group">
+            <div class="a11y-opt-title" style="font-size: 0.85rem; font-weight: 700; color: var(--text-subtle); margin-bottom: 8px;">Contraste Visual</div>
+            <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+                <button class="tool-btn active" id="btnContrastNormal" style="flex: 1; justify-content: center;" aria-label="Establecer contraste visual estándar">Estándar</button>
+                <button class="tool-btn" id="btnContrastHigh" style="flex: 1; justify-content: center;" aria-label="Establecer modo alto contraste WCAG AAA">Alto Contraste</button>
+            </div>
+        </div>
+
+        <div class="a11y-option-group">
+            <div class="a11y-opt-title" style="font-size: 0.85rem; font-weight: 700; color: var(--text-subtle); margin-bottom: 8px;">Tipografía para Dislexia</div>
+            <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+                <button class="tool-btn active" id="btnDyslexiaOff" style="flex: 1; justify-content: center;" aria-label="Desactivar fuente para dislexia">Estándar</button>
+                <button class="tool-btn" id="btnDyslexiaOn" style="flex: 1; justify-content: center;" aria-label="Activar fuente Atkinson Hyperlegible para dislexia">Atkinson Hyperlegible</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- =========================================================================== -->
+<!-- DATABASE INSPECTOR DRAWER -->
+<!-- =========================================================================== -->
+<div class="drawer-overlay" id="dbDrawerOverlay" role="dialog" aria-modal="true" aria-labelledby="dbTitle">
+    <div class="drawer-panel" onclick="event.stopPropagation()">
+        <div class="drawer-header">
+            <div class="drawer-title" id="dbTitle"><i class="fa-solid fa-database" aria-hidden="true" style="color: var(--primary);" aria-hidden="true"></i> Explorador BD (3NF SQLite)</div>
+            <button class="hud-btn" id="close-db-btn" aria-label="Cerrar explorador de base de datos" title="Cerrar"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+        </div>
+
+        <!-- Contenedor dinámico interactivo con pestañas de tablas 3NF y buscador -->
+        <div id="dbInspectorContent"></div>
+    </div>
+</div>
+
+<!-- =========================================================================== -->
+<!-- APPLICATION BOOTSTRAP (ES6 MODULE) -->
+<!-- =========================================================================== -->
+<script type="module" src="src/js/app.js"></script>
+
+</body>
+</html>

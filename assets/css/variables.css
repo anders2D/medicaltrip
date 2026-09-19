@@ -1,0 +1,134 @@
+/* =====================================================================
+   DESIGN SYSTEM & CSS TOKENS
+   Medical Trip Colombia S.A.S. — Design System v2.0
+   ===================================================================== */
+
+:root {
+    --font-base-size: 14px;
+    font-size: var(--font-base-size);
+}
+
+:root[data-theme="light"] {
+    --bg-body: #f8fafc;
+    --bg-surface: #ffffff;
+    --bg-surface-elevated: #ffffff;
+    --bg-card: #ffffff;
+    --bg-card-subtle: #f1f5f9;
+    --bg-sidebar: #ffffff;
+    --border-subtle: #e2e8f0;
+    --border-hover: #cbd5e1;
+    --border-active: #0284c7;
+
+    --text-heading: #0f172a;
+    --text-body: #334155;
+    --text-muted: #475569;
+    --text-subtle: #64748b;
+
+    --primary: #0284c7;
+    --primary-text: #0369a1;
+    --primary-light: #e0f2fe;
+    --primary-glow: rgba(2, 132, 199, 0.15);
+    
+    --teal: #0f766e;
+    --teal-light: #ccfbf1;
+    --emerald: #047857;
+    --emerald-light: #d1fae5;
+    --amber: #b45309;
+    --amber-light: #fef3c7;
+    --rose: #be123c;
+    --rose-light: #ffe4e6;
+    --purple: #6d28d9;
+    --purple-light: #ede9fe;
+
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02);
+    --shadow-md: 0 4px 16px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(15, 23, 42, 0.02);
+    --shadow-lg: 0 12px 32px -4px rgba(15, 23, 42, 0.08), 0 4px 12px -2px rgba(15, 23, 42, 0.03);
+}
+
+:root[data-theme="dark"] {
+    --bg-body: #0b0f19;
+    --bg-surface: #131b2e;
+    --bg-surface-elevated: #1e293b;
+    --bg-card: #131b2e;
+    --bg-card-subtle: #0b0f19;
+    --bg-sidebar: #131b2e;
+    --border-subtle: #1e293b;
+    --border-hover: #334155;
+    --border-active: #38bdf8;
+
+    --text-heading: #f8fafc;
+    --text-body: #cbd5e1;
+    --text-muted: #94a3b8;
+    --text-subtle: #64748b;
+
+    --primary: #38bdf8;
+    --primary-text: #38bdf8;
+    --primary-light: rgba(56, 189, 248, 0.14);
+    --primary-glow: rgba(56, 189, 248, 0.25);
+    
+    --teal: #2dd4bf;
+    --teal-light: rgba(45, 212, 191, 0.14);
+    --emerald: #34d399;
+    --emerald-light: rgba(52, 211, 153, 0.14);
+    --amber: #fbbf24;
+    --amber-light: rgba(251, 191, 36, 0.14);
+    --rose: #fb7185;
+    --rose-light: rgba(251, 113, 133, 0.14);
+    --purple: #c084fc;
+    --purple-light: rgba(192, 132, 252, 0.14);
+
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+    --shadow-md: 0 4px 16px -2px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 12px 32px -4px rgba(0, 0, 0, 0.5);
+}
+
+:root[data-contrast="high"] {
+    --bg-body: #ffffff !important;
+    --bg-surface: #ffffff !important;
+    --bg-surface-elevated: #ffffff !important;
+    --bg-card: #ffffff !important;
+    --bg-card-subtle: #f8fafc !important;
+    --bg-sidebar: #ffffff !important;
+    --border-subtle: #000000 !important;
+    --border-hover: #000000 !important;
+    --border-active: #000000 !important;
+    --text-heading: #000000 !important;
+    --text-body: #000000 !important;
+    --text-muted: #111827 !important;
+    --text-subtle: #1f2937 !important;
+    --primary: #0033aa !important;
+    --primary-text: #002288 !important;
+    --primary-light: #e6f0ff !important;
+    --teal: #005544 !important;
+    --teal-light: #e0f8f2 !important;
+    --emerald: #005a20 !important;
+    --emerald-light: #e0f8e8 !important;
+    --amber: #7a3800 !important;
+    --amber-light: #fff0d4 !important;
+    --rose: #8a0020 !important;
+    --rose-light: #ffe6eb !important;
+    --purple: #3f0088 !important;
+    --purple-light: #f0e6ff !important;
+}
+
+:root[data-font-size="large"] { --font-base-size: 16px; }
+:root[data-font-size="xlarge"] { --font-base-size: 18px; }
+
+:root[data-dyslexia="true"] body,
+:root[data-dyslexia="true"] button,
+:root[data-dyslexia="true"] input,
+:root[data-dyslexia="true"] textarea,
+:root[data-dyslexia="true"] select,
+:root[data-dyslexia="true"] h1,
+:root[data-dyslexia="true"] h2,
+:root[data-dyslexia="true"] h3,
+:root[data-dyslexia="true"] h4,
+:root[data-dyslexia="true"] .font-heading,
+:root[data-dyslexia="true"] .brand-title,
+:root[data-dyslexia="true"] .nav-link,
+:root[data-dyslexia="true"] .step-entry-title,
+:root[data-dyslexia="true"] .kpi-val {
+    font-family: 'Atkinson Hyperlegible', sans-serif !important;
+    letter-spacing: 0.02em;
+    line-height: 1.65;
+}

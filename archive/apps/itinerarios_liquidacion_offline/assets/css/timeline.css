@@ -1,0 +1,291 @@
+/**
+ * Medical Trip Colombia S.A.S. — Timeline & Stop Cards
+ * Interactive Day-by-Day Itinerary, FSM Status Badges, Microinteraction Triggers.
+ */
+
+/* Day Tabs Selector */
+.day-tabs-container {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  overflow-x: auto;
+  padding-bottom: var(--spacing-xs);
+  scrollbar-width: none;
+}
+
+.day-tabs-container::-webkit-scrollbar {
+  display: none;
+}
+
+.day-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: var(--btn-height-sm);
+  padding: 0 var(--spacing-md);
+  background-color: var(--bg-surface-elevated);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-full);
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+
+.day-tab:hover {
+  background-color: var(--bg-surface-highlight);
+  color: var(--text-primary);
+}
+
+.day-tab.is-active {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary-light);
+  color: #FFFFFF;
+  box-shadow: var(--shadow-glow-primary);
+}
+
+.day-tab-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: var(--radius-full);
+  background-color: rgba(0, 0, 0, 0.25);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+/* Timeline Stream & Stop Cards */
+.timeline-stream {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-xs);
+}
+
+.timeline-stream::before {
+  content: '';
+  position: absolute;
+  top: 16px;
+  bottom: 16px;
+  left: 20px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--color-primary), var(--border-card));
+  z-index: 1;
+}
+
+/* Individual Stop Card Container */
+.stop-card {
+  position: relative;
+  z-index: 2;
+  margin-left: 44px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.stop-card:hover {
+  border-color: var(--color-primary-light);
+  box-shadow: var(--shadow-md);
+}
+
+/* Timeline Node Marker */
+.stop-node-marker {
+  position: absolute;
+  left: -44px;
+  top: 16px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--bg-surface);
+  border: 3px solid var(--border-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  font-weight: 800;
+  z-index: 3;
+}
+
+/* FSM State Styling on Stop Cards & Node Markers */
+.stop-card[data-status="PROGRAMADO"] .stop-node-marker {
+  border-color: var(--color-info);
+  background-color: var(--color-info-bg);
+}
+
+.stop-card[data-status="EN_CAMINO"] {
+  border-left: 4px solid var(--color-warning);
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.05) 0%, var(--bg-surface) 100%);
+}
+.stop-card[data-status="EN_CAMINO"] .stop-node-marker {
+  border-color: var(--color-warning);
+  background-color: var(--color-warning);
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.6);
+}
+
+.stop-card[data-status="EN_SITIO"] {
+  border-left: 4px solid var(--color-cyan);
+  background: linear-gradient(135deg, rgba(6, 182, 212, 0.08) 0%, var(--bg-surface) 100%);
+}
+.stop-card[data-status="EN_SITIO"] .stop-node-marker {
+  border-color: var(--color-cyan);
+  background-color: var(--color-cyan);
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.6);
+}
+
+.stop-card[data-status="COMPLETADO"] {
+  border-left: 4px solid var(--color-success);
+}
+.stop-card[data-status="COMPLETADO"] .stop-node-marker {
+  border-color: var(--color-success);
+  background-color: var(--color-success);
+  color: #FFFFFF;
+}
+
+.stop-card[data-status="CANCELADO"] {
+  border-left: 4px solid var(--color-danger);
+  opacity: 0.7;
+}
+.stop-card[data-status="CANCELADO"] .stop-node-marker {
+  border-color: var(--color-danger);
+  background-color: var(--color-danger);
+}
+
+/* Stop Card Header */
+.stop-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.stop-time-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-family-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  background-color: var(--bg-surface-elevated);
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--border-card);
+}
+
+.stop-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.stop-subtitle {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.stop-clinic-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-primary-light);
+  font-weight: 600;
+}
+
+/* Assigned Field Actors Chips */
+.stop-actors-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.actor-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  background-color: var(--bg-surface-highlight);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.actor-chip-drv { color: #F59E0B; border: 1px solid rgba(245, 158, 11, 0.3); }
+.actor-chip-guia { color: #818CF8; border: 1px solid rgba(99, 102, 241, 0.3); }
+.actor-chip-nurse { color: #34D399; border: 1px solid rgba(16, 185, 129, 0.3); }
+.actor-chip-fin { color: #38BDF8; border: 1px solid rgba(2, 132, 199, 0.3); }
+
+/* Stop Meta Verification Badges (GPS, Signature, Receipt) */
+.stop-verifications-row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+  padding-top: 4px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.verification-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: var(--radius-xs);
+}
+
+.verification-tag.is-verified {
+  background-color: var(--color-success-bg);
+  color: var(--color-success-light);
+  border: 1px solid var(--color-success-border);
+}
+
+.verification-tag.is-pending {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--text-muted);
+  border: 1px dashed var(--border-card);
+}
+
+/* Interactive Action Buttons inside Stop Cards */
+.stop-actions-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+  margin-top: var(--spacing-xs);
+  padding-top: var(--spacing-sm);
+  border-top: 1px solid var(--border-card);
+}
+
+.fsm-action-group {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.microinteraction-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}

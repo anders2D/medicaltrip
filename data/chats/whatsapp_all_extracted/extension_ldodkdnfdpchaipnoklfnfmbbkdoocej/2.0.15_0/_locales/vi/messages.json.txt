@@ -1,0 +1,14 @@
+================================================================================
+ARCHIVO: messages.json
+ORIGEN:  c:\Users\mayra\projects\Medicina\whatsapp_business_backup\extension_ldodkdnfdpchaipnoklfnfmbbkdoocej\2.0.15_0\_locales\vi\messages.json
+TAMAÑO:  319 bytes
+================================================================================
+
+{
+   "desc": {
+      "message": "Xuất trò chuyện WhatsApp kèm đa phương tiện sang HTML, lưu số nhóm & liên hệ sang Excel. Nội bộ, an toàn, riêng tư. Không thu thập."
+   },
+   "name": {
+      "message": "WhatsApp Chat Backup - Tải xuống số WhatsApp sang Excel/CSV/VCard"
+   }
+}

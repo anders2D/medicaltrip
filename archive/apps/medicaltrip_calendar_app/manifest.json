@@ -1,0 +1,9 @@
+{
+  "name": "Medical Trip Itinerarios & Liquidación",
+  "short_name": "MT Calendar",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0284c7",
+  "description": "Gestión de Itinerarios Médicos en Terreno y Liquidación Financiera Automática (100% Offline)"
+}

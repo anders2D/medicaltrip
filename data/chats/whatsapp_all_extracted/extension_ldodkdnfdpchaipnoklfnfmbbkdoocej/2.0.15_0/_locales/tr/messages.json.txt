@@ -1,0 +1,14 @@
+================================================================================
+ARCHIVO: messages.json
+ORIGEN:  c:\Users\mayra\projects\Medicina\whatsapp_business_backup\extension_ldodkdnfdpchaipnoklfnfmbbkdoocej\2.0.15_0\_locales\tr\messages.json
+TAMAÑO:  284 bytes
+================================================================================
+
+{
+   "desc": {
+      "message": "WhatsApp sohbetini medya ile HTML'ye aktar, grup no ve kişileri Excel'e kaydet. Yerel, güvenli, gizli. Veri toplanmaz."
+   },
+   "name": {
+      "message": "WhatsApp Contacts Export - WhatsApp Numaralarını Excel/CSV/VCard'a İndir"
+   }
+}

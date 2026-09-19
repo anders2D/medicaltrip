@@ -1,0 +1,14 @@
+================================================================================
+ARCHIVO: messages.json
+ORIGEN:  c:\Users\mayra\projects\Medicina\whatsapp_business_backup\extension_ldodkdnfdpchaipnoklfnfmbbkdoocej\2.0.15_0\_locales\en\messages.json
+TAMAÑO:  280 bytes
+================================================================================
+
+{
+   "desc": {
+      "message": "Export WA chat with media to HTML, save group number & download contact to Excel. Local, Secure, Private. Zero data collected."
+   },
+   "name": {
+      "message": "WA Chat Export - Download WA Number to Excel/CSV/VCard - WAExport"
+   }
+}

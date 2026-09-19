@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta name="theme-color" content="#0284C7" />
+  <meta name="description" content="Gestión de Itinerarios Médicos en Terreno y Liquidación Financiera Automática 100% Offline para Medical Trip Colombia S.A.S." />
+  
+  <!-- PWA Capabilities & A2HS Protocol -->
+  <link rel="manifest" href="./manifest.json" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="MedicalTrip Field" />
+  <link rel="apple-touch-icon" href="./assets/icons/icon-192.png" />
+
+  <title>Medical Trip Colombia — Gestión de Itinerarios y Liquidación en Terreno</title>
+
+  <!-- High-Density Stylesheets -->
+  <link rel="stylesheet" href="./assets/css/variables.css" />
+  <link rel="stylesheet" href="./assets/css/base.css" />
+  <link rel="stylesheet" href="./assets/css/layout.css" />
+  <link rel="stylesheet" href="./assets/css/timeline.css" />
+  <link rel="stylesheet" href="./assets/css/balance-bar.css" />
+  <link rel="stylesheet" href="./assets/css/modals.css" />
+</head>
+<body>
+
+  <!-- Application Shell Header -->
+  <header class="app-header">
+    <div class="brand-section">
+      <div class="brand-logo" aria-hidden="true">MT</div>
+      <div class="brand-title">
+        <span class="brand-name">Medical Trip <small style="color: var(--color-primary-light); font-weight: 700;">Field</small></span>
+        <span class="brand-subtitle">Itinerarios & Liquidación Offline</span>
+      </div>
+    </div>
+
+    <!-- Archetype Switcher Mount Point -->
+    <div id="archetype-switcher-mount"></div>
+
+    <div class="header-actions">
+      <div class="status-indicator-group">
+        <span class="status-badge-offline" title="Local-First 100% Offline">
+          <span class="status-dot-pulse"></span>
+          <span>100% Offline</span>
+        </span>
+        <span class="persistence-badge" id="persistence-status-badge" title="Almacenamiento Persistente SQLite/IndexedDB">
+          <span>💾 Persistente</span>
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Master-Detail 60/40 Split-View Grid -->
+  <main class="main-content">
+    <div class="split-view-container">
+      
+      <!-- Left Pane: Master (Interactive Itinerary Timeline & FSM) -->
+      <section class="left-pane" aria-label="Cronograma de Itinerario Médico">
+        <div id="itinerary-timeline-mount"></div>
+      </section>
+
+      <!-- Right Pane: Detail (Financial Settlement, KPIs & Balance Bar) -->
+      <section class="right-pane mobile-settlement-drawer" id="mobile-settlement-drawer" aria-label="Liquidación Financiera y KPIs">
+        
+        <!-- Mobile Drawer Handle Bar -->
+        <div class="drawer-handle-bar" id="drawer-handle-bar">
+          <div class="drawer-handle-indicator"></div>
+          <div class="drawer-summary-pill">
+            <span>📊 Liquidación Financiera</span>
+          </div>
+          <button class="btn btn-outline btn-sm" id="btn-toggle-mobile-drawer" style="min-width: 40px; min-height: 40px; padding: 0;">
+            ▲
+          </button>
+        </div>
+
+        <div id="settlement-balance-mount"></div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Interactive Modals Mount Points -->
+  <div id="gps-modal-mount"></div>
+  <div id="ocr-modal-mount"></div>
+  <div id="signature-modal-mount"></div>
+  <div id="audit-modal-mount"></div>
+
+  <!-- Main Application Entrypoint -->
+  <script type="module" src="./src/app.js"></script>
+
+  <!-- Service Worker Registration Script -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./service-worker.js')
+          .then((reg) => {
+            console.log('[PWA] Service Worker registrado exitosamente con scope:', reg.scope);
+          })
+          .catch((err) => {
+            console.warn('[PWA] Service Worker falló en registrarse (ignorable en pruebas):', err.message);
+          });
+      });
+    }
+  </script>
+
+</body>
+</html>

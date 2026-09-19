@@ -1,0 +1,65 @@
+[
+  {
+    "metadata": {
+      "extracted_at": "2026-09-11T20:20:29.710Z",
+      "source_file": "uploaded_media_1789157757060.png",
+      "raw_header": "RVA171-4-Rodrigues/Catia Mrs Reporte Lunes 10 de Junio de 2026",
+      "status": "EXTRACTED"
+    },
+    "caso": {
+      "codigo_rva": "RVA171-4",
+      "paciente_nombre": "Catia Rodrigues",
+      "paciente_display": "Rodrigues/Catia Mrs",
+      "fecha_reporte": "2026-06-10",
+      "dia_semana": "Lunes",
+      "hora_envio_detectada": "16:34"
+    },
+    "horario": {
+      "hora_inicio": "14:00",
+      "hora_salida": "18:00",
+      "total_horas": 4,
+      "tipo_jornada": "DIURNA"
+    },
+    "traslados": [
+      {
+        "id_trayecto": 1,
+        "origen": "CC Oviedo (Poblado)",
+        "origen_zona": "Poblado",
+        "destino": "INNTU Hotel (Laureles)",
+        "destino_zona": "Laureles",
+        "tarifa_oficial_estimada_cop": 35000
+      },
+      {
+        "id_trayecto": 2,
+        "origen": "INNTU Hotel (Laureles)",
+        "origen_zona": "Laureles",
+        "destino": "Clínica Clofán (Poblado)",
+        "destino_zona": "Poblado",
+        "tarifa_oficial_estimada_cop": 35000
+      }
+    ],
+    "gastos": [
+      {
+        "id_gasto": 1,
+        "categoria": "PARQUEADERO",
+        "descripcion": "Parqueadero: Clínica Clofán",
+        "lugar": "Clínica Clofán",
+        "monto_cop": 24300,
+        "monto_cents": 2430000,
+        "soporte_requerido": "FOTO_RECIBO"
+      },
+      {
+        "id_gasto": 2,
+        "categoria": "FARMACIA",
+        "descripcion": "4 tarritos de muestra para Orina/Coprologico",
+        "cantidad": 4,
+        "monto_cop": 8320,
+        "monto_cents": 832000,
+        "precio_unitario_cop": 2080,
+        "soporte_requerido": "FOTO_FACTURA"
+      }
+    ],
+    "totales_gastos_caja_menor_cop": 32620,
+    "raw_text": "Horario\nHora de inicio de turno: 14:00\nhora de salida de turno: 18:00\nTotal horas trabajadas: 4 horas\n\nTraslados:\nCC Oviedo (Poblado) - INNTU Hotel (Laureles)\n\nINNTU Hotel (Laureles) - Clínica Clofán (Poblado)\n\nGastos:\n\nParqueadero: Clínica Clofán $24.300\n\nFarmacia: 4 tarritos de muestra para Orina/Coprologico - $8.320"
+  }
+]

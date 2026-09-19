@@ -1,0 +1,6 @@
+================================================================================
+EXTRACCIÓN DE PAQUETE APK: WhatsAppBusiness_official.apk
+TAMAÑO: 248,570 bytes
+================================================================================
+
+Error inspeccionando APK: File is not a zip file

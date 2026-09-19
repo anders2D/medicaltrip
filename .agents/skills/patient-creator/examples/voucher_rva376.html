@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voucher Médico RVA376 - Natalie Monica Bito</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+    @page {
+      size: A4 portrait;
+      margin: 8mm 12mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    body {
+      background-color: #ffffff;
+      color: #0f172a;
+      line-height: 1.35;
+      font-size: 11px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #0284c7;
+      padding-bottom: 8px;
+      margin-bottom: 10px;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-badge {
+      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+      color: #ffffff;
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .company-info h1 {
+      font-size: 16px;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.3px;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+
+    .company-info p {
+      font-size: 9.5px;
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    .voucher-badge {
+      text-align: right;
+    }
+
+    .voucher-code {
+      display: inline-block;
+      background: #f0fdf4;
+      border: 1.5px solid #22c55e;
+      color: #15803d;
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+    }
+
+    .voucher-sub {
+      font-size: 8.5px;
+      color: #64748b;
+      margin-top: 2px;
+      font-weight: 600;
+    }
+
+    /* Section Cards */
+    .section-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #0369a1;
+      letter-spacing: 0.4px;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 9px 12px;
+    }
+
+    .card-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 2.5px 0;
+      border-bottom: 1px dashed #e2e8f0;
+    }
+
+    .card-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .card-label {
+      color: #64748b;
+      font-size: 10px;
+      font-weight: 500;
+    }
+
+    .card-value {
+      color: #0f172a;
+      font-size: 10px;
+      font-weight: 700;
+      text-align: right;
+    }
+
+    /* Itinerary Table */
+    .timeline {
+      margin-bottom: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9.5px;
+    }
+
+    th {
+      background: #0f172a;
+      color: #ffffff;
+      text-align: left;
+      padding: 5px 8px;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 8.5px;
+      letter-spacing: 0.3px;
+    }
+
+    th:first-child {
+      border-top-left-radius: 5px;
+    }
+    th:last-child {
+      border-top-right-radius: 5px;
+    }
+
+    td {
+      padding: 4.5px 8px;
+      border-bottom: 1px solid #e2e8f0;
+      vertical-align: middle;
+      line-height: 1.3;
+    }
+
+    tr:nth-child(even) {
+      background: #f8fafc;
+    }
+
+    .day-badge {
+      background: #e0f2fe;
+      color: #0369a1;
+      font-weight: 700;
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-size: 8.5px;
+      display: inline-block;
+    }
+
+    .status-tag {
+      background: #ecfdf5;
+      color: #047857;
+      border: 1px solid #a7f3d0;
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-weight: 600;
+      font-size: 8px;
+    }
+
+    /* Finance Box */
+    .finance-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .ledger-card {
+      background: #ffffff;
+      border: 1.5px solid #0284c7;
+      border-radius: 6px;
+      padding: 8px 10px;
+    }
+
+    .ledger-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 2px 0;
+      font-size: 9.5px;
+    }
+
+    .ledger-total {
+      margin-top: 4px;
+      padding-top: 4px;
+      border-top: 1.5px solid #0f172a;
+      font-size: 11px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    /* Footer & Seal */
+    .footer {
+      border-top: 1px solid #cbd5e1;
+      padding-top: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      font-size: 8px;
+      color: #64748b;
+    }
+
+    .seal-box {
+      font-family: monospace;
+      background: #f1f5f9;
+      padding: 4px 8px;
+      border-radius: 4px;
+      border: 1px solid #cbd5e1;
+      font-size: 7.5px;
+      max-width: 470px;
+      line-height: 1.2;
+    }
+
+    .qr-stub {
+      text-align: right;
+    }
+
+    .qr-box {
+      border: 1px solid #94a3b8;
+      padding: 2px 6px;
+      border-radius: 3px;
+      background: #ffffff;
+      font-weight: 700;
+      color: #0284c7;
+      display: inline-block;
+      margin-bottom: 2px;
+      font-size: 8.5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <div class="logo-container">
+        <div class="logo-badge">MT</div>
+        <div class="company-info">
+          <h1>Medical Trip Colombia S.A.S.</h1>
+          <p>Operador Especializado en Salud & Turismo Médico | Medellín, Colombia</p>
+          <p>NIT: 901.482.319-4 • WhatsApp Oficial: +57 300 812 4499</p>
+        </div>
+      </div>
+      <div class="voucher-badge">
+        <div class="voucher-code">RVA376</div>
+        <div class="voucher-sub">VOUCHER & HOJA DE RUTA</div>
+      </div>
+    </div>
+
+    <!-- Info Grid -->
+    <div class="grid-2">
+      <!-- Paciente -->
+      <div class="card">
+        <div class="section-title">👤 Datos del Paciente & Titular</div>
+        <div class="card-row">
+          <span class="card-label">Paciente Titular:</span>
+          <span class="card-value">Natalie Monica Bito e/v Rumai</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Pasaporte:</span>
+          <span class="card-value">NP54RL234 (Reino Países Bajos)</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Fecha Nacimiento:</span>
+          <span class="card-value">03 Mayo 1967 (59 años)</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Origen / Residencia:</span>
+          <span class="card-value">Curaçao 🇨🇼</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Acompañante:</span>
+          <span class="card-value">Alci Amundaray Rumai</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Idioma de Atención:</span>
+          <span class="card-value">Papiamento / Holandés / Español</span>
+        </div>
+      </div>
+
+      <!-- Logística & Estadía -->
+      <div class="card">
+        <div class="section-title">✈️ Logística & Hospedaje</div>
+        <div class="card-row">
+          <span class="card-label">Fecha de Llegada:</span>
+          <span class="card-value">15 de Octubre de 2026</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Vuelo Arribo:</span>
+          <span class="card-value">Arajet DM-101 (CUR &rarr; MDE)</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Fecha de Retorno:</span>
+          <span class="card-value">20 de Octubre de 2026</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Hospedaje Asignado:</span>
+          <span class="card-value">HOTEL 1616 Poblado</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Flota de Traslados:</span>
+          <span class="card-value">Aeroturex Flota Médica Privada</span>
+        </div>
+        <div class="card-row">
+          <span class="card-label">Asistencia al Viajero:</span>
+          <span class="card-value">Póliza Colasistencia Integral (2 Pax)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Itinerario Clínico -->
+    <div class="timeline">
+      <div class="section-title">🩺 Itinerario Clínico & Operativo (Chequeo Ejecutivo 5D)</div>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 12%;">Fecha / Día</th>
+            <th style="width: 14%;">Hora</th>
+            <th style="width: 44%;">Actividad / Procedimiento Clínico</th>
+            <th style="width: 18%;">Sede / Ubicación</th>
+            <th style="width: 12%;">Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="day-badge">DÍA 1</span> 15/10</td>
+            <td>14:30 - 16:30</td>
+            <td><strong>Recepción Aeropuerto JMC</strong> & Traslado privado al Hotel 1616. Entrega de SIM Claro 80GB y orientación.</td>
+            <td>Aeropuerto JMC &rarr; Hotel</td>
+            <td><span class="status-tag">CONFIRMADO</span></td>
+          </tr>
+          <tr>
+            <td><span class="day-badge">DÍA 2</span> 16/10</td>
+            <td>05:30 - 06:30</td>
+            <td><strong>Toma Domiciliaria de Laboratorio en Ayunas:</strong> Cuadro hemático, perfil lipídico, glucemia, función hepática/renal, TSH.</td>
+            <td>Habitación Hotel (Echavarría)</td>
+            <td><span class="status-tag">CONFIRMADO</span></td>
+          </tr>
+          <tr>
+            <td><span class="day-badge">DÍA 2</span> 16/10</td>
+            <td>09:00 - 12:30</td>
+            <td><strong>Imágenes Diagnósticas:</strong> Ecografía abdominal total y Rayos X de tórax. Con acompañamiento bilingüe presencial.</td>
+            <td>Clínica Aliada / Dinámica</td>
+            <td><span class="status-tag">CONFIRMADO</span></td>
+          </tr>
+          <tr>
+            <td><span class="day-badge">DÍA 3</span> 17/10</td>
+            <td>08:30 - 12:00</td>
+            <td><strong>Evaluación Cardiovascular Integral:</strong> Electrocardiograma de 12 derivaciones, Ecocardiograma Doppler / Prueba de Esfuerzo.</td>
+            <td>Cardio VID / Las Américas</td>
+            <td><span class="status-tag">CONFIRMADO</span></td>
+          </tr>
+          <tr>
+            <td><span class="day-badge">DÍA 4</span> 18/10</td>
+            <td>10:00 - 12:30</td>
+            <td><strong>Valoración Especializada & Oftalmología:</strong> Consulta de medicina interna, agudeza visual y fondo de ojo.</td>
+            <td>Clofán / Torre Médica</td>
+            <td><span class="status-tag">CONFIRMADO</span></td>
+          </tr>
+          <tr>
+            <td><span class="day-badge">DÍA 5</span> 19/10</td>
+            <td>11:00 - 13:00</td>
+            <td><strong>Cierre de Resultados & Fit-to-Fly:</strong> Consolidación de informe médico, recomendaciones y emisión de certificado de vuelo.</td>
+            <td>Sede Médica Central</td>
+            <td><span class="status-tag">CONFIRMADO</span></td>
+          </tr>
+          <tr>
+            <td><span class="day-badge">DÍA 6</span> 20/10</td>
+            <td>14:00 - 17:00</td>
+            <td><strong>Check-out & Traslado de Retorno:</strong> Hotel 1616 &rarr; Aeropuerto JMC para vuelo internacional de regreso a Curazao.</td>
+            <td>Hotel &rarr; Aeropuerto JMC</td>
+            <td><span class="status-tag">CONFIRMADO</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Financial Ledger -->
+    <div class="finance-grid">
+      <div class="ledger-card">
+        <div class="section-title">💳 Estado de Cuenta & Balance Determinista (BigInt)</div>
+        <div class="ledger-row">
+          <span>Paquete Chequeo Médico Ejecutivo & Diagnósticos:</span>
+          <strong>$ 1.650.000 COP</strong>
+        </div>
+        <div class="ledger-row">
+          <span>Flota Privada Aeroturex (Aeropuerto In/Out + Clínicos):</span>
+          <strong>$ 450.000 COP</strong>
+        </div>
+        <div class="ledger-row">
+          <span>Acompañamiento Bilingüe Personalizado ($15.500/h):</span>
+          <strong>$ 242.000 COP</strong>
+        </div>
+        <div class="ledger-row">
+          <span>SIM Claro 80GB + Pólizas Colasistencia (2 Pax):</span>
+          <strong>$ 150.000 COP</strong>
+        </div>
+        <div class="ledger-row" style="color: #15803d; font-weight: 600;">
+          <span>(-) Anticipo / Depósito Registrado (Bancolombia):</span>
+          <strong>-$ 1.500.000 COP</strong>
+        </div>
+        <div class="ledger-row ledger-total">
+          <span>Balance Neto Pendiente al Arribo:</span>
+          <span style="color: #0284c7;">$ 992.000 COP (~$ 250 USD)</span>
+        </div>
+      </div>
+
+      <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+        <div>
+          <div class="section-title">📱 Portal de Autogestión</div>
+          <p style="font-size: 9.5px; color: #475569; margin-bottom: 6px;">
+            El paciente y acompañante pueden consultar su itinerario en tiempo real, chofer asignado y reportes médicos desde su móvil.
+          </p>
+          <div class="card-row">
+            <span class="card-label">Token de Acceso:</span>
+            <span class="card-value" style="color: #0284c7;">INV-2026-4332</span>
+          </div>
+          <div class="card-row">
+            <span class="card-label">Línea de Asistencia:</span>
+            <span class="card-value">+57 300 812 4499</span>
+          </div>
+        </div>
+        <div style="margin-top: 6px; text-align: center;">
+          <span style="font-size: 8.5px; background: #e0f2fe; color: #0369a1; padding: 3px 6px; border-radius: 4px; font-weight: 600;">
+            ✓ Sincronizado en Supabase Cloud
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="seal-box">
+        <strong>SELLO CRIPTOGRÁFICO DE AUDITORÍA & INTEGRIDAD</strong><br>
+        SHA-256: 7ec3024d97074b9ea0588fb09706d392-RVA376-CONFIRMED<br>
+        Medical Trip Colombia S.A.S. • Registro Nacional de Turismo • OCPM Protocol Engine
+      </div>
+      <div class="qr-stub">
+        <div class="qr-box">RVA376 • VERIFICADO</div>
+        <div>Firma: Dirección Operativa & Médica</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

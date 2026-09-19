@@ -1,0 +1,261 @@
+/**
+ * Medical Trip Colombia S.A.S. — Layout & Split-View Grid
+ * 60/40 Master-Detail Desktop Split, Mobile Collapsible Bottom Drawer.
+ */
+
+/* Top Navigation Header */
+.app-header {
+  height: 64px;
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--spacing-lg);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: var(--shadow-sm);
+}
+
+.brand-section {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background: linear-gradient(135deg, var(--color-primary), #0284C7);
+  border-radius: var(--radius-sm);
+  color: #FFFFFF;
+  font-weight: 900;
+  font-size: 1.2rem;
+  box-shadow: var(--shadow-glow-primary);
+}
+
+.brand-title {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-name {
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.brand-subtitle {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.status-indicator-group {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.status-badge-offline {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background-color: rgba(16, 185, 129, 0.12);
+  border: 1px solid var(--color-success-border);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-success-light);
+}
+
+.status-dot-pulse {
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-success);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--color-success);
+}
+
+.persistence-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background-color: rgba(99, 102, 241, 0.12);
+  border: 1px solid var(--color-info-border);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-info-light);
+}
+
+/* Master-Detail Split-View Container (Desktop 60 / 40) */
+.main-content {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  height: calc(100vh - 64px);
+}
+
+.split-view-container {
+  display: grid;
+  grid-template-columns: 60fr 40fr;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Left Pane: Master (Itinerary & Schedule Timeline) */
+.left-pane {
+  background-color: var(--bg-app);
+  border-right: 1px solid var(--border-subtle);
+  overflow-y: auto;
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.pane-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
+
+.pane-title-group h2 {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+/* Right Pane: Detail (Financial Settlement, KPIs & Balance Bar) */
+.right-pane {
+  background-color: var(--bg-surface);
+  overflow-y: auto;
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+/* Mobile Collapsible Bottom Drawer */
+.mobile-drawer-toggle {
+  display: none;
+}
+
+.mobile-settlement-drawer {
+  display: contents;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+  .main-content {
+    height: auto;
+    min-height: calc(100vh - 64px);
+    overflow: visible;
+  }
+
+  .split-view-container {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    overflow: visible;
+  }
+
+  .left-pane {
+    border-right: none;
+    padding: var(--spacing-md);
+    overflow: visible;
+    padding-bottom: 90px; /* space for mobile toggle bar */
+  }
+
+  .mobile-settlement-drawer {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 40;
+    background-color: var(--bg-surface);
+    border-top: 2px solid var(--color-primary);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    box-shadow: var(--shadow-xl);
+    transform: translateY(calc(100% - 64px));
+    transition: transform var(--transition-normal);
+    max-height: 85vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mobile-settlement-drawer.is-open {
+    transform: translateY(0);
+  }
+
+  .drawer-handle-bar {
+    height: 64px;
+    padding: 0 var(--spacing-md);
+    background-color: var(--bg-surface-elevated);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    border-bottom: 1px solid var(--border-subtle);
+    user-select: none;
+  }
+
+  .drawer-handle-indicator {
+    width: 36px;
+    height: 4px;
+    background-color: var(--text-muted);
+    border-radius: var(--radius-full);
+    margin: 0 auto 6px auto;
+  }
+
+  .drawer-summary-pill {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-weight: 700;
+  }
+
+  .right-pane {
+    padding: var(--spacing-md);
+    overflow-y: auto;
+    flex: 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-header {
+    padding: 0 var(--spacing-sm);
+  }
+
+  .brand-subtitle,
+  .persistence-badge {
+    display: none;
+  }
+
+  .left-pane {
+    padding: var(--spacing-sm);
+  }
+}

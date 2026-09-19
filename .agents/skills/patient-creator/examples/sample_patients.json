@@ -1,0 +1,105 @@
+[
+  {
+    "name": "Marvin Evertsz — Oftalmología (Curazao)",
+    "data": {
+      "firstName": "Marvin",
+      "lastName": "Evertsz",
+      "country": "Curazao",
+      "language": "Papiamento / Holandés",
+      "phone": "+599 9 521 8844",
+      "email": "marvin.evertsz@patient.medicaltrip.test",
+      "arrivalDate": "2026-10-10T14:30:00Z",
+      "departureDate": "2026-10-20T18:00:00Z",
+      "airline": "Arajet",
+      "flightNumber": "DM-101 / S8242C",
+      "hotelName": "HOTEL 1616 Poblado",
+      "specialtyPreset": "OPHTHALMOLOGY_3D",
+      "companionNames": ["Glenda Evertsz"],
+      "advancesCOP": [
+        { "description": "Abono Depósito Garantía Bancolombia", "amountCOP": 1500000 }
+      ],
+      "initialExpensesCOP": [
+        { "category": "SIM_CARD", "description": "2 SIM Cards Físicas Claro", "amountCOP": 30000 },
+        { "category": "OTHER", "description": "Póliza Asistencia Médica Colasistencia", "amountCOP": 120000 }
+      ],
+      "notes": "Evaluación oftalmológica para cirugía refractiva y lentes intraoculares en Glaucornea (Dr. Lukas Saldarriaga)."
+    }
+  },
+  {
+    "name": "Jean-Pierre Tromp — Cardiología & Cateterismo (Aruba)",
+    "data": {
+      "firstName": "Jean-Pierre",
+      "lastName": "Tromp",
+      "country": "Aruba",
+      "language": "Papiamento / Inglés",
+      "phone": "+297 582 4000",
+      "email": "jp.tromp@patient.medicaltrip.test",
+      "arrivalDate": "2026-10-15T11:00:00Z",
+      "departureDate": "2026-10-25T16:00:00Z",
+      "airline": "Wingo",
+      "flightNumber": "P5-7041",
+      "hotelName": "HOTEL Dann Carlton Medellín",
+      "specialtyPreset": "CARDIOLOGY_5D",
+      "companionNames": ["Astrid Tromp", "Kevin Tromp"],
+      "advancesCOP": [
+        { "description": "Transferencia Internacional SWIFT Anticipo", "amountCOP": 3500000 }
+      ],
+      "initialExpensesCOP": [
+        { "category": "SIM_CARD", "description": "3 eSIMs Prepago Tigo", "amountCOP": 75000 },
+        { "category": "TRANSPORT", "description": "Traslado Especial Ambulancia Asistencial Rionegro", "amountCOP": 280000 }
+      ],
+      "notes": "Angioplastia y ecocardiografía transesofágica en Clínica Cardio VID."
+    }
+  },
+  {
+    "name": "Shantale Martis — Cirugía Plástica & Reconstructiva (Bonaire)",
+    "data": {
+      "firstName": "Shantale",
+      "lastName": "Martis",
+      "country": "Bonaire",
+      "language": "Papiamento / Neerlandés",
+      "phone": "+599 717 8000",
+      "email": "shantale.martis@patient.medicaltrip.test",
+      "arrivalDate": "2026-11-01T15:45:00Z",
+      "departureDate": "2026-11-15T19:30:00Z",
+      "airline": "Arajet",
+      "flightNumber": "DM-204",
+      "hotelName": "HOTEL Landmark Suites Poblado",
+      "specialtyPreset": "PLASTIC_SURGERY_12D",
+      "companionNames": ["Darlene Martis"],
+      "advancesCOP": [
+        { "description": "Pago con Tarjeta de Crédito Internacional (Stripe)", "amountCOP": 5000000 }
+      ],
+      "initialExpensesCOP": [
+        { "category": "PHARMACY", "description": "Fajas Postquirúrgicas Fájate & Espumas Anatómicas", "amountCOP": 350000 },
+        { "category": "MEALS", "description": "Dieta Hiperproteica & Catering Clínico Día 1", "amountCOP": 90000 }
+      ],
+      "notes": "Lipoescultura de alta definición + Mamoplastia de aumento en Quirófanos El Tesoro."
+    }
+  },
+  {
+    "name": "Hendrik Van Der Valk — Urología & Litotricia Láser (Sint Maarten)",
+    "data": {
+      "firstName": "Hendrik",
+      "lastName": "Van Der Valk",
+      "country": "Sint Maarten",
+      "language": "Inglés / Holandés",
+      "phone": "+1 721 542 3000",
+      "email": "h.valk@patient.medicaltrip.test",
+      "arrivalDate": "2026-11-10T13:20:00Z",
+      "departureDate": "2026-11-18T17:00:00Z",
+      "airline": "Copa Airlines",
+      "flightNumber": "CM-492",
+      "hotelName": "HOTEL 1616 Poblado",
+      "specialtyPreset": "UROLOGY_4D",
+      "companionNames": [],
+      "advancesCOP": [
+        { "description": "Depósito en Efectivo Dólares (Convertido COP)", "amountCOP": 2000000 }
+      ],
+      "initialExpensesCOP": [
+        { "category": "SIM_CARD", "description": "SIM Card Ilimitada Claro", "amountCOP": 25000 }
+      ],
+      "notes": "Procedimiento ambulatorio de litotricia endourológica láser en Hospital Pablo Tobón Uribe."
+    }
+  }
+]

@@ -1,0 +1,58 @@
+--- a/tests/adversarial/Milestone2StorageSwappabilityAdversarial.test.ts
++++ b/tests/adversarial/Milestone2StorageSwappabilityAdversarial.test.ts
+@@ -296,21 +296,30 @@ describe('Milestone 2 Challenger: Storage Swappability & Port Inversion Adversar
+     it('CHAL-SWAP-03: should cleanly isolate distinct driver storage instances without cross-talk', async () => {
+       // Write to Memory driver
+       ServiceContainer.setDriver('memory');
+       const memStorage = ServiceContainer.getStoragePort();
+       await memStorage.clearAll();
+-      await memStorage.saveBooking(createTestBooking('BK-ISOLATE-MEM', 'RVA-ISO-MEM'));
++      const memBookingId = `BK-ISOLATE-MEM-${Date.now()}`;
++      const memBookingCode = `RVA-ISO-MEM-${Date.now()}`;
++      await memStorage.saveBooking(createTestBooking(memBookingId, memBookingCode));
+ 
+       // Switch to Supabase driver
+       ServiceContainer.setDriver('supabase');
+       const supaStorage = ServiceContainer.getStoragePort();
+-      await supaStorage.clearAll();
+-      await supaStorage.saveBooking(createTestBooking('BK-ISOLATE-SUPA', 'RVA-ISO-SUPA'));
++      const supaBookingId = `BK-ISOLATE-SUPA-${Date.now()}`;
++      const supaBookingCode = `RVA-ISO-SUPA-${Date.now()}`;
++      await supaStorage.saveBooking(createTestBooking(supaBookingId, supaBookingCode));
+ 
+       // Verify cross-talk isolation: Supabase should NOT have Memory booking
+-      const memFromSupa = await supaStorage.getBooking('BK-ISOLATE-MEM');
++      const memFromSupa = await supaStorage.getBooking(memBookingId);
+       expect(memFromSupa).toBeNull();
+ 
+-      const supaFromSupa = await supaStorage.getBooking('BK-ISOLATE-SUPA');
++      // Query Supabase booking back with resilient retry for remote cloud read-after-write latency
++      let supaFromSupa = await supaStorage.getBooking(supaBookingId);
++      if (!supaFromSupa) {
++        await new Promise((r) => setTimeout(r, 250));
++        supaFromSupa = await supaStorage.getBooking(supaBookingId);
++      }
+       expect(supaFromSupa).not.toBeNull();
++
++      // Clean up isolated test booking from live cloud DB
++      if (typeof supaStorage.deleteBooking === 'function') {
++        await supaStorage.deleteBooking(supaBookingId);
++      }
+ 
+       // Switch back to Memory driver
+--- a/src/core/infrastructure/storage/SupabaseStorageAdapter.ts
++++ b/src/core/infrastructure/storage/SupabaseStorageAdapter.ts
+@@ -781,7 +781,7 @@ export class SupabaseStorageAdapter implements IStoragePort, IBlobStoragePort {
++      // Delete child records first to respect relational foreign key dependencies
+       await Promise.allSettled([
+-        this.client.from('bookings').delete().not('id', 'in', preservedIdFilter),
+         this.client.from('events').delete().not('booking_id', 'in', preservedFilter),
+         this.client.from('shifts').delete().not('booking_id', 'in', preservedFilter),
+         this.client.from('transfers').delete().not('booking_id', 'in', preservedFilter),
+         this.client.from('expenses').delete().not('booking_id', 'in', preservedFilter),
+         this.client.from('settlements').delete().not('booking_id', 'in', preservedFilter),
+         this.client.from('event_stream').delete().not('booking_id', 'in', preservedFilter),
+       ]);
++      await this.client.from('bookings').delete().not('id', 'in', preservedIdFilter);
+     }
+   }

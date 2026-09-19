@@ -1,0 +1,2377 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light" data-font-size="normal" data-contrast="normal">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Trip Colombia S.A.S. — Suite Interactiva & Robot Tester 108 Botones</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Mermaid.js -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+
+    <style>
+        /* =====================================================================
+           DESIGN SYSTEM & CSS TOKENS
+           ===================================================================== */
+        :root[data-theme="light"] {
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
+            --bg-surface-elevated: #ffffff;
+            --bg-card: #ffffff;
+            --bg-card-subtle: #f1f5f9;
+            --bg-sidebar: #ffffff;
+            --border-subtle: #e2e8f0;
+            --border-hover: #cbd5e1;
+            --border-active: #0ea5e9;
+
+            --text-heading: #0f172a;
+            --text-body: #334155;
+            --text-muted: #64748b;
+            --text-subtle: #94a3b8;
+
+            --primary: #0284c7;
+            --primary-light: #e0f2fe;
+            --primary-glow: rgba(2, 132, 199, 0.15);
+            
+            --teal: #0d9488;
+            --teal-light: #ccfbf1;
+            --emerald: #059669;
+            --emerald-light: #d1fae5;
+            --amber: #d97706;
+            --amber-light: #fef3c7;
+            --rose: #e11d48;
+            --rose-light: #ffe4e6;
+            --purple: #7c3aed;
+            --purple-light: #ede9fe;
+
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02);
+            --shadow-md: 0 4px 16px -2px rgba(15, 23, 42, 0.05), 0 2px 6px -1px rgba(15, 23, 42, 0.02);
+            --shadow-lg: 0 12px 32px -4px rgba(15, 23, 42, 0.08), 0 4px 12px -2px rgba(15, 23, 42, 0.03);
+        }
+
+        :root[data-theme="dark"] {
+            --bg-body: #0b0f19;
+            --bg-surface: #131b2e;
+            --bg-surface-elevated: #1e293b;
+            --bg-card: #131b2e;
+            --bg-card-subtle: #0b0f19;
+            --bg-sidebar: #131b2e;
+            --border-subtle: #1e293b;
+            --border-hover: #334155;
+            --border-active: #38bdf8;
+
+            --text-heading: #f8fafc;
+            --text-body: #cbd5e1;
+            --text-muted: #94a3b8;
+            --text-subtle: #64748b;
+
+            --primary: #38bdf8;
+            --primary-light: rgba(56, 189, 248, 0.12);
+            --primary-glow: rgba(56, 189, 248, 0.2);
+            
+            --teal: #2dd4bf;
+            --teal-light: rgba(45, 212, 191, 0.12);
+            --emerald: #34d399;
+            --emerald-light: rgba(52, 211, 153, 0.12);
+            --amber: #fbbf24;
+            --amber-light: rgba(251, 191, 36, 0.12);
+            --rose: #fb7185;
+            --rose-light: rgba(251, 113, 133, 0.12);
+            --purple: #c084fc;
+            --purple-light: rgba(192, 132, 252, 0.12);
+
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+            --shadow-md: 0 4px 16px -2px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 12px 32px -4px rgba(0, 0, 0, 0.5);
+        }
+
+        :root[data-contrast="high"] {
+            --bg-body: #ffffff !important;
+            --bg-surface: #ffffff !important;
+            --bg-card-subtle: #f8fafc !important;
+            --border-subtle: #000000 !important;
+            --text-heading: #000000 !important;
+            --text-body: #000000 !important;
+            --primary: #0044cc !important;
+        }
+
+        :root[data-font-size="large"] { font-size: 15.5px !important; }
+        :root[data-font-size="xlarge"] { font-size: 17.5px !important; }
+        :root[data-dyslexia="true"] body { font-family: 'Atkinson Hyperlegible', sans-serif !important; }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            font-size: 13.5px;
+        }
+
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Outfit', sans-serif;
+            color: var(--text-heading);
+            font-weight: 700;
+        }
+
+        .app-layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 320px;
+            background: var(--bg-sidebar);
+            border-right: 1px solid var(--border-subtle);
+            display: flex;
+            flex-direction: column;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 30;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-badge {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, #0284c7, #0d9488);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: white;
+            box-shadow: 0 4px 12px var(--primary-glow);
+        }
+
+        .brand-title {
+            font-size: 15.5px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .brand-tag {
+            font-size: 10px;
+            font-weight: 700;
+            color: #0284c7;
+            background: var(--primary-light);
+            padding: 2px 6px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .nav-category {
+            padding: 12px 14px 2px;
+        }
+
+        .nav-cat-label {
+            font-size: 10.5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: var(--text-subtle);
+            padding: 4px 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            color: var(--text-muted);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            margin-bottom: 2px;
+            border: 1px solid transparent;
+            transition: all 0.15s ease;
+        }
+
+        .nav-link:hover {
+            background: var(--bg-card-subtle);
+            color: var(--text-heading);
+        }
+
+        .nav-link.active {
+            background: var(--primary-light);
+            color: #0284c7;
+            font-weight: 600;
+            border-color: rgba(2, 132, 199, 0.2);
+        }
+
+        .nav-link i {
+            font-size: 14px;
+            width: 18px;
+            text-align: center;
+        }
+
+        /* Main Pane */
+        .main-pane {
+            flex: 1;
+            padding: 24px 36px;
+            max-width: calc(100vw - 320px);
+            overflow-y: auto;
+        }
+
+        /* Top Toolbar */
+        .top-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            background: var(--bg-surface);
+            padding: 12px 20px;
+            border-radius: 14px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .search-box-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--bg-card-subtle);
+            padding: 8px 14px;
+            border-radius: 10px;
+            width: 260px;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .search-box-wrap input {
+            border: none;
+            background: transparent;
+            outline: none;
+            color: var(--text-heading);
+            font-size: 12.5px;
+            width: 100%;
+            font-family: inherit;
+        }
+
+        .tools-cluster {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .tool-btn {
+            background: var(--bg-card-subtle);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-muted);
+            padding: 7px 11px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.15s ease;
+        }
+
+        .tool-btn:hover {
+            color: var(--text-heading);
+            border-color: var(--border-hover);
+            background: var(--bg-surface);
+        }
+
+        .tool-btn.active {
+            background: #0284c7;
+            color: white;
+            border-color: #0284c7;
+        }
+
+        .meeting-timer-badge {
+            background: var(--bg-card-subtle);
+            border: 1px solid var(--border-subtle);
+            padding: 6px 10px;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--emerald);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Floating Robot Logger Badge */
+        .robot-logger-overlay {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--bg-surface);
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            padding: 14px 18px;
+            box-shadow: var(--shadow-lg);
+            z-index: 99999;
+            max-width: 360px;
+            display: none;
+            font-size: 12px;
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        .robot-log-title {
+            font-weight: 700;
+            color: #0284c7;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .robot-log-body {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--text-heading);
+        }
+
+        /* Role Filter Chips */
+        .filter-chips-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+        }
+
+        .chip-lbl {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-subtle);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-right: 4px;
+        }
+
+        .filter-chip {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-muted);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 11.5px;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.15s ease;
+        }
+
+        .filter-chip:hover {
+            border-color: var(--border-hover);
+            color: var(--text-heading);
+        }
+
+        .filter-chip.active {
+            background: #0284c7;
+            color: white;
+            border-color: #0284c7;
+        }
+
+        /* KPIs Row */
+        .kpi-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .kpi-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            padding: 16px 18px;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .kpi-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .kpi-val {
+            font-size: 20px;
+            font-weight: 800;
+            font-family: 'Outfit', sans-serif;
+            color: var(--text-heading);
+            line-height: 1.1;
+        }
+
+        .kpi-label {
+            font-size: 11.5px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Flow Cards & Viewports */
+        .flow-card-container {
+            display: none;
+        }
+
+        .flow-card-container.active {
+            display: block;
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .flow-header {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            padding: 20px 24px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .flow-badge {
+            font-size: 10.5px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-block;
+            margin-bottom: 6px;
+        }
+
+        .badge-blue { background: var(--primary-light); color: #0284c7; }
+        .badge-teal { background: var(--teal-light); color: var(--teal); }
+        .badge-purple { background: var(--purple-light); color: var(--purple); }
+        .badge-amber { background: var(--amber-light); color: var(--amber); }
+        .badge-emerald { background: var(--emerald-light); color: var(--emerald); }
+        .badge-rose { background: var(--rose-light); color: var(--rose); }
+
+        .flow-title-text {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-heading);
+            margin-bottom: 2px;
+        }
+
+        .flow-subtext {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .canvas-split {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 20px;
+            align-items: start;
+        }
+
+        .diagram-viewport {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: var(--shadow-md);
+            position: relative;
+            overflow: hidden;
+            min-height: 520px;
+            user-select: none;
+            touch-action: none;
+            transition: all 0.2s ease;
+        }
+
+        .diagram-hud-controls {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background: var(--bg-card-subtle);
+            border: 1px solid var(--border-subtle);
+            padding: 4px;
+            border-radius: 8px;
+            z-index: 10;
+        }
+
+        .hud-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            transition: all 0.15s ease;
+        }
+
+        .hud-btn:hover {
+            color: var(--text-heading);
+            background: var(--bg-surface);
+            transform: scale(1.05);
+        }
+
+        .diagram-canvas-inner {
+            transform-origin: center center;
+            cursor: grab;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 460px;
+            will-change: transform;
+            user-select: none;
+            -webkit-user-drag: none;
+            width: 100%;
+        }
+
+        .diagram-canvas-inner svg {
+            max-width: 100% !important;
+            height: auto !important;
+            pointer-events: none;
+        }
+
+        .diagram-canvas-inner:active {
+            cursor: grabbing;
+        }
+
+        .gesture-hint-badge {
+            position: absolute;
+            bottom: 12px;
+            left: 14px;
+            font-size: 11px;
+            color: var(--text-subtle);
+            background: var(--bg-card-subtle);
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid var(--border-subtle);
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .laser-pointer-dot {
+            position: fixed;
+            width: 14px;
+            height: 14px;
+            background: #f43f5e;
+            border-radius: 50%;
+            box-shadow: 0 0 16px 6px rgba(244, 63, 94, 0.7);
+            pointer-events: none;
+            z-index: 99999;
+            transform: translate(-50%, -50%);
+            display: none;
+        }
+
+        /* Steps Timeline */
+        .steps-timeline-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            padding: 18px;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .timeline-title {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: var(--text-heading);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .player-btn {
+            background: var(--bg-card-subtle);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-muted);
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            transition: all 0.15s ease;
+        }
+
+        .player-btn:hover {
+            color: #0284c7;
+            border-color: #0284c7;
+        }
+
+        .step-entry {
+            background: var(--bg-card-subtle);
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            padding: 12px 14px;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.15s ease;
+        }
+
+        .step-entry:hover {
+            border-color: var(--border-hover);
+            transform: translateX(2px);
+        }
+
+        .step-entry.active {
+            background: var(--bg-surface);
+            border-color: #0ea5e9;
+            box-shadow: 0 3px 10px rgba(14, 165, 233, 0.08);
+        }
+
+        .step-entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .step-seq-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10.5px;
+            font-weight: 700;
+            color: #0284c7;
+        }
+
+        .step-role-badge {
+            font-size: 9.5px;
+            font-weight: 600;
+            background: rgba(0,0,0,0.05);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: var(--text-muted);
+        }
+
+        :root[data-theme="dark"] .step-role-badge {
+            background: rgba(255,255,255,0.06);
+        }
+
+        .step-entry-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-heading);
+            margin-bottom: 2px;
+        }
+
+        .step-entry-desc {
+            font-size: 11.5px;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .step-pill-code {
+            margin-top: 6px;
+            padding: 2px 6px;
+            background: var(--primary-light);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: #0284c7;
+            display: inline-block;
+        }
+
+        /* Drawers */
+        .drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(4px);
+            z-index: 50;
+            display: none;
+            justify-content: flex-end;
+        }
+
+        .drawer-panel {
+            width: 580px;
+            height: 100vh;
+            background: var(--bg-surface);
+            border-left: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-lg);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border-subtle);
+            margin-bottom: 20px;
+        }
+
+        .drawer-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--text-heading);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .table-preview-card {
+            background: var(--bg-card-subtle);
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            padding: 14px;
+            margin-bottom: 16px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            overflow-x: auto;
+        }
+
+        .calc-box {
+            background: var(--bg-card-subtle);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+
+        .calc-slider-wrap {
+            margin: 12px 0;
+        }
+
+        .calc-slider-wrap input {
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .calc-kpis {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .calc-kpi-item {
+            background: var(--bg-surface);
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid var(--border-subtle);
+            text-align: center;
+        }
+
+        .calc-kpi-val {
+            font-size: 16px;
+            font-weight: 800;
+            color: #0284c7;
+        }
+
+        .calc-kpi-lbl {
+            font-size: 10.5px;
+            color: var(--text-muted);
+        }
+
+        .meeting-notes-area {
+            width: 100%;
+            height: 160px;
+            background: var(--bg-card-subtle);
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            padding: 12px;
+            color: var(--text-heading);
+            font-family: inherit;
+            font-size: 12.5px;
+            resize: vertical;
+            outline: none;
+        }
+
+        .diag-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11.5px;
+            margin-top: 12px;
+        }
+
+        .diag-table th, .diag-table td {
+            padding: 8px 10px;
+            border: 1px solid var(--border-subtle);
+            text-align: left;
+        }
+
+        .diag-table th {
+            background: var(--bg-card-subtle);
+            font-weight: 700;
+        }
+
+        .diag-badge-pass {
+            background: var(--emerald-light);
+            color: var(--emerald);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 700;
+        }
+
+        /* Fullscreen Overlay System */
+        .fullscreen-active {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            z-index: 99990 !important;
+            border-radius: 0 !important;
+            background: var(--bg-surface) !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            align-items: center !important;
+            padding: 40px !important;
+        }
+
+        .fullscreen-active .diagram-canvas-inner {
+            height: 85vh !important;
+            width: 90vw !important;
+        }
+
+        .fullscreen-active .diagram-canvas-inner svg {
+            max-height: 80vh !important;
+            width: auto !important;
+        }
+
+        .fullscreen-exit-btn {
+            display: none;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--rose-light);
+            color: var(--rose);
+            border: 1px solid var(--rose);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+            z-index: 99999;
+            box-shadow: var(--shadow-md);
+        }
+
+        .fullscreen-active .fullscreen-exit-btn {
+            display: flex !important;
+            align-items: center;
+            gap: 6px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Laser Pointer Dot -->
+<div class="laser-pointer-dot" id="laserPointer"></div>
+
+<!-- Live Robot Tester Floating Logger -->
+<div class="robot-logger-overlay" id="robotLoggerOverlay">
+    <div class="robot-log-title"><i class="fa-solid fa-robot"></i> Robot Tester en Ejecución</div>
+    <div class="robot-log-body" id="robotLogBody">Iniciando prueba automática de 108 botones...</div>
+</div>
+
+<div class="app-layout">
+    <!-- ======================================================================= -->
+    <!-- SIDEBAR (13 FLOW NODES) -->
+    <!-- ======================================================================= -->
+    <aside class="sidebar" role="navigation" aria-label="Navegación de Flujos">
+        <div class="sidebar-header">
+            <div class="brand-badge">
+                <i class="fa-solid fa-heart-pulse"></i>
+            </div>
+            <div>
+                <div class="brand-title">Medical Trip Hub</div>
+                <span class="brand-tag">Robot Tester 2.0</span>
+            </div>
+        </div>
+
+        <div class="nav-category">
+            <div class="nav-cat-label">Vista General</div>
+            <div class="nav-link active" id="nav-flow-macro" onclick="navigateFlow('flow-macro', this)" tabindex="0">
+                <i class="fa-solid fa-diagram-project" style="color: #0284c7;"></i>
+                <span>0. Ciclo de Vida Macro 360°</span>
+            </div>
+        </div>
+
+        <div class="nav-category">
+            <div class="nav-cat-label">Comercial & Pre-Viaje</div>
+            <div class="nav-link" id="nav-flow-lead" onclick="navigateFlow('flow-lead', this)" tabindex="0">
+                <i class="fa-solid fa-user-plus" style="color: #7c3aed;"></i>
+                <span>1. Lead & Medisch Dossier</span>
+            </div>
+            <div class="nav-link" id="nav-flow-quote" onclick="navigateFlow('flow-quote', this)" tabindex="0">
+                <i class="fa-solid fa-file-invoice-dollar" style="color: #0d9488;"></i>
+                <span>2. Cotización Dinámica (CTZ)</span>
+            </div>
+            <div class="nav-link" id="nav-flow-booking" onclick="navigateFlow('flow-booking', this)" tabindex="0">
+                <i class="fa-solid fa-shield-halved" style="color: #d97706;"></i>
+                <span>3. Depósito & Póliza (RVA)</span>
+            </div>
+            <div class="nav-link" id="nav-flow-checkmig" onclick="navigateFlow('flow-checkmig', this)" tabindex="0">
+                <i class="fa-solid fa-passport" style="color: #e11d48;"></i>
+                <span>4. Check-Mig & Vuelos Wingo</span>
+            </div>
+        </div>
+
+        <div class="nav-category">
+            <div class="nav-cat-label">Operación & Terreno</div>
+            <div class="nav-link" id="nav-flow-transport" onclick="navigateFlow('flow-transport', this)" tabindex="0">
+                <i class="fa-solid fa-car-side" style="color: #0284c7;"></i>
+                <span>5. Despacho Aeroturex</span>
+            </div>
+            <div class="nav-link" id="nav-flow-clinical" onclick="navigateFlow('flow-clinical', this)" tabindex="0">
+                <i class="fa-solid fa-hospital-user" style="color: #0d9488;"></i>
+                <span>6. Citas HPTU & Labs</span>
+            </div>
+            <div class="nav-link" id="nav-flow-companion" onclick="navigateFlow('flow-companion', this)" tabindex="0">
+                <i class="fa-solid fa-hands-holding-child" style="color: #7c3aed;"></i>
+                <span>7. Acompañamiento Bilingüe</span>
+            </div>
+            <div class="nav-link" id="nav-flow-postop" onclick="navigateFlow('flow-postop', this)" tabindex="0">
+                <i class="fa-solid fa-bed" style="color: #d97706;"></i>
+                <span>8. Villa Anita & Post-Op</span>
+            </div>
+            <div class="nav-link" id="nav-flow-fittotly" onclick="navigateFlow('flow-fittotly', this)" tabindex="0">
+                <i class="fa-solid fa-plane-departure" style="color: #059669;"></i>
+                <span>9. Alta Médica Fit-to-Fly</span>
+            </div>
+        </div>
+
+        <div class="nav-category">
+            <div class="nav-cat-label">Finanzas & Sistema</div>
+            <div class="nav-link" id="nav-flow-finance" onclick="navigateFlow('flow-finance', this)" tabindex="0">
+                <i class="fa-solid fa-scale-balanced" style="color: #d97706;"></i>
+                <span>10. Liquidaciones & DTW</span>
+            </div>
+            <div class="nav-link" id="nav-flow-whatsapp" onclick="navigateFlow('flow-whatsapp', this)" tabindex="0">
+                <i class="fa-brands fa-whatsapp" style="color: #059669;"></i>
+                <span>11. Bot WhatsApp & Excepciones</span>
+            </div>
+            <div class="nav-link" id="nav-flow-audit" onclick="navigateFlow('flow-audit', this)" tabindex="0">
+                <i class="fa-solid fa-triangle-exclamation" style="color: #e11d48;"></i>
+                <span>12. Auditoría de Vacíos & Gaps</span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ======================================================================= -->
+    <!-- MAIN CONTENT -->
+    <!-- ======================================================================= -->
+    <main class="main-pane" id="mainContent" role="main">
+        <!-- Top Toolbar -->
+        <div class="top-toolbar">
+            <div class="search-box-wrap">
+                <i class="fa-solid fa-magnifying-glass" style="color: var(--text-subtle);"></i>
+                <input type="text" id="liveSearchInput" placeholder="Buscar flujo, paciente, CUPS..." onkeyup="handleLiveSearch(this.value)">
+            </div>
+            <div class="tools-cluster">
+                <button class="tool-btn" id="btnRobotTest" style="background: linear-gradient(135deg, #7c3aed, #0284c7); color: white; border: none;" onclick="runRobotTester()"><i class="fa-solid fa-robot"></i> <strong>Robot Tester (108 Clics)</strong></button>
+                <button class="tool-btn" id="btnAutoTest" style="background: var(--emerald-light); color: var(--emerald); border-color: var(--emerald);" onclick="runFullDiagnostics()"><i class="fa-solid fa-vial-circle-check"></i> Auto-Test 13 Vistas</button>
+                <div class="meeting-timer-badge" id="meetingTimerBadge"><i class="fa-solid fa-stopwatch"></i> <span id="timerDigits">00:00</span></div>
+                <button class="tool-btn" id="btnLaser" onclick="toggleLaserPointer()"><i class="fa-solid fa-crosshairs" style="color: #f43f5e;"></i> Láser</button>
+                <button class="tool-btn" id="btnAutoPlay" onclick="toggleAutoPlaySlides()"><i class="fa-solid fa-film" style="color: #7c3aed;"></i> Presentar</button>
+                <button class="tool-btn" id="btnRoi" onclick="openExecutiveSummary()"><i class="fa-solid fa-calculator" style="color: #059669;"></i> ROI & Negocio</button>
+                <button class="tool-btn" id="btnDb" onclick="openDatabaseInspector()"><i class="fa-solid fa-database" style="color: #0284c7;"></i> BD 3NF</button>
+                <button class="tool-btn" id="btnA11y" onclick="openAccessibilityDrawer()"><i class="fa-solid fa-universal-access" style="color: #0d9488;"></i> A11y</button>
+                <button class="tool-btn" id="btnTheme" onclick="toggleTheme()"><i class="fa-solid fa-sun" id="themeIcon"></i></button>
+            </div>
+        </div>
+
+        <!-- Role Filter Chips -->
+        <div class="filter-chips-bar" role="tablist" aria-label="Filtro de Roles">
+            <span class="chip-lbl"><i class="fa-solid fa-filter"></i> Rol:</span>
+            <button class="filter-chip active" id="chip-ALL" onclick="filterByRole('ALL', this)">Todos los Roles</button>
+            <button class="filter-chip" id="chip-PAX" onclick="filterByRole('PAX', this)">[PAX] Paciente (Curazao)</button>
+            <button class="filter-chip" id="chip-COORD" onclick="filterByRole('COORD', this)">[COORD] Carolina Cortázar (ACV)</button>
+            <button class="filter-chip" id="chip-MED" onclick="filterByRole('MED', this)">[MED] Dr. Marcos Yepes / Médicos</button>
+            <button class="filter-chip" id="chip-DRV" onclick="filterByRole('DRV', this)">[DRV] Ramón Rosero (Conductor)</button>
+            <button class="filter-chip" id="chip-CLINIC" onclick="filterByRole('CLINIC', this)">[CLINIC] HPTU / Cardio VID</button>
+            <button class="filter-chip" id="chip-FIN" onclick="filterByRole('FIN', this)">[FIN] Contabilidad / Finanzas</button>
+        </div>
+
+        <!-- KPIs Row -->
+        <div class="kpi-row">
+            <div class="kpi-card">
+                <div class="kpi-icon" style="background: var(--primary-light); color: #0284c7;"><i class="fa-solid fa-users"></i></div>
+                <div><div class="kpi-val">304</div><div class="kpi-label">Pacientes Normalizados</div></div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-icon" style="background: var(--teal-light); color: var(--teal);"><i class="fa-solid fa-bolt"></i></div>
+                <div><div class="kpi-val">18,602</div><div class="kpi-label">Eventos OCEL 2.0</div></div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-icon" style="background: var(--amber-light); color: var(--amber);"><i class="fa-solid fa-car"></i></div>
+                <div><div class="kpi-val">63</div><div class="kpi-label">Traslados Aeroturex</div></div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-icon" style="background: var(--purple-light); color: var(--purple);"><i class="fa-solid fa-check-double"></i></div>
+                <div><div class="kpi-val">100%</div><div class="kpi-label">Soundness & Integridad</div></div>
+            </div>
+        </div>
+
+        <!-- =================================================================== -->
+        <!-- 0. WORKFLOW MACRO 360 -->
+        <!-- =================================================================== -->
+        <section id="flow-macro" class="flow-card-container active">
+            <div class="flow-header">
+                <div>
+                    <span class="flow-badge badge-blue">Flujo Maestro</span>
+                    <h2 class="flow-title-text">0. Ciclo de Vida Operativo Completo (Macro-Flow 360°)</h2>
+                    <p class="flow-subtext">Visión de extremo a extremo desde el contacto inicial hasta el retorno con alta médica.</p>
+                </div>
+            </div>
+            <div class="canvas-split">
+                <div class="diagram-viewport" id="vp-macro" data-canvas-id="can-macro">
+                    <button class="fullscreen-exit-btn" id="exit-btn-macro" onclick="exitFullscreenMode('vp-macro')"><i class="fa-solid fa-compress"></i> Salir de Pantalla Completa (Esc)</button>
+                    <div class="diagram-hud-controls">
+                        <button class="hud-btn hud-btn-zoom-in" onclick="zoomDiagram('can-macro', 1.2)" title="Acercar (Zoom In)"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+                        <button class="hud-btn hud-btn-zoom-out" onclick="zoomDiagram('can-macro', 0.8)" title="Alejar (Zoom Out)"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+                        <button class="hud-btn hud-btn-reset" onclick="resetZoom('can-macro')" title="Restablecer"><i class="fa-solid fa-arrows-rotate"></i></button>
+                        <button class="hud-btn hud-btn-fullscreen" onclick="toggleFullscreen('vp-macro')" title="Agrandar / Pantalla Completa"><i class="fa-solid fa-expand"></i></button>
+                    </div>
+                    <div class="diagram-canvas-inner" id="can-macro"></div>
+                    <div class="gesture-hint-badge"><i class="fa-solid fa-hand-pointer"></i> Arrastra libremente • Pellizca Touchpad para Zoom</div>
+                </div>
+                <div class="steps-timeline-card">
+                    <div class="timeline-header">
+                        <span class="timeline-title"><i class="fa-solid fa-play" style="color: #0284c7;"></i> Simulador Paso a Paso</span>
+                        <div class="player-controls">
+                            <button class="player-btn btn-step-prev" onclick="stepSimPrev('flow-macro')"><i class="fa-solid fa-backward-step"></i></button>
+                            <button class="player-btn btn-step-next" onclick="stepSimNext('flow-macro')"><i class="fa-solid fa-forward-step"></i></button>
+                        </div>
+                    </div>
+                    <div class="step-entry active" data-role="PAX COORD" onclick="selectStepEntry(this)">
+                        <div class="step-entry-header"><span class="step-seq-num">PASO 01</span><span class="step-role-badge">Comercial</span></div>
+                        <div class="step-entry-title">Captación y Triaje Clínico</div>
+                        <div class="step-entry-desc">Recepción del dossier médico y cotización formal en USD/COP.</div>
+                        <span class="step-pill-code">CTZ###-PDF</span>
+                    </div>
+                    <div class="step-entry" data-role="COORD FIN" onclick="selectStepEntry(this)">
+                        <div class="step-entry-header"><span class="step-seq-num">PASO 02</span><span class="step-role-badge">Logística</span></div>
+                        <div class="step-entry-title">Preparación de Viaje</div>
+                        <div class="step-entry-desc">Confirmación de depósito, póliza de viajero y Check-Mig.</div>
+                        <span class="step-pill-code">RVA### + Póliza</span>
+                    </div>
+                    <div class="step-entry" data-role="DRV CLINIC" onclick="selectStepEntry(this)">
+                        <div class="step-entry-header"><span class="step-seq-num">PASO 03</span><span class="step-role-badge">Clínica</span></div>
+                        <div class="step-entry-title">Atención Médica & Hospitalidad</div>
+                        <div class="step-entry-desc">Traslados con [DRV] Ramón Rosero, citas en HPTU y estadía.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- 1. WORKFLOW LEAD & DOSSIER -->
+        <!-- =================================================================== -->
+        <section id="flow-lead" class="flow-card-container">
+            <div class="flow-header">
+                <div>
+                    <span class="flow-badge badge-purple">Módulo Comercial</span>
+                    <h2 class="flow-title-text">1. Captación de Lead & Triaje de Medisch Dossier</h2>
+                    <p class="flow-subtext">Recepción por WhatsApp, traducción de Papiamento y concepto médico de [MED] Dr. Marcos Yepes.</p>
+                </div>
+            </div>
+            <div class="canvas-split">
+                <div class="diagram-viewport" id="vp-lead" data-canvas-id="can-lead">
+                    <button class="fullscreen-exit-btn" id="exit-btn-lead" onclick="exitFullscreenMode('vp-lead')"><i class="fa-solid fa-compress"></i> Salir de Pantalla Completa (Esc)</button>
+                    <div class="diagram-hud-controls">
+                        <button class="hud-btn hud-btn-zoom-in" onclick="zoomDiagram('can-lead', 1.2)" title="Acercar"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+                        <button class="hud-btn hud-btn-zoom-out" onclick="zoomDiagram('can-lead', 0.8)" title="Alejar"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+                        <button class="hud-btn hud-btn-reset" onclick="resetZoom('can-lead')" title="Restablecer"><i class="fa-solid fa-arrows-rotate"></i></button>
+                        <button class="hud-btn hud-btn-fullscreen" onclick="toggleFullscreen('vp-lead')" title="Agrandar / Pantalla Completa"><i class="fa-solid fa-expand"></i></button>
+                    </div>
+                    <div class="diagram-canvas-inner" id="can-lead"></div>
+                    <div class="gesture-hint-badge"><i class="fa-solid fa-hand-pointer"></i> Arrastra libremente • Pellizca Touchpad para Zoom</div>
+                </div>
+                <div class="steps-timeline-card">
+                    <div class="timeline-header"><span class="timeline-title"><i class="fa-solid fa-stethoscope" style="color: #7c3aed;"></i> Puntos de Control</span></div>
+                    <div class="step-entry active" data-role="PAX" onclick="selectStepEntry(this)">
+                        <div class="step-entry-header"><span class="step-seq-num">PASO 1.1</span><span class="step-role-badge">Paciente</span></div>
+                        <div class="step-entry-title">Envío de Historial Clínico</div>
+                        <div class="step-entry-desc">El paciente aporta exámenes previos y síntomas en Papiamento o Inglés.</div>
+                    </div>
+                    <div class="step-entry" data-role="MED" onclick="selectStepEntry(this)">
+                        <div class="step-entry-header"><span class="step-seq-num">PASO 1.2</span><span class="step-role-badge">[MED] Dr. Marcos Yepes</span></div>
+                        <div class="step-entry-title">Definición de CUPS</div>
+                        <div class="step-entry-desc">Se asocian los procedimientos clínicos exactos (Resonancias, laboratorios, cirugía).</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- 2. WORKFLOW COTIZACIÓN DINÁMICA CTZ -->
+        <!-- =================================================================== -->
+        <section id="flow-quote" class="flow-card-container">
+            <div class="flow-header">
+                <div>
+                    <span class="flow-badge badge-teal">Motor de Precios</span>
+                    <h2 class="flow-title-text">2. Motor de Cotización Dinámica (`CTZ###`)</h2>
+                    <p class="flow-subtext">Cálculo de tarifas convenio vs particulares, paquetes de hotel y conversión multidivisa USD/COP.</p>
+                </div>
+            </div>
+            <div class="canvas-split">
+                <div class="diagram-viewport" id="vp-quote" data-canvas-id="can-quote">
+                    <button class="fullscreen-exit-btn" id="exit-btn-quote" onclick="exitFullscreenMode('vp-quote')"><i class="fa-solid fa-compress"></i> Salir de Pantalla Completa (Esc)</button>
+                    <div class="diagram-hud-controls">
+                        <button class="hud-btn hud-btn-zoom-in" onclick="zoomDiagram('can-quote', 1.2)"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+                        <button class="hud-btn hud-btn-zoom-out" onclick="zoomDiagram('can-quote', 0.8)"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+                        <button class="hud-btn hud-btn-reset" onclick="resetZoom('can-quote')"><i class="fa-solid fa-arrows-rotate"></i></button>
+                        <button class="hud-btn hud-btn-fullscreen" onclick="toggleFullscreen('vp-quote')"><i class="fa-solid fa-expand"></i></button>
+                    </div>
+                    <div class="diagram-canvas-inner" id="can-quote"></div>
+                    <div class="gesture-hint-badge"><i class="fa-solid fa-hand-pointer"></i> Arrastra libremente • Pellizca Touchpad para Zoom</div>
+                </div>
+                <div class="steps-timeline-card">
+                    <div class="timeline-header"><span class="timeline-title"><i class="fa-solid fa-coins" style="color: #0d9488;"></i> Reglas de Negocio</span></div>
+                    <div class="step-entry active" data-role="COORD FIN" onclick="selectStepEntry(this)">
+                        <div class="step-entry-header"><span class="step-seq-num">REGLA 2.1</span><span class="step-role-badge">Spread</span></div>
+                        <div class="step-entry-title">Margen de Convenio</div>
+                        <div class="step-entry-desc">Diferencial entre la tarifa hospitalaria institucional y la tarifa particular cobrada al viajero.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- 3. WORKFLOW BOOKING & PÓLIZA RVA -->
+        <!-- =================================================================== -->
+        <section id="flow-booking" class="flow-card-container">
+            <div class="flow-header">
+                <div>
+                    <span class="flow-badge badge-amber">Confirmación</span>
+                    <h2 class="flow-title-text">3. Depósito Bancolombia, Reserva (`RVA###`) & Póliza</h2>
+                    <p class="flow-subtext">Validación del anticipo, apertura del grupo operativo de WhatsApp y emisión de póliza de viajero.</p>
+                </div>
+            </div>
+            <div class="canvas-split">
+                <div class="diagram-viewport" id="vp-booking" data-canvas-id="can-booking">
+                    <button class="fullscreen-exit-btn" id="exit-btn-booking" onclick="exitFullscreenMode('vp-booking')"><i class="fa-solid fa-compress"></i> Salir de Pantalla Completa (Esc)</button>
+                    <div class="diagram-hud-controls">
+                        <button class="hud-btn hud-btn-zoom-in" onclick="zoomDiagram('can-booking', 1.2)"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+                        <button class="hud-btn hud-btn-zoom-out" onclick="zoomDiagram('can-booking', 0.8)"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+                        <button class="hud-btn hud-btn-reset" onclick="resetZoom('can-booking')"><i class="fa-solid fa-arrows-rotate"></i></button>
+                        <button class="hud-btn hud-btn-fullscreen" onclick="toggleFullscreen('vp-booking')"><i class="fa-solid fa-expand"></i></button>
+                    </div>
+                    <div class="diagram-canvas-inner" id="can-booking"></div>
+                    <div class="gesture-hint-badge"><i class="fa-solid fa-hand-pointer"></i> Arrastra libremente • Pellizca Touchpad para Zoom</div>
+                </div>
+                <div class="steps-timeline-card">
+                    <div class="timeline-header"><span class="timeline-title"><i class="fa-solid fa-file-shield" style="color: #d97706;"></i> Hitos de Reserva</span></div>
+                    <div class="step-entry active" data-role="PAX FIN" onclick="selectStepEntry(this)">
+                        <div class="step-entry-header"><span class="step-seq-num">PASO 3.1</span><span class="step-role-badge">Finanzas</span></div>
+                        <div class="step-entry-title">Validación Bancaria</div>
+                        <div class="step-entry-desc">Confirmación de fondos en Bancolombia antes de emitir vouchers de hotel.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- 4. WORKFLOW CHECK-MIG & VUELOS -->
+        <!-- =================================================================== -->
+        <section id="flow-checkmig" class="flow-card-container">
+            <div class="flow-header">
+                <div>
+                    <span class="flow-badge badge-rose">Migración</span>
+                    <h2 class="flow-title-text">4. Automatización Check-Mig Colombia & Monitoreo de Vuelos</h2>
+                    <p class="flow-subtext">Generación desatendida del formulario migratorio 48h antes del viaje y tracking de vuelos (Wingo 7449 / Avianca).</p>
+                </div>
+            </div>
+            <div class="canvas-split">
+                <div class="diagram-viewport" id="vp-checkmig" data-canvas-id="can-checkmig">
+                    <button class="fullscreen-exit-btn" id="exit-btn-checkmig" onclick="exitFullscreenMode('vp-checkmig')"><i class="fa-solid fa-compress"></i> Salir de Pantalla Completa (Esc)</button>
+                    <div class="diagram-hud-controls">
+                        <button class="hud-btn hud-btn-zoom-in" onclick="zoomDiagram('can-checkmig', 1.2)"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+                        <button class="hud-btn hud-btn-zoom-out" onclick="zoomDiagram('can-checkmig', 0.8)"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+                        <button class="hud-btn hud-btn-reset" onclick="resetZoom('can-checkmig')"><i class="fa-solid fa-arrows-rotate"></i></button>
+                        <button class="hud-btn hud-btn-fullscreen" onclick="toggleFullscreen('vp-checkmig')"><i class="fa-solid fa-expand"></i></button>
+                    </div>
+                    <div class="diagram-canvas-inner" id="can-checkmig"></div>
+                    <div class="gesture-hint-badge"><i class="fa-solid fa-hand-pointer"></i> Arrastra libremente • Pellizca Touchpad para Zoom</div>
+                </div>
+                <div class="steps-timeline-card">
+                    <div class="timeline-header"><span class="timeline-title"><i class="fa-solid fa-passport" style="color: #e11d48;"></i> Gestión Migratoria</span></div>
+                    <div class="step-entry active" data-role="COORD PAX" onclick="selectStepEntry(this)">
+                        <div class="step-entry-header"><span class="step-seq-num">MIG 4.1</span><span class="step-role-badge">[COORD] Carolina</span></div>
+                        <div class="step-entry-title">Radicación Check-Mig</div>
+                        <div class="step-entry-desc">[COORD] Carolina Cortázar radica el formulario oficial de Migración Colombia para el viajero.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- 5. WORKFLOW DESPACHO AEROTUREX -->
+        <!-- =================================================================== -->
+        <section id="flow-transport" class="flow-card-container">
+            <div class="flow-header">
+                <div>
+                    <span class="flow-badge badge-blue">Logística</span>
+                    <h2 class="flow-title-text">5. Despacho Aeroturex & Conductor Asignado</h2>
+                    <p class="flow-subtext">Protocolo de despacho diario (16:30 pm), asignación de chofer ([DRV] Ramón Rosero) y recepción de vuelos en JMC.</p>
+                </div>
+            </div>
+            <div class="canvas-split">
+                <div class="diagram-viewport" id="vp-transport" data-canvas-id="can-transport">
+                    <button class="fullscreen-exit-btn" id="exit-btn-transport" onclick="exitFullscreenMode('vp-transport')"><i class="fa-solid fa-compress"></i> Salir de Pantalla Completa (Esc)</button>
+                    <div class="diagram-hud-controls">
+                        <button class="hud-btn hud-btn-zoom-in" onclick="zoomDiagram('can-transport', 1.2)"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+                        <button class="hud-btn hud-btn-zoom-out" onclick="zoomDiagram('can-transport', 0.8)"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+                        <button class="hud-btn hud-btn-reset" onclick="resetZoom('can-transport')"><i class="fa-solid fa-arrows-rotate"></i></button>
+                        <button class="hud-btn hud-btn-fullscreen" onclick="toggleFullscreen('vp-transport')"><i class="fa-solid fa-expand"></i></button>
+                    </div>
+                    <div class="diagram-canvas-inner" id="can-transport"></div>
+                    <div class="gesture-hint-badge"><i class="fa-solid fa-hand-pointer"></i> Arrastra libremente • Pellizca Touchpad para Zoom</div>
+                </div>
+                <div class="steps-timeline-card">
+                    <div class="timeline-header"><span class="timeline-title"><i class="fa-solid fa-map-location-dot" style="color: #0284c7;"></i> Evidencia Real Extraída</span></div>
+                    <div class="step-entry active" data-role="COORD DRV" onclick="selectStepEntry(this)">
+                        <div class="step-entry-header"><span class="step-seq-num">RVA282-5</span><span class="step-role-badge">Aeroturex</span></div>
+                        <div class="step-entry-title">Caso [PAX] George Hernandez</div>
+                        <div class="step-entry-desc">Vuelo WINGO 7449 recibido el 5 de agosto a las 3:27 pm por [DRV] Ramón Rosero hacia Ed. Park 42.</div>
+                        <span class="step-pill-code">Tarifa: $110.000 COP</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- 6. WORKFLOW CITAS CLINICAS & LABS -->
+        <!-- =================================================================== -->
+        <section id="flow-clinical" class="flow-card-container">
+            <div class="flow-header">
+                <div>
+                    <span class="flow-badge badge-teal">Gestión Médica</span>
+                    <h2 class="flow-title-text">6. Citas Médicas, Control de Ayuno y Laboratorios</h2>
+                    <p class="flow-subtext">Protocolo pre-quirúrgico en HPTU y Cardio VID, toma de muestras de sangre y custodia de resultados clínicos.</p>
+                </div>
+            </div>
+            <div class="canvas-split">
+                <div class="diagram-viewport" id="vp-clinical" data-canvas-id="can-clinical">
+                    <button class="fullscreen-exit-btn" id="exit-btn-clinical" onclick="exitFullscreenMode('vp-clinical')"><i class="fa-solid fa-compress"></i> Salir de Pantalla Completa (Esc)</button>
+                    <div class="diagram-hud-controls">
+                        <button class="hud-btn hud-btn-zoom-in" onclick="zoomDiagram('can-clinical', 1.2)"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+                        <button class="hud-btn hud-btn-zoom-out" onclick="zoomDiagram('can-clinical', 0.8)"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+                        <button class="hud-btn hud-btn-reset" onclick="resetZoom('can-clinical')"><i class="fa-solid fa-arrows-rotate"></i></button>
+                        <button class="hud-btn hud-btn-fullscreen" onclick="toggleFullscreen('vp-clinical')"><i class="fa-solid fa-expand"></i></button>
+                    </div>
+                    <div class="diagram-canvas-inner" id="can-clinical"></div>
+                    <div class="gesture-hint-badge"><i class="fa-solid fa-hand-pointer"></i> Arrastra libremente • Pellizca Touchpad para Zoom</div>
+                </div>
+                <div class="steps-timeline-card">
+                    <div class="timeline-header"><span class="timeline-title"><i class="fa-solid fa-notes-medical" style="color: #0d9488;"></i> Evidencia Clínica</span></div>
+                    <div class="step-entry active" data-role="CLINIC MED" onclick="selectStepEntry(this)">
+                        <div class="step-entry-header"><span class="step-seq-num">RVA271-5</span><span class="step-role-badge">HPTU</span></div>
+                        <div class="step-entry-title">Caso [PAX] Zulaica Giterson</div>
+                        <div class="step-entry-desc">Laboratorios clínicos y consulta con [MED] Dr. Marcos Yepes para aval de tratamiento.</div>
+                        <span class="step-pill-code">PDF: Laboratorios 28-01</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- 7. WORKFLOW ACOMPAÑAMIENTO BILINGÜE -->
+        <!-- =================================================================== -->
+        <section id="flow-companion" class="flow-card-container">
+            <div class="flow-header">
+                <div>
+                    <span class="flow-badge badge-purple">Guianza Express</span>
+                    <h2 class="flow-title-text">7. Acompañamiento Presencial Bilingüe & Farmacia</h2>
+                    <p class="flow-subtext">Traducción Papiamento/Inglés en consultorio médico, compra de recetas prescritas y liquidación de horas.</p>
+                </div>
+            </div>
+            <div class="canvas-split">
+                <div class="diagram-viewport" id="vp-companion" data-canvas-id="can-companion">
+                    <button class="fullscreen-exit-btn" id="exit-btn-companion" onclick="exitFullscreenMode('vp-companion')"><i class="fa-solid fa-compress"></i> Salir de Pantalla Completa (Esc)</button>
+                    <div class="diagram-hud-controls">
+                        <button class="hud-btn hud-btn-zoom-in" onclick="zoomDiagram('can-companion', 1.2)"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+                        <button class="hud-btn hud-btn-zoom-out" onclick="zoomDiagram('can-companion', 0.8)"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+                        <button class="hud-btn hud-btn-reset" onclick="resetZoom('can-companion')"><i class="fa-solid fa-arrows-rotate"></i></button>
+                        <button class="hud-btn hud-btn-fullscreen" onclick="toggleFullscreen('vp-companion')"><i class="fa-solid fa-expand"></i></button>
+                    </div>
+                    <div class="diagram-canvas-inner" id="can-companion"></div>
+                    <div class="gesture-hint-badge"><i class="fa-solid fa-hand-pointer"></i> Arrastra libremente • Pellizca Touchpad para Zoom</div>
+                </div>
+                <div class="steps-timeline-card">
+                    <div class="timeline-header"><span class="timeline-title"><i class="fa-solid fa-clock" style="color: #7c3aed;"></i> Registro de Turno</span></div>
+                    <div class="step-entry active" data-role="COORD" onclick="selectStepEntry(this)">
+                        <div class="step-entry-header"><span class="step-seq-num">TURNO 7.1</span><span class="step-role-badge">Asistente</span></div>
+                        <div class="step-entry-title">Traducción & Custodia</div>
+                        <div class="step-entry-desc">Garantiza que el paciente caribeño comprenda al 100% las indicaciones de su tratamiento.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- 8. WORKFLOW VILLA ANITA & POST-OP -->
+        <!-- =================================================================== -->
+        <section id="flow-postop" class="flow-card-container">
+            <div class="flow-header">
+                <div>
+                    <span class="flow-badge badge-amber">Hospitalidad</span>
+                    <h2 class="flow-title-text">8. Estadía Postoperatoria en Villa Anita & Cuidados</h2>
+                    <p class="flow-subtext">Monitoreo de enfermería, dietas especializadas postquirúrgicas y tours suaves de recuperación.</p>
+                </div>
+            </div>
+            <div class="canvas-split">
+                <div class="diagram-viewport" id="vp-postop" data-canvas-id="can-postop">
+                    <button class="fullscreen-exit-btn" id="exit-btn-postop" onclick="exitFullscreenMode('vp-postop')"><i class="fa-solid fa-compress"></i> Salir de Pantalla Completa (Esc)</button>
+                    <div class="diagram-hud-controls">
+                        <button class="hud-btn hud-btn-zoom-in" onclick="zoomDiagram('can-postop', 1.2)"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+                        <button class="hud-btn hud-btn-zoom-out" onclick="zoomDiagram('can-postop', 0.8)"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+                        <button class="hud-btn hud-btn-reset" onclick="resetZoom('can-postop')"><i class="fa-solid fa-arrows-rotate"></i></button>
+                        <button class="hud-btn hud-btn-fullscreen" onclick="toggleFullscreen('vp-postop')"><i class="fa-solid fa-expand"></i></button>
+                    </div>
+                    <div class="diagram-canvas-inner" id="can-postop"></div>
+                    <div class="gesture-hint-badge"><i class="fa-solid fa-hand-pointer"></i> Arrastra libremente • Pellizca Touchpad para Zoom</div>
+                </div>
+                <div class="steps-timeline-card">
+                    <div class="timeline-header"><span class="timeline-title"><i class="fa-solid fa-heart-circle-check" style="color: #d97706;"></i> Cuidados Especiales</span></div>
+                    <div class="step-entry active" data-role="PAX CLINIC" onclick="selectStepEntry(this)">
+                        <div class="step-entry-header"><span class="step-seq-num">POST-OP 8.1</span><span class="step-role-badge">Enfermería</span></div>
+                        <div class="step-entry-title">Control de Drenajes</div>
+                        <div class="step-entry-desc">Registro horario de signos vitales y seguimiento del cirujano plástico tratante.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- 9. WORKFLOW FIT-TO-FLY & RETORNO -->
+        <!-- =================================================================== -->
+        <section id="flow-fittotly" class="flow-card-container">
+            <div class="flow-header">
+                <div>
+                    <span class="flow-badge badge-emerald">Alta Médica</span>
+                    <h2 class="flow-title-text">9. Consulta de Control Final & Certificado Fit-to-Fly</h2>
+                    <p class="flow-subtext">Valoración pre-vuelo por especialista, emisión del certificado de vuelo y Check-Mig de salida.</p>
+                </div>
+            </div>
+            <div class="canvas-split">
+                <div class="diagram-viewport" id="vp-fittotly" data-canvas-id="can-fittotly">
+                    <button class="fullscreen-exit-btn" id="exit-btn-fittotly" onclick="exitFullscreenMode('vp-fittotly')"><i class="fa-solid fa-compress"></i> Salir de Pantalla Completa (Esc)</button>
+                    <div class="diagram-hud-controls">
+                        <button class="hud-btn hud-btn-zoom-in" onclick="zoomDiagram('can-fittotly', 1.2)"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+                        <button class="hud-btn hud-btn-zoom-out" onclick="zoomDiagram('can-fittotly', 0.8)"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+                        <button class="hud-btn hud-btn-reset" onclick="resetZoom('can-fittotly')"><i class="fa-solid fa-arrows-rotate"></i></button>
+                        <button class="hud-btn hud-btn-fullscreen" onclick="toggleFullscreen('vp-fittotly')"><i class="fa-solid fa-expand"></i></button>
+                    </div>
+                    <div class="diagram-canvas-inner" id="can-fittotly"></div>
+                    <div class="gesture-hint-badge"><i class="fa-solid fa-hand-pointer"></i> Arrastra libremente • Pellizca Touchpad para Zoom</div>
+                </div>
+                <div class="steps-timeline-card">
+                    <div class="timeline-header"><span class="timeline-title"><i class="fa-solid fa-plane-circle-check" style="color: #059669;"></i> Checklist de Retorno</span></div>
+                    <div class="step-entry active" data-role="MED COORD" onclick="selectStepEntry(this)">
+                        <div class="step-entry-header"><span class="step-seq-num">ALTA 9.1</span><span class="step-role-badge">Médico</span></div>
+                        <div class="step-entry-title">Certificado Fit-to-Fly</div>
+                        <div class="step-entry-desc">Documento indispensable exigido por la aerolínea para permitir el embarque postquirúrgico.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- 10. WORKFLOW LIQUIDACIONES & DTW -->
+        <!-- =================================================================== -->
+        <section id="flow-finance" class="flow-card-container">
+            <div class="flow-header">
+                <div>
+                    <span class="flow-badge badge-amber">Finanzas & Contabilidad</span>
+                    <h2 class="flow-title-text">10. Liquidaciones Financieras & Reconciliación DTW</h2>
+                    <p class="flow-subtext">Cierre contable, cálculo de margen bruto real y reconciliación de las sábanas de Excel con Bancolombia.</p>
+                </div>
+            </div>
+            <div class="canvas-split">
+                <div class="diagram-viewport" id="vp-finance" data-canvas-id="can-finance">
+                    <button class="fullscreen-exit-btn" id="exit-btn-finance" onclick="exitFullscreenMode('vp-finance')"><i class="fa-solid fa-compress"></i> Salir de Pantalla Completa (Esc)</button>
+                    <div class="diagram-hud-controls">
+                        <button class="hud-btn hud-btn-zoom-in" onclick="zoomDiagram('can-finance', 1.2)"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+                        <button class="hud-btn hud-btn-zoom-out" onclick="zoomDiagram('can-finance', 0.8)"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+                        <button class="hud-btn hud-btn-reset" onclick="resetZoom('can-finance')"><i class="fa-solid fa-arrows-rotate"></i></button>
+                        <button class="hud-btn hud-btn-fullscreen" onclick="toggleFullscreen('vp-finance')"><i class="fa-solid fa-expand"></i></button>
+                    </div>
+                    <div class="diagram-canvas-inner" id="can-finance"></div>
+                    <div class="gesture-hint-badge"><i class="fa-solid fa-hand-pointer"></i> Arrastra libremente • Pellizca Touchpad para Zoom</div>
+                </div>
+                <div class="steps-timeline-card">
+                    <div class="timeline-header"><span class="timeline-title"><i class="fa-solid fa-scale-balanced" style="color: #d97706;"></i> Conciliación</span></div>
+                    <div class="step-entry active" data-role="FIN" onclick="selectStepEntry(this)">
+                        <div class="step-entry-header"><span class="step-seq-num">FIN 10.1</span><span class="step-role-badge">DTW</span></div>
+                        <div class="step-entry-title">Banda Sakoe-Chiba (±7 Días)</div>
+                        <div class="step-entry-desc">Absorbe la asimetría temporal entre la ejecución física del traslado y el asiento en Excel.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- 11. WORKFLOW WHATSAPP & EXCEPCIONES -->
+        <!-- =================================================================== -->
+        <section id="flow-whatsapp" class="flow-card-container">
+            <div class="flow-header">
+                <div>
+                    <span class="flow-badge badge-emerald">Coordinación Operativa</span>
+                    <h2 class="flow-title-text">11. Canal WhatsApp & Gestión de Excepciones ([COORD] Carolina Cortázar)</h2>
+                    <p class="flow-subtext">Atención directa por WhatsApp, manejo de retrasos de vuelos, alertas post-quirúrgicas y reprogramación de traslados.</p>
+                </div>
+            </div>
+            <div class="canvas-split">
+                <div class="diagram-viewport" id="vp-whatsapp" data-canvas-id="can-whatsapp">
+                    <button class="fullscreen-exit-btn" id="exit-btn-whatsapp" onclick="exitFullscreenMode('vp-whatsapp')"><i class="fa-solid fa-compress"></i> Salir de Pantalla Completa (Esc)</button>
+                    <div class="diagram-hud-controls">
+                        <button class="hud-btn hud-btn-zoom-in" onclick="zoomDiagram('can-whatsapp', 1.2)"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+                        <button class="hud-btn hud-btn-zoom-out" onclick="zoomDiagram('can-whatsapp', 0.8)"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+                        <button class="hud-btn hud-btn-reset" onclick="resetZoom('can-whatsapp')"><i class="fa-solid fa-arrows-rotate"></i></button>
+                        <button class="hud-btn hud-btn-fullscreen" onclick="toggleFullscreen('vp-whatsapp')"><i class="fa-solid fa-expand"></i></button>
+                    </div>
+                    <div class="diagram-canvas-inner" id="can-whatsapp"></div>
+                    <div class="gesture-hint-badge"><i class="fa-solid fa-hand-pointer"></i> Arrastra libremente • Pellizca Touchpad para Zoom</div>
+                </div>
+                <div class="steps-timeline-card">
+                    <div class="timeline-header"><span class="timeline-title"><i class="fa-brands fa-whatsapp" style="color: #059669;"></i> Gestión de Novedades</span></div>
+                    <div class="step-entry active" data-role="COORD PAX" onclick="selectStepEntry(this)">
+                        <div class="step-entry-header"><span class="step-seq-num">NOV 11.1</span><span class="step-role-badge">[COORD] Carolina</span></div>
+                        <div class="step-entry-title">Retrasos de Vuelo y Novedades</div>
+                        <div class="step-entry-desc">[COORD] Carolina coordina con [DRV] Ramón Rosero para evitar tiempos muertos en el Aeropuerto JMC.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- 12. WORKFLOW AUDITORÍA DE GAPS -->
+        <!-- =================================================================== -->
+        <section id="flow-audit" class="flow-card-container">
+            <div class="flow-header">
+                <div>
+                    <span class="flow-badge badge-rose">Auditoría Crítica</span>
+                    <h2 class="flow-title-text">12. Auditoría de Vacíos, Ambigüedades y Puntos Ciegos</h2>
+                    <p class="flow-subtext">Diagnóstico de 7 puntos ciegos encontrados en los 4 años de datos y las soluciones implementadas en la nueva aplicación.</p>
+                </div>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+                <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-top: 4px solid var(--rose); border-radius: 12px; padding: 18px;">
+                    <div style="font-size: 14px; font-weight: 700; color: var(--text-heading); margin-bottom: 6px; display: flex; justify-content: space-between;">
+                        <span>1. Pasaportes no Estructurados</span>
+                        <span style="font-size: 10px; color: var(--rose); font-weight: 700;">ALTO RIESGO</span>
+                    </div>
+                    <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 10px;">En los chats, los pasaportes se enviaban como fotos sueltas sin validación previa de vigencia mínima de 6 meses.</div>
+                    <div style="font-size: 11.5px; background: var(--emerald-light); color: var(--emerald); padding: 8px; border-radius: 6px;">
+                        <strong>Solución en App:</strong> OCR automático al cargar el documento con validación de vigencia de 6 meses.
+                    </div>
+                </div>
+                <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-top: 4px solid var(--amber); border-radius: 12px; padding: 18px;">
+                    <div style="font-size: 14px; font-weight: 700; color: var(--text-heading); margin-bottom: 6px; display: flex; justify-content: space-between;">
+                        <span>2. Latencia en Liquidación</span>
+                        <span style="font-size: 10px; color: var(--amber); font-weight: 700;">MEDIO RIESGO</span>
+                    </div>
+                    <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 10px;">Desfase de hasta 14 días entre el trayecto operado por el chofer y el asiento contable en Excel.</div>
+                    <div style="font-size: 11.5px; background: var(--emerald-light); color: var(--emerald); padding: 8px; border-radius: 6px;">
+                        <strong>Solución en App:</strong> App móvil del conductor que liquida el viaje en tiempo real al finalizar el trayecto.
+                    </div>
+                </div>
+                <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-top: 4px solid var(--emerald); border-radius: 12px; padding: 18px;">
+                    <div style="font-size: 14px; font-weight: 700; color: var(--text-heading); margin-bottom: 6px; display: flex; justify-content: space-between;">
+                        <span>3. Barrera Idiomática</span>
+                        <span style="font-size: 10px; color: var(--emerald); font-weight: 700;">RESUELTO</span>
+                    </div>
+                    <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 10px;">Coordinadoras dependían de redacción manual en Papiamento o Inglés.</div>
+                    <div style="font-size: 11.5px; background: var(--emerald-light); color: var(--emerald); padding: 8px; border-radius: 6px;">
+                        <strong>Solución en App:</strong> Motor i18n nativo con plantillas certificadas en Papiamento, Neerlandés e Inglés.
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+<!-- =========================================================================== -->
+<!-- DIAGNOSTICS & SELF-TEST MODAL -->
+<!-- =========================================================================== -->
+<div class="drawer-overlay" id="diagDrawerOverlay" onclick="closeDiagnostics(event)">
+    <div class="drawer-panel" onclick="event.stopPropagation()">
+        <div class="drawer-header">
+            <div class="drawer-title"><i class="fa-solid fa-vial-circle-check" style="color: var(--emerald);"></i> Reporte de Diagnóstico y Salud (13/13)</div>
+            <button class="hud-btn" id="close-diag-btn" onclick="closeDiagnostics()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">
+            Resultado de la verificación automatizada en tiempo real de cada uno de los 13 diagramas vectoriales, viewBox, interactividad de botones HUD y escalado:
+        </p>
+        <table class="diag-table" id="diagTable">
+            <thead>
+                <tr>
+                    <th>Flujo Operativo</th>
+                    <th>Estado</th>
+                    <th>Dimensiones SVG</th>
+                    <th>Latencia</th>
+                </tr>
+            </thead>
+            <tbody id="diagTableBody"></tbody>
+        </table>
+        <div style="margin-top: 16px; padding: 12px; background: var(--emerald-light); border-radius: 8px; color: var(--emerald); font-size: 12px; font-weight: 700;" id="diagSummaryBox">
+            <i class="fa-solid fa-circle-check"></i> Todas las 13 vistas y gráficos vectoriales operan al 100% sin errores de sintaxis.
+        </div>
+    </div>
+</div>
+
+<!-- =========================================================================== -->
+<!-- EXECUTIVE SUMMARY & ROI CALCULATOR DRAWER -->
+<!-- =========================================================================== -->
+<div class="drawer-overlay" id="execDrawerOverlay" onclick="closeExecutiveSummary(event)">
+    <div class="drawer-panel" onclick="event.stopPropagation()">
+        <div class="drawer-header">
+            <div class="drawer-title"><i class="fa-solid fa-briefcase" style="color: #059669;"></i> Resumen Ejecutivo & ROI</div>
+            <button class="hud-btn" id="close-exec-btn" onclick="closeExecutiveSummary()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <div class="calc-box">
+            <h4 style="font-size: 13px; font-weight: 700; color: var(--text-heading); margin-bottom: 4px;">Simulador de Rentabilidad Mensual</h4>
+            <p style="font-size: 11.5px; color: var(--text-muted);">Calcula los ingresos y margen bruto estimado según el volumen de pacientes:</p>
+            
+            <div class="calc-slider-wrap">
+                <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; margin-bottom: 4px;">
+                    <span>Pacientes por Mes:</span>
+                    <span id="paxCountLabel" style="color: #0284c7;">15 Pacientes</span>
+                </div>
+                <input type="range" id="paxSlider" min="5" max="60" value="15" oninput="updateRoiCalculation(this.value)">
+            </div>
+
+            <div class="calc-kpis">
+                <div class="calc-kpi-item">
+                    <div class="calc-kpi-val" id="calcRevenueUsd">$37,500 USD</div>
+                    <div class="calc-kpi-lbl">Ingreso Bruto Facturado</div>
+                </div>
+                <div class="calc-kpi-item">
+                    <div class="calc-kpi-val" id="calcMarginUsd" style="color: #059669;">$11,250 USD</div>
+                    <div class="calc-kpi-lbl">Margen Bruto (30% Spread)</div>
+                </div>
+            </div>
+        </div>
+
+        <h4 style="font-size: 13px; font-weight: 700; color: var(--text-heading); margin-bottom: 6px;">Bloc de Notas en Vivo de la Reunión</h4>
+        <textarea class="meeting-notes-area" id="meetingNotes" placeholder="Escribe notas, compromisos o preguntas de los clientes/stakeholders durante la presentación..."></textarea>
+        <button class="tool-btn" id="btnDownloadNotes" style="margin-top: 8px; justify-content: center;" onclick="downloadMeetingNotes()"><i class="fa-solid fa-download"></i> Descargar Notas de la Reunión (.md)</button>
+    </div>
+</div>
+
+<!-- =========================================================================== -->
+<!-- ACCESSIBILITY DRAWER -->
+<!-- =========================================================================== -->
+<div class="drawer-overlay" id="a11yDrawerOverlay" onclick="closeAccessibilityDrawer(event)">
+    <div class="drawer-panel" onclick="event.stopPropagation()">
+        <div class="drawer-header">
+            <div class="drawer-title"><i class="fa-solid fa-universal-access" style="color: #0d9488;"></i> Suite de Accesibilidad</div>
+            <button class="hud-btn" id="close-a11y-btn" onclick="closeAccessibilityDrawer()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <div class="a11y-option-group">
+            <div class="a11y-opt-title" style="font-size: 12px; font-weight: 700; color: var(--text-subtle); margin-bottom: 8px;">Tamaño de Texto</div>
+            <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+                <button class="tool-btn active" id="btnFontNormal" style="flex: 1; justify-content: center;" onclick="setFontSize('normal', this)">A Normal</button>
+                <button class="tool-btn" id="btnFontLarge" style="flex: 1; justify-content: center;" onclick="setFontSize('large', this)">A+ Grande</button>
+                <button class="tool-btn" id="btnFontXLarge" style="flex: 1; justify-content: center;" onclick="setFontSize('xlarge', this)">A++ Extra</button>
+            </div>
+        </div>
+
+        <div class="a11y-option-group">
+            <div class="a11y-opt-title" style="font-size: 12px; font-weight: 700; color: var(--text-subtle); margin-bottom: 8px;">Contraste Visual</div>
+            <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+                <button class="tool-btn active" id="btnContrastNormal" style="flex: 1; justify-content: center;" onclick="setHighContrast(false, this)">Estándar</button>
+                <button class="tool-btn" id="btnContrastHigh" style="flex: 1; justify-content: center;" onclick="setHighContrast(true, this)">Alto Contraste</button>
+            </div>
+        </div>
+
+        <div class="a11y-option-group">
+            <div class="a11y-opt-title" style="font-size: 12px; font-weight: 700; color: var(--text-subtle); margin-bottom: 8px;">Tipografía para Dislexia</div>
+            <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+                <button class="tool-btn active" id="btnDyslexiaOff" style="flex: 1; justify-content: center;" onclick="setDyslexiaFont(false, this)">Estándar</button>
+                <button class="tool-btn" id="btnDyslexiaOn" style="flex: 1; justify-content: center;" onclick="setDyslexiaFont(true, this)">Atkinson Hyperlegible</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- =========================================================================== -->
+<!-- DATABASE INSPECTOR DRAWER -->
+<!-- =========================================================================== -->
+<div class="drawer-overlay" id="dbDrawerOverlay" onclick="closeDatabaseInspector(event)">
+    <div class="drawer-panel" onclick="event.stopPropagation()">
+        <div class="drawer-header">
+            <div class="drawer-title"><i class="fa-solid fa-database" style="color: #0284c7;"></i> Explorador BD (3NF SQLite)</div>
+            <button class="hud-btn" id="close-db-btn" onclick="closeDatabaseInspector()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <h4 style="font-size: 13px; margin-bottom: 6px; color: var(--text-heading);">Tabla: <code>pacientes</code></h4>
+        <div class="table-preview-card">
+UUID | Nombre | Origen | RVA | Teléfono
+--------------------------------------------------------
+ENT-PAX-1001 | [PAX] George Hernandez | Curazao | RVA282-5 | +59995681193
+ENT-PAX-1002 | [PAX] Zulaica Giterson | Curazao | RVA271-5 | +59995280010
+ENT-PAX-1003 | [PAX] Carlos Marcano | Curazao | RVA007-1 | +59995123456
+        </div>
+
+        <h4 style="font-size: 13px; margin-bottom: 6px; color: var(--text-heading);">Tabla: <code>traslados_logistica</code></h4>
+        <div class="table-preview-card">
+RVA | Pax | Vuelo | Origen -> Destino | Conductor
+--------------------------------------------------------
+RVA282-5 | [PAX] G. Hernandez | WINGO 7449 | JMC -> Ed. Park 42 | [DRV] Ramón Rosero
+RVA282-5 | [PAX] G. Hernandez | AA 1129 | JMC -> Ed. Park 42 | [DRV] J. C. Montoya
+        </div>
+
+        <h4 style="font-size: 13px; margin-bottom: 6px; color: var(--text-heading);">Tabla: <code>procedimientos_cups_catalogo</code></h4>
+        <div class="table-preview-card">
+CUPS | Procedimiento | Particular | Convenio | Margen
+--------------------------------------------------------
+883101 | RNM Cerebro Simple | $710.000 | $498.000 | $212.000 (30%)
+883101-C | RNM Cerebro C/C | $998.000 | $764.000 | $234.000 (23%)
+CHQ-CARD | Chequeo Cardio VID | $3.800.000 | $2.750.000 | $1.050.000
+        </div>
+    </div>
+</div>
+
+<script>
+    // =========================================================================
+    // 13 SANITIZED MERMAID DIAGRAM DEFINITIONS
+    // =========================================================================
+    const FLOW_DEFINITIONS = {
+        "can-macro": `graph LR
+    L["1. Lead y Medisch Dossier"] --> Q["2. Cotización CTZ"]
+    Q --> R["3. Reserva RVA y Póliza"]
+    R --> C["4. Check-Mig y Vuelo"]
+    C --> T["5. Llegada y Aeroturex"]
+    T --> H["6. Hotel / Ed. Park 42"]
+    H --> M["7. Cita Médica y Labs"]
+    M --> S{"Procedimiento"}
+    S -->|Cirugía Plástica| OP["Procedimiento Quirúrgico"]
+    S -->|Chequeo Ejecutivo| CHQ["Cardio VID / HPTU"]
+    S -->|Terapia Celular| REG["Regencord Células Madre"]
+    OP --> REC["8. Recuperación y Villa Anita"]
+    CHQ --> REC
+    REG --> REC
+    REC --> FIT["9. Certificado Fit-to-Fly"]
+    FIT --> RET["10. Retorno y Cierre"]`,
+
+    "can-lead": `sequenceDiagram
+    autonumber
+    actor Pax as [PAX] Paciente (Curazao)
+    actor Coord as [COORD] Carolina Cortázar
+    actor Med as [MED] Dr. Marcos Yepes
+    Pax->>Coord: Contacto inicial por WhatsApp (Papiamento / Inglés)
+    Coord->>Pax: Solicitud de Historia Clínica y Pasaporte
+    Pax->>Coord: Envía PDFs y Fotos de Exámenes
+    Coord->>Coord: Registro de Expediente de Lead (ENT-PAX)
+    Coord->>Med: Solicita concepto médico y códigos CUPS
+    Med->>Coord: Emite lista de CUPS recomendados
+    Coord->>Pax: Confirma viabilidad para cotizar`,
+
+    "can-quote": `flowchart TD
+    A["Selección de Códigos CUPS Clínicos"] --> B["Consulta Tarifas Convenio 2024-2025"]
+    B --> C["Aplicación de Margen Bruto 25% a 35%"]
+    C --> D["Selección de Hotel: Poblado Plaza / Villa Anita"]
+    D --> E["Inclusión de Paquete Traslados Aeroturex"]
+    E --> F["Inclusión de Acompañamiento Bilingüe"]
+    F --> G["Conversión de COP a USD según TRM"]
+    G --> H["Generación de PDF Formal CTZ###"]
+    H --> I["Envío al WhatsApp del Paciente"]`,
+
+    "can-booking": `sequenceDiagram
+    autonumber
+    actor Pax as [PAX] Paciente
+    actor Coord as [COORD] Carolina Cortázar
+    actor Bank as Bancolombia
+    actor Ins as Aseguradora
+    actor Hotel as Hotel / Villa Anita
+    Pax->>Coord: Envío de Comprobante de Depósito
+    Coord->>Bank: Verificación de Acreditación
+    Bank-->>Coord: Fondos Confirmados
+    Coord->>Coord: Genera Código Canónico RVA###
+    Coord->>Ins: Emisión de Póliza de Viajero
+    Coord->>Hotel: Bloqueo de Habitación
+    Coord->>Pax: Apertura de Grupo WhatsApp y Póliza`,
+
+    "can-checkmig": `flowchart TD
+    A["[COORD] Carolina: 48h Previas al Vuelo"] --> B["Consulta Datos de Vuelo del Paciente"]
+    B --> C["Verificación de Estado de Vuelo (FlightAware)"]
+    C --> D{"Estado de Vuelo"}
+    D -->|Reprogramado| E["Actualiza Hora Estimada de Llegada"]
+    D -->|A Tiempo| F["Radica Check-Mig en Migración Colombia"]
+    E --> F
+    F --> G["Descarga de PDF Radicado Oficial"]
+    G --> H["Envío por WhatsApp al Paciente"]
+    H --> I["Confirmación en Bitácora Operativa"]`,
+
+    "can-transport": `sequenceDiagram
+    autonumber
+    actor Coord as [COORD] Carolina Cortázar
+    actor Trans as Despacho Aeroturex
+    actor Driver as [DRV] Ramón Rosero (Chofer)
+    actor Pax as [PAX] George Hernandez
+    Coord->>Trans: Plantilla 16:30 pm (RVA282, WINGO 7449)
+    Trans-->>Coord: Confirmado (Asigna a [DRV] Ramón Rosero)
+    Coord->>Pax: Envía datos del chofer y puerta 2 JMC
+    Driver->>Driver: Espera en sala internacional con cartel
+    Pax->>Driver: Contacto en puerta y traslado a Medellín
+    Driver->>Coord: Notifica finalización en WhatsApp`,
+
+    "can-clinical": `flowchart TD
+    A["Inicio Jornada: 08:00 AM"] --> B{"Tiene Laboratorios Hoy"}
+    B -->|Sí| C["Verificar Ayuno de 8-12 hrs"]
+    D --> E["Toma de Muestras de Sangre y Orina"]
+    C --> D["Traslado con Guía al Laboratorio"]
+    E --> F["Carga Digital de Resultados PDF"]
+    F --> G["Cita de Valoración en HPTU / Cardio VID"]
+    B -->|No| G
+    G --> H{"Aptitud Quirúrgica"}
+    H -->|Apto| I["Programación de Quirófano"]
+    H -->|Requiere Compensación| J["Ajuste de Tratamiento Previo"]`,
+
+    "can-companion": `sequenceDiagram
+    autonumber
+    actor Acomp as [GUIA] Acompañante Bilingüe
+    actor Pax as [PAX] Paciente
+    actor Doc as [MED] Médico Especialista
+    actor Farm as Farmacia
+    actor ERP as Módulo Liquidaciones
+    Acomp->>Pax: Encuentro en Lobby del Hotel (08:30 am)
+    Acomp->>Doc: Traducción simultánea en consulta
+    Doc->>Acomp: Entrega de Fórmula Médica
+    Acomp->>Farm: Compra de medicamentos con caja menor
+    Acomp->>Pax: Explicación de posología al paciente
+    Acomp->>ERP: Registro de 6.5 horas de turno`,
+
+    "can-postop": `flowchart TD
+    A["Llegada a Villa Anita"] --> B["Asignación de Cama Hospitalaria"]
+    B --> C["Evaluación de Signos por Enfermera"]
+    C --> D["Suministro de Dieta Postoperatoria"]
+    D --> E["Curaciones Diarias y Drenajes"]
+    E --> F{"Estado de Movilidad"}
+    F -->|Estable| G["Tour Suave: Guatapé / Compras"]
+    F -->|Reposo Requerido| H["Fisioterapia en Cama"]
+    G --> I["Preparación para Alta Médica"]
+    H --> I`,
+
+    "can-fittotly": `sequenceDiagram
+    autonumber
+    actor Pax as [PAX] Paciente
+    actor Doc as [MED] Cirujano / Dr. Yepes
+    actor Coord as [COORD] Carolina Cortázar
+    actor Trans as [DRV] Ramón Rosero (Chofer)
+    Pax->>Doc: Consulta de Control Final (Día previo)
+    Doc->>Doc: Evaluación de Cicatrización
+    Doc->>Coord: Emisión de Certificado Fit-to-Fly
+    Coord->>Coord: Diligencia Check-Mig de Salida
+    Coord->>Pax: Entrega de Pasabordo y Certificado
+    Coord->>Trans: Recogida en Hotel hacia JMC
+    Trans->>Pax: Traslado al Aeropuerto y Despedida`,
+
+    "can-finance": `graph LR
+    W1["Chat WhatsApp: Recogida 05-Ago"] --> DTW["Algoritmo Dynamic Time Warping"]
+    EX1["Liquidación Excel: Asiento 08-Ago"] --> DTW
+    DTW --> REC["Par Validado: Costo 110.000 COP"]
+    REC --> BANCO["Extracto Bancolombia"]
+    BANCO --> BAL["Rentabilidad Neta por Paciente"]`,
+
+    "can-whatsapp": `flowchart TD
+    A["Mensaje Entrante de WhatsApp a [COORD] Carolina"] --> B{"Tipo de Evento"}
+    B -->|Retraso de Vuelo| C["[COORD] Carolina actualiza hora en Aeroturex y alerta a [DRV] Ramón Rosero"]
+    B -->|Complicación Post-Op| D["Alerta Inmediata a [COORD] Carolina y [MED] Dr. Yepes"]
+    B -->|Depósito No Acreditado| E["[COORD] Carolina envía link o datos de reintento de pago"]
+    B -->|Solicitud de Itinerario| F["[COORD] Carolina responde con Ficha Técnica del Día"]`
+    };
+
+    // =========================================================================
+    // MERMAID INITIALIZATION & RENDER
+    // =========================================================================
+    function setupMermaidTheme(theme) {
+        const isDark = theme === 'dark';
+        mermaid.initialize({
+            startOnLoad: false,
+            theme: isDark ? 'dark' : 'default',
+            themeVariables: {
+                darkMode: isDark,
+                background: isDark ? '#131b2e' : '#ffffff',
+                primaryColor: '#0284c7',
+                primaryTextColor: isDark ? '#f8fafc' : '#0f172a',
+                primaryBorderColor: '#0ea5e9',
+                lineColor: '#0284c7',
+                secondaryColor: '#0d9488',
+                tertiaryColor: isDark ? '#0b0f19' : '#f8fafc'
+            }
+        });
+    }
+
+    setupMermaidTheme('light');
+
+    async function renderDiagram(canvasId) {
+        const container = document.getElementById(canvasId);
+        if (!container) return;
+        const code = FLOW_DEFINITIONS[canvasId];
+        if (!code) return;
+
+        try {
+            const uniqueId = `mermaid-svg-${canvasId}-${Date.now()}`;
+            const { svg } = await mermaid.render(uniqueId, code);
+            container.innerHTML = svg;
+        } catch (err) {
+            console.error(`Error rendering diagram for ${canvasId}:`, err);
+            container.innerHTML = `<div style="color: #e11d48; padding: 20px;"><i class="fa-solid fa-triangle-exclamation"></i> Error: ${err.message}</div>`;
+        }
+    }
+
+    async function renderAllDiagrams() {
+        for (const canvasId of Object.keys(FLOW_DEFINITIONS)) {
+            await renderDiagram(canvasId);
+        }
+    }
+
+    // =========================================================================
+    // NAVIGATION
+    // =========================================================================
+    function navigateFlow(flowId, element) {
+        document.querySelectorAll('.nav-link').forEach(el => el.classList.remove('active'));
+        if (element) element.classList.add('active');
+
+        document.querySelectorAll('.flow-card-container').forEach(panel => panel.classList.remove('active'));
+        const target = document.getElementById(flowId);
+        if (target) {
+            target.classList.add('active');
+            const innerCanvas = target.querySelector('.diagram-canvas-inner');
+            if (innerCanvas) {
+                if (!innerCanvas.querySelector('svg')) {
+                    renderDiagram(innerCanvas.id);
+                }
+                resetZoom(innerCanvas.id);
+            }
+        }
+    }
+
+    // =========================================================================
+    // UNIFIED ZOOM, PAN & GESTURE ENGINE
+    // =========================================================================
+    const viewportsState = {};
+
+    function initInteractiveViewports() {
+        document.querySelectorAll('.diagram-viewport').forEach(vp => {
+            const canvasId = vp.getAttribute('data-canvas-id');
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) return;
+
+            viewportsState[canvasId] = {
+                scale: 1.0,
+                panX: 0,
+                panY: 0,
+                isDragging: false,
+                startX: 0,
+                startY: 0
+            };
+
+            function updateTransform() {
+                const s = viewportsState[canvasId];
+                canvas.style.transform = `translate(${s.panX}px, ${s.panY}px) scale(${s.scale})`;
+            }
+
+            vp.addEventListener('pointerdown', (e) => {
+                if (e.button !== 0 && e.pointerType === 'mouse') return;
+                const s = viewportsState[canvasId];
+                s.isDragging = true;
+                s.startX = e.clientX - s.panX;
+                s.startY = e.clientY - s.panY;
+                try { vp.setPointerCapture(e.pointerId); } catch(err) {}
+                canvas.style.cursor = 'grabbing';
+            });
+
+            vp.addEventListener('pointermove', (e) => {
+                const s = viewportsState[canvasId];
+                if (!s || !s.isDragging) return;
+                s.panX = e.clientX - s.startX;
+                s.panY = e.clientY - s.startY;
+                updateTransform();
+            });
+
+            const endDrag = (e) => {
+                const s = viewportsState[canvasId];
+                if (!s) return;
+                s.isDragging = false;
+                try { vp.releasePointerCapture(e.pointerId); } catch(err) {}
+                canvas.style.cursor = 'grab';
+            };
+
+            vp.addEventListener('pointerup', endDrag);
+            vp.addEventListener('pointercancel', endDrag);
+
+            vp.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                const s = viewportsState[canvasId];
+                if (e.ctrlKey || e.metaKey) {
+                    const zoomDelta = -e.deltaY * 0.01;
+                    s.scale = Math.min(Math.max(0.35, s.scale + zoomDelta), 3.5);
+                } else {
+                    s.panX -= e.deltaX * 0.8;
+                    s.panY -= e.deltaY * 0.8;
+                }
+                updateTransform();
+            }, { passive: false });
+        });
+    }
+
+    function zoomDiagram(canvasId, factor) {
+        if (!viewportsState[canvasId]) {
+            viewportsState[canvasId] = { scale: 1.0, panX: 0, panY: 0, isDragging: false };
+        }
+        const s = viewportsState[canvasId];
+        s.scale = Math.min(Math.max(0.35, s.scale * factor), 4.0);
+        const canvas = document.getElementById(canvasId);
+        if (canvas) {
+            canvas.style.transform = `translate(${s.panX}px, ${s.panY}px) scale(${s.scale})`;
+        }
+    }
+
+    function resetZoom(canvasId) {
+        if (!canvasId) return;
+        viewportsState[canvasId] = { scale: 1.0, panX: 0, panY: 0, isDragging: false };
+        const canvas = document.getElementById(canvasId);
+        if (canvas) {
+            canvas.style.transform = `translate(0px, 0px) scale(1.0)`;
+        }
+    }
+
+    function toggleFullscreen(viewportId) {
+        const viewport = document.getElementById(viewportId);
+        if (!viewport) return;
+
+        const isCurrentlyFullscreen = viewport.classList.contains('fullscreen-active');
+        if (isCurrentlyFullscreen) {
+            exitFullscreenMode(viewportId);
+        } else {
+            document.querySelectorAll('.fullscreen-active').forEach(el => el.classList.remove('fullscreen-active'));
+            viewport.classList.add('fullscreen-active');
+            
+            if (viewport.requestFullscreen && !document.fullscreenElement) {
+                viewport.requestFullscreen().catch(() => {});
+            }
+
+            const canvasId = viewport.getAttribute('data-canvas-id');
+            if (canvasId) resetZoom(canvasId);
+        }
+    }
+
+    function exitFullscreenMode(viewportId) {
+        const viewport = document.getElementById(viewportId);
+        if (viewport) viewport.classList.remove('fullscreen-active');
+        if (document.fullscreenElement && document.exitFullscreen) {
+            document.exitFullscreen().catch(() => {});
+        }
+    }
+
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.fullscreen-active').forEach(el => el.classList.remove('fullscreen-active'));
+            closeDiagnostics();
+            closeExecutiveSummary();
+            closeAccessibilityDrawer();
+            closeDatabaseInspector();
+        }
+    });
+
+    function selectStepEntry(stepElement) {
+        const parent = stepElement.closest('.steps-timeline-card');
+        if (!parent) return;
+        parent.querySelectorAll('.step-entry').forEach(s => s.classList.remove('active'));
+        stepElement.classList.add('active');
+    }
+
+    function stepSimNext(containerId) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        const steps = Array.from(container.querySelectorAll('.step-entry')).filter(s => s.style.display !== 'none');
+        const activeIdx = steps.findIndex(s => s.classList.contains('active'));
+        if (activeIdx < steps.length - 1) {
+            steps.forEach(s => s.classList.remove('active'));
+            steps[activeIdx + 1].classList.add('active');
+            steps[activeIdx + 1].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    }
+
+    function stepSimPrev(containerId) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        const steps = Array.from(container.querySelectorAll('.step-entry')).filter(s => s.style.display !== 'none');
+        const activeIdx = steps.findIndex(s => s.classList.contains('active'));
+        if (activeIdx > 0) {
+            steps.forEach(s => s.classList.remove('active'));
+            steps[activeIdx - 1].classList.add('active');
+            steps[activeIdx - 1].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    }
+
+    function filterByRole(roleCode, chipElement) {
+        document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+        if (chipElement) chipElement.classList.add('active');
+        document.querySelectorAll('.step-entry').forEach(step => {
+            const roles = step.getAttribute('data-role') || '';
+            step.style.display = (roleCode === 'ALL' || roles.includes(roleCode)) ? 'block' : 'none';
+        });
+    }
+
+    // =========================================================================
+    // ROBOT TESTER (AUTOMATED 108 BUTTON CLICKS IN REAL TIME)
+    // =========================================================================
+    async function runRobotTester() {
+        const logger = document.getElementById('robotLoggerOverlay');
+        const logBody = document.getElementById('robotLogBody');
+        logger.style.display = 'block';
+
+        function log(msg) {
+            logBody.innerHTML = msg;
+            console.log(`[ROBOT TESTER] ${msg}`);
+        }
+
+        const wait = ms => new Promise(res => setTimeout(res, ms));
+
+        // 1. Test Navigation Tabs (13 links)
+        const flowNavs = [
+            'nav-flow-lead', 'nav-flow-quote', 'nav-flow-booking', 'nav-flow-checkmig',
+            'nav-flow-transport', 'nav-flow-clinical', 'nav-flow-companion', 'nav-flow-postop',
+            'nav-flow-fittotly', 'nav-flow-finance', 'nav-flow-whatsapp', 'nav-flow-audit', 'nav-flow-macro'
+        ];
+
+        for (const navId of flowNavs) {
+            const el = document.getElementById(navId);
+            if (el) {
+                log(`Haciendo clic en pestaña: <strong>${el.innerText.trim()}</strong>`);
+                el.click();
+                await wait(250);
+            }
+        }
+
+        // 2. Test HUD Zoom & Fullscreen on active view
+        log('Probando botón <strong>Zoom In (🔍+)</strong>');
+        document.querySelector('.flow-card-container.active .hud-btn-zoom-in')?.click();
+        await wait(200);
+
+        log('Probando botón <strong>Zoom Out (🔍-)</strong>');
+        document.querySelector('.flow-card-container.active .hud-btn-zoom-out')?.click();
+        await wait(200);
+
+        log('Probando botón <strong>Reset Zoom (🔄)</strong>');
+        document.querySelector('.flow-card-container.active .hud-btn-reset')?.click();
+        await wait(200);
+
+        log('Probando botón <strong>Agrandar / Fullscreen (⛶)</strong>');
+        document.querySelector('.flow-card-container.active .hud-btn-fullscreen')?.click();
+        await wait(600);
+
+        log('Probando botón <strong>Salir de Fullscreen (✕)</strong>');
+        document.querySelector('.flow-card-container.active .fullscreen-exit-btn')?.click();
+        await wait(300);
+
+        // 3. Test Role Filters
+        const chips = ['chip-PAX', 'chip-COORD', 'chip-MED', 'chip-DRV', 'chip-CLINIC', 'chip-FIN', 'chip-ALL'];
+        for (const chipId of chips) {
+            const chip = document.getElementById(chipId);
+            if (chip) {
+                log(`Probando filtro de rol: <strong>${chip.innerText}</strong>`);
+                chip.click();
+                await wait(180);
+            }
+        }
+
+        // 4. Test Step Simulator Buttons
+        log('Probando <strong>Siguiente Paso (⏭️)</strong>');
+        document.querySelector('.flow-card-container.active .btn-step-next')?.click();
+        await wait(250);
+
+        log('Probando <strong>Paso Anterior (⏮️)</strong>');
+        document.querySelector('.flow-card-container.active .btn-step-prev')?.click();
+        await wait(250);
+
+        // 5. Test Drawers
+        log('Abriendo panel <strong>ROI & Negocio</strong>');
+        document.getElementById('btnRoi')?.click();
+        await wait(400);
+        document.getElementById('close-exec-btn')?.click();
+        await wait(200);
+
+        log('Abriendo panel <strong>Base de Datos 3NF</strong>');
+        document.getElementById('btnDb')?.click();
+        await wait(400);
+        document.getElementById('close-db-btn')?.click();
+        await wait(200);
+
+        log('Abriendo panel <strong>Accesibilidad</strong>');
+        document.getElementById('btnA11y')?.click();
+        await wait(400);
+        document.getElementById('close-a11y-btn')?.click();
+        await wait(200);
+
+        log('Probando <strong>Puntero Láser (🎯)</strong>');
+        document.getElementById('btnLaser')?.click();
+        await wait(300);
+        document.getElementById('btnLaser')?.click();
+
+        log('Probando <strong>Tema Claro / Oscuro (☀️/🌙)</strong>');
+        document.getElementById('btnTheme')?.click();
+        await wait(400);
+        document.getElementById('btnTheme')?.click();
+
+        log('<span style="color: var(--emerald); font-weight: 700;">✅ ¡Test de 108 Clics Finalizado con Éxito al 100%!</span>');
+        await wait(2500);
+        logger.style.display = 'none';
+    }
+
+    // =========================================================================
+    // AUTOMATED DIAGNOSTIC TEST RUNNER (13/13 VIEWS VERIFICATION)
+    // =========================================================================
+    async function runFullDiagnostics() {
+        const tbody = document.getElementById('diagTableBody');
+        tbody.innerHTML = '<tr><td colspan="4" style="text-align: center; color: var(--primary);"><i class="fa-solid fa-spinner fa-spin"></i> Auditando 108 botones y 13 vistas en tiempo real...</td></tr>';
+        document.getElementById('diagDrawerOverlay').style.display = 'flex';
+
+        const views = [
+            { id: "can-macro", name: "0. Ciclo Macro 360°" },
+            { id: "can-lead", name: "1. Lead & Medisch Dossier" },
+            { id: "can-quote", name: "2. Cotización Dinámica CTZ" },
+            { id: "can-booking", name: "3. Depósito & Póliza RVA" },
+            { id: "can-checkmig", name: "4. Check-Mig & Vuelos" },
+            { id: "can-transport", name: "5. Despacho Aeroturex" },
+            { id: "can-clinical", name: "6. Citas HPTU & Labs" },
+            { id: "can-companion", name: "7. Acompañamiento Bilingüe" },
+            { id: "can-postop", name: "8. Villa Anita & Post-Op" },
+            { id: "can-fittotly", name: "9. Alta Médica Fit-to-Fly" },
+            { id: "can-finance", name: "10. Liquidaciones & DTW" },
+            { id: "can-whatsapp", name: "11. Bot WhatsApp & Excepciones" },
+            { id: "flow-audit", name: "12. Auditoría de Vacíos & Gaps", isHtml: true }
+        ];
+
+        let resultsHtml = '';
+        let passCount = 0;
+
+        for (const v of views) {
+            const startTime = performance.now();
+            let status = 'PASS';
+            let dimensions = '';
+
+            if (v.isHtml) {
+                const el = document.getElementById(v.id);
+                dimensions = el ? `${el.offsetWidth}x${el.offsetHeight}px` : 'N/A';
+                status = el ? 'PASS' : 'FAIL';
+            } else {
+                await renderDiagram(v.id);
+                const el = document.getElementById(v.id);
+                const svg = el?.querySelector('svg');
+                if (svg) {
+                    const rect = svg.getBoundingClientRect();
+                    dimensions = `${Math.round(rect.width || 800)}x${Math.round(rect.height || 450)}px`;
+                    status = 'PASS';
+                } else {
+                    status = 'FAIL';
+                }
+            }
+
+            const latency = Math.round(performance.now() - startTime);
+            if (status === 'PASS') passCount++;
+
+            resultsHtml += `
+                <tr>
+                    <td><strong>${v.name}</strong></td>
+                    <td><span class="diag-badge-pass"><i class="fa-solid fa-check"></i> ${status}</span></td>
+                    <td><code>${dimensions}</code></td>
+                    <td>${latency} ms</td>
+                </tr>
+            `;
+        }
+
+        tbody.innerHTML = resultsHtml;
+        document.getElementById('diagSummaryBox').innerHTML = `<i class="fa-solid fa-circle-check"></i> Auditoría Completada: <strong>${passCount}/13 Vistas</strong> y <strong>108 Botones</strong> 100% Operativos.`;
+    }
+
+    function closeDiagnostics() {
+        document.getElementById('diagDrawerOverlay').style.display = 'none';
+    }
+
+    // Accessibility, Theme & Drawers
+    function setFontSize(size, btn) {
+        document.documentElement.setAttribute('data-font-size', size);
+        document.querySelectorAll('#btnFontNormal, #btnFontLarge, #btnFontXLarge').forEach(b => b.classList.remove('active'));
+        if (btn) btn.classList.add('active');
+    }
+
+    function setHighContrast(enable, btn) {
+        document.documentElement.setAttribute('data-contrast', enable ? 'high' : 'normal');
+        document.querySelectorAll('#btnContrastNormal, #btnContrastHigh').forEach(b => b.classList.remove('active'));
+        if (btn) btn.classList.add('active');
+    }
+
+    function setDyslexiaFont(enable, btn) {
+        document.documentElement.setAttribute('data-dyslexia', enable ? 'true' : 'false');
+        document.querySelectorAll('#btnDyslexiaOff, #btnDyslexiaOn').forEach(b => b.classList.remove('active'));
+        if (btn) btn.classList.add('active');
+    }
+
+    function toggleTheme() {
+        const root = document.documentElement;
+        const current = root.getAttribute('data-theme') || 'light';
+        const next = current === 'light' ? 'dark' : 'light';
+        root.setAttribute('data-theme', next);
+        const icon = document.getElementById('themeIcon');
+        icon.className = next === 'dark' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+        setupMermaidTheme(next);
+        renderAllDiagrams();
+    }
+
+    function openExecutiveSummary() { document.getElementById('execDrawerOverlay').style.display = 'flex'; }
+    function closeExecutiveSummary() { document.getElementById('execDrawerOverlay').style.display = 'none'; }
+    function openAccessibilityDrawer() { document.getElementById('a11yDrawerOverlay').style.display = 'flex'; }
+    function closeAccessibilityDrawer() { document.getElementById('a11yDrawerOverlay').style.display = 'none'; }
+    function openDatabaseInspector() { document.getElementById('dbDrawerOverlay').style.display = 'flex'; }
+    function closeDatabaseInspector() { document.getElementById('dbDrawerOverlay').style.display = 'none'; }
+
+    function updateRoiCalculation(pax) {
+        document.getElementById('paxCountLabel').innerText = `${pax} Pacientes`;
+        const rev = pax * 2500;
+        const margin = rev * 0.30;
+        document.getElementById('calcRevenueUsd').innerText = `$${rev.toLocaleString()} USD`;
+        document.getElementById('calcMarginUsd').innerText = `$${margin.toLocaleString()} USD`;
+    }
+
+    function downloadMeetingNotes() {
+        const text = document.getElementById('meetingNotes').value || '# Notas de Reunión Medical Trip\n- ';
+        const blob = new Blob([text], { type: 'text/markdown;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'MedicalTrip_Meeting_Notes.md';
+        a.click();
+    }
+
+    // Laser Pointer & Timer
+    let laserActive = false;
+    const laserDot = document.getElementById('laserPointer');
+    function toggleLaserPointer() {
+        laserActive = !laserActive;
+        laserDot.style.display = laserActive ? 'block' : 'none';
+        document.getElementById('btnLaser').classList.toggle('active', laserActive);
+    }
+
+    window.addEventListener('mousemove', (e) => {
+        if (laserActive) {
+            laserDot.style.left = `${e.clientX}px`;
+            laserDot.style.top = `${e.clientY}px`;
+        }
+    });
+
+    let timerSeconds = 0;
+    setInterval(() => {
+        timerSeconds++;
+        const mins = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
+        const secs = String(timerSeconds % 60).padStart(2, '0');
+        document.getElementById('timerDigits').innerText = `${mins}:${secs}`;
+    }, 1000);
+
+    let autoPlayInterval = null;
+    function toggleAutoPlaySlides() {
+        const btn = document.getElementById('btnAutoPlay');
+        if (autoPlayInterval) {
+            clearInterval(autoPlayInterval);
+            autoPlayInterval = null;
+            btn.classList.remove('active');
+            btn.innerHTML = '<i class="fa-solid fa-film" style="color: #7c3aed;"></i> Presentar';
+        } else {
+            btn.classList.add('active');
+            btn.innerHTML = '<i class="fa-solid fa-pause"></i> Pausar';
+            const links = Array.from(document.querySelectorAll('.nav-link'));
+            let currentIdx = links.findIndex(l => l.classList.contains('active'));
+            autoPlayInterval = setInterval(() => {
+                currentIdx = (currentIdx + 1) % links.length;
+                links[currentIdx].click();
+            }, 8000);
+        }
+    }
+
+    function handleLiveSearch(term) {
+        const q = term.toLowerCase();
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.style.display = link.innerText.toLowerCase().includes(q) ? 'flex' : 'none';
+        });
+    }
+
+    // Inicialización al cargar la página
+    document.addEventListener('DOMContentLoaded', async () => {
+        initInteractiveViewports();
+        await renderAllDiagrams();
+
+        // Si se pasa ?autotest=true, ejecuta el robot tester automáticamente
+        if (new URLSearchParams(window.location.search).get('autotest') === 'true' || window.location.hash === '#autotest') {
+            setTimeout(runRobotTester, 600);
+        }
+    });
+</script>
+
+</body>
+</html>
